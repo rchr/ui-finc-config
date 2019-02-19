@@ -1,0 +1,31 @@
+{
+  "meta.title": "Finc Config",
+  "new-app.greeting": "Congratulations!",
+  "new-app.message": "Your Stripes app is running.",
+  "settings.general": "General",
+  "settings.general.message": "These are your general app settings.",
+  "settings.some-feature": "Some Feature",
+  "settings.some-feature.message": "These are your settings for some app feature.",
+
+  "example-page.sample-request": "Sample API request",
+  "example-page.health-summary": "{healthyInstances} instances healthy, {notHealthyInstances} instances not healthy",
+
+  "information.sourceLabel": "Source Name",
+  "information.sourceId": "Source ID",
+  "information.status": "Impl. Status",
+  "information.solrShard": "Solar Shard",
+  "information.lastProcessed": "Last Processed",
+
+  "source.form.sourceInfo.title": "Metadata Source Information",
+  "source.form.createSource": "create Source",
+  "source.form.updateSource": "update Source",
+  
+
+  "sourceInfo.sourceLabel": "Source Name",
+  "sourceInfo.sourceId": "Source ID",
+  "sourceInfo.description": "Description",
+  "sourceInfo.status": "Status",
+  "sourceInfo.ticket": "Ticket Link",
+  "sourceInfo.vendor": "Vendor"
+
+}
