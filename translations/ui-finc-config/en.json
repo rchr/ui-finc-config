@@ -19,11 +19,10 @@
   "source.managementAccordion": "Management",
   "source.technicalAccordion": "Technical",
 
-  "source.form.sourceInfo.title": "Metadata Source Information",
+  "source.form.sourceInfo.general": "Metadata Source General",
   "source.form.createSource": "create Source",
   "source.form.updateSource": "update Source",
   
-
   "sourceInfo.label": "Name",
   "sourceInfo.id": "Source ID",
   "sourceInfo.description": "Description",

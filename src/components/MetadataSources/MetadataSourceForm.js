@@ -17,6 +17,8 @@ import {
 import stripesForm from '@folio/stripes/form';
 
 import SourceInfoForm from '../MetadataSourceInfo/SourceInfoForm';
+import SourceManagementForm from '../SourceManagement/SourceManagementForm';
+import SourceTechnicalForm from '../SourceTechnical/SourceTechnicalForm';
 
 function validate(values) {
   const errors = {};
@@ -50,7 +52,9 @@ class MetadataSourceForm extends React.Component {
 
     this.state = {
       sections: {
-        editSourceInfo: true
+        editSourceInfo: true,
+        editSourceManagement: true,
+        editSourceTechnical: true
       },
     };
 
@@ -144,6 +148,18 @@ class MetadataSourceForm extends React.Component {
               <SourceInfoForm
                 accordionId="editSourceInfo"
                 expanded={sections.editSourceInfo}
+                onToggle={this.handleSectionToggle}
+                {...this.props}
+              />
+              <SourceManagementForm
+                accordionId="editSourceManagement"
+                expanded={sections.editSourceManagement}
+                onToggle={this.handleSectionToggle}
+                {...this.props}
+              />
+              <SourceTechnicalForm
+                accordionId="editSourceTechnical"
+                expanded={sections.editSourceTechnical}
                 onToggle={this.handleSectionToggle}
                 {...this.props}
               />

@@ -7,48 +7,77 @@ import {
 import {
   Accordion,
   Col,
+  Dropdown,
   Row,
+  Select,
   TextField
 } from '@folio/stripes/components';
 
 class SourceInfoForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.columnMapping =
-    {
-      name: 'Name',
-      code: 'Code',
-      description: 'description',
-    };
-  }
-
   render() {
     const { expanded, onToggle, accordionId } = this.props;
 
+    const dataOptionsStatus = [
+      { value: 'active', label: 'Active' },
+      { value: 'wish', label: 'Wish' },
+      { value: 'technical implementation', label: 'Technical Implementation' },
+      { value: 'negotiation', label: 'Negotiation' },
+      { value: 'deactivated', label: 'Deactivated' },
+      { value: 'terminated', label: 'Terminated' }
+    ];
+
     return (
       <Accordion
-        label={<FormattedMessage id="ui-finc-config.source.form.sourceInfo.title" />}
+        label={<FormattedMessage id="ui-finc-config.source.form.sourceInfo.general" />}
         open={expanded}
         id={accordionId}
         onToggle={onToggle}
       >
         <Row>
-          <Col xs>
-            <Row>
-              <Col xs={4}>
-                <Field
-                  label={
-                    <FormattedMessage id="ui-finc-config.information.sourceLabel">
-                      {(msg) => msg + ' *'}
-                    </FormattedMessage>}
-                  placeholder="Enter a name to identify the metadata source"
-                  name="label"
-                  id="addsource_label"
-                  component={TextField}
-                  fullWidth
-                />
-              </Col>
-            </Row>
+          <Col xs={4}>
+            <Field
+              label={
+                <FormattedMessage id="ui-finc-config.sourceInfo.label">
+                  {(msg) => msg + ' *'}
+                </FormattedMessage>}
+              placeholder="Enter a name to identify the metadata source"
+              name="label"
+              id="addsource_label"
+              component={TextField}
+              fullWidth
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={4}>
+            <Field
+              label={
+                <FormattedMessage id="ui-finc-config.sourceInfo.description">
+                  {(msg) => msg}
+                </FormattedMessage>}
+              placeholder="Enter a name to identify the metadata source"
+              name="description"
+              id="addsource_description"
+              component={TextField}
+              fullWidth
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={4}>
+            <Field
+              label={
+                <FormattedMessage id="ui-finc-config.sourceInfo.status">
+                  {(msg) => msg + ' *'}
+                </FormattedMessage>
+              }
+              name="status"
+              id="addsource_status"
+              placeholder="Enter a name to identify the status of a metadata"
+              component={Select}
+              dataOptions={dataOptionsStatus}
+              fullWidth
+            />
           </Col>
         </Row>
       </Accordion>
