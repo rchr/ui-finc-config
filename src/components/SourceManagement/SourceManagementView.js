@@ -6,9 +6,15 @@ import {
 } from 'react-intl';
 import {
   Col,
+  Headline,
   KeyValue,
+  Label,
+  List,
+  MultiColumnList,
   Row
 } from '@folio/stripes/components';
+
+// import ContactView from '../Contact/ContactView';
 
 class SourceManagementView extends React.Component {
   static propTypes = {
@@ -21,9 +27,18 @@ class SourceManagementView extends React.Component {
       .isRequired,
   };
 
+  // constructor(props) {
+  //   super(props);
+  //   this.connectedContactView = this.props.stripes.connect(ContactView);
+  // }
 
   render() {
     const { metadataSource, id } = this.props;
+    // set values for contracts
+    const contractsItem = metadataSource.contracts;
+    const contractsFormatter = (contractsItem) => (<li>{contractsItem}</li>);
+    const isEmptyMessage = 'No items to show';
+    // const contactExternal = _.get(metadataSource, 'contact.external', '-');
 
     return (
       <React.Fragment>
@@ -35,23 +50,31 @@ class SourceManagementView extends React.Component {
             />
           </Row>
           <Row>
-            <Col>
-              {/*
-                TODO: contact external (is repeatable, is array)
-                TODO: contact role (is repeatable, is array)
-              */}
-              <KeyValue
-                label={<FormattedMessage id="ui-finc-config.sourceManagement.contacts.external" />}
-                value={_.get(metadataSource, 'contacts.external.name', '-')}
+            <Col xs={6}>
+              {/* <this.connectedContactView
+                stripes={this.props.stripes}
+                metadataSource={metadataSource}
+              /> */}
+              <Headline size="medium"><FormattedMessage id="ui-finc-config.sourceManagement.contacts.internal" /></Headline>
+              <MultiColumnList
+                contentData={metadataSource.contacts.internal}
+                visibleColumns={['name', 'role']}
+                columnMapping={{
+                  name: <FormattedMessage id="ui-finc-config.contact.name" />,
+                  role: <FormattedMessage id="ui-finc-config.contact.role" />
+                }}
               />
             </Col>
-          </Row>
-          <Row>
-            <Col>
-              {/*
-                TODO: contact internal (is repeatable, is array)
-                TODO: contact role (is repeatable, is array)
-              */}
+            <Col xs={6}>
+              <Headline size="medium"><FormattedMessage id="ui-finc-config.sourceManagement.contacts.external" /></Headline>
+              <MultiColumnList
+                contentData={metadataSource.contacts.external}
+                visibleColumns={['name', 'role']}
+                columnMapping={{
+                  name: <FormattedMessage id="ui-finc-config.contact.name" />,
+                  role: <FormattedMessage id="ui-finc-config.contact.role" />
+                }}
+              />
             </Col>
           </Row>
           <Row>
@@ -64,6 +87,20 @@ class SourceManagementView extends React.Component {
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.sourceManagement.licensingNote" />}
               value={_.get(metadataSource, 'licensingNote', '-')}
+            />
+          </Row>
+          <Row>
+            {/*
+              TODO: is there a better way to pass css instructions for className="kvLabel---3pCya"
+              TODO: is there a better way make a new line instead of new <Row>
+            */}
+            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceManagement.contracts" /></div>
+          </Row>
+          <Row>
+            <List
+              items={contractsItem}
+              itemFormatter={contractsFormatter}
+              isEmptyMessage={isEmptyMessage}
             />
           </Row>
         </div>

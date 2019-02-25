@@ -36,6 +36,7 @@
   "sourceManagement.contacts.internal": "Contact Internal",
   "sourceManagement.indexingLevel": "Indexing Level",
   "sourceManagement.licensingNote": "Licensing Note",
+  "sourceManagement.contracts": "Contracts",
 
   "sourceTechnical.lastProcessed": "Last Processed",
   "sourceTechnical.ticket": "Ticket",
@@ -45,6 +46,9 @@
   "sourceTechnical.deliveryMethods": "Delivery Methods",
   "sourceTechnical.format": "Format",
   "sourceTechnical.updateRhythm": "Update Rhythm",
-  "sourceTechnical.inferiorTo": "Inferior To"
+  "sourceTechnical.inferiorTo": "Inferior To",
+
+  "contact.name": "Name",
+  "contact.role": "Role"
 
 }

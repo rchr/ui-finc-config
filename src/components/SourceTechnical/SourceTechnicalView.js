@@ -6,7 +6,9 @@ import {
 } from 'react-intl';
 import {
   Col,
+  Headline,
   KeyValue,
+  List,
   Row
 } from '@folio/stripes/components';
 
@@ -24,7 +26,10 @@ class SourceTechnicalView extends React.Component {
 
   render() {
     const { metadataSource, id } = this.props;
-
+    // set values for deliveryMethods
+    const deliveryMethodsItem = metadataSource.deliveryMethods;
+    const deliveryMethodsFormatter = (deliveryMethodsItem) => (<li>{deliveryMethodsItem}</li>);
+    const isEmptyMessage = 'No items to show';
 
     return (
       <React.Fragment>
@@ -60,11 +65,18 @@ class SourceTechnicalView extends React.Component {
             />
           </Row>
           <Row>
-            <Col>
-              {/*
-                TODO: deliveryMethods (is repeatable, is array)
-              */}
-            </Col>
+            {/*
+              TODO: is there a better way to pass css instructions for className="kvLabel---3pCya"
+              TODO: is there a better way make a new line instead of new <Row>
+            */}
+            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceTechnical.deliveryMethods" /></div>
+          </Row>
+          <Row>
+            <List
+              items={deliveryMethodsItem}
+              itemFormatter={deliveryMethodsFormatter}
+              isEmptyMessage={isEmptyMessage}
+            />
           </Row>
           <Row>
             <KeyValue
