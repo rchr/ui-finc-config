@@ -30,13 +30,19 @@ class SourceInfoView extends React.Component {
     return (
       <React.Fragment>
         <div id={id}>
-          <Row end="xs">
+          {/* <Row end="xs">
             <Col xs={12}>
               <KeyValue
-                label={<FormattedMessage id="ui-finc-config.sourceInfo.sourceId" />}
+                label={<FormattedMessage id="ui-finc-config.sourceInfo.id" />}
                 value={_.get(metadataSource, 'id', '-')}
               />
             </Col>
+          </Row> */}
+          <Row>
+            <KeyValue
+              label={<FormattedMessage id="ui-finc-config.sourceInfo.label" />}
+              value={_.get(metadataSource, 'label', '-')}
+            />
           </Row>
           <Row>
             <KeyValue
@@ -45,28 +51,16 @@ class SourceInfoView extends React.Component {
             />
           </Row>
           <Row>
-            <Col xs={4}>
-              {/* TODO: connect to vendor and loop throug them */}
-              {/* <this.connectedReportOverview
-                vendorId={vendorId}
-              /> */}
-              <KeyValue
-                label={<FormattedMessage id="ui-finc-config.sourceInfo.vendor" />}
-                value={_.get(metadataSource, 'vender', 'TODO')}
-              />
-            </Col>
-            <Col xs={4}>
+            <KeyValue
+              label={<FormattedMessage id="ui-finc-config.sourceInfo.status" />}
+              value={_.get(metadataSource, 'status', '-')}
+            />
+            {/* <Col xs={4}>
               <KeyValue
                 label={<FormattedMessage id="ui-finc-config.sourceInfo.ticket" />}
                 value={_.get(metadataSource, 'ticket', '-')}
               />
-            </Col>
-            <Col xs={4}>
-              <KeyValue
-                label={<FormattedMessage id="ui-finc-config.sourceInfo.status" />}
-                value={_.get(metadataSource, 'status', '-')}
-              />
-            </Col>
+            </Col> */}
           </Row>
         </div>
       </React.Fragment>

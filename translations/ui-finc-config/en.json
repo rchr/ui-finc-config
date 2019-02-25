@@ -16,16 +16,35 @@
   "information.solrShard": "Solar Shard",
   "information.lastProcessed": "Last Processed",
 
+  "source.managementAccordion": "Management",
+  "source.technicalAccordion": "Technical",
+
   "source.form.sourceInfo.title": "Metadata Source Information",
   "source.form.createSource": "create Source",
   "source.form.updateSource": "update Source",
   
 
-  "sourceInfo.sourceLabel": "Source Name",
-  "sourceInfo.sourceId": "Source ID",
+  "sourceInfo.label": "Name",
+  "sourceInfo.id": "Source ID",
   "sourceInfo.description": "Description",
   "sourceInfo.status": "Status",
   "sourceInfo.ticket": "Ticket Link",
-  "sourceInfo.vendor": "Vendor"
+  "sourceInfo.vendor": "Vendor",
+
+  "sourceManagement.vendor": "Vendor",
+  "sourceManagement.contacts.external": "Contact External",
+  "sourceManagement.contacts.internal": "Contact Internal",
+  "sourceManagement.indexingLevel": "Indexing Level",
+  "sourceManagement.licensingNote": "Licensing Note",
+
+  "sourceTechnical.lastProcessed": "Last Processed",
+  "sourceTechnical.ticket": "Ticket",
+  "sourceTechnical.accessUrl": "Access Url",
+  "sourceTechnical.sourceId": "Source Id",
+  "sourceTechnical.solrShard": "Solr Shard",
+  "sourceTechnical.deliveryMethods": "Delivery Methods",
+  "sourceTechnical.format": "Format",
+  "sourceTechnical.updateRhythm": "Update Rhythm",
+  "sourceTechnical.inferiorTo": "Inferior To"
 
 }

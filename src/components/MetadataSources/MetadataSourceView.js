@@ -23,6 +23,8 @@ import {
 
 import MetadataSourceForm from './MetadataSourceForm';
 import SourceInfoView from '../MetadataSourceInfo/SourceInfoView';
+import SourceManagementView from '../SourceManagement/SourceManagementView';
+import SourceTechnicalView from '../SourceTechnical/SourceTechnicalView';
 
 class MetadataSourceView extends React.Component {
   static manifest = Object.freeze({
@@ -71,7 +73,8 @@ class MetadataSourceView extends React.Component {
 
     this.state = {
       accordions: {
-        testAccordion: false
+        managementAccordion: false,
+        technicalAccordion: false
       },
     };
   }
@@ -191,21 +194,28 @@ class MetadataSourceView extends React.Component {
             </Col>
           </Row>
           <Accordion
-            open={this.state.accordions.testAccordion}
+            open={this.state.accordions.managementAccordion}
             onToggle={this.handleAccordionToggle}
-            label={<FormattedMessage id="ui-finc-config.source.testAccordion" />}
-            id="testAccordion"
+            label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
+            id="managementAccordion"
           >
-            {
-              <Row>
-                <Col xs={3}>
-                  <KeyValue
-                    label="TODO"
-                    value="TODO"
-                  />
-                </Col>
-              </Row>
-            }
+            <SourceManagementView
+              id="sourceManagement"
+              metadataSource={initialValues}
+              stripes={this.props.stripes}
+            />
+          </Accordion>
+          <Accordion
+            open={this.state.accordions.technicalAccordion}
+            onToggle={this.handleAccordionToggle}
+            label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
+            id="technicalAccordion"
+          >
+            <SourceTechnicalView
+              id="sourceTechnical"
+              metadataSource={initialValues}
+              stripes={this.props.stripes}
+            />
           </Accordion>
           <Layer
             isOpen={query.layer ? query.layer === 'edit' : false}
