@@ -26,10 +26,19 @@ class SourceTechnicalView extends React.Component {
 
   render() {
     const { metadataSource, id } = this.props;
+    const isEmptyMessage = 'No items to show';
     // set values for deliveryMethods
     const deliveryMethodsItem = metadataSource.deliveryMethods;
     const deliveryMethodsFormatter = (deliveryMethodsItem) => (<li>{deliveryMethodsItem}</li>);
-    const isEmptyMessage = 'No items to show';
+    // set values for tickets
+    const ticketsItem = metadataSource.tickets;
+    const ticketsFormatter = (ticketsItem) => (<li>{ticketsItem}</li>);
+    // set values for formats
+    const formatsItem = metadataSource.tickets;
+    const formatsFormatter = (formatsItem) => (<li>{formatsItem}</li>);
+    // set values for inferiorTo
+    const inferiorToItem = metadataSource.tickets;
+    const inferiorToFormatter = (inferiorToItem) => (<li>{inferiorToItem}</li>);
 
     return (
       <React.Fragment>
@@ -40,10 +49,15 @@ class SourceTechnicalView extends React.Component {
               value={_.get(metadataSource, 'lastProcessed', '-')}
             />
           </Row>
+          {/* ticket is repeatable */}
           <Row>
-            <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceTechnical.ticket" />}
-              value={_.get(metadataSource, 'ticket', '-')}
+            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceTechnical.tickets" /></div>
+          </Row>
+          <Row>
+            <List
+              items={ticketsItem}
+              itemFormatter={ticketsFormatter}
+              isEmptyMessage={isEmptyMessage}
             />
           </Row>
           <Row>
@@ -64,11 +78,12 @@ class SourceTechnicalView extends React.Component {
               value={_.get(metadataSource, 'solrShard', '-')}
             />
           </Row>
+          {/*
+            TODO: is there a better way to pass css instructions for className="kvLabel---3pCya"
+            TODO: is there a better way make a new line instead of new <Row>
+          */}
+          {/* deliveryMethods is repeatable */}
           <Row>
-            {/*
-              TODO: is there a better way to pass css instructions for className="kvLabel---3pCya"
-              TODO: is there a better way make a new line instead of new <Row>
-            */}
             <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceTechnical.deliveryMethods" /></div>
           </Row>
           <Row>
@@ -78,10 +93,15 @@ class SourceTechnicalView extends React.Component {
               isEmptyMessage={isEmptyMessage}
             />
           </Row>
+          {/* format is repeatable */}
           <Row>
-            <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceTechnical.format" />}
-              value={_.get(metadataSource, 'format', '-')}
+            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceTechnical.formats" /></div>
+          </Row>
+          <Row>
+            <List
+              items={formatsItem}
+              itemFormatter={formatsFormatter}
+              isEmptyMessage={isEmptyMessage}
             />
           </Row>
           <Row>
@@ -90,10 +110,15 @@ class SourceTechnicalView extends React.Component {
               value={_.get(metadataSource, 'updateRhythm', '-')}
             />
           </Row>
+          {/* inferiorTo is repeatable */}
           <Row>
-            <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceTechnical.inferiorTo" />}
-              value={_.get(metadataSource, 'inferiorTo', '-')}
+            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceTechnical.inferiorTo" /></div>
+          </Row>
+          <Row>
+            <List
+              items={inferiorToItem}
+              itemFormatter={inferiorToFormatter}
+              isEmptyMessage={isEmptyMessage}
             />
           </Row>
         </div>

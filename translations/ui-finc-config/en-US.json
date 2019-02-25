@@ -38,12 +38,12 @@
   "sourceManagement.contracts": "Contracts",
 
   "sourceTechnical.lastProcessed": "Last Processed",
-  "sourceTechnical.ticket": "Ticket",
+  "sourceTechnical.tickets": "Ticket",
   "sourceTechnical.accessUrl": "Access Url",
   "sourceTechnical.sourceId": "Source Id",
   "sourceTechnical.solrShard": "Solr Shard",
   "sourceTechnical.deliveryMethods": "Delivery Methods",
-  "sourceTechnical.format": "Format",
+  "sourceTechnical.formats": "Format",
   "sourceTechnical.updateRhythm": "Update Rhythm",
   "sourceTechnical.inferiorTo": "Inferior To",
 

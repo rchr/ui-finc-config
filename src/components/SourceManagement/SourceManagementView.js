@@ -89,11 +89,11 @@ class SourceManagementView extends React.Component {
               value={_.get(metadataSource, 'licensingNote', '-')}
             />
           </Row>
+          {/*
+            TODO: is there a better way to pass css instructions for className="kvLabel---3pCya"
+            TODO: is there a better way make a new line instead of new <Row>
+          */}
           <Row>
-            {/*
-              TODO: is there a better way to pass css instructions for className="kvLabel---3pCya"
-              TODO: is there a better way make a new line instead of new <Row>
-            */}
             <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceManagement.contracts" /></div>
           </Row>
           <Row>
