@@ -8,11 +8,11 @@ import {
   Col,
   Headline,
   KeyValue,
-  Label,
   List,
   MultiColumnList,
   Row
 } from '@folio/stripes/components';
+import css from './SourceManagement.css';
 
 // import ContactView from '../Contact/ContactView';
 
@@ -49,13 +49,13 @@ class SourceManagementView extends React.Component {
               value={_.get(metadataSource, 'vendor.name', '-')}
             />
           </Row>
-          <Row>
+          <Row className={css.addMarginForContacts}>
             <Col xs={6}>
               {/* <this.connectedContactView
                 stripes={this.props.stripes}
                 metadataSource={metadataSource}
               /> */}
-              <Headline size="medium"><FormattedMessage id="ui-finc-config.sourceManagement.contacts.internal" /></Headline>
+              <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.internal" /></Headline>
               <MultiColumnList
                 contentData={metadataSource.contacts.internal}
                 visibleColumns={['name', 'role']}
@@ -66,7 +66,7 @@ class SourceManagementView extends React.Component {
               />
             </Col>
             <Col xs={6}>
-              <Headline size="medium"><FormattedMessage id="ui-finc-config.sourceManagement.contacts.external" /></Headline>
+              <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.external" /></Headline>
               <MultiColumnList
                 contentData={metadataSource.contacts.external}
                 visibleColumns={['name', 'role']}
@@ -94,7 +94,7 @@ class SourceManagementView extends React.Component {
             TODO: is there a better way make a new line instead of new <Row>
           */}
           <Row>
-            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceManagement.contracts" /></div>
+            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceManagement.contracts" /></Headline>
           </Row>
           <Row>
             <List

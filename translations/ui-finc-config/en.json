@@ -38,7 +38,7 @@
   "sourceManagement.contracts": "Contracts",
 
   "sourceTechnical.lastProcessed": "Last Processed",
-  "sourceTechnical.tickets": "Ticket",
+  "sourceTechnical.tickets": "Tickets",
   "sourceTechnical.accessUrl": "Access Url",
   "sourceTechnical.sourceId": "Source Id",
   "sourceTechnical.solrShard": "Solr Shard",

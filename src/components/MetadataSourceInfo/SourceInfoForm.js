@@ -7,7 +7,6 @@ import {
 import {
   Accordion,
   Col,
-  Dropdown,
   Row,
   Select,
   TextField

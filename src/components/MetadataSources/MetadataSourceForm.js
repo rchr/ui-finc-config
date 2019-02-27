@@ -24,13 +24,13 @@ function validate(values) {
   const errors = {};
   errors.udp = {};
 
-  if (!values.label) {
-    errors.label = 'Please fill this in to continue';
-  }
+  // if (!values.label) {
+  //   errors.label = 'Please fill this in to continue';
+  // }
 
-  if (!values.id) {
-    errors.id = 'Please fill this in to continue';
-  }
+  // if (!values.id) {
+  //   errors.id = 'Please fill this in to continue';
+  // }
 }
 
 class MetadataSourceForm extends React.Component {
@@ -156,6 +156,10 @@ class MetadataSourceForm extends React.Component {
                 expanded={sections.editSourceManagement}
                 onToggle={this.handleSectionToggle}
                 {...this.props}
+
+                id="sourceManagement"
+                metadataSource={initialValues}
+                stripes={this.props.stripes}
               />
               <SourceTechnicalForm
                 accordionId="editSourceTechnical"

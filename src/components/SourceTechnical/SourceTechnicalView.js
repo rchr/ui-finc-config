@@ -5,12 +5,12 @@ import {
   FormattedMessage,
 } from 'react-intl';
 import {
-  Col,
   Headline,
   KeyValue,
   List,
   Row
 } from '@folio/stripes/components';
+import css from './SourceTechnical.css';
 
 class SourceTechnicalView extends React.Component {
   static propTypes = {
@@ -34,10 +34,10 @@ class SourceTechnicalView extends React.Component {
     const ticketsItem = metadataSource.tickets;
     const ticketsFormatter = (ticketsItem) => (<li>{ticketsItem}</li>);
     // set values for formats
-    const formatsItem = metadataSource.tickets;
+    const formatsItem = metadataSource.formats;
     const formatsFormatter = (formatsItem) => (<li>{formatsItem}</li>);
     // set values for inferiorTo
-    const inferiorToItem = metadataSource.tickets;
+    const inferiorToItem = metadataSource.inferiorTo;
     const inferiorToFormatter = (inferiorToItem) => (<li>{inferiorToItem}</li>);
 
     return (
@@ -51,7 +51,7 @@ class SourceTechnicalView extends React.Component {
           </Row>
           {/* ticket is repeatable */}
           <Row>
-            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceTechnical.tickets" /></div>
+            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceTechnical.tickets" /></Headline>
           </Row>
           <Row>
             <List
@@ -84,7 +84,7 @@ class SourceTechnicalView extends React.Component {
           */}
           {/* deliveryMethods is repeatable */}
           <Row>
-            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceTechnical.deliveryMethods" /></div>
+            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceTechnical.deliveryMethods" /></Headline>
           </Row>
           <Row>
             <List
@@ -95,7 +95,7 @@ class SourceTechnicalView extends React.Component {
           </Row>
           {/* format is repeatable */}
           <Row>
-            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceTechnical.formats" /></div>
+            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceTechnical.formats" /></Headline>
           </Row>
           <Row>
             <List
@@ -112,7 +112,7 @@ class SourceTechnicalView extends React.Component {
           </Row>
           {/* inferiorTo is repeatable */}
           <Row>
-            <div className="kvLabel---3pCya"><FormattedMessage id="ui-finc-config.sourceTechnical.inferiorTo" /></div>
+            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceTechnical.inferiorTo" /></Headline>
           </Row>
           <Row>
             <List
