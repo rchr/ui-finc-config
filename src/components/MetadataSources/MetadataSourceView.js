@@ -2,15 +2,14 @@ import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import {
-  FormattedMessage,
+  FormattedMessage
 } from 'react-intl';
 import {
-  Col,
   Accordion,
+  Col,
   ExpandAllButton,
   Icon,
   IconButton,
-  KeyValue,
   Layer,
   Pane,
   PaneMenu,
@@ -22,7 +21,7 @@ import {
 } from '@folio/stripes/core';
 
 import MetadataSourceForm from './MetadataSourceForm';
-import SourceInfoView from '../MetadataSourceInfo/SourceInfoView';
+import SourceInfoView from '../SourceInfo/SourceInfoView';
 import SourceManagementView from '../SourceManagement/SourceManagementView';
 import SourceTechnicalView from '../SourceTechnical/SourceTechnicalView';
 

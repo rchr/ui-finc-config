@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  FormattedMessage,
+  FormattedMessage
 } from 'react-intl';
 import {
   Col,
@@ -13,6 +13,7 @@ import {
   Row
 } from '@folio/stripes/components';
 import css from './SourceManagement.css';
+import BasicCss from '../BasicStyle.css';
 
 // import ContactView from '../Contact/ContactView';
 
@@ -50,12 +51,13 @@ class SourceManagementView extends React.Component {
             />
           </Row>
           <Row className={css.addMarginForContacts}>
+            {/* <Row style={{ margin: '1em 0 2em 0' }}> */}
             <Col xs={6}>
               {/* <this.connectedContactView
                 stripes={this.props.stripes}
                 metadataSource={metadataSource}
               /> */}
-              <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.internal" /></Headline>
+              <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.internal" /></Headline>
               <MultiColumnList
                 contentData={metadataSource.contacts.internal}
                 visibleColumns={['name', 'role']}
@@ -66,7 +68,7 @@ class SourceManagementView extends React.Component {
               />
             </Col>
             <Col xs={6}>
-              <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.external" /></Headline>
+              <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.external" /></Headline>
               <MultiColumnList
                 contentData={metadataSource.contacts.external}
                 visibleColumns={['name', 'role']}
@@ -89,12 +91,8 @@ class SourceManagementView extends React.Component {
               value={_.get(metadataSource, 'licensingNote', '-')}
             />
           </Row>
-          {/*
-            TODO: is there a better way to pass css instructions for className="kvLabel---3pCya"
-            TODO: is there a better way make a new line instead of new <Row>
-          */}
           <Row>
-            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceManagement.contracts" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contracts" /></Headline>
           </Row>
           <Row>
             <List

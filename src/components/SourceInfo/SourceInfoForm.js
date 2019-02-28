@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import { 
+  Field 
+} from 'redux-form';
 import {
   FormattedMessage
 } from 'react-intl';
@@ -54,7 +56,7 @@ class SourceInfoForm extends React.Component {
                 <FormattedMessage id="ui-finc-config.sourceInfo.description">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter a name to identify the metadata source"
+              placeholder="Enter a description for the metadata source"
               name="description"
               id="addsource_description"
               component={TextField}
@@ -72,7 +74,7 @@ class SourceInfoForm extends React.Component {
               }
               name="status"
               id="addsource_status"
-              placeholder="Enter a name to identify the status of a metadata"
+              placeholder="Select a status for the metadata source"
               component={Select}
               dataOptions={dataOptionsStatus}
               fullWidth

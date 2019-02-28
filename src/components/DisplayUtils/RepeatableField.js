@@ -4,13 +4,13 @@ import {
   Field
 } from 'redux-form';
 import {
-  Row,
-  Col,
   Button,
+  Col,
+  Row,
   TextField
 } from '@folio/stripes/components';
 
-class DisplayContract extends React.Component {
+class RepeatableField extends React.Component {
   static propTypes = {
     fields: PropTypes.object,
     stripes: PropTypes.shape({
@@ -25,16 +25,17 @@ class DisplayContract extends React.Component {
 
   renderSubContract = (elem, index, fields) => {
     return (
-      <Row key={elem}>
+      <Row key={index}>
         <Col xs={8}>
           <Field
+            // placeholder={fields}
             name={elem}
             id={elem}
             component={TextField}
             fullWidth
           />
         </Col>
-        <Col xs={4} style={{ textAlign: 'right' }}>
+        <Col xs={2} style={{ textAlign: 'right' }}>
           <Button onClick={() => fields.remove(index)} buttonStyle="danger">
             Remove
           </Button>
@@ -51,11 +52,11 @@ class DisplayContract extends React.Component {
           {fields.map(this.renderSubContract)}
         </Col>
         <Col xs={12} style={{ paddingTop: '10px' }}>
-          <Button onClick={() => fields.push('')}>+ Add Contract</Button>
+          <Button onClick={() => fields.push('')}>+ Add</Button>
         </Col>
       </Row>
     );
   }
 }
 
-export default DisplayContract;
+export default RepeatableField;

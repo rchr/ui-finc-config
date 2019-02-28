@@ -31,8 +31,8 @@
   "sourceInfo.vendor": "Vendor",
 
   "sourceManagement.vendor": "Vendor",
-  "sourceManagement.contacts.external": "Contact External",
-  "sourceManagement.contacts.internal": "Contact Internal",
+  "sourceManagement.contacts.external": "Contacts External",
+  "sourceManagement.contacts.internal": "Contacts Internal",
   "sourceManagement.indexingLevel": "Indexing Level",
   "sourceManagement.licensingNote": "Licensing Note",
   "sourceManagement.contracts": "Contracts",

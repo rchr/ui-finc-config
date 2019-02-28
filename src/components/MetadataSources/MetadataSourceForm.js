@@ -16,7 +16,7 @@ import {
 } from '@folio/stripes/components';
 import stripesForm from '@folio/stripes/form';
 
-import SourceInfoForm from '../MetadataSourceInfo/SourceInfoForm';
+import SourceInfoForm from '../SourceInfo/SourceInfoForm';
 import SourceManagementForm from '../SourceManagement/SourceManagementForm';
 import SourceTechnicalForm from '../SourceTechnical/SourceTechnicalForm';
 

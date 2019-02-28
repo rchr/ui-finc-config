@@ -10,7 +10,7 @@ import {
   TextField
 } from '@folio/stripes/components';
 
-class DisplayContact extends React.Component {
+class DeliveryMethods extends React.Component {
   static propTypes = {
     fields: PropTypes.object,
     stripes: PropTypes.shape({
@@ -20,28 +20,18 @@ class DisplayContact extends React.Component {
 
   constructor(props) {
     super(props);
-    this.renderSubContact = this.renderSubContact.bind(this);
+    this.renderSubContract = this.renderSubContract.bind(this);
   }
 
-  renderSubContact = (elem, index, fields) => {
+  renderSubContract = (elem, index, fields) => {
     return (
       <Row key={index}>
-        <Col xs={4}>
+        <Col xs={8}>
           <Field
-            name={`${elem}.name`}
+            name={elem}
             id={elem}
             component={TextField}
             fullWidth
-            placeholder="Enter a name for the contact"
-          />
-        </Col>
-        <Col xs={4}>
-          <Field
-            name={`${elem}.role`}
-            id={elem}
-            component={TextField}
-            fullWidth
-            placeholder="Enter a role for the contact"
           />
         </Col>
         <Col xs={2} style={{ textAlign: 'right' }}>
@@ -55,18 +45,22 @@ class DisplayContact extends React.Component {
 
   render() {
     const { fields } = this.props;
+    const dataDeliveryMethods = [
+      { value: 'API Download', label: 'API Download' },
+      { value: 'API Foo', label: 'API Foo' }
+    ];
 
     return (
       <Row>
         <Col xs={12}>
-          {fields.map(this.renderSubContact)}
+          {fields.map(this.renderSubContract)}
         </Col>
         <Col xs={12} style={{ paddingTop: '10px' }}>
-          <Button onClick={() => fields.push('')}>+ Add Contact</Button>
+          <Button onClick={() => fields.push('')}>+ Add</Button>
         </Col>
       </Row>
     );
   }
 }
 
-export default DisplayContact;
+export default DeliveryMethods;

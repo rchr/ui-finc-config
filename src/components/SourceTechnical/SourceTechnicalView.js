@@ -10,7 +10,7 @@ import {
   List,
   Row
 } from '@folio/stripes/components';
-import css from './SourceTechnical.css';
+import BasicCss from '../BasicStyle.css';
 
 class SourceTechnicalView extends React.Component {
   static propTypes = {
@@ -49,9 +49,9 @@ class SourceTechnicalView extends React.Component {
               value={_.get(metadataSource, 'lastProcessed', '-')}
             />
           </Row>
-          {/* ticket is repeatable */}
+          {/* TICKET is repeatable */}
           <Row>
-            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceTechnical.tickets" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.tickets" /></Headline>
           </Row>
           <Row>
             <List
@@ -78,13 +78,9 @@ class SourceTechnicalView extends React.Component {
               value={_.get(metadataSource, 'solrShard', '-')}
             />
           </Row>
-          {/*
-            TODO: is there a better way to pass css instructions for className="kvLabel---3pCya"
-            TODO: is there a better way make a new line instead of new <Row>
-          */}
-          {/* deliveryMethods is repeatable */}
+          {/* DELIVERYMETHODS is repeatable */}
           <Row>
-            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceTechnical.deliveryMethods" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.deliveryMethods" /></Headline>
           </Row>
           <Row>
             <List
@@ -93,9 +89,9 @@ class SourceTechnicalView extends React.Component {
               isEmptyMessage={isEmptyMessage}
             />
           </Row>
-          {/* format is repeatable */}
+          {/* FORMATS is repeatable */}
           <Row>
-            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceTechnical.formats" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.formats" /></Headline>
           </Row>
           <Row>
             <List
@@ -110,9 +106,9 @@ class SourceTechnicalView extends React.Component {
               value={_.get(metadataSource, 'updateRhythm', '-')}
             />
           </Row>
-          {/* inferiorTo is repeatable */}
+          {/* INFERIORTO is repeatable */}
           <Row>
-            <Headline size="medium" className={css.reduceMarginForHeadling}><FormattedMessage id="ui-finc-config.sourceTechnical.inferiorTo" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.inferiorTo" /></Headline>
           </Row>
           <Row>
             <List
