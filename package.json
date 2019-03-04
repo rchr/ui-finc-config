@@ -48,11 +48,12 @@
     "type": "app",
     "displayName": "ui-finc-config.meta.title",
     "route": "/fincconfig",
-    "home": "/fincconfig?filters=status.Active",
+    "home": "/fincconfig",
     "hasSettings": true,
     "queryResource": "query",
     "okapiInterfaces": {
-      "metadata-sources": "1.0",
+      "metadatasources": "1.0",
+      "metadatacollections": "1.0",
       "vendor": "1.0"
     },
     "permissionSets": [
@@ -70,14 +71,78 @@
         "visible": true
       },
       {
-        "permissionName": "ui-test-app.view ",
-        "displayName": "test-app: Can view usage data providers and COUNTER reports",
-        "description": "Can view usage data providers and COUNTER reports",
+        "permissionName": "metadatasources.collection.get",
+        "displayName": "metadatasources-collection get",
+        "description": "Get collection of metadata sources"
+      },
+      {
+        "permissionName": "metadatasources.item.post",
+        "displayName": "metadatasources-item post",
+        "description": "Create a new metadata sources"
+      },
+      {
+        "permissionName": "metadatasources.item.get",
+        "displayName": "metadata-sources-item get",
+        "description": "Fetch a metadata sources"
+      },
+      {
+        "permissionName": "metadatasources.item.put",
+        "displayName": "metadata-sources-item put",
+        "description": "Update a metadata sources"
+      },
+      {
+        "permissionName": "metadatasources.item.delete",
+        "displayName": "metadatasources-item delete",
+        "description": "Delete a metadata sources"
+      },
+      {
+        "permissionName": "metadatasources.all",
+        "displayName": "All metadatasources perms",
+        "description": "All permissions for the metadata sources",
         "subPermissions": [
-          "module.test-app.enabled",
-          "test-app.view"
-        ],
-        "visible": true
+          "metadatasources.collection.get",
+          "metadatasources.item.post",
+          "metadatasources.item.get",
+          "metadatasources.item.put",
+          "metadatasources.item.delete"
+        ]
+      },
+      {
+        "permissionName": "metadatacollections.collection.get",
+        "displayName": "metadatacollections-collection get",
+        "description": "Get collection of metadata collections"
+      },
+      {
+        "permissionName": "metadatacollections.item.post",
+        "displayName": "metadatacollections-item post",
+        "description": "Create a new metadata collections"
+      },
+      {
+        "permissionName": "metadatacollections.item.get",
+        "displayName": "metadatacollections-item get",
+        "description": "Fetch a metadata collections"
+      },
+      {
+        "permissionName": "metadatacollections.item.put",
+        "displayName": "metadatacollections-item put",
+        "description": "Update a metadata collections"
+      },
+      {
+        "permissionName": "metadatacollections.item.delete",
+        "displayName": "metadatacollections-item delete",
+        "description": "Delete a metadata collections"
+      },
+      {
+        "permissionName": "metadatacollections.all",
+        "displayName": "All metadatacollections perms",
+        "description": "All permissions for the metadata collections",
+        "subPermissions": [
+          "metadatacollections.collection.get",
+          "metadatacollections.item.post",
+          "metadatacollections.item.get",
+          "metadatacollections.item.put",
+          "metadatacollections.item.delete"
+        ]
       }
     ]
   }

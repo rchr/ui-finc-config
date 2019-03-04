@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
 import Settings from './settings';
-import UsageDataProviders from './Main';
+import Main from './Main';
 
 /*
   STRIPES-NEW-APP
@@ -15,6 +15,7 @@ class FincConfig extends React.Component {
     stripes: PropTypes
       .shape({ connect: PropTypes.func.isRequired })
       .isRequired,
+    // stripes: PropTypes.object,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     showSettings: PropTypes.bool,
@@ -23,24 +24,7 @@ class FincConfig extends React.Component {
   /* set stripes.connect for manifest in MyDataClass (to get data from okapi) */
   constructor(props, context) {
     super(props, context);
-    this.connectedApp = props
-      .stripes
-      .connect(UsageDataProviders);
-  }
-
-  NoMatch() {
-    return (
-      <div>
-        <h2>Uh-oh!</h2>
-        <p>
-          How did you get to
-          <tt>
-            {this.props.location.pathname}
-          </tt>
-          ?
-        </p>
-      </div>
-    );
+    this.connectedApp = props.stripes.connect(Main);
   }
 
   render() {
@@ -53,6 +37,7 @@ class FincConfig extends React.Component {
           path={`${this.props.match.path}`}
           render={() => <this.connectedApp {...this.props} />}
         />
+        <Route component={() => { this.NoMatch(); }} />
       </Switch>
     );
   }

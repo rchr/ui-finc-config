@@ -20,12 +20,7 @@ import {
   TitleManager
 } from '@folio/stripes/core';
 
-import MetadataSourceForm from './MetadataSourceForm';
-import SourceInfoView from '../SourceInfo/SourceInfoView';
-import SourceManagementView from '../SourceManagement/SourceManagementView';
-import SourceTechnicalView from '../SourceTechnical/SourceTechnicalView';
-
-class MetadataSourceView extends React.Component {
+class MetadataCollectionView extends React.Component {
   static manifest = Object.freeze({
     query: {},
   });
@@ -44,7 +39,7 @@ class MetadataSourceView extends React.Component {
       .isRequired,
     // paneWidth: PropTypes.string,
     resources: PropTypes.shape({
-      metadataSource: PropTypes.shape(),
+      metadataCollection: PropTypes.shape(),
       query: PropTypes.object,
     }),
     mutator: PropTypes.shape({
@@ -68,7 +63,7 @@ class MetadataSourceView extends React.Component {
     super(props);
     const logger = props.stripes.logger;
     this.log = logger.log.bind(logger);
-    this.connectedMetadataSourceForm = this.props.stripes.connect(MetadataSourceForm);
+    // this.connectedMetadataSourceForm = this.props.stripes.connect(MetadataSourceForm);
 
     this.state = {
       accordions: {
@@ -80,9 +75,9 @@ class MetadataSourceView extends React.Component {
 
   getData = () => {
     const { parentResources, match: { params: { id } } } = this.props;
-    const source = (parentResources.records || {}).records || [];
-    if (!source || source.length === 0 || !id) return null;
-    return source.find(u => u.id === id);
+    const collection = (parentResources.records || {}).records || [];
+    if (!collection || collection.length === 0 || !id) return null;
+    return collection.find(u => u.id === id);
   }
 
   handleExpandAll = (obj) => {
@@ -102,23 +97,23 @@ class MetadataSourceView extends React.Component {
     });
   }
 
-  update = (source) => {
-    this.props.parentMutator.records.PUT(source).then(() => {
+  update = (collection) => {
+    this.props.parentMutator.records.PUT(collection).then(() => {
       this.props.onCloseEdit();
     });
   }
 
-  getSourceFormData = (source) => {
-    const sourceFormData = source ? _.cloneDeep(source) : source;
-    return sourceFormData;
+  getCollectionFormData = (collection) => {
+    const collectionFormData = collection ? _.cloneDeep(collection) : collection;
+    return collectionFormData;
   }
 
-  deleteSource = (source) => {
+  deleteCollection = (collection) => {
     const { parentMutator } = this.props;
-    parentMutator.records.DELETE({ id: source.id })
+    parentMutator.records.DELETE({ id: collection.id })
       .then(() => {
         parentMutator.query.update({
-          _path: '/fincconfig/metadatasources',
+          _path: '/fincconfig/metadatacollections',
           layer: null
         });
       });
@@ -132,16 +127,16 @@ class MetadataSourceView extends React.Component {
     if (_.isEmpty(initialValues)) {
       return <div style={{ paddingTop: '1rem' }}><Icon icon="spinner-ellipsis" width="100px" /></div>;
     } else {
-      const sourceFormData = this.getSourceFormData(initialValues);
+      const collectionFormData = this.getCollectionFormData(initialValues);
       const detailMenu = (
         <PaneMenu>
-          <IfPermission perm="metadatasources.item.delete">
+          <IfPermission perm="metadatacollections.item.delete">
             <IconButton
               icon="trash"
-              id="clickable-delete-source"
+              id="clickable-delete-collection"
               style={{ visibility: !initialValues ? 'hidden' : 'visible' }}
-              onClick={() => this.deleteSource(initialValues)}
-              title="Delete Metadata Source"
+              onClick={() => this.deleteCollection(initialValues)}
+              title="Delete Metadata Collection"
             />
           </IfPermission>
           {/* <IconButton
@@ -151,10 +146,10 @@ class MetadataSourceView extends React.Component {
             onClick={this.props.notesToggle}
             aria-label="Notes"
           /> */}
-          <IfPermission perm="metadatasources.item.put">
+          <IfPermission perm="metadatacollections.item.put">
             <IconButton
               icon="edit"
-              id="clickable-edit-source"
+              id="clickable-edit-collection"
               style={{
                 visibility: !initialValues
                   ? 'hidden'
@@ -162,7 +157,7 @@ class MetadataSourceView extends React.Component {
               }}
               onClick={this.props.onEdit}
               href={this.props.editLink}
-              title="Edit Metadata Source"
+              title="Edit Metadata Collection"
             />
           </IfPermission>
         </PaneMenu>
@@ -172,18 +167,18 @@ class MetadataSourceView extends React.Component {
 
       return (
         <Pane
-          id="pane-sourcedetails"
+          id="pane-collectiondetails"
           paneTitle={label}
           lastMenu={detailMenu}
           dismissible
           onClose={this.props.onClose}
         >
           <TitleManager record={label} />
-          <SourceInfoView
-            id="sourceInfo"
-            metadataSource={initialValues}
+          {/* <CollectionInfoView
+            id="collectionInfo"
+            metadataCollection={initialValues}
             stripes={this.props.stripes}
-          />
+          /> */}
           <Row end="xs">
             <Col xs>
               <ExpandAllButton
@@ -195,34 +190,34 @@ class MetadataSourceView extends React.Component {
           <Accordion
             open={this.state.accordions.managementAccordion}
             onToggle={this.handleAccordionToggle}
-            label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
+            label={<FormattedMessage id="ui-finc-config.collection.xxx" />}
             id="managementAccordion"
           >
-            <SourceManagementView
-              id="sourceManagement"
-              metadataSource={initialValues}
+            {/* <CollectionManagementView
+              id="collectionManagement"
+              metadataCollection={initialValues}
               stripes={this.props.stripes}
-            />
+            /> */}
           </Accordion>
           <Accordion
             open={this.state.accordions.technicalAccordion}
             onToggle={this.handleAccordionToggle}
-            label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
+            label={<FormattedMessage id="ui-finc-config.collection.ddd" />}
             id="technicalAccordion"
           >
-            <SourceTechnicalView
-              id="sourceTechnical"
-              metadataSource={initialValues}
+            {/* <CollectionTechnicalView
+              id="collectionTechnical"
+              metadataCollection={initialValues}
               stripes={this.props.stripes}
-            />
+            /> */}
           </Accordion>
           <Layer
             isOpen={query.layer ? query.layer === 'edit' : false}
-            contentLabel="Edit Metadata Source Dialog"
+            contentLabel="Edit Metadata Collection Dialog"
           >
-            <this.connectedMetadataSourceForm
+            {/* <this.connectedMetadataCollectionForm
               stripes={stripes}
-              initialValues={sourceFormData}
+              initialValues={collectionFormData}
               onSubmit={(record) => { this.update(record); }}
               onCancel={this.props.onCloseEdit}
               parentResources={{
@@ -230,7 +225,7 @@ class MetadataSourceView extends React.Component {
                 ...this.props.parentResources,
               }}
               parentMutator={this.props.parentMutator}
-            />
+            /> */}
           </Layer>
         </Pane>
       );
@@ -238,4 +233,4 @@ class MetadataSourceView extends React.Component {
   }
 }
 
-export default MetadataSourceView;
+export default MetadataCollectionView;

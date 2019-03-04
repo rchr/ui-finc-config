@@ -128,7 +128,7 @@ class MetadataSourceForm extends React.Component {
 
     return (
       <form className="" id="form-source" onSubmit={handleSubmit}>
-        <Paneset isRoot>
+        <Paneset isRoot style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
             firstMenu={firstMenu}

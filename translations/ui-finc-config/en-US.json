@@ -48,6 +48,10 @@
   "sourceTechnical.inferiorTo": "Inferior To",
 
   "contact.name": "Name",
-  "contact.role": "Role"
+  "contact.role": "Role",
+
+  "collection.label": "Collection",
+  "collection.metadataAvailable": "Metadata available?",
+  "collection.freeContent": "Free content?"
 
 }
