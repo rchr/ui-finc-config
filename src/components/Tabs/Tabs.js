@@ -40,7 +40,8 @@ class Tabs extends Component {
 
   handleClick(id) {
     const { parentMutator } = this.props;
-    parentMutator.query.update({ _path: `/fincconfig/${id}`, filters: 'null' });
+    // reset parameters in url with filters: ''
+    parentMutator.query.update({ _path: `/fincconfig/${id}`, filters: '', layer: '' });
   }
 
   handleActive(id) {

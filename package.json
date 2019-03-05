@@ -52,8 +52,8 @@
     "hasSettings": true,
     "queryResource": "query",
     "okapiInterfaces": {
-      "metadatasources": "1.0",
-      "metadatacollections": "1.0",
+      "metadata-sources": "1.0",
+      "metadata-collections": "1.0",
       "vendor": "1.0"
     },
     "permissionSets": [

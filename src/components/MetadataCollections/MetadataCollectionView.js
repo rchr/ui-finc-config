@@ -63,7 +63,7 @@ class MetadataCollectionView extends React.Component {
     super(props);
     const logger = props.stripes.logger;
     this.log = logger.log.bind(logger);
-    // this.connectedMetadataSourceForm = this.props.stripes.connect(MetadataSourceForm);
+    // this.connectedMetadataCollectionForm = this.props.stripes.connect(MetadataCollectionForm);
 
     this.state = {
       accordions: {

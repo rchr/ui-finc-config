@@ -10,8 +10,8 @@ import {
 } from '@folio/stripes/smart-components';
 import packageInfo from '../../../package';
 
-import MetadataCollectionView from './MetadataCollectionsView';
-// import MetadataSourceForm from '../MetadataSources/MetadataSourceForm';
+import MetadataCollectionView from './MetadataCollectionView';
+// import MetadataCollectionForm from './MetadataCollectionForm';
 import Tabs from '../Tabs/Tabs';
 
 const INITIAL_RESULT_COUNT = 30;
@@ -19,26 +19,24 @@ const RESULT_COUNT_INCREMENT = 30;
 
 const filterConfig = [
   {
-    label: 'Metadata available?',
+    label: 'Metadata Available',
     name: 'metadataAvailable',
     cql: 'metadataAvailable',
     values: [
-      { name: 'yes', cql: 'yes' },
-      { name: 'no', cql: 'no' },
-      { name: 'undetermined', cql: 'undetermined' }
+      { name: 'Yes', cql: 'yes' },
+      { name: 'No', cql: 'no' },
+      { name: 'Undetermined', cql: 'undetermined' }
+    ],
+  },
+  {
+    label: 'Usage Restricted',
+    name: 'usageRestricted',
+    cql: 'usageRestricted',
+    values: [
+      { name: 'Yes', cql: 'yes' },
+      { name: 'No', cql: 'no' }
     ],
   }
-  // ,
-  // {
-  //   label: 'Free Content',
-  //   name: 'freeContent',
-  //   cql: 'freeContent',
-  //   values: [
-  //     { name: 'yes', cql: 'yes' },
-  //     { name: 'no', cql: 'no' },
-  //     { name: 'undetermined', cql: 'undetermined' }
-  //   ],
-  // }
 ];
 
 class MetadataCollections extends React.Component {
@@ -140,7 +138,7 @@ class MetadataCollections extends React.Component {
           initialResultCount={INITIAL_RESULT_COUNT}
           resultCountIncrement={RESULT_COUNT_INCREMENT}
           viewRecordComponent={MetadataCollectionView}
-          // editRecordComponent={MetadataSourceForm}
+          // editRecordComponent={MetadataCollectionForm}
           newRecordInitialValues={{}}
           visibleColumns={['label', 'metadataAvailable', 'freeContent']}
           resultsFormatter={resultsFormatter}
