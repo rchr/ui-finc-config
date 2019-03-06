@@ -44,6 +44,12 @@ const filterConfig = [
   }
 ];
 
+const searchableIndexes = [
+  { label: 'All', value: '', makeQuery: term => `(label="${term}*" or id="${term}*")` },
+  { label: 'Label', value: 'label', makeQuery: term => `(label="${term}*")` },
+  { label: 'ID', value: 'id', makeQuery: term => `(id="${term}*")` }
+];
+
 class MetadataSources extends React.Component {
   static manifest = Object.freeze({
     initializedFilterConfig: { initialValue: false },
@@ -127,6 +133,12 @@ class MetadataSources extends React.Component {
       });
   }
 
+  // add update if search-selectbox is changing
+  onChangeIndex = (e) => {
+    const qindex = e.target.value;
+    this.props.mutator.query.update({ qindex });
+  }
+
   render() {
     // const { xxx } = this.props.resources;
     // if (!xxx || !xxx.hasLoaded || xxx.records.length < 1) {
@@ -187,6 +199,11 @@ class MetadataSources extends React.Component {
           }}
           browseOnly={browseOnly}
           stripes={stripes}
+          // add values for search-selectbox
+          searchableIndexes={searchableIndexes}
+          selectedIndex={_.get(this.props.resources, 'qindex')}
+          searchableIndexesPlaceholder={null}
+          onChangeIndex={this.onChangeIndex}
         />
       </div>
     );

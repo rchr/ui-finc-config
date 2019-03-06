@@ -124,7 +124,7 @@ class MetadataCollections extends React.Component {
     };
 
     return (
-      <div>
+      <div isRoot>
         <Tabs
           tabID="metadatacollections"
           parentResources={this.props.resources}
