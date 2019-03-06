@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect, Switch } from 'react-router-dom';
-// Components and Pages
 import MetadataSources from './components/MetadataSources/MetadataSources';
 import MetadataCollections from './components/MetadataCollections/MetadataCollections';
 
@@ -22,7 +21,7 @@ class Main extends React.Component {
   render() {
     const { resources, mutator, match, stripes } = this.props;
     return (
-      <div style={{ width: '100%' }}>
+      <div>
         <Switch>
           <Route
             path={`${match.path}/metadatasources`}

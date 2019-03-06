@@ -88,10 +88,6 @@ class MetadataCollections extends React.Component {
       }).isRequired,
     }).isRequired,
     stripes: PropTypes.object,
-    onSelectRow: PropTypes.func,
-    onComponentWillUnmount: PropTypes.func,
-    showSingleResult: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
-    browseOnly: PropTypes.bool,
     intl: intlShape.isRequired,
   };
 
@@ -116,12 +112,7 @@ class MetadataCollections extends React.Component {
       return packageInfo;
     };
 
-    const { onSelectRow, onComponentWillUnmount, showSingleResult, browseOnly, stripes, intl } = this.props;
-
-    const resultsFormatter = {
-      label: collection => collection.label,
-      id: collection => collection.id,
-    };
+    const { stripes, intl } = this.props;
 
     return (
       <div isRoot>
@@ -131,6 +122,7 @@ class MetadataCollections extends React.Component {
           parentMutator={this.props.mutator}
         />
         <SearchAndSort
+          // change packageInfo to prevent ERROR:Cannot read property 'cql' of undefined if switching tab
           // packageInfo={packageInfo}
           packageInfo={packageInfoReWrite()}
           objectName="metadataCollection"
@@ -141,21 +133,16 @@ class MetadataCollections extends React.Component {
           // editRecordComponent={MetadataCollectionForm}
           newRecordInitialValues={{}}
           visibleColumns={['label', 'metadataAvailable', 'freeContent']}
-          resultsFormatter={resultsFormatter}
-          onSelectRow={onSelectRow}
           onCreate={this.create}
-          onComponentWillUnmount={onComponentWillUnmount}
           viewRecordPerms="metadatacollections.item.get"
           newRecordPerms="metadatacollections.item.post"
           parentResources={this.props.resources}
           parentMutator={this.props.mutator}
-          showSingleResult={showSingleResult}
           columnMapping={{
             label: intl.formatMessage({ id: 'ui-finc-config.collection.label' }),
             metadataAvailable: intl.formatMessage({ id: 'ui-finc-config.collection.metadataAvailable' }),
             freeContent: intl.formatMessage({ id: 'ui-finc-config.collection.freeContent' })
           }}
-          browseOnly={browseOnly}
           stripes={stripes}
         />
       </div>

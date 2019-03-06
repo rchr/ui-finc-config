@@ -20,19 +20,6 @@ import SourceInfoForm from '../SourceInfo/SourceInfoForm';
 import SourceManagementForm from '../SourceManagement/SourceManagementForm';
 import SourceTechnicalForm from '../SourceTechnical/SourceTechnicalForm';
 
-function validate(values) {
-  const errors = {};
-  errors.udp = {};
-
-  // if (!values.label) {
-  //   errors.label = 'Please fill this in to continue';
-  // }
-
-  // if (!values.id) {
-  //   errors.id = 'Please fill this in to continue';
-  // }
-}
-
 class MetadataSourceForm extends React.Component {
   static propTypes = {
     stripes: PropTypes.shape({
@@ -84,6 +71,7 @@ class MetadataSourceForm extends React.Component {
     const { pristine, submitting } = this.props;
 
     return (
+      // set button to save changes
       <PaneMenu>
         <Button
           id={id}
@@ -127,7 +115,7 @@ class MetadataSourceForm extends React.Component {
       this.getLastMenu('clickable-createnewsource', <FormattedMessage id="ui-finc-config.source.form.createSource" />);
 
     return (
-      <form className="" id="form-source" onSubmit={handleSubmit}>
+      <form id="form-source" onSubmit={handleSubmit}>
         <Paneset isRoot style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
@@ -176,8 +164,7 @@ class MetadataSourceForm extends React.Component {
 }
 
 export default stripesForm({
-  form: 'form-source',
-  navigationCheck: true,
+  form: 'form-metadataSource',
+  // the form will reinitialize every time the initialValues prop changes
   enableReinitialize: true,
-  validate
 })(MetadataSourceForm);

@@ -33,16 +33,13 @@ class MetadataSourceView extends React.Component {
   static propTypes = {
     stripes: PropTypes
       .shape({
-        hasPerm: PropTypes.func.isRequired,
         connect: PropTypes.func.isRequired,
-        locale: PropTypes.string.isRequired,
         logger: PropTypes
           .shape({ log: PropTypes.func.isRequired })
           .isRequired,
         intl: PropTypes.object.isRequired
       })
       .isRequired,
-    // paneWidth: PropTypes.string,
     resources: PropTypes.shape({
       metadataSource: PropTypes.shape(),
       query: PropTypes.object,
@@ -61,7 +58,6 @@ class MetadataSourceView extends React.Component {
     onEdit: PropTypes.func,
     editLink: PropTypes.string,
     onCloseEdit: PropTypes.func,
-    // notesToggle: PropTypes.func,
   };
 
   constructor(props) {
@@ -168,7 +164,7 @@ class MetadataSourceView extends React.Component {
         </PaneMenu>
       );
 
-      const label = _.get(initialValues, 'label', 'No LABEL');
+      const label = _.get(initialValues, 'label', '-');
 
       return (
         <Pane

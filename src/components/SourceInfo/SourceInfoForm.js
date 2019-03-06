@@ -13,6 +13,9 @@ import {
   Select,
   TextField
 } from '@folio/stripes/components';
+import {
+  Required
+} from '../DisplayUtils/Validate';
 
 class SourceInfoForm extends React.Component {
   render() {
@@ -45,6 +48,7 @@ class SourceInfoForm extends React.Component {
               name="label"
               id="addsource_label"
               component={TextField}
+              validate={[Required]}
               fullWidth
             />
           </Col>
@@ -77,6 +81,7 @@ class SourceInfoForm extends React.Component {
               placeholder="Select a status for the metadata source"
               component={Select}
               dataOptions={dataOptionsStatus}
+              validate={[Required]}
               fullWidth
             />
           </Col>

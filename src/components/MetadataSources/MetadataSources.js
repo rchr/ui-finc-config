@@ -84,16 +84,6 @@ class MetadataSources extends React.Component {
     }
   });
 
-  // static manifest = Object.freeze({
-  //   xxx: {
-  //     type: 'okapi',
-  //     records: 'metadataSources',
-  //     path: 'metadata-sources',
-  //   },
-  //   label: { value: null },
-  // });
-
-
   static propTypes = {
     resources: PropTypes.shape({
       metadataSources: PropTypes.shape({
@@ -109,15 +99,7 @@ class MetadataSources extends React.Component {
       }).isRequired,
     }).isRequired,
     stripes: PropTypes.object,
-    onSelectRow: PropTypes.func,
-    onComponentWillUnmount: PropTypes.func,
-    showSingleResult: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
-    browseOnly: PropTypes.bool,
-    intl: intlShape.isRequired,
-
-    // resources: PropTypes.shape({
-    //   xxx: PropTypes.shape(),
-    // }),
+    intl: intlShape.isRequired
   };
 
   closeNewInstance = (e) => {
@@ -140,15 +122,6 @@ class MetadataSources extends React.Component {
   }
 
   render() {
-    // const { xxx } = this.props.resources;
-    // if (!xxx || !xxx.hasLoaded || xxx.records.length < 1) {
-    //   return <div>huhu</div>;
-    // } else {
-    //   /* 1. get label of record[0] */
-    //   const rawLabel = xxx.records[1].label;
-    //   return <div>{rawLabel}</div>;
-    // }
-
     const packageInfoReWrite = () => {
       const path = '/fincconfig/metadatasources';
       packageInfo.stripes.route = path;
@@ -156,21 +129,17 @@ class MetadataSources extends React.Component {
       return packageInfo;
     };
 
-    const { onSelectRow, onComponentWillUnmount, showSingleResult, browseOnly, stripes, intl } = this.props;
-
-    const resultsFormatter = {
-      label: source => source.label,
-      id: source => source.id,
-    };
+    const { stripes, intl } = this.props;
 
     return (
-      <div>
+      <div isRoot>
         <Tabs
           tabID="metadatasources"
           parentResources={this.props.resources}
           parentMutator={this.props.mutator}
         />
         <SearchAndSort
+          // change packageInfo to prevent ERROR:Cannot read property 'cql' of undefined if switching tab
           // packageInfo={packageInfo}
           packageInfo={packageInfoReWrite()}
           objectName="metadataSource"
@@ -181,15 +150,11 @@ class MetadataSources extends React.Component {
           editRecordComponent={MetadataSourceForm}
           newRecordInitialValues={{}}
           visibleColumns={['label', 'id', 'status', 'solrShard', 'lastProcessed']}
-          resultsFormatter={resultsFormatter}
-          onSelectRow={onSelectRow}
           onCreate={this.create}
-          onComponentWillUnmount={onComponentWillUnmount}
           viewRecordPerms="metadatasources.item.get"
           newRecordPerms="metadatasources.item.post"
           parentResources={this.props.resources}
           parentMutator={this.props.mutator}
-          showSingleResult={showSingleResult}
           columnMapping={{
             label: intl.formatMessage({ id: 'ui-finc-config.information.sourceLabel' }),
             id: intl.formatMessage({ id: 'ui-finc-config.information.sourceId' }),
@@ -197,7 +162,6 @@ class MetadataSources extends React.Component {
             solrShard: intl.formatMessage({ id: 'ui-finc-config.information.solrShard' }),
             lastProcessed: intl.formatMessage({ id: 'ui-finc-config.information.lastProcessed' }),
           }}
-          browseOnly={browseOnly}
           stripes={stripes}
           // add values for search-selectbox
           searchableIndexes={searchableIndexes}
