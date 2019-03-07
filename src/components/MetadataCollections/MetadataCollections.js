@@ -19,7 +19,7 @@ const RESULT_COUNT_INCREMENT = 30;
 
 const filterConfig = [
   {
-    label: 'Metadata Available',
+    label: 'Metadata Available?',
     name: 'metadataAvailable',
     cql: 'metadataAvailable',
     values: [
@@ -29,12 +29,22 @@ const filterConfig = [
     ],
   },
   {
-    label: 'Usage Restricted',
+    label: 'Usage Restricted?',
     name: 'usageRestricted',
     cql: 'usageRestricted',
     values: [
       { name: 'Yes', cql: 'yes' },
       { name: 'No', cql: 'no' }
+    ],
+  },
+  {
+    label: 'Free Content?',
+    name: 'freeContent',
+    cql: 'freeContent',
+    values: [
+      { name: 'Yes', cql: 'yes' },
+      { name: 'No', cql: 'no' },
+      { name: 'Undetermined', cql: 'undetermined' }
     ],
   }
 ];
@@ -132,7 +142,7 @@ class MetadataCollections extends React.Component {
           viewRecordComponent={MetadataCollectionView}
           // editRecordComponent={MetadataCollectionForm}
           newRecordInitialValues={{}}
-          visibleColumns={['label', 'metadataAvailable', 'freeContent']}
+          visibleColumns={['label', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent']}
           onCreate={this.create}
           viewRecordPerms="metadatacollections.item.get"
           newRecordPerms="metadatacollections.item.post"
@@ -141,6 +151,8 @@ class MetadataCollections extends React.Component {
           columnMapping={{
             label: intl.formatMessage({ id: 'ui-finc-config.collection.label' }),
             metadataAvailable: intl.formatMessage({ id: 'ui-finc-config.collection.metadataAvailable' }),
+            usageRestricted: intl.formatMessage({ id: 'ui-finc-config.collection.usageRestricted' }),
+            permittedFor: intl.formatMessage({ id: 'ui-finc-config.collection.permittedFor' }),
             freeContent: intl.formatMessage({ id: 'ui-finc-config.collection.freeContent' })
           }}
           stripes={stripes}

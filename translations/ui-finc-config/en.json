@@ -52,6 +52,8 @@
 
   "collection.label": "Collection",
   "collection.metadataAvailable": "Metadata available?",
+  "collection.usageRestricted": "Usage Restricted?",
+  "collection.permittedFor": "Permitted For",
   "collection.freeContent": "Free content?"
 
 }

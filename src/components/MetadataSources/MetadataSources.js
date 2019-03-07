@@ -45,9 +45,9 @@ const filterConfig = [
 ];
 
 const searchableIndexes = [
-  { label: 'All', value: '', makeQuery: term => `(label="${term}*" or id="${term}*")` },
-  { label: 'Label', value: 'label', makeQuery: term => `(label="${term}*")` },
-  { label: 'ID', value: 'id', makeQuery: term => `(id="${term}*")` }
+  { label: 'All', value: '', makeQuery: term => `(label="${term}*" or sourceId="${term}*")` },
+  { label: 'Source Name', value: 'label', makeQuery: term => `(label="${term}*")` },
+  { label: 'Source ID', value: 'sourceId', makeQuery: term => `(sourceId="${term}*")` }
 ];
 
 class MetadataSources extends React.Component {
@@ -71,9 +71,10 @@ class MetadataSources extends React.Component {
         params: {
           query: makeQueryFunction(
             'cql.allRecords=1',
-            '(label="%{query.query}*")',
+            '(label="%{query.query}*" or sourceId="%{query.query}*")',
             {
-              'Source Name': 'label'
+              'Source Name': 'label',
+              'Source ID': 'sourceId'
             },
             filterConfig,
             2,
@@ -149,7 +150,7 @@ class MetadataSources extends React.Component {
           viewRecordComponent={MetadataSourceView}
           editRecordComponent={MetadataSourceForm}
           newRecordInitialValues={{}}
-          visibleColumns={['label', 'id', 'status', 'solrShard', 'lastProcessed']}
+          visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
           onCreate={this.create}
           viewRecordPerms="metadatasources.item.get"
           newRecordPerms="metadatasources.item.post"
@@ -157,7 +158,7 @@ class MetadataSources extends React.Component {
           parentMutator={this.props.mutator}
           columnMapping={{
             label: intl.formatMessage({ id: 'ui-finc-config.information.sourceLabel' }),
-            id: intl.formatMessage({ id: 'ui-finc-config.information.sourceId' }),
+            sourceId: intl.formatMessage({ id: 'ui-finc-config.information.sourceId' }),
             status: intl.formatMessage({ id: 'ui-finc-config.information.status' }),
             solrShard: intl.formatMessage({ id: 'ui-finc-config.information.solrShard' }),
             lastProcessed: intl.formatMessage({ id: 'ui-finc-config.information.lastProcessed' }),
