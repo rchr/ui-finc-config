@@ -20,6 +20,11 @@ import {
   TitleManager
 } from '@folio/stripes/core';
 
+import MetadataCollectionForm from './MetadataCollectionForm';
+import CollectionInfoView from '../CollectionInfo/CollectionInfoView';
+import CollectionManagementView from '../CollectionManagement/CollectionManagementView';
+import CollectionTechnicalView from '../CollectionTechnical/CollectionTechnicalView';
+
 class MetadataCollectionView extends React.Component {
   static manifest = Object.freeze({
     query: {},
@@ -59,7 +64,7 @@ class MetadataCollectionView extends React.Component {
     super(props);
     const logger = props.stripes.logger;
     this.log = logger.log.bind(logger);
-    // this.connectedMetadataCollectionForm = this.props.stripes.connect(MetadataCollectionForm);
+    this.connectedMetadataCollectionForm = this.props.stripes.connect(MetadataCollectionForm);
 
     this.state = {
       accordions: {
@@ -170,11 +175,11 @@ class MetadataCollectionView extends React.Component {
           onClose={this.props.onClose}
         >
           <TitleManager record={label} />
-          {/* <CollectionInfoView
+          <CollectionInfoView
             id="collectionInfo"
             metadataCollection={initialValues}
             stripes={this.props.stripes}
-          /> */}
+          />
           <Row end="xs">
             <Col xs>
               <ExpandAllButton
@@ -186,32 +191,32 @@ class MetadataCollectionView extends React.Component {
           <Accordion
             open={this.state.accordions.managementAccordion}
             onToggle={this.handleAccordionToggle}
-            label={<FormattedMessage id="ui-finc-config.collection.xxx" />}
+            label={<FormattedMessage id="ui-finc-config.collection.managementAccordion" />}
             id="managementAccordion"
           >
-            {/* <CollectionManagementView
+            <CollectionManagementView
               id="collectionManagement"
               metadataCollection={initialValues}
               stripes={this.props.stripes}
-            /> */}
+            />
           </Accordion>
           <Accordion
             open={this.state.accordions.technicalAccordion}
             onToggle={this.handleAccordionToggle}
-            label={<FormattedMessage id="ui-finc-config.collection.ddd" />}
+            label={<FormattedMessage id="ui-finc-config.collection.technicalAccordion" />}
             id="technicalAccordion"
           >
-            {/* <CollectionTechnicalView
+            <CollectionTechnicalView
               id="collectionTechnical"
               metadataCollection={initialValues}
               stripes={this.props.stripes}
-            /> */}
+            />
           </Accordion>
           <Layer
             isOpen={query.layer ? query.layer === 'edit' : false}
             contentLabel="Edit Metadata Collection Dialog"
           >
-            {/* <this.connectedMetadataCollectionForm
+            <this.connectedMetadataCollectionForm
               stripes={stripes}
               initialValues={collectionFormData}
               onSubmit={(record) => { this.update(record); }}
@@ -221,7 +226,7 @@ class MetadataCollectionView extends React.Component {
                 ...this.props.parentResources,
               }}
               parentMutator={this.props.parentMutator}
-            /> */}
+            />
           </Layer>
         </Pane>
       );

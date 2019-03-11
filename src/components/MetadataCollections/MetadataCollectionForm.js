@@ -16,11 +16,11 @@ import {
 } from '@folio/stripes/components';
 import stripesForm from '@folio/stripes/form';
 
-import SourceInfoForm from '../SourceInfo/SourceInfoForm';
-import SourceManagementForm from '../SourceManagement/SourceManagementForm';
-import SourceTechnicalForm from '../SourceTechnical/SourceTechnicalForm';
+import CollectionInfoForm from '../CollectionInfo/CollectionInfoForm';
+import CollectionManagementForm from '../CollectionManagement/CollectionManagementForm';
+import CollectionTechnicalForm from '../CollectionTechnical/CollectionTechnicalForm';
 
-class MetadataSourceForm extends React.Component {
+class MetadataCollectionForm extends React.Component {
   static propTypes = {
     stripes: PropTypes.shape({
       connect: PropTypes.func,
@@ -39,9 +39,9 @@ class MetadataSourceForm extends React.Component {
 
     this.state = {
       sections: {
-        editSourceInfo: true,
-        editSourceManagement: true,
-        editSourceTechnical: true
+        editCollectionInfo: true,
+        editCollectionManagement: true,
+        editCollectionTechnical: true
       },
     };
 
@@ -53,10 +53,10 @@ class MetadataSourceForm extends React.Component {
 
     return (
       <PaneMenu>
-        <FormattedMessage id="ui-finc-config.source.form.close">
+        <FormattedMessage id="ui-finc-config.collection.form.close">
           { ariaLabel => (
             <IconButton
-              id="clickable-closesourcedialog"
+              id="clickable-closecollectiondialog"
               onClick={onCancel}
               ariaLabel={ariaLabel}
               icon="times"
@@ -109,13 +109,13 @@ class MetadataSourceForm extends React.Component {
     const { initialValues, handleSubmit } = this.props;
     const { sections } = this.state;
     const firstMenu = this.getAddFirstMenu();
-    const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.source.form.createSource" />;
+    const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.collection.form.createCollection" />;
     const lastMenu = initialValues.id ?
-      this.getLastMenu('clickable-createnewsource', <FormattedMessage id="ui-finc-config.source.form.updateSource" />) :
-      this.getLastMenu('clickable-createnewsource', <FormattedMessage id="ui-finc-config.source.form.createSource" />);
+      this.getLastMenu('clickable-createnewcollection', <FormattedMessage id="ui-finc-config.collection.form.updateCollection" />) :
+      this.getLastMenu('clickable-createnewcollection', <FormattedMessage id="ui-finc-config.collection.form.createCollection" />);
 
     return (
-      <form id="form-source" onSubmit={handleSubmit}>
+      <form id="form-collection" onSubmit={handleSubmit}>
         <Paneset isRoot style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
@@ -123,7 +123,7 @@ class MetadataSourceForm extends React.Component {
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
-            <div className="SourceForm">
+            <div className="CollectionForm">
               <Row end="xs">
                 <Col xs>
                   <ExpandAllButton
@@ -133,25 +133,25 @@ class MetadataSourceForm extends React.Component {
                   />
                 </Col>
               </Row>
-              <SourceInfoForm
-                accordionId="editSourceInfo"
-                expanded={sections.editSourceInfo}
+              <CollectionInfoForm
+                accordionId="editCollectionInfo"
+                expanded={sections.editCollectionInfo}
                 onToggle={this.handleSectionToggle}
                 {...this.props}
               />
-              <SourceManagementForm
-                accordionId="editSourceManagement"
-                expanded={sections.editSourceManagement}
+              <CollectionManagementForm
+                accordionId="editCollectionManagement"
+                expanded={sections.editCollectionManagement}
                 onToggle={this.handleSectionToggle}
                 {...this.props}
 
-                id="sourceManagement"
-                metadataSource={initialValues}
+                id="collectionManagement"
+                metadataCollection={initialValues}
                 stripes={this.props.stripes}
               />
-              <SourceTechnicalForm
-                accordionId="editSourceTechnical"
-                expanded={sections.editSourceTechnical}
+              <CollectionTechnicalForm
+                accordionId="editCollectionTechnical"
+                expanded={sections.editCollectionTechnical}
                 onToggle={this.handleSectionToggle}
                 {...this.props}
               />
@@ -164,7 +164,7 @@ class MetadataSourceForm extends React.Component {
 }
 
 export default stripesForm({
-  form: 'form-metadataSource',
+  form: 'form-metadataCollection',
   // the form will reinitialize every time the initialValues prop changes
   enableReinitialize: true,
-})(MetadataSourceForm);
+})(MetadataCollectionForm);

@@ -11,7 +11,7 @@ import {
 import packageInfo from '../../../package';
 
 import MetadataCollectionView from './MetadataCollectionView';
-// import MetadataCollectionForm from './MetadataCollectionForm';
+import MetadataCollectionForm from './MetadataCollectionForm';
 import Tabs from '../Tabs/Tabs';
 
 const INITIAL_RESULT_COUNT = 30;
@@ -114,6 +114,16 @@ class MetadataCollections extends React.Component {
       });
   }
 
+  getArrayElementsCommaSeparated = (array) => {
+    let formatted = '';
+    if (array && array.length) {
+      for (let i = 0; i < array.length; i += 1) {
+        formatted += (i > 0 ? '; ' : '') + array[i];
+      }
+    }
+    return formatted;
+  }
+
   render() {
     const packageInfoReWrite = () => {
       const path = '/fincconfig/metadatacollections';
@@ -123,6 +133,14 @@ class MetadataCollections extends React.Component {
     };
 
     const { stripes, intl } = this.props;
+
+    const resultsFormatter = {
+      label: collection => collection.label,
+      metadataAvailable: collection => collection.metadataAvailable,
+      usageRestricted: collection => collection.usageRestricted,
+      permittedFor: collection => this.getArrayElementsCommaSeparated(collection.permittedFor),
+      freeContent: collection => collection.freeContent,
+    };
 
     return (
       <div isRoot>
@@ -140,9 +158,10 @@ class MetadataCollections extends React.Component {
           initialResultCount={INITIAL_RESULT_COUNT}
           resultCountIncrement={RESULT_COUNT_INCREMENT}
           viewRecordComponent={MetadataCollectionView}
-          // editRecordComponent={MetadataCollectionForm}
+          editRecordComponent={MetadataCollectionForm}
           newRecordInitialValues={{}}
           visibleColumns={['label', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent']}
+          resultsFormatter={resultsFormatter}
           onCreate={this.create}
           viewRecordPerms="metadatacollections.item.get"
           newRecordPerms="metadatacollections.item.post"

@@ -15,29 +15,11 @@ import {
   TextField
 } from '@folio/stripes/components';
 
-import stripesForm from '@folio/stripes/form';
 import RepeatableField from '../DisplayUtils/RepeatableField';
 import DisplayContact from '../DisplayUtils/DisplayContact';
 import BasicCss from '../BasicStyle.css';
 
 class SourceManagementForm extends React.Component {
-  static propTypes = {
-    id: PropTypes.string,
-    metadataSource: PropTypes.object.isRequired,
-    stripes: PropTypes
-      .shape({
-        connect: PropTypes.func.isRequired,
-      })
-      .isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    onCancel: PropTypes.func,
-    pristine: PropTypes.bool,
-    submitting: PropTypes.bool,
-    initialValues: PropTypes.object,
-    parentResources: PropTypes.shape().isRequired,
-    parentMutator: PropTypes.object.isRequired,
-  };
-
   render() {
     const { expanded, onToggle, accordionId } = this.props;
 
@@ -167,11 +149,6 @@ SourceManagementForm.propTypes = {
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
   accordionId: PropTypes.string.isRequired,
-  initialValues: PropTypes.object,
 };
 
-export default stripesForm({
-  form: 'form-source',
-  navigationCheck: true,
-  enableReinitialize: true,
-})(SourceManagementForm);
+export default SourceManagementForm;

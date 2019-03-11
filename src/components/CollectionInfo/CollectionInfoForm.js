@@ -10,29 +10,19 @@ import {
   Accordion,
   Col,
   Row,
-  Select,
   TextField
 } from '@folio/stripes/components';
 import {
   Required
 } from '../DisplayUtils/Validate';
 
-class SourceInfoForm extends React.Component {
+class CollectionInfoForm extends React.Component {
   render() {
     const { expanded, onToggle, accordionId } = this.props;
 
-    const dataOptionsStatus = [
-      { value: 'active', label: 'Active' },
-      { value: 'wish', label: 'Wish' },
-      { value: 'technical implementation', label: 'Technical Implementation' },
-      { value: 'negotiation', label: 'Negotiation' },
-      { value: 'deactivated', label: 'Deactivated' },
-      { value: 'terminated', label: 'Terminated' }
-    ];
-
     return (
       <Accordion
-        label={<FormattedMessage id="ui-finc-config.source.generalAccordion" />}
+        label={<FormattedMessage id="ui-finc-config.collection.generalAccordion" />}
         open={expanded}
         id={accordionId}
         onToggle={onToggle}
@@ -41,12 +31,12 @@ class SourceInfoForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceInfo.label">
+                <FormattedMessage id="ui-finc-config.collectionInfo.label">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>}
-              placeholder="Enter a name to identify the metadata source"
+              placeholder="Enter a name to identify the metadata collection"
               name="label"
-              id="addsource_label"
+              id="addcollection_label"
               component={TextField}
               validate={[Required]}
               fullWidth
@@ -57,44 +47,42 @@ class SourceInfoForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceInfo.description">
+                <FormattedMessage id="ui-finc-config.collectionInfo.description">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter a description for the metadata source"
+              placeholder="Enter a description for the metadata collection"
               name="description"
-              id="addsource_description"
+              id="addcollection_description"
               component={TextField}
               fullWidth
             />
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceInfo.status">
+                <FormattedMessage id="ui-finc-config.collectionInfo.mdSource">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>
               }
-              name="status"
-              id="addsource_status"
-              placeholder="Select a status for the metadata source"
-              component={Select}
-              dataOptions={dataOptionsStatus}
+              name="mdSource"
+              id="addcollection_mdSource"
+              placeholder="Select a mdSource for the metadata collection"
               validate={[Required]}
               fullWidth
             />
           </Col>
-        </Row>
+        </Row> */}
       </Accordion>
     );
   }
 }
 
-SourceInfoForm.propTypes = {
+CollectionInfoForm.propTypes = {
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
   accordionId: PropTypes.string.isRequired,
 };
 
-export default SourceInfoForm;
+export default CollectionInfoForm;

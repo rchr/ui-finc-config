@@ -157,11 +157,11 @@ class MetadataSources extends React.Component {
           parentResources={this.props.resources}
           parentMutator={this.props.mutator}
           columnMapping={{
-            label: intl.formatMessage({ id: 'ui-finc-config.information.sourceLabel' }),
-            sourceId: intl.formatMessage({ id: 'ui-finc-config.information.sourceId' }),
-            status: intl.formatMessage({ id: 'ui-finc-config.information.status' }),
-            solrShard: intl.formatMessage({ id: 'ui-finc-config.information.solrShard' }),
-            lastProcessed: intl.formatMessage({ id: 'ui-finc-config.information.lastProcessed' }),
+            label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
+            sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
+            status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
+            solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
+            lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
           }}
           stripes={stripes}
           // add values for search-selectbox
