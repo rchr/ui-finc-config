@@ -10,9 +10,13 @@ import {
   TextField
 } from '@folio/stripes/components';
 
-class RepeatableField extends React.Component {
+class RequiredRepeatableField extends React.Component {
   static propTypes = {
     fields: PropTypes.object,
+    // add META-ERROR to PropTypes
+    meta: PropTypes.shape({
+      error: PropTypes.string,
+    }),
   };
 
   constructor(props) {
@@ -41,7 +45,8 @@ class RepeatableField extends React.Component {
   }
 
   render() {
-    const { fields } = this.props;
+    // add META-ERROR to props
+    const { fields, meta: {error} } = this.props;
     return (
       <Row>
         <Col xs={12}>
@@ -50,9 +55,11 @@ class RepeatableField extends React.Component {
         <Col xs={12} style={{ paddingTop: '10px' }}>
           <Button onClick={() => fields.push('')}>+ Add</Button>
         </Col>
+        {/* render ERROR, if validation is not successful */}
+        <div style={{ color:'#900' }}>{error}</div>
       </Row>
     );
   }
 }
 
-export default RepeatableField;
+export default RequiredRepeatableField;

@@ -12,14 +12,13 @@ import {
   Col,
   Headline,
   Row,
-  Select,
   TextField
 } from '@folio/stripes/components';
-import stripesForm from '@folio/stripes/form';
 import {
   ArrayRequired
 } from '../DisplayUtils/Validate';
 import RepeatableField from '../DisplayUtils/RepeatableField';
+import RequiredRepeatableField from '../DisplayUtils/RequiredRepeatableField';
 import BasicCss from '../BasicStyle.css';
 
 class CollectionTechnicalForm extends React.Component {
@@ -110,7 +109,7 @@ class CollectionTechnicalForm extends React.Component {
             />
           </Col>
         </Row>
-        {/* SOLR MEGA COLLECTION (is repeatable) ... */}
+        {/* SOLR MEGA COLLECTION (is repeatable and required) ... */}
         <Row>
           <Headline size="medium" className={BasicCss.styleForHeadline}>
             <FormattedMessage id="ui-finc-config.collectionTechnical.solrMegaCollections">
@@ -121,13 +120,13 @@ class CollectionTechnicalForm extends React.Component {
         <Row>
           <Col xs={6}>
             <FieldArray
-              component={RepeatableField}
+              // get component, which is rendering the validation-error
+              component={RequiredRepeatableField}
               // add name to the array-field, which should be changed
               name="solrMegaCollections"
               label="DisplaysolrMegaCollections"
               id="display_solrMegaCollections"
-              // TODO: validation for array
-              validate={[ArrayRequired]}
+              validate={ArrayRequired}
               {...this.props}
             />
           </Col>

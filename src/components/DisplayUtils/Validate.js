@@ -4,9 +4,8 @@ const Required = (value) => {
 };
 
 const ArrayRequired = (value) => {
-  const errors = [];
   if (!value || !value.length) {
-    return 'At least one element must be entered!';
+    return 'Required!';
   }
 };
 
