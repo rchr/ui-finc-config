@@ -79,5 +79,8 @@
   "collectionTechnical.productIsil": "Product Isil",
   "collectionTechnical.tickets": "Tickets",
   "collectionTechnical.contentFiles": "Content Files",
-  "collectionTechnical.solrMegaCollections": "Solr Mega Collections"
+  "collectionTechnical.solrMegaCollections": "Solr Mega Collections",
+
+  "findVendor.contenVendorId": "Content Vendor Id",
+  "findVendor.findVendorByIdButton": "Enter"
 }

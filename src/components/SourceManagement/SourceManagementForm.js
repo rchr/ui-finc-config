@@ -19,7 +19,31 @@ import RepeatableField from '../DisplayUtils/RepeatableField';
 import DisplayContact from '../DisplayUtils/DisplayContact';
 import BasicCss from '../BasicStyle.css';
 
+import FindVendor from '../FindVendor/FindVendor';
+
 class SourceManagementForm extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.columnMapping =
+    {
+      name: 'Name',
+      code: 'Code',
+      description: 'description',
+    };
+    this.selectVendor = this.selectVendor.bind(this);
+
+    const intialVendor = props.initialValues.vendor || '';
+    this.state = {
+      vendor: intialVendor,
+    };
+  }
+
+  selectVendor(v) {
+    this.props.change('vendor', v);
+    this.setState({ vendor: v });
+  }
+
   render() {
     const { expanded, onToggle, accordionId } = this.props;
 
@@ -30,22 +54,14 @@ class SourceManagementForm extends React.Component {
         id={accordionId}
         onToggle={onToggle}
       >
-        <Row>
-          <Col xs={4}>
-            {/* TODO: add link to vendor from vendor app */}
-            <Field
-              label={
-                <FormattedMessage id="ui-finc-config.sourceManagement.vendor">
-                  {(msg) => msg}
-                </FormattedMessage>}
-              placeholder="Select a vendor of the vendor app"
-              name="vendor.id"
-              id="addsource_vendorid"
-              component={TextField}
-              fullWidth
-            />
-          </Col>
-        </Row>
+        {/* add link to vendor app */}
+        <div>
+          <FindVendor
+            intialVendor={this.state.vendor}
+            change={this.props.change}
+            stripes={this.props.stripes}
+          />
+        </div>
         {/* CONTACTS INTERNAL is repeatable */}
         <Row>
           <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.internal" /></Headline>
