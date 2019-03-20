@@ -38,12 +38,12 @@ class CollectionInfoView extends React.Component {
               value={_.get(metadataCollection, 'description', '-')}
             />
           </Row>
-          {/* <Row>
+          <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.collectionInfo.mdSource" />}
-              value={_.get(metadataCollection, 'mdSource', '-')}
+              value={_.get(metadataCollection, 'mdSource.name', '-')}
             />
-          </Row> */}
+          </Row>
         </div>
       </React.Fragment>
     );

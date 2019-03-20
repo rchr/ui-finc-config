@@ -80,7 +80,13 @@ class MetadataCollections extends React.Component {
         },
         staticFallback: { params: {} },
       },
-    }
+    },
+    source: {
+      type: 'okapi',
+      records: 'metadataSources',
+      path: 'metadata-sources',
+      resourceShouldRefresh: true
+    },
   });
 
   static propTypes = {

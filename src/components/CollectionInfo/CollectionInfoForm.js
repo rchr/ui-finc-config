@@ -10,15 +10,42 @@ import {
   Accordion,
   Col,
   Row,
-  TextField
+  TextField,
+  Select
 } from '@folio/stripes/components';
 import {
   Required
 } from '../DisplayUtils/Validate';
 
 class CollectionInfoForm extends React.Component {
+
+  getData(resourceName) {
+    const { parentResources } = this.props;
+    const records = (parentResources[`${resourceName}`] || {}).records || [];
+    if (!records || records.length === 0) return null;
+    const newArr = [];
+    let preObj = {};
+    // Loop through records
+    preObj = { label: '-- Select a Source --', value: '' };
+    newArr.push(preObj);
+
+    Object.keys(records).map((key) => {
+      const obj = {
+        label: _.toString(records[key].label),
+        value: _.toString(records[key].id)
+      };
+      newArr.push(obj);
+      if (Number(key) === (records.length - 1)) {
+        return newArr;
+      }
+      return newArr;
+    });
+    return newArr;
+}
+
   render() {
     const { expanded, onToggle, accordionId } = this.props;
+    const sourceData = this.getData('source');
 
     return (
       <Accordion
@@ -58,22 +85,22 @@ class CollectionInfoForm extends React.Component {
             />
           </Col>
         </Row>
-        {/* <Row>
+
+        <Row>
           <Col xs={4}>
             <Field
-              label={
-                <FormattedMessage id="ui-finc-config.collectionInfo.mdSource">
-                  {(msg) => msg + ' *'}
-                </FormattedMessage>
-              }
-              name="mdSource"
-              id="addcollection_mdSource"
-              placeholder="Select a mdSource for the metadata collection"
-              validate={[Required]}
+              label="Source*"
+              placeholder="Enter a source for the metadata collection"
+              name="mdSource.id"
+              id="addcollection_source"
+              component={Select}
               fullWidth
+              // validate={[Required]} 
+              dataOptions={sourceData}
             />
           </Col>
-        </Row> */}
+        </Row>
+
       </Accordion>
     );
   }
