@@ -20,8 +20,27 @@ class CollectionInfoView extends React.Component {
       .isRequired,
   };
 
+  getData(resourceName) {
+    const { parentResources } = this.props;
+    const records = (parentResources[`${resourceName}`] || {}).records || [];
+    if (!records || records.length === 0) return null;
+    return records;
+  }
+
+  getSourceName = (id, data) => {
+    if (!data || data.length === 0 || !id) return null;
+    return data.find((element) => {
+      return element.id === id;
+    })
+  }
+
   render() {
     const { metadataCollection, id } = this.props;
+    // get all available sources
+    const sourceData = this.getData('source');
+    // get ID of source, which is saved in the collection
+    const sourceId = metadataCollection.mdSource.id;
+    const sourceName = this.getSourceName(sourceId, sourceData);
 
     return (
       <React.Fragment>
@@ -39,9 +58,10 @@ class CollectionInfoView extends React.Component {
             />
           </Row>
           <Row>
+            {/* get the name of the source */}
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.collectionInfo.mdSource" />}
-              value={_.get(metadataCollection, 'mdSource.name', '-')}
+              value={_.get(sourceName, 'label', '-')}
             />
           </Row>
         </div>

@@ -179,6 +179,8 @@ class MetadataCollectionView extends React.Component {
             id="collectionInfo"
             metadataCollection={initialValues}
             stripes={this.props.stripes}
+            // add props here, for getting access to the name of the metadata-source-id
+            {...this.props}
           />
           <Row end="xs">
             <Col xs>
