@@ -12,7 +12,6 @@ import packageInfo from '../../../package';
 
 import MetadataCollectionView from './MetadataCollectionView';
 import MetadataCollectionForm from './MetadataCollectionForm';
-import Tabs from '../Tabs/Tabs';
 
 const INITIAL_RESULT_COUNT = 30;
 const RESULT_COUNT_INCREMENT = 30;
@@ -150,11 +149,6 @@ class MetadataCollections extends React.Component {
 
     return (
       <div isRoot>
-        <Tabs
-          tabID="metadatacollections"
-          parentResources={this.props.resources}
-          parentMutator={this.props.mutator}
-        />
         <SearchAndSort
           // change packageInfo to prevent ERROR:Cannot read property 'cql' of undefined if switching tab
           // packageInfo={packageInfo}

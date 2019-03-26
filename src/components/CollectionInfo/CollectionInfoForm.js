@@ -24,11 +24,13 @@ class CollectionInfoForm extends React.Component {
     const records = (parentResources[`${resourceName}`] || {}).records || [];
     if (!records || records.length === 0) return null;
     const newArr = [];
-    let preObj = {};
-    // Loop through records
-    preObj = { label: '-- Select a Source --', value: '' };
-    newArr.push(preObj);
+    
+    // add an empty object
+    // let preObj = {};
+    // preObj = { label: '-- Select a Source --', value: '' };
+    // newArr.push(preObj);
 
+    // Loop through records 
     Object.keys(records).map((key) => {
       const obj = {
         label: _.toString(records[key].label),
@@ -90,12 +92,12 @@ class CollectionInfoForm extends React.Component {
           <Col xs={4}>
             <Field
               label="Source*"
-              placeholder="Enter a source for the metadata collection"
+              placeholder="Select a source for the metadata collection"
               name="mdSource.id"
               id="addcollection_source"
               component={Select}
               fullWidth
-              // validate={[Required]} 
+              validate={[Required]} 
               dataOptions={sourceData}
             />
           </Col>

@@ -168,7 +168,8 @@ class SourceTechnicalForm extends React.Component {
         <Row>
           <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.inferiorTo" /></Headline>
         </Row>
-        <Row>
+        {/* add padding behind last Row; otherwise content is cutted of */}
+        <Row style={{ paddingBottom: '80px' }}>
           <Col xs={6}>
             <FieldArray
               component={RepeatableField}

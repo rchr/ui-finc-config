@@ -5,6 +5,7 @@ import {
   intlShape
 } from 'react-intl';
 import {
+  Layout,
   makeQueryFunction,
   SearchAndSort
 } from '@folio/stripes/smart-components';
@@ -12,7 +13,6 @@ import packageInfo from '../../../package';
 
 import MetadataSourceView from './MetadataSourceView';
 import MetadataSourceForm from './MetadataSourceForm';
-import Tabs from '../Tabs/Tabs';
 
 const INITIAL_RESULT_COUNT = 30;
 const RESULT_COUNT_INCREMENT = 30;
@@ -133,12 +133,7 @@ class MetadataSources extends React.Component {
     const { stripes, intl } = this.props;
 
     return (
-      <div isRoot>
-        <Tabs
-          tabID="metadatasources"
-          parentResources={this.props.resources}
-          parentMutator={this.props.mutator}
-        />
+      <div>
         <SearchAndSort
           // change packageInfo to prevent ERROR:Cannot read property 'cql' of undefined if switching tab
           // packageInfo={packageInfo}
