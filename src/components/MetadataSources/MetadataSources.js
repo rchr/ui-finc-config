@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -5,7 +6,6 @@ import {
   intlShape
 } from 'react-intl';
 import {
-  Layout,
   makeQueryFunction,
   SearchAndSort
 } from '@folio/stripes/smart-components';

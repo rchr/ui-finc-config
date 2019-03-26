@@ -14,21 +14,20 @@ import BasicCss from '../BasicStyle.css';
 
 class CollectionTechnicalView extends React.Component {
   static propTypes = {
-    id: PropTypes.string,
     metadataCollection: PropTypes.object.isRequired
   };
 
   render() {
-    const { metadataCollection, id } = this.props;
+    const { metadataCollection } = this.props;
     const isEmptyMessage = 'No items to show';
     // set values for tickets
-    const ticketsItem = metadataCollection.tickets;
+    const ticketsItems = metadataCollection.tickets;
     const ticketsFormatter = (ticketsItem) => (<li>{ticketsItem}</li>);
     // set values for contentFiles
-    const contentFilesItem = metadataCollection.contentFiles;
+    const contentFilesItems = metadataCollection.contentFiles;
     const contentFilesFormatter = (contentFilesItem) => (<li>{contentFilesItem}</li>);
     // set values for solrMegaCollections
-    const solrMegaCollectionsItem = metadataCollection.solrMegaCollections;
+    const solrMegaCollectionsItems = metadataCollection.solrMegaCollections;
     const solrMegaCollectionsFormatter = (solrMegaCollectionsItem) => (<li>{solrMegaCollectionsItem}</li>);
 
     return (
@@ -57,7 +56,7 @@ class CollectionTechnicalView extends React.Component {
           </Row>
           <Row>
             <List
-              items={ticketsItem}
+              items={ticketsItems}
               itemFormatter={ticketsFormatter}
               isEmptyMessage={isEmptyMessage}
             />
@@ -67,7 +66,7 @@ class CollectionTechnicalView extends React.Component {
           </Row>
           <Row>
             <List
-              items={contentFilesItem}
+              items={contentFilesItems}
               itemFormatter={contentFilesFormatter}
               isEmptyMessage={isEmptyMessage}
             />
@@ -77,7 +76,7 @@ class CollectionTechnicalView extends React.Component {
           </Row>
           <Row>
             <List
-              items={solrMegaCollectionsItem}
+              items={solrMegaCollectionsItems}
               itemFormatter={solrMegaCollectionsFormatter}
               isEmptyMessage={isEmptyMessage}
             />

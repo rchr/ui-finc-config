@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { 
-  Field, 
-  FieldArray 
+import {
+  Field,
+  FieldArray
 } from 'redux-form';
 import {
   FormattedMessage
@@ -22,7 +22,6 @@ import BasicCss from '../BasicStyle.css';
 import FindVendor from '../FindVendor/FindVendor';
 
 class SourceManagementForm extends React.Component {
-
   constructor(props) {
     super(props);
     this.columnMapping =

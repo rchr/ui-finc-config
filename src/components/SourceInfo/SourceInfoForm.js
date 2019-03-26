@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { 
-  Field 
+import {
+  Field
 } from 'redux-form';
 import {
   FormattedMessage

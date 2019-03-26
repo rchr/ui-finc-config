@@ -1,7 +1,8 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { 
-  Field 
+import {
+  Field
 } from 'redux-form';
 import {
   FormattedMessage
@@ -18,19 +19,22 @@ import {
 } from '../DisplayUtils/Validate';
 
 class CollectionInfoForm extends React.Component {
+  static propTypes = {
+    parentResources: PropTypes.arrayOf(PropTypes.object)
+  };
 
   getData(resourceName) {
     const { parentResources } = this.props;
     const records = (parentResources[`${resourceName}`] || {}).records || [];
     if (!records || records.length === 0) return null;
     const newArr = [];
-    
+
     // add an empty object
     // let preObj = {};
     // preObj = { label: '-- Select a Source --', value: '' };
     // newArr.push(preObj);
 
-    // Loop through records 
+    // Loop through records
     Object.keys(records).map((key) => {
       const obj = {
         label: _.toString(records[key].label),
@@ -43,7 +47,7 @@ class CollectionInfoForm extends React.Component {
       return newArr;
     });
     return newArr;
-}
+  }
 
   render() {
     const { expanded, onToggle, accordionId } = this.props;
@@ -97,7 +101,7 @@ class CollectionInfoForm extends React.Component {
               id="addcollection_source"
               component={Select}
               fullWidth
-              validate={[Required]} 
+              validate={[Required]}
               dataOptions={sourceData}
             />
           </Col>

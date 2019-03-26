@@ -23,20 +23,20 @@ class Main extends React.Component {
     ]),
   }
 
-  state = {
-    tab: 'metadatasources',
-  };
-
   constructor(props) {
     super(props);
     this.connectedSource = props.stripes.connect(MetadataSources);
     this.connectedCollection = props.stripes.connect(MetadataCollections);
   }
- 
+
+  state = {
+    tab: 'metadatasources',
+  };
+
   handleNavigate = (e) => {
     const { id } = e.target;
     this.setState({ tab: id });
-    let path = `/fincconfig/${id}`;
+    const path = `/fincconfig/${id}`;
     this.props.history.push(path);
   }
 
@@ -48,7 +48,7 @@ class Main extends React.Component {
       <div className={css.container}>
         <Layout className={css.header}>
           <ButtonGroup tagName="nav">
-          <Button
+            <Button
               id="metadatasources"
               buttonStyle={tab === 'metadatasources' ? 'primary' : undefined}
               fullWidth

@@ -14,7 +14,6 @@ import BasicCss from '../BasicStyle.css';
 
 class SourceTechnicalView extends React.Component {
   static propTypes = {
-    id: PropTypes.string,
     metadataSource: PropTypes.object.isRequired,
     stripes: PropTypes
       .shape({
@@ -25,19 +24,19 @@ class SourceTechnicalView extends React.Component {
 
 
   render() {
-    const { metadataSource, id } = this.props;
+    const { metadataSource } = this.props;
     const isEmptyMessage = 'No items to show';
     // set values for deliveryMethods
-    const deliveryMethodsItem = metadataSource.deliveryMethods;
+    const deliveryMethodsItems = metadataSource.deliveryMethods;
     const deliveryMethodsFormatter = (deliveryMethodsItem) => (<li>{deliveryMethodsItem}</li>);
     // set values for tickets
-    const ticketsItem = metadataSource.tickets;
+    const ticketsItems = metadataSource.tickets;
     const ticketsFormatter = (ticketsItem) => (<li>{ticketsItem}</li>);
     // set values for formats
-    const formatsItem = metadataSource.formats;
+    const formatsItems = metadataSource.formats;
     const formatsFormatter = (formatsItem) => (<li>{formatsItem}</li>);
     // set values for inferiorTo
-    const inferiorToItem = metadataSource.inferiorTo;
+    const inferiorToItems = metadataSource.inferiorTo;
     const inferiorToFormatter = (inferiorToItem) => (<li>{inferiorToItem}</li>);
 
     return (
@@ -55,7 +54,7 @@ class SourceTechnicalView extends React.Component {
           </Row>
           <Row>
             <List
-              items={ticketsItem}
+              items={ticketsItems}
               itemFormatter={ticketsFormatter}
               isEmptyMessage={isEmptyMessage}
             />
@@ -84,7 +83,7 @@ class SourceTechnicalView extends React.Component {
           </Row>
           <Row>
             <List
-              items={deliveryMethodsItem}
+              items={deliveryMethodsItems}
               itemFormatter={deliveryMethodsFormatter}
               isEmptyMessage={isEmptyMessage}
             />
@@ -95,7 +94,7 @@ class SourceTechnicalView extends React.Component {
           </Row>
           <Row>
             <List
-              items={formatsItem}
+              items={formatsItems}
               itemFormatter={formatsFormatter}
               isEmptyMessage={isEmptyMessage}
             />
@@ -112,7 +111,7 @@ class SourceTechnicalView extends React.Component {
           </Row>
           <Row>
             <List
-              items={inferiorToItem}
+              items={inferiorToItems}
               itemFormatter={inferiorToFormatter}
               isEmptyMessage={isEmptyMessage}
             />

@@ -7,6 +7,8 @@ const ArrayRequired = (value) => {
   if (!value || !value.length) {
     return 'Required!';
   }
+
+  return undefined;
 };
 
 const Mail = (value) => {

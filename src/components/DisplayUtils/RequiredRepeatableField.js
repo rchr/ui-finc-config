@@ -46,7 +46,7 @@ class RequiredRepeatableField extends React.Component {
 
   render() {
     // add META-ERROR to props
-    const { fields, meta: {error} } = this.props;
+    const { fields, meta: { error } } = this.props;
     return (
       <Row>
         <Col xs={12}>

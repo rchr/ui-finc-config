@@ -45,10 +45,6 @@ class DeliveryMethods extends React.Component {
 
   render() {
     const { fields } = this.props;
-    const dataDeliveryMethods = [
-      { value: 'API Download', label: 'API Download' },
-      { value: 'API Foo', label: 'API Foo' }
-    ];
 
     return (
       <Row>

@@ -14,17 +14,16 @@ import BasicCss from '../BasicStyle.css';
 
 class CollectionManagementView extends React.Component {
   static propTypes = {
-    id: PropTypes.string,
     metadataCollection: PropTypes.object.isRequired
   };
 
   render() {
-    const { metadataCollection, id } = this.props;
+    const { metadataCollection } = this.props;
     const isEmptyMessage = 'No items to show';
     // set values for permittedFor
-    const permittedForItem = metadataCollection.permittedFor;
+    const permittedForItems = metadataCollection.permittedFor;
     const permittedForFormatter = (permittedForItem) => (<li>{permittedForItem}</li>);
-    
+
     return (
       <React.Fragment>
         <div id="id">
@@ -45,7 +44,7 @@ class CollectionManagementView extends React.Component {
           </Row>
           <Row>
             <List
-              items={permittedForItem}
+              items={permittedForItems}
               itemFormatter={permittedForFormatter}
               isEmptyMessage={isEmptyMessage}
             />

@@ -18,6 +18,7 @@ class CollectionInfoView extends React.Component {
         connect: PropTypes.func.isRequired,
       })
       .isRequired,
+    parentResources: PropTypes.arrayOf(PropTypes.object)
   };
 
   getData(resourceName) {
@@ -31,7 +32,7 @@ class CollectionInfoView extends React.Component {
     if (!data || data.length === 0 || !id) return null;
     return data.find((element) => {
       return element.id === id;
-    })
+    });
   }
 
   render() {

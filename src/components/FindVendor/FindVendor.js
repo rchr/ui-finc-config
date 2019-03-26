@@ -145,7 +145,7 @@ class FindVendor extends React.Component {
             { pluggable }
           </Col>
           <Col xs={2}>
-              { vendorName }
+            { vendorName }
           </Col>
         </Row>
       </React.Fragment>

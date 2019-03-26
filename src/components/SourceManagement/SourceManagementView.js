@@ -19,7 +19,6 @@ import BasicCss from '../BasicStyle.css';
 
 class SourceManagementView extends React.Component {
   static propTypes = {
-    id: PropTypes.string,
     metadataSource: PropTypes.object.isRequired,
     stripes: PropTypes
       .shape({
@@ -34,9 +33,9 @@ class SourceManagementView extends React.Component {
   // }
 
   render() {
-    const { metadataSource, id } = this.props;
+    const { metadataSource } = this.props;
     // set values for contracts
-    const contractsItem = metadataSource.contracts;
+    const contractsItems = metadataSource.contracts;
     const contractsFormatter = (contractsItem) => (<li>{contractsItem}</li>);
     const isEmptyMessage = 'No items to show';
 
@@ -99,7 +98,7 @@ class SourceManagementView extends React.Component {
           </Row>
           <Row>
             <List
-              items={contractsItem}
+              items={contractsItems}
               itemFormatter={contractsFormatter}
               isEmptyMessage={isEmptyMessage}
             />
