@@ -40,6 +40,7 @@ class MetadataSourceView extends React.Component {
         intl: PropTypes.object.isRequired
       })
       .isRequired,
+    paneWidth: PropTypes.string,
     resources: PropTypes.shape({
       metadataSource: PropTypes.shape(),
       query: PropTypes.object,
@@ -168,7 +169,7 @@ class MetadataSourceView extends React.Component {
 
       return (
         <Pane
-          defaultWidth="100%"
+          defaultWidth={this.props.paneWidth}
           id="pane-sourcedetails"
           paneTitle={label}
           lastMenu={detailMenu}

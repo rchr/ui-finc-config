@@ -40,6 +40,7 @@ class MetadataCollectionView extends React.Component {
         intl: PropTypes.object.isRequired
       })
       .isRequired,
+    paneWidth: PropTypes.string,
     resources: PropTypes.shape({
       metadataCollection: PropTypes.shape(),
       query: PropTypes.object,
@@ -168,7 +169,7 @@ class MetadataCollectionView extends React.Component {
 
       return (
         <Pane
-          defaultWidth="100%"
+          defaultWidth={this.props.paneWidth}
           id="pane-collectiondetails"
           paneTitle={label}
           lastMenu={detailMenu}
