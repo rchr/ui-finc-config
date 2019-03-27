@@ -168,6 +168,7 @@ class MetadataCollectionView extends React.Component {
 
       return (
         <Pane
+          defaultWidth="100%"
           id="pane-collectiondetails"
           paneTitle={label}
           lastMenu={detailMenu}

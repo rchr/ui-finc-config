@@ -28,16 +28,16 @@ class SourceTechnicalView extends React.Component {
     const isEmptyMessage = 'No items to show';
     // set values for deliveryMethods
     const deliveryMethodsItems = metadataSource.deliveryMethods;
-    const deliveryMethodsFormatter = (deliveryMethodsItem) => (<li>{deliveryMethodsItem}</li>);
+    const deliveryMethodsFormatter = (deliveryMethodsItem) => (<li key={deliveryMethodsItem}>{deliveryMethodsItem}</li>);
     // set values for tickets
     const ticketsItems = metadataSource.tickets;
-    const ticketsFormatter = (ticketsItem) => (<li>{ticketsItem}</li>);
+    const ticketsFormatter = (ticketsItem) => (<li key={ticketsItem}>{ticketsItem}</li>);
     // set values for formats
     const formatsItems = metadataSource.formats;
-    const formatsFormatter = (formatsItem) => (<li>{formatsItem}</li>);
+    const formatsFormatter = (formatsItem) => (<li key={formatsItem}>{formatsItem}</li>);
     // set values for inferiorTo
     const inferiorToItems = metadataSource.inferiorTo;
-    const inferiorToFormatter = (inferiorToItem) => (<li>{inferiorToItem}</li>);
+    const inferiorToFormatter = (inferiorToItem) => (<li key={inferiorToItem}>{inferiorToItem}</li>);
 
     return (
       <React.Fragment>

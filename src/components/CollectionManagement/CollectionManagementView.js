@@ -22,7 +22,7 @@ class CollectionManagementView extends React.Component {
     const isEmptyMessage = 'No items to show';
     // set values for permittedFor
     const permittedForItems = metadataCollection.permittedFor;
-    const permittedForFormatter = (permittedForItem) => (<li>{permittedForItem}</li>);
+    const permittedForFormatter = (permittedForItem) => (<li key={permittedForItem}>{permittedForItem}</li>);
 
     return (
       <React.Fragment>

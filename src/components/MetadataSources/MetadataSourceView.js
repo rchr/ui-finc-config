@@ -168,6 +168,7 @@ class MetadataSourceView extends React.Component {
 
       return (
         <Pane
+          defaultWidth="100%"
           id="pane-sourcedetails"
           paneTitle={label}
           lastMenu={detailMenu}

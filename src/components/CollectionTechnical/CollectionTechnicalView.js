@@ -22,13 +22,13 @@ class CollectionTechnicalView extends React.Component {
     const isEmptyMessage = 'No items to show';
     // set values for tickets
     const ticketsItems = metadataCollection.tickets;
-    const ticketsFormatter = (ticketsItem) => (<li>{ticketsItem}</li>);
+    const ticketsFormatter = (ticketsItem) => (<li key={ticketsItem}>{ticketsItem}</li>);
     // set values for contentFiles
     const contentFilesItems = metadataCollection.contentFiles;
-    const contentFilesFormatter = (contentFilesItem) => (<li>{contentFilesItem}</li>);
+    const contentFilesFormatter = (contentFilesItem) => (<li key={contentFilesItem}>{contentFilesItem}</li>);
     // set values for solrMegaCollections
     const solrMegaCollectionsItems = metadataCollection.solrMegaCollections;
-    const solrMegaCollectionsFormatter = (solrMegaCollectionsItem) => (<li>{solrMegaCollectionsItem}</li>);
+    const solrMegaCollectionsFormatter = (solrMegaCollectionsItem) => (<li key={solrMegaCollectionsItem}>{solrMegaCollectionsItem}</li>);
 
     return (
       <React.Fragment>

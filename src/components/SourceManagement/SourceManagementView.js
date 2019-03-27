@@ -36,7 +36,7 @@ class SourceManagementView extends React.Component {
     const { metadataSource } = this.props;
     // set values for contracts
     const contractsItems = metadataSource.contracts;
-    const contractsFormatter = (contractsItem) => (<li>{contractsItem}</li>);
+    const contractsFormatter = (contractsItem) => (<li key={contractsItem}>{contractsItem}</li>);
     const isEmptyMessage = 'No items to show';
 
     return (
