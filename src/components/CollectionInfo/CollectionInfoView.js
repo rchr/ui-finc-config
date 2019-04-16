@@ -8,6 +8,7 @@ import {
   KeyValue,
   Row
 } from '@folio/stripes/components';
+import Link from 'react-router-dom/Link';
 
 class CollectionInfoView extends React.Component {
   static propTypes = {
@@ -18,7 +19,7 @@ class CollectionInfoView extends React.Component {
         connect: PropTypes.func.isRequired,
       })
       .isRequired,
-    parentResources: PropTypes.arrayOf(PropTypes.object)
+    parentResources: PropTypes.object
   };
 
   getData(resourceName) {
@@ -28,7 +29,7 @@ class CollectionInfoView extends React.Component {
     return records;
   }
 
-  getSourceName = (id, data) => {
+  getSourceElement = (id, data) => {
     if (!data || data.length === 0 || !id) return null;
     return data.find((element) => {
       return element.id === id;
@@ -39,9 +40,26 @@ class CollectionInfoView extends React.Component {
     const { metadataCollection, id } = this.props;
     // get all available sources
     const sourceData = this.getData('source');
-    // get ID of source, which is saved in the collection
+    // get the source-ID, which is saved in the collection
     const sourceId = metadataCollection.mdSource.id;
-    const sourceName = this.getSourceName(sourceId, sourceData);
+    // get the one source and all its information (which has the source ID saved in the collection)
+    const sourceElement = this.getSourceElement(sourceId, sourceData);
+    // get the name of the source
+    const sourceName = _.get(sourceElement, 'label', '-');
+    // get the status of the source for setting filter in url
+    const sourceStatus = _.get(sourceElement, 'status', '-');
+    // set the complete source link with name and status
+    const sourceLink = (
+      <React.Fragment>
+        <Link to={{
+          pathname: `/fincconfig/metadatasources/view/${sourceId}`,
+          search: `?filters=status.${sourceStatus}`
+        }}
+        >
+          {sourceName}
+        </Link>
+      </React.Fragment>
+    );
 
     return (
       <React.Fragment>
@@ -59,10 +77,9 @@ class CollectionInfoView extends React.Component {
             />
           </Row>
           <Row>
-            {/* get the name of the source */}
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.collectionInfo.mdSource" />}
-              value={_.get(sourceName, 'label', '-')}
+              value={sourceLink}
             />
           </Row>
         </div>
