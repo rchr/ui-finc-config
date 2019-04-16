@@ -117,8 +117,7 @@ class CollectionTechnicalForm extends React.Component {
             </FormattedMessage>
           </Headline>
         </Row>
-        {/* add padding behind last Row; otherwise content is cutted of */}
-        <Row style={{ paddingBottom: '80px' }}>
+        <Row>
           <Col xs={6}>
             <FieldArray
               // get component, which is rendering the validation-error

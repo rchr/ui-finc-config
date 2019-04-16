@@ -123,7 +123,8 @@ class MetadataCollectionForm extends React.Component {
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
-            <div className="CollectionForm">
+            {/* add padding behind last Row; otherwise content is cutted of */}
+            <div className="CollectionForm" style={{ paddingBottom: '100px' }}>
               <Row end="xs">
                 <Col xs>
                   <ExpandAllButton

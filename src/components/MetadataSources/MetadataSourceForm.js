@@ -123,7 +123,8 @@ class MetadataSourceForm extends React.Component {
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
-            <div className="SourceForm">
+            {/* add padding behind last Row; otherwise content is cutted of */}
+            <div className="SourceForm" style={{ paddingBottom: '100px' }}>
               <Row end="xs">
                 <Col xs>
                   <ExpandAllButton
