@@ -146,6 +146,14 @@
           "metadatacollections.item.delete"
         ]
       }
-    ]
+    ],
+    "icons": [
+      {
+        "name": "app",
+        "alt": "FINC config",
+        "title": "fincConfig"
+      }
+]
+
   }
 }
