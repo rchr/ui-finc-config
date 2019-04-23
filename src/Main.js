@@ -33,11 +33,14 @@ class Main extends React.Component {
     tab: 'metadatasources',
   };
 
-  handleNavigate = (e) => {
-    const { id } = e.target;
-    this.setState({ tab: id });
-    const path = `/fincconfig/${id}`;
-    this.props.history.push(path);
+  navigateToSources = () => {
+    this.props.history.push('/fincconfig/metadatasources');
+    this.setState({ tab: 'metadatasources' });
+  }
+
+  navigateToCollections = () => {
+    this.props.history.push('/fincconfig/metadatacollections');
+    this.setState({ tab: 'metadatacollections' });
   }
 
   render() {
@@ -52,7 +55,7 @@ class Main extends React.Component {
               id="metadatasources"
               buttonStyle={tab === 'metadatasources' ? 'primary' : undefined}
               fullWidth
-              onClick={this.handleNavigate}
+              onClick={this.navigateToSources}
             >
               Sources
             </Button>
@@ -60,7 +63,7 @@ class Main extends React.Component {
               id="metadatacollections"
               buttonStyle={tab === 'metadatacollections' ? 'primary' : undefined}
               fullWidth
-              onClick={this.handleNavigate}
+              onClick={this.navigateToCollections}
             >
               Collections
             </Button>
