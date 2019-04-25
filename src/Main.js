@@ -12,7 +12,12 @@ import css from './components/BasicStyle.css';
 
 class Main extends React.Component {
   static propTypes = {
-    match: PropTypes.object,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }),
+    match: PropTypes.shape({
+      path: PropTypes.string,
+    }),
     stripes: PropTypes.object,
     mutator: PropTypes.object,
     resources: PropTypes.object,
@@ -27,25 +32,33 @@ class Main extends React.Component {
     super(props);
     this.connectedSource = props.stripes.connect(MetadataSources);
     this.connectedCollection = props.stripes.connect(MetadataCollections);
+
+    this.state = {
+      activeTab: ''
+    };
   }
 
-  state = {
-    tab: 'metadatasources',
-  };
-
-  navigateToSources = () => {
-    this.props.history.push('/fincconfig/metadatasources');
-    this.setState({ tab: 'metadatasources' });
+  componentDidMount() {
+    this.setTabID();
   }
 
-  navigateToCollections = () => {
-    this.props.history.push('/fincconfig/metadatacollections');
-    this.setState({ tab: 'metadatacollections' });
+  setTabID(tabInCurrentUrl) {
+    this.setState({
+      activeTab: tabInCurrentUrl,
+    });
+  }
+
+  handleClick(id) {
+    this.props.history.push(`/fincconfig/${id}`);
   }
 
   render() {
     const { resources, mutator, match, stripes } = this.props;
-    const { tab } = this.state;
+    const currentUrl = this.props.location.pathname;
+    const splitUrl = currentUrl.split('/');
+    const tabInCurrentUrl = splitUrl[2];
+    // set active tab always to the value in the current url
+    this.state.activeTab = tabInCurrentUrl;
 
     return (
       <div className={css.container}>
@@ -53,17 +66,17 @@ class Main extends React.Component {
           <ButtonGroup tagName="nav">
             <Button
               id="metadatasources"
-              buttonStyle={tab === 'metadatasources' ? 'primary' : undefined}
               fullWidth
-              onClick={this.navigateToSources}
+              onClick={() => this.handleClick('metadatasources')}
+              buttonStyle={this.state.activeTab === 'metadatasources' ? 'primary' : 'default'}
             >
               Sources
             </Button>
             <Button
               id="metadatacollections"
-              buttonStyle={tab === 'metadatacollections' ? 'primary' : undefined}
               fullWidth
-              onClick={this.navigateToCollections}
+              onClick={() => this.handleClick('metadatacollections', tabInCurrentUrl)}
+              buttonStyle={this.state.activeTab === 'metadatacollections' ? 'primary' : 'default'}
             >
               Collections
             </Button>
