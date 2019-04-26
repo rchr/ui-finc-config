@@ -56,7 +56,7 @@
     "okapiInterfaces": {
       "metadata-sources": "0.1",
       "metadata-collections": "0.1",
-      "vendor": "1.0"
+      "vendor-storage.vendors": "1.0"
     },
     "permissionSets": [
       {
