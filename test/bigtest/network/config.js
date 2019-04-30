@@ -1,42 +1,47 @@
+// import extractUUID from '../helpers/extract-uuid';
+
 // typical mirage config export
 // http://www.ember-cli-mirage.com/docs/v0.4.x/configuration/
 export default function config() {
-  this.get('_/discovery/health', () => ([
-    {
-      instId: '7fdb35df-eba1-403e-8e7a-39bf7b38871f',
-      srvcId: 'mod-inventory-storage-13.1.0-SNAPSHOT.184',
-      healthMessage: 'OK',
-      healthStatus: true
-    },
-    {
-      instId: '7fdb35df-eba1-403e-8e7a-39bf7b38872f',
-      srvcId: 'mod-inventory-storage-13.1.0-SNAPSHOT.184',
-      healthMessage: 'OK',
-      healthStatus: true
-    },
-    {
-      instId: '7fdb35df-eba1-403e-8e7a-39bf7b38873f',
-      srvcId: 'mod-inventory-storage-13.1.0-SNAPSHOT.184',
-      healthMessage: 'Fail',
-      healthStatus: false
-    },
-    {
-      instId: '7fdb35df-eba1-403e-8e7a-39bf7b38874f',
-      srvcId: 'mod-inventory-storage-13.1.0-SNAPSHOT.184',
-      healthMessage: 'OK',
-      healthStatus: true
-    },
-    {
-      instId: '7fdb35df-eba1-403e-8e7a-39bf7b38875f',
-      srvcId: 'mod-inventory-storage-13.1.0-SNAPSHOT.184',
-      healthMessage: 'OK',
-      healthStatus: true
-    },
-    {
-      instId: '7fdb35df-eba1-403e-8e7a-39bf7b38876f',
-      srvcId: 'mod-inventory-storage-13.1.0-SNAPSHOT.184',
-      healthMessage: 'Fail',
-      healthStatus: false
-    }
-  ]));
+  // okapi endpoints
+  this.get('/_/version', () => '0.0.0');
+
+  this.get('_/proxy/tenants/:id/modules', []);
+
+  this.get('/saml/check', {
+    ssoEnabled: false
+  });
+
+  this.get('/configurations/entries', {
+    configs: []
+  });
+
+  this.post('/bl-users/login?expandPermissions=true&fullPermissions=true', () => {
+    return new Response(201, {
+      'X-Okapi-Token': `myOkapiToken:${Date.now()}`
+    }, {
+      user: {
+        id: 'test',
+        username: 'testuser',
+        personal: {
+          lastName: 'User',
+          firstName: 'Test',
+          email: 'user@folio.org',
+        }
+      },
+      permissions: {
+        permissions: []
+      }
+    });
+  });
+
+  this.get('/metadatasources', ({ metadatasources }) => {
+    return metadatasources.all();
+  });
+  this.get('/metadatacollections', ({ metadatacollections }) => {
+    return metadatacollections.all();
+  });
+  this.get('/metadatasources/:id', (schema, request) => {
+    return schema.metadatSources.find(request.params.id).attrs;
+  });
 }
