@@ -33,6 +33,7 @@ class MetadataSourceView extends React.Component {
   static propTypes = {
     stripes: PropTypes
       .shape({
+        hasPerm: PropTypes.func,
         connect: PropTypes.func.isRequired,
         logger: PropTypes
           .shape({ log: PropTypes.func.isRequired })

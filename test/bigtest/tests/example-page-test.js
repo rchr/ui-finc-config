@@ -1,37 +1,41 @@
-import { beforeEach, describe, it } from '@bigtest/mocha';
-import { expect } from 'chai';
+// import { beforeEach, describe, it } from '@bigtest/mocha';
+// import { expect } from 'chai';
 
-import setupApplication from '../helpers/setup-application';
-import ExamplePageInteractor from '../interactors/example-page';
+// import setupApplication from '../helpers/setup-application';
+// import ExamplePageInteractor from '../interactors/example-page';
 
-describe('ExamplePage', () => {
-  const examplePage = new ExamplePageInteractor();
+// describe('ExamplePage', () => {
+//   const examplePage = new ExamplePageInteractor();
 
-  setupApplication();
+//   setupApplication();
 
-  beforeEach(function () {
-    this.visit('/fincconfig/examples');
-  });
+//   beforeEach(function () {
+//     this.visit('/fincconfig');
+//   });
 
-  it('has a link home', () => {
-    expect(examplePage.homeLink).to.include('');
-  });
+//   // it('has a button to sources', () => {
+//   //   expect(examplePage.buttonSources).to.include('metadatasources');
+//   // });
 
-  it('has a link to stripes-components', () => {
-    expect(examplePage.componentsLink).to.include('/folio-org/stripes-components/');
-  });
+//   // it('has an button', () => {
+//   //   expect(examplePage.button.isPresent).to.be.true;
+//   // });
 
-  it('has an example button', () => {
-    expect(examplePage.button.isPresent).to.be.true;
-  });
+//   // it('has a link to stripes-components', () => {
+//   //   expect(examplePage.componentsLink).to.include('/folio-org/stripes-components/');
+//   // });
 
-  describe('clicking the example button', () => {
-    beforeEach(async () => {
-      await examplePage.button.click();
-    });
+//   // it('has an example button', () => {
+//   //   expect(examplePage.button.isPresent).to.be.true;
+//   // });
 
-    it('shows a greetings modal', () => {
-      expect(examplePage.modal.greetingMessage).to.equal('Congratulations!');
-    });
-  });
-});
+//   // describe('clicking the example button', () => {
+//   //   beforeEach(async () => {
+//   //     await examplePage.button.click();
+//   //   });
+
+//   //   it('shows a greetings modal', () => {
+//   //     expect(examplePage.modal.greetingMessage).to.equal('Congratulations!');
+//   //   });
+//   // });
+// });
