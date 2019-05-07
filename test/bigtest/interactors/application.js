@@ -9,8 +9,8 @@ import {
 // https://bigtestjs.io/guides/interactors/introduction/
 export default @interactor class ApplicationInteractor {
   // fincHeader = text('[data-test-layout]');
-
-  static defaultScope = '#finc-config-module-display';
+  static defaultScope = '#ModuleContainer';
+  // static defaultScope = '#finc-config-module-display';
   button = scoped('[class*=buttonGroup---] button');
   buttonSources = 'button[id="metadatasources"]';
   buttonCollection = 'button[id="metadatacollections"]';

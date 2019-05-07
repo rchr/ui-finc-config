@@ -37,6 +37,7 @@ describe('Application', () => {
     expect(app.buttonCollection).to.exist;
   });
 
+
   // it('show app title', () => {
   //   expect(app.appTitle).to.equal('Finc Config');
   // });
