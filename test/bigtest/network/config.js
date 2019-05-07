@@ -35,13 +35,59 @@ export default function config() {
     });
   });
 
-  this.get('/metadatasources', ({ metadatasources }) => {
-    return metadatasources.all();
+  // this.namespace = '/fincconfig';
+
+  // add just one instance
+  // this.get('/fincconfig/metadata-sources', {
+  //   id: '1',
+  //   label: 'source 1',
+  //   description: 'Requires urgent attention',
+  //   status: 'active',
+  //   sourceId: 3
+  // });
+
+  // add array of instances
+  // this.get('/metadata-sources', () => {
+  //   const sources = [];
+  //   let i = 0;
+
+  //   for (i = 0; i < 25; i++) {
+  //     sources.push({
+  //       id: i,
+  //       label: 'source ' + i,
+  //       description: 'description ' + i,
+  //       status: 'active',
+  //     });
+  //   }
+
+  //   return sources;
+  // });
+
+  // this.get('/fincconfig/metadata-sources', {
+  //   metadatasources:[
+  //     {
+  //   id: '1',
+  //   label: 'source 1',
+  //   description: 'Requires urgent attention',
+  //   status: 'active',
+  //   sourceId: 3
+  //     },
+  //     {
+  //       id: '2',
+  //       label: 'source 2',
+  //       description: 'Requires urgent attention',
+  //       status: 'active',
+  //       sourceId: 3
+  //     },
+  //   ]
+  // });
+
+
+  // return a model, which will pass through the serializer:
+  this.get('/metadata-sources', ({ metadataSources }) => {
+    return metadataSources.all();
   });
-  this.get('/metadatacollections', ({ metadatacollections }) => {
-    return metadatacollections.all();
-  });
-  this.get('/metadatasources/:id', (schema, request) => {
-    return schema.metadatSources.find(request.params.id).attrs;
+  this.get('/metadata-sources/:id', (schema, request) => {
+    return schema.metadataSources.find(request.params.id).attrs;
   });
 }
