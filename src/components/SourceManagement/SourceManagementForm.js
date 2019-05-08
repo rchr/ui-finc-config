@@ -19,7 +19,7 @@ import RepeatableField from '../DisplayUtils/RepeatableField';
 import DisplayContact from '../DisplayUtils/DisplayContact';
 import BasicCss from '../BasicStyle.css';
 
-import FindVendor from '../FindVendor/FindVendor';
+import FindOrganization from '../FindOrganization/FindOrganization';
 
 class SourceManagementForm extends React.Component {
   constructor(props) {
@@ -30,17 +30,17 @@ class SourceManagementForm extends React.Component {
       code: 'Code',
       description: 'description',
     };
-    this.selectVendor = this.selectVendor.bind(this);
+    this.selectOrganization = this.selectOrganization.bind(this);
 
-    const intialVendor = props.initialValues.vendor || '';
+    const intialOrganization = props.initialValues.organization || '';
     this.state = {
-      vendor: intialVendor,
+      organization: intialOrganization,
     };
   }
 
-  selectVendor(v) {
-    this.props.change('vendor', v);
-    this.setState({ vendor: v });
+  selectOrganization(o) {
+    this.props.change('organization', o);
+    this.setState({ organization: o });
   }
 
   render() {
@@ -53,10 +53,10 @@ class SourceManagementForm extends React.Component {
         id={accordionId}
         onToggle={onToggle}
       >
-        {/* add link to vendor app */}
+        {/* add link to organization app */}
         <div>
-          <FindVendor
-            intialVendor={this.state.vendor}
+          <FindOrganization
+            intialOrganization={this.state.organization}
             change={this.props.change}
             stripes={this.props.stripes}
           />
