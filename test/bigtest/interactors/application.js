@@ -1,9 +1,6 @@
 import {
-  collection,
   interactor,
-  scoped,
-  text,
-  property
+  scoped
 } from '@bigtest/interactor';
 
 // https://bigtestjs.io/guides/interactors/introduction/
