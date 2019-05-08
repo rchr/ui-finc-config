@@ -19,9 +19,9 @@
   "sourceInfo.description": "Description",
   "sourceInfo.status": "Status",
   "sourceInfo.ticket": "Ticket Link",
-  "sourceInfo.organization": "Organization",
+  "sourceInfo.vendor": "Vendor",
 
-  "sourceManagement.organization": "Organization",
+  "sourceManagement.vendor": "Vendor",
   "sourceManagement.contacts.external": "Contacts External",
   "sourceManagement.contacts.internal": "Contacts Internal",
   "sourceManagement.indexingLevel": "Indexing Level",
@@ -72,6 +72,6 @@
   "collectionTechnical.contentFiles": "Content Files",
   "collectionTechnical.solrMegaCollections": "Solr Mega Collections",
 
-  "findOrganization.contenOrganizationId": "Content Organization Id",
-  "findOrganization.findOrganizationByIdButton": "Enter"
+  "findVendor.contenVendorId": "Content Vendor Id",
+  "findVendor.findVendorByIdButton": "Enter"
 }
