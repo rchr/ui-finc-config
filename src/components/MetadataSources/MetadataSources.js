@@ -133,7 +133,7 @@ class MetadataSources extends React.Component {
     const { stripes, intl } = this.props;
 
     return (
-      <div>
+      <div data-test-source-instances>
         <SearchAndSort
           // change packageInfo to prevent ERROR:Cannot read property 'cql' of undefined if switching tab
           // packageInfo={packageInfo}

@@ -33,6 +33,7 @@ class MetadataCollectionView extends React.Component {
   static propTypes = {
     stripes: PropTypes
       .shape({
+        hasPerm: PropTypes.func,
         connect: PropTypes.func.isRequired,
         logger: PropTypes
           .shape({ log: PropTypes.func.isRequired })
@@ -171,7 +172,7 @@ class MetadataCollectionView extends React.Component {
         <Pane
           defaultWidth={this.props.paneWidth}
           id="pane-collectiondetails"
-          paneTitle={label}
+          paneTitle={<span data-test-collection-header-title>{label}</span>}
           lastMenu={detailMenu}
           dismissible
           onClose={this.props.onClose}
