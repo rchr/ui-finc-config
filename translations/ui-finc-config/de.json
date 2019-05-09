@@ -19,8 +19,8 @@
   "sourceInfo.description": "Description",
   "sourceInfo.status": "Status",
   "sourceInfo.ticket": "Ticket Link",
-  "sourceInfo.organization": "Organization",
 
+  "sourceInfo.organization": "Organization",
   "sourceManagement.organization": "Organization",
   "sourceManagement.contacts.external": "Contacts External",
   "sourceManagement.contacts.internal": "Contacts Internal",
