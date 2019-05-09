@@ -25,11 +25,11 @@ describe('SourceDetailsPage', () => {
     expect(sourceInteractor.isVisible).to.equal(true);
   });
 
-  it('renders each instance', () => {
+  it('renders each source-instance', () => {
     expect(sourceInteractor.instances().length).to.be.gte(1);
   });
 
-  describe('clicking on the first item', function () {
+  describe('clicking on the first source', function () {
     beforeEach(async function () {
       await sourceInteractor.instances(0).click();
     });
@@ -38,7 +38,7 @@ describe('SourceDetailsPage', () => {
       expect(sourceDetailsPage.title).to.include(source.label);
     });
 
-    it('all accordions are present', function () {
+    it('all accordions in source-instance are present', function () {
       expect(sourceDetailsPage.managementAccordion.isPresent).to.equal(true);
       expect(sourceDetailsPage.technicalAccordion.isPresent).to.equal(true);
     });

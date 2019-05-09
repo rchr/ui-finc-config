@@ -21,16 +21,16 @@ describe('Metadata Source', () => {
     expect(sourceInteractor.isVisible).to.equal(true);
   });
 
-  it('renders each instance', () => {
+  it('renders each source-instance', () => {
     expect(sourceInteractor.instances().length).to.be.gte(5);
   });
 
-  describe('clicking on the first item', function () {
+  describe('clicking on the first source', function () {
     beforeEach(async function () {
       await sourceInteractor.instances(0).click();
     });
 
-    it('loads the instance details', function () {
+    it('loads the source-instance details', function () {
       expect(sourceInteractor.instance.isVisible).to.equal(true);
     });
   });

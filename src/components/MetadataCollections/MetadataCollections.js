@@ -148,7 +148,7 @@ class MetadataCollections extends React.Component {
     };
 
     return (
-      <div>
+      <div data-test-collection-instances>
         <SearchAndSort
           // change packageInfo to prevent ERROR:Cannot read property 'cql' of undefined if switching tab
           // packageInfo={packageInfo}

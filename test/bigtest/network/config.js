@@ -90,4 +90,10 @@ export default function config() {
   this.get('/metadata-sources/:id', (schema, request) => {
     return schema.metadataSources.find(request.params.id).attrs;
   });
+  this.get('/metadata-collections', ({ metadataCollections }) => {
+    return metadataCollections.all();
+  });
+  this.get('/metadata-collections/:id', (schema, request) => {
+    return schema.metadataCollections.find(request.params.id).attrs;
+  });
 }

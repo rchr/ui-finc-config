@@ -25,10 +25,6 @@ describe('Application', () => {
     expect(app.isPresent).to.be.true;
   });
 
-  it('has an metadatasources button', () => {
-    expect(app.button.isPresent).to.be.true;
-  });
-
   it('displays source-tab', () => {
     expect(app.buttonSources).to.exist;
   });

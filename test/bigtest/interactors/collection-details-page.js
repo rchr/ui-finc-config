@@ -11,9 +11,9 @@ import {
   static defaultScope = '#technicalAccordion';
 }
 
-export default @interactor class SourceDetailsPage {
-  static defaultScope = '#pane-sourcedetails';
-  title = text('[data-test-source-header-title]');
+export default @interactor class CollectionDetailsPage {
+  static defaultScope = '#pane-collectiondetails';
+  title = text('[data-test-collection-header-title]');
   managementAccordion = new ManagementAccordion();
   technicalAccordion = new TechnicalAccordion();
 }

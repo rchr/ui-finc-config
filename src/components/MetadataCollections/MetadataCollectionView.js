@@ -172,7 +172,7 @@ class MetadataCollectionView extends React.Component {
         <Pane
           defaultWidth={this.props.paneWidth}
           id="pane-collectiondetails"
-          paneTitle={label}
+          paneTitle={<span data-test-collection-header-title>{label}</span>}
           lastMenu={detailMenu}
           dismissible
           onClose={this.props.onClose}

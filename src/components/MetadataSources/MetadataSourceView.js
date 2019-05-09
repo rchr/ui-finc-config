@@ -172,7 +172,7 @@ class MetadataSourceView extends React.Component {
         <Pane
           defaultWidth={this.props.paneWidth}
           id="pane-sourcedetails"
-          paneTitle={<span data-test-header-title>{label}</span>}
+          paneTitle={<span data-test-source-header-title>{label}</span>}
           lastMenu={detailMenu}
           dismissible
           onClose={this.props.onClose}

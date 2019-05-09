@@ -3,15 +3,14 @@ import Factory from './application';
 
 export default Factory.extend({
   id: () => faker.random.uuid(),
-  label: (i) => 'SOURCE ' + i,
+  label: (i) => 'COLLECTION ' + i,
   description: (i) => 'description' + i,
-  contacts: {
-    internal: [],
-    external: [],
+  mdSource: {
+    id: 'mdSource id',
+    name: 'mdSource name'
   },
-  contracts: [],
+  permittedFor: [],
   tickets: [],
-  deliveryMethods: [],
-  formats: [],
-  inferiorTo: []
+  contentFiles: [],
+  solrMegaCollections: []
 });
