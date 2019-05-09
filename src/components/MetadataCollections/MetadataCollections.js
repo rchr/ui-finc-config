@@ -61,10 +61,10 @@ class MetadataCollections extends React.Component {
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
     records: {
       type: 'okapi',
-      records: 'metadataCollections',
+      records: 'fincConfigMetadataCollections',
       recordsRequired: '%{resultCount}',
       perRequest: 30,
-      path: 'metadata-collections',
+      path: 'finc-config/metadata-collections',
       GET: {
         params: {
           query: makeQueryFunction(
@@ -82,8 +82,8 @@ class MetadataCollections extends React.Component {
     },
     source: {
       type: 'okapi',
-      records: 'metadataSources',
-      path: 'metadata-sources',
+      records: 'fincConfigMetadataSources',
+      path: 'finc-config/metadata-sources',
       resourceShouldRefresh: true
     },
   });
