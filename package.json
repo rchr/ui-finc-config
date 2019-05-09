@@ -57,7 +57,8 @@
     "queryResource": "query",
     "okapiInterfaces": {
       "finc-config/metadata-sources": "0.1",
-      "finc-config/metadata-collections": "0.1"
+      "finc-config/metadata-collections": "0.1",
+      "organization-storage.organization": "1.0"
     },
     "permissionSets": [
       {
