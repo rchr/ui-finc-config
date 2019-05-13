@@ -32,7 +32,7 @@ class FindOrganization extends React.Component {
     this.inputOrganizationName = o.name;
   }
 
-  selectOrganization = (o) => {
+  selectVendor = (o) => {
     this.props.change('organization.name', o.name);
     this.props.change('organization.id', o.id);
 
@@ -104,7 +104,7 @@ class FindOrganization extends React.Component {
         marginTop0
         searchButtonStyle="default"
         dataKey="organization"
-        selectOrganization={this.selectOrganization}
+        selectVendor={this.selectVendor}
         onCloseModal={(modalProps) => {
           modalProps.parentMutator.query.update({
             query: '',

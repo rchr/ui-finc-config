@@ -30,7 +30,7 @@ class SourceManagementForm extends React.Component {
       code: 'Code',
       description: 'description',
     };
-    this.selectOrganization = this.selectOrganization.bind(this);
+    this.selectVendor = this.selectVendor.bind(this);
 
     const intialOrganization = props.initialValues.organization || '';
     this.state = {
@@ -38,7 +38,7 @@ class SourceManagementForm extends React.Component {
     };
   }
 
-  selectOrganization(o) {
+  selectVendor(o) {
     this.props.change('organization', o);
     this.setState({ organization: o });
   }
