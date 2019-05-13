@@ -3,7 +3,7 @@
     "source.label": "Nome da fonte",
     "source.id": "ID da fonte",
     "source.status": "Impl. Status",
-    "source.solrShard": "Solar Shard",
+    "source.solrShard": "Solr Shard",
     "source.lastProcessed": "Último processado",
     "source.generalAccordion": "Fonte geral de metadados",
     "source.managementAccordion": "Gerenciamento",
@@ -57,7 +57,7 @@
     "collectionTechnical.productIsil": "Product Isil",
     "collectionTechnical.tickets": "Ingressos",
     "collectionTechnical.contentFiles": "Arquivos de conteúdo",
-    "collectionTechnical.solrMegaCollections": "Solr Mega Collections",
+    "collectionTechnical.solrMegaCollections": "Mega coleções do Solr",
     "findVendor.contenVendorId": "ID do fornecedor de conteúdo",
     "findVendor.findVendorByIdButton": "Entrar"
 }
