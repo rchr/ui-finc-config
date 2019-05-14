@@ -14,69 +14,69 @@ import {
 import {
   Pluggable
 } from '@folio/stripes/core';
-import VendorName from './VendorName';
+import OrganizationName from './OrganizationName';
 
-import css from './VendorView.css';
+import css from './OrganizationView.css';
 
-class FindVendor extends React.Component {
+class FindOrganization extends React.Component {
   constructor(props) {
     super(props);
-    const v = props.intialVendor || '';
+    const o = props.intialOrganization || '';
     this.state = {
-      vendor: {
-        id: v.id,
-        name: v.name,
+      organization: {
+        id: o.id,
+        name: o.name,
       },
     };
-    this.inputVendorId = v.id;
-    this.inputVendorName = v.name;
+    this.inputOrganizationId = o.id;
+    this.inputOrganizationName = o.name;
   }
 
-  selectVendor = (v) => {
-    this.props.change('vendor.name', v.name);
-    this.props.change('vendor.id', v.id);
+  selectVendor = (o) => {
+    this.props.change('vendor.name', o.name);
+    this.props.change('vendor.id', o.id);
 
     this.setState(() => {
-      return { vendor: {
-        id: v.id,
-        name: v.name
+      return { organization: {
+        id: o.id,
+        name: o.name
       } };
     });
   }
 
-  updateVendorId = () => {
-    this.props.change('vendor.id', this.inputVendorId);
+  updateOrganizationId = () => {
+    this.props.change('vendor.id', this.inputOrganizationId);
     this.setState(() => {
-      return { vendor: {
-        id: this.inputVendorId,
+      return { organization: {
+        id: this.inputOrganizationId,
         name: null
       } };
     });
   }
 
-  changeInputVendorId = (e) => {
-    this.inputVendorId = e.target.value;
+  changeInputOrganizationId = (e) => {
+    this.inputOrganizationId = e.target.value;
   }
 
-  renderVendorName = (vendor) => {
-    if (_.isEmpty(vendor.id)) {
+  renderOrganizationName = (organization) => {
+    if (_.isEmpty(organization.id)) {
       return null;
     }
 
-    const name = _.isEmpty(vendor.name) ?
-      <VendorName
-        vendorId={vendor.id}
+    const name = _.isEmpty(organization.name) ?
+      <OrganizationName
+        organizationId={organization.id}
         stripes={this.props.stripes}
       /> :
-      <div>{vendor.name}</div>;
+      <div>{organization.name}</div>;
 
     return (
       <div
-        name="vendorName"
+        name="organizationName"
         className={`${css.section} ${css.active}`}
       >
         <b>
-          {<FormattedMessage id="ui-finc-config.sourceManagement.vendor" />}
+          {<FormattedMessage id="ui-finc-config.sourceManagement.organization" />}
         </b>
         <div>{name}</div>
       </div>);
@@ -84,23 +84,23 @@ class FindVendor extends React.Component {
 
   render() {
     const disableRecordCreation = true;
-    const vendorName = this.renderVendorName(this.state.vendor);
+    const organizationName = this.renderOrganizationName(this.state.organization);
 
-    const enterVendorIdButton =
+    const enterOrganizationIdButton =
       <Button
-        id="clickable-find-vendor-by-id"
-        onClick={this.updateVendorId}
+        id="clickable-find-organization-by-id"
+        onClick={this.updateOrganizationId}
       >
-        {<FormattedMessage id="ui-finc-config.findVendor.findVendorByIdButton" />}
+        {<FormattedMessage id="ui-finc-config.findOrganization.findOrganizationByIdButton" />}
       </Button>;
 
     const pluggable =
       <Pluggable
         aria-haspopup="true"
-        type="find-vendor"
-        id="clickable-find-vendor"
+        type="find-organization"
+        id="clickable-find-organization"
         {...this.props}
-        searchLabel="Vendor look-up"
+        searchLabel="Organization look-up"
         marginTop0
         searchButtonStyle="default"
         dataKey="vendor"
@@ -125,19 +125,19 @@ class FindVendor extends React.Component {
           <Col xs={3}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.findVendor.contenVendorId">
+                <FormattedMessage id="ui-finc-config.findOrganization.contenOrganizationId">
                   { (msg) => msg }
                 </FormattedMessage>
               }
-              placeholder="Enter vendor-id"
-              id="vendor-id"
-              name="vendor.id"
+              placeholder="Enter organization-id"
+              id="organization-id"
+              name="organization.id"
               component={TextField}
-              onChange={this.changeInputVendorId}
+              onChange={this.changeInputOrganizationId}
             />
           </Col>
           <Col xs={1} style={{ marginTop: '20px' }}>
-            { enterVendorIdButton }
+            { enterOrganizationIdButton }
           </Col>
         </Row>
         <Row>
@@ -145,7 +145,7 @@ class FindVendor extends React.Component {
             { pluggable }
           </Col>
           <Col xs={2}>
-            { vendorName }
+            { organizationName }
           </Col>
         </Row>
       </React.Fragment>
@@ -153,10 +153,10 @@ class FindVendor extends React.Component {
   }
 }
 
-FindVendor.propTypes = {
+FindOrganization.propTypes = {
   stripes: PropTypes.object,
-  intialVendorId: PropTypes.string,
+  intialOrganizationId: PropTypes.string,
   change: PropTypes.func,
 };
 
-export default FindVendor;
+export default FindOrganization;

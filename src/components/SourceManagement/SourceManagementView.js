@@ -44,7 +44,7 @@ class SourceManagementView extends React.Component {
         <div id="id">
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceManagement.vendor" />}
+              label={<FormattedMessage id="ui-finc-config.sourceManagement.organization" />}
               value={_.get(metadataSource, 'vendor.name', '-')}
             />
           </Row>

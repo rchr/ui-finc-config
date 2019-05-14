@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SubmissionError } from 'redux-form';
 
-class VendorName extends React.Component {
+class OrganizationName extends React.Component {
   static propTypes = {
-    vendorId: PropTypes.string.isRequired,
+    organizationId: PropTypes.string.isRequired,
     stripes: PropTypes.object,
   }
 
@@ -18,33 +18,33 @@ class VendorName extends React.Component {
     });
 
     this.state = {
-      vendorName: '-',
+      organizationName: '-',
     };
   }
 
   componentDidMount() {
-    this.fechVendorName(this.props.vendorId);
+    this.fechOrganizationName(this.props.organizationId);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.vendorId !== prevProps.vendorId) {
-      this.fechVendorName(this.props.vendorId);
+    if (this.props.organizationId !== prevProps.organizationId) {
+      this.fechOrganizationName(this.props.organizationId);
     }
   }
 
-  fechVendorName = (vendorId) => {
-    this.setState({ vendorName: '-' });
-    return fetch(`${this.okapiUrl}/vendor-storage/vendors/${vendorId}`, { headers: this.httpHeaders })
+  fechOrganizationName = (organizationId) => {
+    this.setState({ organizationName: '-' });
+    return fetch(`${this.okapiUrl}/vendors/${organizationId}`, { headers: this.httpHeaders })
       .then((response) => {
         if (response.status >= 400) {
-          throw new SubmissionError({ identifier: `Error ${response.status} retrieving vendor name by id`, _error: 'Fetch vendor name failed' });
+          throw new SubmissionError({ identifier: `Error ${response.status} retrieving organization name by id`, _error: 'Fetch organization name failed' });
         } else {
           return response.json();
         }
       })
       .then((json) => {
         this.setState({
-          vendorName: json.name
+          organizationName: json.name
         });
       });
   }
@@ -52,10 +52,10 @@ class VendorName extends React.Component {
   render() {
     return (
       <div>
-        {this.state.vendorName}
+        {this.state.organizationName}
       </div>
     );
   }
 }
 
-export default VendorName;
+export default OrganizationName;
