@@ -131,7 +131,7 @@ class MetadataCollections extends React.Component {
 
   render() {
     const packageInfoReWrite = () => {
-      const path = '/fincconfig/metadatacollections';
+      const path = '/finc-config/metadata-collections';
       packageInfo.stripes.route = path;
       packageInfo.stripes.home = path;
       return packageInfo;

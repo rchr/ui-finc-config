@@ -50,8 +50,8 @@
   "stripes": {
     "type": "app",
     "displayName": "ui-finc-config.meta.title",
-    "route": "/fincconfig",
-    "home": "/fincconfig",
+    "route": "/finc-config",
+    "home": "/finc-config",
     "hasSettings": true,
     "queryResource": "query",
     "okapiInterfaces": {
