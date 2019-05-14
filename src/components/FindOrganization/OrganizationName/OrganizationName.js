@@ -34,7 +34,7 @@ class OrganizationName extends React.Component {
 
   fechOrganizationName = (organizationId) => {
     this.setState({ organizationName: '-' });
-    return fetch(`${this.okapiUrl}/organizations/${organizationId}`, { headers: this.httpHeaders })
+    return fetch(`${this.okapiUrl}/vendors/${organizationId}`, { headers: this.httpHeaders })
       .then((response) => {
         if (response.status >= 400) {
           throw new SubmissionError({ identifier: `Error ${response.status} retrieving organization name by id`, _error: 'Fetch organization name failed' });

@@ -33,8 +33,8 @@ class FindOrganization extends React.Component {
   }
 
   selectVendor = (o) => {
-    this.props.change('organization.name', o.name);
-    this.props.change('organization.id', o.id);
+    this.props.change('vendor.name', o.name);
+    this.props.change('vendor.id', o.id);
 
     this.setState(() => {
       return { organization: {
@@ -45,7 +45,7 @@ class FindOrganization extends React.Component {
   }
 
   updateOrganizationId = () => {
-    this.props.change('organization.id', this.inputOrganizationId);
+    this.props.change('vendor.id', this.inputOrganizationId);
     this.setState(() => {
       return { organization: {
         id: this.inputOrganizationId,
@@ -103,7 +103,7 @@ class FindOrganization extends React.Component {
         searchLabel="Organization look-up"
         marginTop0
         searchButtonStyle="default"
-        dataKey="organization"
+        dataKey="vendor"
         selectVendor={this.selectVendor}
         onCloseModal={(modalProps) => {
           modalProps.parentMutator.query.update({
