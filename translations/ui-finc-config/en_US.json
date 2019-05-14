@@ -1,34 +1,28 @@
 {
   "meta.title": "Finc Config",
-
-  "source.label": "Source Name",
+  "source.label": "Source name",
   "source.id": "Source ID",
-  "source.status": "Impl. Status",
-  "source.solrShard": "Solar Shard",
-  "source.lastProcessed": "Last Processed",
-
-  "source.generalAccordion": "Metadata Source General",
+  "source.status": "Impl. status",
+  "source.solrShard": "Solar shard",
+  "source.lastProcessed": "Last processed",
+  "source.generalAccordion": "Metadata source general",
   "source.managementAccordion": "Management",
   "source.technicalAccordion": "Technical",
-
   "source.form.createSource": "create Source",
   "source.form.updateSource": "update Source",
-  
   "sourceInfo.label": "Name",
   "sourceInfo.id": "Source ID",
   "sourceInfo.description": "Description",
   "sourceInfo.status": "Status",
-  "sourceInfo.ticket": "Ticket Link",
-
-  "sourceInfo.organization": "Organization",
-  "sourceManagement.organization": "Organization",
-  "sourceManagement.contacts.external": "Contacts External",
-  "sourceManagement.contacts.internal": "Contacts Internal",
-  "sourceManagement.indexingLevel": "Indexing Level",
-  "sourceManagement.licensingNote": "Licensing Note",
+  "sourceInfo.ticket": "Ticket link",
+  "sourceInfo.vendor": "Vendor",
+  "sourceManagement.vendor": "Vendor",
+  "sourceManagement.contacts.external": "Contacts external",
+  "sourceManagement.contacts.internal": "Contacts internal",
+  "sourceManagement.indexingLevel": "Indexing level",
+  "sourceManagement.licensingNote": "Licensing note",
   "sourceManagement.contracts": "Contracts",
-
-  "sourceTechnical.lastProcessed": "Last Processed",
+  "sourceTechnical.lastProcessed": "Last processed",
   "sourceTechnical.tickets": "Tickets",
   "sourceTechnical.accessUrl": "Access Url",
   "sourceTechnical.sourceId": "Source Id",
@@ -36,42 +30,34 @@
   "sourceTechnical.deliveryMethods": "Delivery Methods",
   "sourceTechnical.formats": "Format",
   "sourceTechnical.updateRhythm": "Update Rhythm",
-  "sourceTechnical.inferiorTo": "Inferior To",
-
+  "sourceTechnical.inferiorTo": "Inferior to",
   "contact.name": "Name",
   "contact.role": "Role",
-
   "collection.form.createCollection": "create Collection",
   "collection.form.updateCollection": "update Collection",
-
   "collection.label": "Collection",
   "collection.metadataAvailable": "Metadata available?",
-  "collection.usageRestricted": "Usage Restricted?",
-  "collection.permittedFor": "Permitted For",
+  "collection.usageRestricted": "Usage restricted?",
+  "collection.permittedFor": "Permitted for",
   "collection.freeContent": "Free content?",
-
-  "collection.generalAccordion": "Metadata Collection General",
+  "collection.generalAccordion": "Metadata collection general",
   "collection.managementAccordion": "Management",
   "collection.technicalAccordion": "Technical",
-
   "collectionInfo.label": "Name",
   "collectionInfo.description": "Description",
   "collectionInfo.mdSource": "Source",
-
-  "collectionManagement.metadataAvailable": "Metadata Available?",
-  "collectionManagement.usageRestricted": "Usage Restricted?",
-  "collectionManagement.permittedFor": "Permitted For",
-  "collectionManagement.freeContent": "Free Content?",
-  "collectionManagement.lod.publication": "LOD Publication",
-  "collectionManagement.lod.note": "LOD Note",
-
+  "collectionManagement.metadataAvailable": "Metadata available?",
+  "collectionManagement.usageRestricted": "Usage restricted?",
+  "collectionManagement.permittedFor": "Permitted for",
+  "collectionManagement.freeContent": "Free content?",
+  "collectionManagement.lod.publication": "LOD publication",
+  "collectionManagement.lod.note": "LOD note",
   "collectionTechnical.collectionId": "Collection ID",
-  "collectionTechnical.facetLabel": "Facet Label",
+  "collectionTechnical.facetLabel": "Facet label",
   "collectionTechnical.productIsil": "Product Isil",
   "collectionTechnical.tickets": "Tickets",
-  "collectionTechnical.contentFiles": "Content Files",
-  "collectionTechnical.solrMegaCollections": "Solr Mega Collections",
-
-  "findOrganization.contenOrganizationId": "Content Organization Id",
-  "findOrganization.findOrganizationByIdButton": "Enter"
-}
+  "collectionTechnical.contentFiles": "Content files",
+  "collectionTechnical.solrMegaCollections": "Solr mega collections",
+  "findVendor.contenVendorId": "Content vendor ID",
+  "findVendor.findVendorByIdButton": "Enter"
+} 
