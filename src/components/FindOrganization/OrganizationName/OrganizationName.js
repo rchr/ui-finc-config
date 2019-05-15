@@ -4,7 +4,7 @@ import { SubmissionError } from 'redux-form';
 
 class OrganizationName extends React.Component {
   static propTypes = {
-    organizationId: PropTypes.string.isRequired,
+    vendorId: PropTypes.string.isRequired,
     stripes: PropTypes.object,
   }
 
@@ -18,23 +18,23 @@ class OrganizationName extends React.Component {
     });
 
     this.state = {
-      organizationName: '-',
+      vendorName: '-',
     };
   }
 
   componentDidMount() {
-    this.fechOrganizationName(this.props.organizationId);
+    this.fechVendorName(this.props.vendorId);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.organizationId !== prevProps.organizationId) {
-      this.fechOrganizationName(this.props.organizationId);
+    if (this.props.vendorId !== prevProps.vendorId) {
+      this.fechVendorName(this.props.vendorId);
     }
   }
 
-  fechOrganizationName = (organizationId) => {
-    this.setState({ organizationName: '-' });
-    return fetch(`${this.okapiUrl}/vendors/${organizationId}`, { headers: this.httpHeaders })
+  fechVendorName = (vendorId) => {
+    this.setState({ vendorName: '-' });
+    return fetch(`${this.okapiUrl}/vendors/${vendorId}`, { headers: this.httpHeaders })
       .then((response) => {
         if (response.status >= 400) {
           throw new SubmissionError({ identifier: `Error ${response.status} retrieving organization name by id`, _error: 'Fetch organization name failed' });
@@ -44,7 +44,7 @@ class OrganizationName extends React.Component {
       })
       .then((json) => {
         this.setState({
-          organizationName: json.name
+          vendorName: json.name
         });
       });
   }
@@ -52,7 +52,7 @@ class OrganizationName extends React.Component {
   render() {
     return (
       <div>
-        {this.state.organizationName}
+        {this.state.vendorName}
       </div>
     );
   }

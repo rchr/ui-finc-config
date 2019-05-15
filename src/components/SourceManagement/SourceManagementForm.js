@@ -32,9 +32,9 @@ class SourceManagementForm extends React.Component {
     };
     this.selectVendor = this.selectVendor.bind(this);
 
-    const intialOrganization = props.initialValues.organization || '';
+    const intialVendor = props.initialValues.vendor || '';
     this.state = {
-      organization: intialOrganization,
+      organization: intialVendor,
     };
   }
 
@@ -56,7 +56,7 @@ class SourceManagementForm extends React.Component {
         {/* add link to organization app */}
         <div>
           <FindOrganization
-            intialOrganization={this.state.organization}
+            intialVendor={this.state.organization}
             change={this.props.change}
             stripes={this.props.stripes}
           />
