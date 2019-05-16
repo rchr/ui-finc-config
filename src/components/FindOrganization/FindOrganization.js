@@ -12,7 +12,6 @@ import {
 import {
   Pluggable
 } from '@folio/stripes/core';
-import OrganizationName from './OrganizationName';
 import BasicCss from '../BasicStyle.css';
 
 import css from './OrganizationView.css';
@@ -63,10 +62,7 @@ class FindOrganization extends React.Component {
     }
 
     const name = _.isEmpty(vendor.name) ?
-      <OrganizationName
-        vendorId={vendor.id}
-        stripes={this.props.stripes}
-      /> :
+      '-' :
       <div>{vendor.name}</div>;
 
     return (
