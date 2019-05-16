@@ -52,7 +52,7 @@ class CollectionInfoView extends React.Component {
     const sourceLink = (
       <React.Fragment>
         <Link to={{
-          pathname: `/fincconfig/metadatasources/view/${sourceId}`,
+          pathname: `/finc-config/metadata-sources/view/${sourceId}`,
           search: `?filters=status.${sourceStatus}`
         }}
         >

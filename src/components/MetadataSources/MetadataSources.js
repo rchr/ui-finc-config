@@ -124,7 +124,7 @@ class MetadataSources extends React.Component {
 
   render() {
     const packageInfoReWrite = () => {
-      const path = '/fincconfig/metadatasources';
+      const path = '/finc-config/metadata-sources';
       packageInfo.stripes.route = path;
       packageInfo.stripes.home = path;
       return packageInfo;

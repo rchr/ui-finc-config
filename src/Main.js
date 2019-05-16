@@ -49,7 +49,7 @@ class Main extends React.Component {
   }
 
   handleClick(id) {
-    this.props.history.push(`/fincconfig/${id}`);
+    this.props.history.push(`/finc-config/${id}`);
   }
 
   render() {
@@ -65,18 +65,18 @@ class Main extends React.Component {
         <Layout className={css.header}>
           <ButtonGroup tagName="nav">
             <Button
-              id="metadatasources"
+              id="metadata-sources"
               fullWidth
-              onClick={() => this.handleClick('metadatasources')}
-              buttonStyle={this.state.activeTab === 'metadatasources' ? 'primary' : 'default'}
+              onClick={() => this.handleClick('metadata-sources')}
+              buttonStyle={this.state.activeTab === 'metadata-sources' ? 'primary' : 'default'}
             >
               Sources
             </Button>
             <Button
-              id="metadatacollections"
+              id="metadata-collections"
               fullWidth
-              onClick={() => this.handleClick('metadatacollections', tabInCurrentUrl)}
-              buttonStyle={this.state.activeTab === 'metadatacollections' ? 'primary' : 'default'}
+              onClick={() => this.handleClick('metadata-collections')}
+              buttonStyle={this.state.activeTab === 'metadata-collections' ? 'primary' : 'default'}
             >
               Collections
             </Button>
@@ -86,7 +86,7 @@ class Main extends React.Component {
         <div className={css.body}>
           <Switch>
             <Route
-              path={`${match.path}/metadatasources`}
+              path={`${match.path}/metadata-sources`}
               render={props => <this.connectedSource
                 stripes={stripes}
                 mutator={mutator}
@@ -96,7 +96,7 @@ class Main extends React.Component {
               }
             />
             <Route
-              path={`${match.path}/metadatacollections`}
+              path={`${match.path}/metadata-collections`}
               render={props => <this.connectedCollection
                 stripes={stripes}
                 mutator={mutator}
@@ -105,7 +105,7 @@ class Main extends React.Component {
               />
               }
             />
-            <Redirect exact from={`${match.path}`} to={`${match.path}/metadatasources`} />
+            <Redirect exact from={`${match.path}`} to={`${match.path}/metadata-sources`} />
           </Switch>
         </div>
       </div>
