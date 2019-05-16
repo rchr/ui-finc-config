@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { Settings } from '@folio/stripes/smart-components';
 import GeneralSettings from './general-settings';
 import SomeFeatureSettings from './some-feature-settings';
+import IsilSettings from './IsilSettings';
 
 /*
   STRIPES-NEW-APP
@@ -22,6 +23,11 @@ export default class FincConfigSettings extends React.Component {
       label: <FormattedMessage id="ui-finc-config.settings.some-feature" />,
       component: SomeFeatureSettings,
     },
+    {
+      route: 'isils',
+      label: 'Isils',
+      component: IsilSettings,
+    }
   ];
 
   render() {
