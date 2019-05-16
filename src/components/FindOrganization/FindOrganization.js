@@ -1,20 +1,19 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
 import {
   FormattedMessage
 } from 'react-intl';
 import {
-  Button,
   Col,
   Row,
-  TextField
+  Headline
 } from '@folio/stripes/components';
 import {
   Pluggable
 } from '@folio/stripes/core';
 import OrganizationName from './OrganizationName';
+import BasicCss from '../BasicStyle.css';
 
 import css from './OrganizationView.css';
 
@@ -75,9 +74,6 @@ class FindOrganization extends React.Component {
         name="organizationName"
         className={`${css.section} ${css.active}`}
       >
-        <b>
-          {<FormattedMessage id="ui-finc-config.sourceManagement.organization" />}
-        </b>
         <div>{name}</div>
       </div>);
   }
@@ -85,14 +81,6 @@ class FindOrganization extends React.Component {
   render() {
     const disableRecordCreation = true;
     const vendorName = this.renderVendorName(this.state.vendor);
-
-    const enterVendorIdButton =
-      <Button
-        id="clickable-find-vendor-by-id"
-        onClick={this.updateVendorId}
-      >
-        {<FormattedMessage id="ui-finc-config.findOrganization.findOrganizationByIdButton" />}
-      </Button>;
 
     const pluggable =
       <Pluggable
@@ -122,23 +110,7 @@ class FindOrganization extends React.Component {
     return (
       <React.Fragment>
         <Row>
-          <Col xs={3}>
-            <Field
-              label={
-                <FormattedMessage id="ui-finc-config.findOrganization.contenOrganizationId">
-                  { (msg) => msg }
-                </FormattedMessage>
-              }
-              placeholder="Enter organization-id"
-              id="organization-id"
-              name="vendor.id"
-              component={TextField}
-              onChange={this.changeInputVendorId}
-            />
-          </Col>
-          <Col xs={1} style={{ marginTop: '20px' }}>
-            { enterVendorIdButton }
-          </Col>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.organization" /></Headline>
         </Row>
         <Row>
           <Col xs={2}>
