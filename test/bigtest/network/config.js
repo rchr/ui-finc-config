@@ -90,10 +90,10 @@ export default function config() {
   this.get('/finc-config/metadata-sources/:id', (schema, request) => {
     return schema.fincConfigMetadataSources.find(request.params.id).attrs;
   });
-  this.get('/metadata-collections', ({ metadataCollections }) => {
-    return metadataCollections.all();
+  this.get('/finc-config/metadata-collections', ({ fincConfigMetadataCollections }) => {
+    return fincConfigMetadataCollections.all();
   });
-  this.get('/metadata-collections/:id', (schema, request) => {
-    return schema.metadataCollections.find(request.params.id).attrs;
+  this.get('/finc-config/metadata-collections/:id', (schema, request) => {
+    return schema.fincConfigMetadataCollections.find(request.params.id).attrs;
   });
 }
