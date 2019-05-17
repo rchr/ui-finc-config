@@ -1,8 +1,8 @@
 {
-    "meta.title": "Finc Config",
+    "meta.title": "Configuração Finc",
     "source.label": "Nome da fonte",
     "source.id": "ID da fonte",
-    "source.status": "Impl. Status",
+    "source.status": "Status Impl.",
     "source.solrShard": "Solr Shard",
     "source.lastProcessed": "Último processado",
     "source.generalAccordion": "Fonte geral de metadados",
@@ -15,8 +15,6 @@
     "sourceInfo.description": "Descrição",
     "sourceInfo.status": "Status",
     "sourceInfo.ticket": "Link para o bilhete",
-    "sourceInfo.vendor": "Fornecedor",
-    "sourceManagement.vendor": "Fornecedor",
     "sourceManagement.contacts.external": "Contatos externos",
     "sourceManagement.contacts.internal": "Contatos internos",
     "sourceManagement.indexingLevel": "Nível de indexação",
@@ -54,10 +52,10 @@
     "collectionManagement.lod.note": "Nota LOD",
     "collectionTechnical.collectionId": "ID da coleção",
     "collectionTechnical.facetLabel": "Rótulo da faceta",
-    "collectionTechnical.productIsil": "Product Isil",
+    "collectionTechnical.productIsil": "Produto Isil",
     "collectionTechnical.tickets": "Ingressos",
     "collectionTechnical.contentFiles": "Arquivos de conteúdo",
     "collectionTechnical.solrMegaCollections": "Mega coleções do Solr",
-    "findVendor.contenVendorId": "ID do fornecedor de conteúdo",
-    "findVendor.findVendorByIdButton": "Entrar"
+    "sourceInfo.organization": "Organização",
+    "sourceManagement.organization": "Organização"
 }
