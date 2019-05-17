@@ -7,12 +7,12 @@ export default ApplicationSerializer.extend({
 
   serialize(...args) {
     const json = ApplicationSerializer.prototype.serialize.apply(this, args);
-    if (isArray(json.metadataCollections)) {
+    if (isArray(json.fincConfigMetadataCollections)) {
       return assign({}, json, {
-        totalRecords: json.metadataCollections.length
+        totalRecords: json.fincConfigMetadataCollections.length
       });
     } else {
-      return json.metadataCollections;
+      return json.fincConfigMetadataCollections;
     }
   }
 

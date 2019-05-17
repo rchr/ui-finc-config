@@ -15,7 +15,7 @@ describe('CollectionDetailsPage', () => {
 
   let source = null;
   beforeEach(async function () {
-    source = this.server.create('metadata-collection');
+    source = this.server.create('finc-config-metadata-collection');
     this.visit('/fincconfig/metadatacollections?filters=metadataAvailable.Yes');
 
     await collectionInteractor.clickMetadataAvailableCOLLECTIONsCheckbox();
