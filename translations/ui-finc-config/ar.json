@@ -15,8 +15,6 @@
     "sourceInfo.description": "الوصف",
     "sourceInfo.status": "الحالة",
     "sourceInfo.ticket": "رابط التذكرة",
-    "sourceInfo.vendor": "المورد",
-    "sourceManagement.vendor": "المورد",
     "sourceManagement.contacts.external": "جهات الاتصال الخارجية",
     "sourceManagement.contacts.internal": "جهات الاتصال الداخلية",
     "sourceManagement.indexingLevel": "مستوى الفهرسة",
@@ -58,6 +56,6 @@
     "collectionTechnical.tickets": "تذاكر",
     "collectionTechnical.contentFiles": "ملفات المحتوى",
     "collectionTechnical.solrMegaCollections": "مجموعات Solr الضخمة",
-    "findVendor.contenVendorId": "معرّف موّرد المحتوى",
-    "findVendor.findVendorByIdButton": "إدخال"
+    "sourceInfo.organization": "المؤسسة",
+    "sourceManagement.organization": "المؤسسة"
 }

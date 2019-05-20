@@ -1,35 +1,33 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
 import {
   FormattedMessage
 } from 'react-intl';
 import {
-  Button,
   Col,
   Row,
-  TextField
+  Headline
 } from '@folio/stripes/components';
 import {
   Pluggable
 } from '@folio/stripes/core';
-import OrganizationName from './OrganizationName';
+import BasicCss from '../BasicStyle.css';
 
 import css from './OrganizationView.css';
 
 class FindOrganization extends React.Component {
   constructor(props) {
     super(props);
-    const o = props.intialOrganization || '';
+    const o = props.intialVendor || '';
     this.state = {
-      organization: {
+      vendor: {
         id: o.id,
         name: o.name,
       },
     };
-    this.inputOrganizationId = o.id;
-    this.inputOrganizationName = o.name;
+    this.inputVendorId = o.id;
+    this.inputVendorName = o.name;
   }
 
   selectVendor = (o) => {
@@ -37,62 +35,48 @@ class FindOrganization extends React.Component {
     this.props.change('vendor.id', o.id);
 
     this.setState(() => {
-      return { organization: {
+      return { vendor: {
         id: o.id,
         name: o.name
       } };
     });
   }
 
-  updateOrganizationId = () => {
-    this.props.change('vendor.id', this.inputOrganizationId);
+  updateVendorId = () => {
+    this.props.change('vendor.id', this.inputVendorId);
     this.setState(() => {
-      return { organization: {
-        id: this.inputOrganizationId,
+      return { vendor: {
+        id: this.inputVendorId,
         name: null
       } };
     });
   }
 
-  changeInputOrganizationId = (e) => {
-    this.inputOrganizationId = e.target.value;
+  changeInputVendorId = (e) => {
+    this.inputVendorId = e.target.value;
   }
 
-  renderOrganizationName = (organization) => {
-    if (_.isEmpty(organization.id)) {
+  renderVendorName = (vendor) => {
+    if (_.isEmpty(vendor.id)) {
       return null;
     }
 
-    const name = _.isEmpty(organization.name) ?
-      <OrganizationName
-        organizationId={organization.id}
-        stripes={this.props.stripes}
-      /> :
-      <div>{organization.name}</div>;
+    const name = _.isEmpty(vendor.name) ?
+      '-' :
+      <div>{vendor.name}</div>;
 
     return (
       <div
         name="organizationName"
         className={`${css.section} ${css.active}`}
       >
-        <b>
-          {<FormattedMessage id="ui-finc-config.sourceManagement.organization" />}
-        </b>
         <div>{name}</div>
       </div>);
   }
 
   render() {
     const disableRecordCreation = true;
-    const organizationName = this.renderOrganizationName(this.state.organization);
-
-    const enterOrganizationIdButton =
-      <Button
-        id="clickable-find-organization-by-id"
-        onClick={this.updateOrganizationId}
-      >
-        {<FormattedMessage id="ui-finc-config.findOrganization.findOrganizationByIdButton" />}
-      </Button>;
+    const vendorName = this.renderVendorName(this.state.vendor);
 
     const pluggable =
       <Pluggable
@@ -122,30 +106,14 @@ class FindOrganization extends React.Component {
     return (
       <React.Fragment>
         <Row>
-          <Col xs={3}>
-            <Field
-              label={
-                <FormattedMessage id="ui-finc-config.findOrganization.contenOrganizationId">
-                  { (msg) => msg }
-                </FormattedMessage>
-              }
-              placeholder="Enter organization-id"
-              id="organization-id"
-              name="organization.id"
-              component={TextField}
-              onChange={this.changeInputOrganizationId}
-            />
-          </Col>
-          <Col xs={1} style={{ marginTop: '20px' }}>
-            { enterOrganizationIdButton }
-          </Col>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.organization" /></Headline>
         </Row>
         <Row>
           <Col xs={2}>
             { pluggable }
           </Col>
           <Col xs={2}>
-            { organizationName }
+            { vendorName }
           </Col>
         </Row>
       </React.Fragment>
@@ -155,7 +123,7 @@ class FindOrganization extends React.Component {
 
 FindOrganization.propTypes = {
   stripes: PropTypes.object,
-  intialOrganizationId: PropTypes.string,
+  intialVendorId: PropTypes.string,
   change: PropTypes.func,
 };
 
