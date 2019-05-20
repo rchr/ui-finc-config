@@ -1,8 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Settings } from '@folio/stripes/smart-components';
-import GeneralSettings from './general-settings';
-import SomeFeatureSettings from './some-feature-settings';
 import IsilSettings from './IsilSettings';
 
 /*
@@ -14,18 +12,8 @@ import IsilSettings from './IsilSettings';
 export default class FincConfigSettings extends React.Component {
   pages = [
     {
-      route: 'general',
-      label: <FormattedMessage id="ui-finc-config.settings.general" />,
-      component: GeneralSettings,
-    },
-    {
-      route: 'somefeature',
-      label: <FormattedMessage id="ui-finc-config.settings.some-feature" />,
-      component: SomeFeatureSettings,
-    },
-    {
       route: 'isils',
-      label: 'Isils',
+      label: <FormattedMessage id="ui-finc-config.settings.isils.label" />,
       component: IsilSettings,
     }
   ];

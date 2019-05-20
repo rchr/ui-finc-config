@@ -73,5 +73,10 @@
   "collectionTechnical.solrMegaCollections": "Solr Mega Collections",
 
   "findOrganization.contenOrganizationId": "Content Organization Id",
-  "findOrganization.findOrganizationByIdButton": "Enter"
+  "findOrganization.findOrganizationByIdButton": "Enter",
+
+  "settings.isils.label": "Isils",
+  "settings.isils.labelSingular": "Isil",
+  "settings.isils.library": "Library",
+  "settings.isils.tenant": "Tenant"
 }

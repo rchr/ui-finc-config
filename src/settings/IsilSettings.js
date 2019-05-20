@@ -18,30 +18,25 @@ class IsilSettings extends React.Component {
     this.connectedControlledVocab = props.stripes.connect(ControlledVocab);
   }
 
-  suppressEdit = term => term.source === 'rdacarrier';
-  suppressDelete = term => term.source === 'rdacarrier';
-
   render() {
     return (
       <IntlConsumer>
         {intl => (
           <this.connectedControlledVocab
             {...this.props}
-            baseUrl="/finc-config/isils"
+            baseUrl="finc-config/isils"
             records="isils"
-            label={<FormattedMessage id="ui-finc-config.label" />}
-            labelSingular={<FormattedMessage id="ui-finc-config.labelSingular" />}
-            objectLabel={<FormattedMessage id="ui-finc-config.objectLabel" />}
+            label={<FormattedMessage id="ui-finc-config.settings.isils.label" />}
+            labelSingular={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
+            objectLabel={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
             visibleFields={['library', 'isil', 'tenant']}
             columnMapping={{
-              library: intl.formatMessage({ id: 'ui-finc-config.library' }),
-              isil: intl.formatMessage({ id: 'ui-finc-config.isil' }),
-              tenant: intl.formatMessage({ id: 'ui-finc-config.tenant' }),
+              library: intl.formatMessage({ id: 'ui-finc-config.settings.isils.library' }),
+              isil: intl.formatMessage({ id: 'ui-finc-config.settings.isils.labelSingular' }),
+              tenant: intl.formatMessage({ id: 'ui-finc-config.settings.isils.tenant' }),
             }}
-            itemTemplate={{ source: 'local' }}
             hiddenFields={['description', 'numberOfObjects']}
             nameKey="name"
-            actionSuppressor={{ edit: this.suppressEdit, delete: this.suppressDelete }}
             id="isils"
             sortby="name"
           />
