@@ -70,5 +70,10 @@
   "collectionTechnical.productIsil": "Product Isil",
   "collectionTechnical.tickets": "Tickets",
   "collectionTechnical.contentFiles": "Content Files",
-  "collectionTechnical.solrMegaCollections": "Solr Mega Collections"
+  "collectionTechnical.solrMegaCollections": "Solr Mega Collections",
+
+  "settings.isils.label": "Isils",
+  "settings.isils.labelSingular": "Isil",
+  "settings.isils.library": "Library",
+  "settings.isils.tenant": "Tenant"
 }
