@@ -41,7 +41,7 @@ class SourceInfoForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceInfo.label">
+                <FormattedMessage id="ui-finc-config.source.label">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>}
               placeholder="Enter a name to identify the metadata source"
@@ -57,7 +57,7 @@ class SourceInfoForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceInfo.description">
+                <FormattedMessage id="ui-finc-config.source.description">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter a description for the metadata source"
@@ -72,7 +72,7 @@ class SourceInfoForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceInfo.status">
+                <FormattedMessage id="ui-finc-config.source.status">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>
               }

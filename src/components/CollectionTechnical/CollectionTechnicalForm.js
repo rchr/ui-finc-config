@@ -36,7 +36,7 @@ class CollectionTechnicalForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionTechnical.collectionId">
+                <FormattedMessage id="ui-finc-config.collection.collectionId">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter collection ID for the metadata collection"
@@ -51,7 +51,7 @@ class CollectionTechnicalForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionTechnical.facetLabel">
+                <FormattedMessage id="ui-finc-config.collection.facetLabel">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter facet label for the metadata collection"
@@ -66,7 +66,7 @@ class CollectionTechnicalForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionTechnical.productIsil">
+                <FormattedMessage id="ui-finc-config.collection.productIsil">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter product ISIL for the metadata collection"
@@ -79,7 +79,7 @@ class CollectionTechnicalForm extends React.Component {
         </Row>
         {/* TICKETS (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collectionTechnical.tickets" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.tickets" /></Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -95,7 +95,7 @@ class CollectionTechnicalForm extends React.Component {
         </Row>
         {/* CONTENT FILES (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collectionTechnical.contentFiles" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.contentFiles" /></Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -112,7 +112,7 @@ class CollectionTechnicalForm extends React.Component {
         {/* SOLR MEGA COLLECTION (is repeatable and required) ... */}
         <Row>
           <Headline size="medium" className={BasicCss.styleForHeadline}>
-            <FormattedMessage id="ui-finc-config.collectionTechnical.solrMegaCollections">
+            <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
               {(msg) => msg + ' *'}
             </FormattedMessage>
           </Headline>

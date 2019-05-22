@@ -42,7 +42,7 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceTechnical.lastProcessed">
+                <FormattedMessage id="ui-finc-config.source.lastProcessed">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter date and time for the metadata source"
@@ -55,7 +55,7 @@ class SourceTechnicalForm extends React.Component {
         </Row>
         {/* TICKETS (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.tickets" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.tickets" /></Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -73,7 +73,7 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceTechnical.accessUrl">
+                <FormattedMessage id="ui-finc-config.source.accessUrl">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter an access url for the metadata source"
@@ -88,7 +88,7 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceTechnical.sourceId">
+                <FormattedMessage id="ui-finc-config.source.id">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>}
               placeholder="Enter a source id for the metadata source"
@@ -104,7 +104,7 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceTechnical.solrShard">
+                <FormattedMessage id="ui-finc-config.source.solrShard">
                   {(msg) => msg}
                 </FormattedMessage>
               }
@@ -119,7 +119,7 @@ class SourceTechnicalForm extends React.Component {
         </Row>
         {/* TODO: deliveryMethods (is repeatable; is value list ???) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.deliveryMethods" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.deliveryMethods" /></Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -135,7 +135,7 @@ class SourceTechnicalForm extends React.Component {
         </Row>
         {/* formats (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.formats" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.formats" /></Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -153,7 +153,7 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceTechnical.updateRhythm">
+                <FormattedMessage id="ui-finc-config.source.updateRhythm">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter a update rhythm for the metadata source"
@@ -166,7 +166,7 @@ class SourceTechnicalForm extends React.Component {
         </Row>
         {/* inferiorTo (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.inferiorTo" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.inferiorTo" /></Headline>
         </Row>
         <Row>
           <Col xs={6}>

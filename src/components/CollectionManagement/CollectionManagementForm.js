@@ -59,7 +59,7 @@ class CollectionManagementForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionManagement.metadataAvailable">
+                <FormattedMessage id="ui-finc-config.collection.metadataAvailable">
                   {(msg) => msg}
                 </FormattedMessage>
               }
@@ -76,7 +76,7 @@ class CollectionManagementForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionManagement.usageRestricted">
+                <FormattedMessage id="ui-finc-config.collection.usageRestricted">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>
               }
@@ -92,7 +92,7 @@ class CollectionManagementForm extends React.Component {
         </Row>
         {/* PERMITTED FOR is repeatable */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collectionManagement.permittedFor" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.permittedFor" /></Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -110,7 +110,7 @@ class CollectionManagementForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionManagement.freeContent">
+                <FormattedMessage id="ui-finc-config.collection.freeContent">
                   {(msg) => msg}
                 </FormattedMessage>
               }
@@ -127,7 +127,7 @@ class CollectionManagementForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionManagement.lod.publication">
+                <FormattedMessage id="ui-finc-config.collection.lod.publication">
                   {(msg) => msg}
                 </FormattedMessage>
               }
@@ -144,7 +144,7 @@ class CollectionManagementForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionManagement.lod.note">
+                <FormattedMessage id="ui-finc-config.collection.lod.note">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter a LOD note for the metadata collection"

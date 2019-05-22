@@ -28,19 +28,19 @@ class SourceInfoView extends React.Component {
         <div id={id}>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceInfo.label" />}
+              label={<FormattedMessage id="ui-finc-config.source.label" />}
               value={_.get(metadataSource, 'label', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceInfo.description" />}
+              label={<FormattedMessage id="ui-finc-config.source.description" />}
               value={_.get(metadataSource, 'description', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceInfo.status" />}
+              label={<FormattedMessage id="ui-finc-config.source.status" />}
               value={_.get(metadataSource, 'status', '-')}
             />
           </Row>
