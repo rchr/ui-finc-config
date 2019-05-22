@@ -57,5 +57,9 @@
     "collectionTechnical.contentFiles": "Content files",
     "collectionTechnical.solrMegaCollections": "Solr mega collections",
     "sourceInfo.organization": "Organization",
-    "sourceManagement.organization": "Organization"
+    "sourceManagement.organization": "Organization",
+    "settings.isils.label": "Isils",
+    "settings.isils.labelSingular": "Isil",
+    "settings.isils.library": "Library",
+    "settings.isils.tenant": "Tenant"
 }
