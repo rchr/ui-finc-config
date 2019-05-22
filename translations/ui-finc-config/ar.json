@@ -57,5 +57,9 @@
     "collectionTechnical.contentFiles": "ملفات المحتوى",
     "collectionTechnical.solrMegaCollections": "مجموعات Solr الضخمة",
     "sourceInfo.organization": "المؤسسة",
-    "sourceManagement.organization": "المؤسسة"
+    "sourceManagement.organization": "المؤسسة",
+    "settings.isils.label": "Isils",
+    "settings.isils.labelSingular": "Isil",
+    "settings.isils.library": "المكتبة",
+    "settings.isils.tenant": "المستأجر"
 }
