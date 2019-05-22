@@ -66,19 +66,19 @@ class CollectionInfoView extends React.Component {
         <div id={id}>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionInfo.label" />}
+              label={<FormattedMessage id="ui-finc-config.collection.label" />}
               value={_.get(metadataCollection, 'label', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionInfo.description" />}
+              label={<FormattedMessage id="ui-finc-config.collection.description" />}
               value={_.get(metadataCollection, 'description', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionInfo.mdSource" />}
+              label={<FormattedMessage id="ui-finc-config.collection.mdSource" />}
               value={sourceLink}
             />
           </Row>

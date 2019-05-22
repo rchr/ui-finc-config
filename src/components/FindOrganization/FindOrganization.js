@@ -106,7 +106,7 @@ class FindOrganization extends React.Component {
     return (
       <React.Fragment>
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.organization" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.organization" /></Headline>
         </Row>
         <Row>
           <Col xs={2}>

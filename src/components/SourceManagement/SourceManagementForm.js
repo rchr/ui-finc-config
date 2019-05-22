@@ -63,7 +63,7 @@ class SourceManagementForm extends React.Component {
         </div>
         {/* CONTACTS INTERNAL is repeatable */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.internal" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.internal" /></Headline>
         </Row>
         <Row>
           <Col xs={2}>
@@ -87,7 +87,7 @@ class SourceManagementForm extends React.Component {
         </Row>
         {/* CONTACTS EXTERNAL is repeatable */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.external" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.external" /></Headline>
         </Row>
         <Row>
           <Col xs={2}>
@@ -113,7 +113,7 @@ class SourceManagementForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceManagement.indexingLevel">
+                <FormattedMessage id="ui-finc-config.source.indexingLevel">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter a indexing level for the metadata source"
@@ -128,7 +128,7 @@ class SourceManagementForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.sourceManagement.licensingNote">
+                <FormattedMessage id="ui-finc-config.source.licensingNote">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter a licensing note for the metadata source"
@@ -141,7 +141,7 @@ class SourceManagementForm extends React.Component {
         </Row>
         {/* CONTRACTS is repeatable */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contracts" /></Headline>
+          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contracts" /></Headline>
         </Row>
         <Row>
           <Col xs={6}>

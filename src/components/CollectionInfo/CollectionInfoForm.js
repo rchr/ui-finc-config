@@ -64,7 +64,7 @@ class CollectionInfoForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionInfo.label">
+                <FormattedMessage id="ui-finc-config.collection.label">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>}
               placeholder="Enter a name to identify the metadata collection"
@@ -80,7 +80,7 @@ class CollectionInfoForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collectionInfo.description">
+                <FormattedMessage id="ui-finc-config.collection.description">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter a description for the metadata collection"

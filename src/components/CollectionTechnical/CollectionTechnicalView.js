@@ -35,24 +35,24 @@ class CollectionTechnicalView extends React.Component {
         <div id="id">
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionTechnical.collectionId" />}
+              label={<FormattedMessage id="ui-finc-config.collection.collectionId" />}
               value={_.get(metadataCollection, 'collectionId', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionTechnical.facetLabel" />}
+              label={<FormattedMessage id="ui-finc-config.collection.facetLabel" />}
               value={_.get(metadataCollection, 'facetLabel', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionTechnical.productIsil" />}
+              label={<FormattedMessage id="ui-finc-config.collection.productIsil" />}
               value={_.get(metadataCollection, 'productIsil', '-')}
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collectionTechnical.tickets" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.tickets" /></Headline>
           </Row>
           <Row>
             <List
@@ -62,7 +62,7 @@ class CollectionTechnicalView extends React.Component {
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collectionTechnical.contentFiles" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.contentFiles" /></Headline>
           </Row>
           <Row>
             <List
@@ -72,7 +72,7 @@ class CollectionTechnicalView extends React.Component {
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collectionTechnical.solrMegaCollections" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.solrMegaCollections" /></Headline>
           </Row>
           <Row>
             <List

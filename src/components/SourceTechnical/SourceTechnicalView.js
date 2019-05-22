@@ -44,13 +44,13 @@ class SourceTechnicalView extends React.Component {
         <div id="id">
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceTechnical.lastProcessed" />}
+              label={<FormattedMessage id="ui-finc-config.source.lastProcessed" />}
               value={_.get(metadataSource, 'lastProcessed', '-')}
             />
           </Row>
           {/* TICKET is repeatable */}
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.tickets" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.tickets" /></Headline>
           </Row>
           <Row>
             <List
@@ -61,25 +61,25 @@ class SourceTechnicalView extends React.Component {
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceTechnical.accessUrl" />}
+              label={<FormattedMessage id="ui-finc-config.source.accessUrl" />}
               value={_.get(metadataSource, 'accessUrl', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceTechnical.sourceId" />}
+              label={<FormattedMessage id="ui-finc-config.source.id" />}
               value={_.get(metadataSource, 'sourceId', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceTechnical.solrShard" />}
+              label={<FormattedMessage id="ui-finc-config.source.solrShard" />}
               value={_.get(metadataSource, 'solrShard', '-')}
             />
           </Row>
           {/* DELIVERYMETHODS is repeatable */}
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.deliveryMethods" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.deliveryMethods" /></Headline>
           </Row>
           <Row>
             <List
@@ -90,7 +90,7 @@ class SourceTechnicalView extends React.Component {
           </Row>
           {/* FORMATS is repeatable */}
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.formats" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.formats" /></Headline>
           </Row>
           <Row>
             <List
@@ -101,13 +101,13 @@ class SourceTechnicalView extends React.Component {
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceTechnical.updateRhythm" />}
+              label={<FormattedMessage id="ui-finc-config.source.updateRhythm" />}
               value={_.get(metadataSource, 'updateRhythm', '-')}
             />
           </Row>
           {/* INFERIORTO is repeatable */}
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceTechnical.inferiorTo" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.inferiorTo" /></Headline>
           </Row>
           <Row>
             <List

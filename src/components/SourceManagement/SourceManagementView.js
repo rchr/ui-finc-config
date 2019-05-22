@@ -44,7 +44,7 @@ class SourceManagementView extends React.Component {
         <div id="id">
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceManagement.organization" />}
+              label={<FormattedMessage id="ui-finc-config.source.organization" />}
               value={_.get(metadataSource, 'vendor.name', '-')}
             />
           </Row>
@@ -55,7 +55,7 @@ class SourceManagementView extends React.Component {
                 stripes={this.props.stripes}
                 metadataSource={metadataSource}
               /> */}
-              <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.internal" /></Headline>
+              <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.internal" /></Headline>
               <MultiColumnList
                 // contentData={metadataSource.contacts.internal}
                 contentData={_.get(metadataSource.contacts, 'internal', [])}
@@ -68,7 +68,7 @@ class SourceManagementView extends React.Component {
               />
             </Col>
             <Col xs={6}>
-              <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contacts.external" /></Headline>
+              <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.external" /></Headline>
               <MultiColumnList
                 // contentData={metadataSource.contacts.external}
                 contentData={_.get(metadataSource.contacts, 'external', [])}
@@ -83,18 +83,18 @@ class SourceManagementView extends React.Component {
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceManagement.indexingLevel" />}
+              label={<FormattedMessage id="ui-finc-config.source.indexingLevel" />}
               value={_.get(metadataSource, 'indexingLevel', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.sourceManagement.licensingNote" />}
+              label={<FormattedMessage id="ui-finc-config.source.licensingNote" />}
               value={_.get(metadataSource, 'licensingNote', '-')}
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.sourceManagement.contracts" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contracts" /></Headline>
           </Row>
           <Row>
             <List

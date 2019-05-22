@@ -29,18 +29,18 @@ class CollectionManagementView extends React.Component {
         <div id="id">
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionManagement.metadataAvailable" />}
+              label={<FormattedMessage id="ui-finc-config.collection.metadataAvailable" />}
               value={_.get(metadataCollection, 'metadataAvailable', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionManagement.usageRestricted" />}
+              label={<FormattedMessage id="ui-finc-config.collection.usageRestricted" />}
               value={_.get(metadataCollection, 'usageRestricted', '-')}
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collectionManagement.permittedFor" /></Headline>
+            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.permittedFor" /></Headline>
           </Row>
           <Row>
             <List
@@ -51,19 +51,19 @@ class CollectionManagementView extends React.Component {
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionManagement.freeContent" />}
+              label={<FormattedMessage id="ui-finc-config.collection.freeContent" />}
               value={_.get(metadataCollection, 'freeContent', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionManagement.lod.publication" />}
+              label={<FormattedMessage id="ui-finc-config.collection.lod.publication" />}
               value={_.get(metadataCollection, 'lod.publication', '-')}
             />
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collectionManagement.lod.note" />}
+              label={<FormattedMessage id="ui-finc-config.collection.lod.note" />}
               value={_.get(metadataCollection, 'lod.note', '-')}
             />
           </Row>
