@@ -18,6 +18,18 @@ class IsilSettings extends React.Component {
     this.connectedControlledVocab = props.stripes.connect(ControlledVocab);
   }
 
+  setRequiredValidation = (values) => {
+    const errors = {};
+
+    if (!values.isil) {
+      errors.isil = 'Please fill Isil in to continue';
+    }
+    if (!values.tenant) {
+      errors.tenant = 'Please fill Tenant in to continue';
+    }
+    return errors;
+  }
+
   render() {
     return (
       <IntlConsumer>
@@ -39,6 +51,7 @@ class IsilSettings extends React.Component {
             nameKey="name"
             id="isils"
             sortby="name"
+            validate={this.setRequiredValidation}
           />
         )}
       </IntlConsumer>
