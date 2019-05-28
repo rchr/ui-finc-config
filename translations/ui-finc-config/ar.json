@@ -37,16 +37,16 @@
     "source.accessUrl": "عنوان Url للوصول",
     "source.deliveryMethods": "طرق التوصيل",
     "source.formats": "التنسيق",
-    "source.updateRhythm": "Update Rhythm",
+    "source.updateRhythm": "إيقاع التحديث",
     "source.inferiorTo": "أدنى من",
     "collection.description": "الوصف",
     "collection.mdSource": "المصدر",
-    "collection.lod.publication": "LOD Publication",
-    "collection.lod.note": "LOD Note",
+    "collection.lod.publication": "نشر LOD",
+    "collection.lod.note": "ملاحظة LOD",
     "collection.collectionId": "معرّف المجموعة",
     "collection.facetLabel": "ملصق الفاسِت",
-    "collection.productIsil": "Product Isil",
+    "collection.productIsil": "Isil المنتج",
     "collection.tickets": "تذاكر",
     "collection.contentFiles": "ملفات المحتوى",
-    "collection.solrMegaCollections": "Solr Mega Collections"
+    "collection.solrMegaCollections": "مجموعات Solr الضخمة"
 }
