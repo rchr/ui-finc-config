@@ -45,7 +45,7 @@ class SourceManagementView extends React.Component {
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.organization" />}
-              value={_.get(metadataSource, 'vendor.name', '-')}
+              value={_.get(metadataSource, 'organization.name', '-')}
             />
           </Row>
           <Row className={css.addMarginForContacts}>

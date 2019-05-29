@@ -31,8 +31,8 @@ class FindOrganization extends React.Component {
   }
 
   selectVendor = (o) => {
-    this.props.change('vendor.name', o.name);
-    this.props.change('vendor.id', o.id);
+    this.props.change('organization.name', o.name);
+    this.props.change('organization.id', o.id);
 
     this.setState(() => {
       return { vendor: {
@@ -43,7 +43,7 @@ class FindOrganization extends React.Component {
   }
 
   updateVendorId = () => {
-    this.props.change('vendor.id', this.inputVendorId);
+    this.props.change('organization.id', this.inputVendorId);
     this.setState(() => {
       return { vendor: {
         id: this.inputVendorId,
