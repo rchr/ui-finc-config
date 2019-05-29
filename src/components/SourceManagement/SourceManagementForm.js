@@ -32,7 +32,7 @@ class SourceManagementForm extends React.Component {
     };
     this.selectVendor = this.selectVendor.bind(this);
 
-    const intialVendor = props.initialValues.vendor || '';
+    const intialVendor = props.initialValues.organization || '';
     this.state = {
       organization: intialVendor,
     };
