@@ -88,12 +88,6 @@ class SourceManagementView extends React.Component {
             />
           </Row>
           <Row>
-            <KeyValue
-              label={<FormattedMessage id="ui-finc-config.source.licensingNote" />}
-              value={_.get(metadataSource, 'licensingNote', '-')}
-            />
-          </Row>
-          <Row>
             <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contracts" /></Headline>
           </Row>
           <Row>
@@ -101,6 +95,12 @@ class SourceManagementView extends React.Component {
               items={contractsItems}
               itemFormatter={contractsFormatter}
               isEmptyMessage={isEmptyMessage}
+            />
+          </Row>
+          <Row>
+            <KeyValue
+              label={<FormattedMessage id="ui-finc-config.source.generalNote" />}
+              value={_.get(metadataSource, 'generalNote', '-')}
             />
           </Row>
         </div>

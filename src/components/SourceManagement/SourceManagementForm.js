@@ -124,21 +124,6 @@ class SourceManagementForm extends React.Component {
             />
           </Col>
         </Row>
-        <Row>
-          <Col xs={4}>
-            <Field
-              label={
-                <FormattedMessage id="ui-finc-config.source.licensingNote">
-                  {(msg) => msg}
-                </FormattedMessage>}
-              placeholder="Enter a licensing note for the metadata source"
-              name="licensingNote"
-              id="addsource_licensingNote"
-              component={TextField}
-              fullWidth
-            />
-          </Col>
-        </Row>
         {/* CONTRACTS is repeatable */}
         <Row>
           <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contracts" /></Headline>
@@ -152,6 +137,21 @@ class SourceManagementForm extends React.Component {
               label="Displaycontract"
               id="display_contract"
               {...this.props}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={4}>
+            <Field
+              label={
+                <FormattedMessage id="ui-finc-config.source.generalNote">
+                  {(msg) => msg}
+                </FormattedMessage>}
+              placeholder="Enter a general note for the metadata source"
+              name="generalNote"
+              id="addsource_generalNote"
+              component={TextField}
+              fullWidth
             />
           </Col>
         </Row>
