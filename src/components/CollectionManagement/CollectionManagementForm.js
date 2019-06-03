@@ -155,6 +155,21 @@ class CollectionManagementForm extends React.Component {
             />
           </Col>
         </Row>
+        <Row>
+          <Col xs={4}>
+            <Field
+              label={
+                <FormattedMessage id="ui-finc-config.collection.generalNote">
+                  {(msg) => msg}
+                </FormattedMessage>}
+              placeholder="Enter a general note for the metadata collection"
+              name="generalNote"
+              id="addcollection_generalNote"
+              component={TextField}
+              fullWidth
+            />
+          </Col>
+        </Row>
       </Accordion>
     );
   }

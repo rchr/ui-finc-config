@@ -67,6 +67,12 @@ class CollectionManagementView extends React.Component {
               value={_.get(metadataCollection, 'lod.note', '-')}
             />
           </Row>
+          <Row>
+            <KeyValue
+              label={<FormattedMessage id="ui-finc-config.collection.generalNote" />}
+              value={_.get(metadataCollection, 'generalNote', '-')}
+            />
+          </Row>
         </div>
       </React.Fragment>
     );
