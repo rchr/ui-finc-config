@@ -15,7 +15,7 @@ import {
 } from '@folio/stripes/components';
 import {
   Required
-} from '../DisplayUtils/Validate';
+} from '../../DisplayUtils/Validate';
 
 class SourceInfoForm extends React.Component {
   render() {

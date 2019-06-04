@@ -21,9 +21,9 @@ import {
 } from '@folio/stripes/core';
 
 import MetadataCollectionForm from './MetadataCollectionForm';
-import CollectionInfoView from '../CollectionInfo/CollectionInfoView';
-import CollectionManagementView from '../CollectionManagement/CollectionManagementView';
-import CollectionTechnicalView from '../CollectionTechnical/CollectionTechnicalView';
+import CollectionInfoView from './CollectionInfo/CollectionInfoView';
+import CollectionManagementView from './CollectionManagement/CollectionManagementView';
+import CollectionTechnicalView from './CollectionTechnical/CollectionTechnicalView';
 
 class MetadataCollectionView extends React.Component {
   static manifest = Object.freeze({
@@ -141,13 +141,6 @@ class MetadataCollectionView extends React.Component {
               title="Delete Metadata Collection"
             />
           </IfPermission>
-          {/* <IconButton
-            icon="comment"
-            id="clickable-show-notes"
-            style={{ visibility: !initialValues ? 'hidden' : 'visible' }}
-            onClick={this.props.notesToggle}
-            aria-label="Notes"
-          /> */}
           <IfPermission perm="metadatacollections.item.put">
             <IconButton
               icon="edit"

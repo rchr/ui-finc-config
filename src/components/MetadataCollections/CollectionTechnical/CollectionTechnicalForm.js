@@ -16,10 +16,10 @@ import {
 } from '@folio/stripes/components';
 import {
   ArrayRequired
-} from '../DisplayUtils/Validate';
-import RepeatableField from '../DisplayUtils/RepeatableField';
-import RequiredRepeatableField from '../DisplayUtils/RequiredRepeatableField';
-import BasicCss from '../BasicStyle.css';
+} from '../../DisplayUtils/Validate';
+import RepeatableField from '../../DisplayUtils/RepeatableField';
+import RequiredRepeatableField from '../../DisplayUtils/RequiredRepeatableField';
+import BasicCss from '../../BasicStyle.css';
 
 class CollectionTechnicalForm extends React.Component {
   render() {

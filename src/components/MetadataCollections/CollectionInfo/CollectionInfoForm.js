@@ -16,7 +16,7 @@ import {
 } from '@folio/stripes/components';
 import {
   Required
-} from '../DisplayUtils/Validate';
+} from '../../DisplayUtils/Validate';
 
 class CollectionInfoForm extends React.Component {
   static propTypes = {

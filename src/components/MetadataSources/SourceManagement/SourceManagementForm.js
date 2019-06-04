@@ -15,11 +15,11 @@ import {
   TextField
 } from '@folio/stripes/components';
 
-import RepeatableField from '../DisplayUtils/RepeatableField';
-import DisplayContact from '../DisplayUtils/DisplayContact';
-import BasicCss from '../BasicStyle.css';
+import RepeatableField from '../../DisplayUtils/RepeatableField';
+import DisplayContact from '../../DisplayUtils/DisplayContact';
+import BasicCss from '../../BasicStyle.css';
 
-import FindOrganization from '../FindOrganization/FindOrganization';
+import FindOrganization from '../../FindOrganization/FindOrganization';
 
 class SourceManagementForm extends React.Component {
   constructor(props) {

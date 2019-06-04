@@ -21,9 +21,9 @@ import {
 } from '@folio/stripes/core';
 
 import MetadataSourceForm from './MetadataSourceForm';
-import SourceInfoView from '../SourceInfo/SourceInfoView';
-import SourceManagementView from '../SourceManagement/SourceManagementView';
-import SourceTechnicalView from '../SourceTechnical/SourceTechnicalView';
+import SourceInfoView from './SourceInfo/SourceInfoView';
+import SourceManagementView from './SourceManagement/SourceManagementView';
+import SourceTechnicalView from './SourceTechnical/SourceTechnicalView';
 
 class MetadataSourceView extends React.Component {
   static manifest = Object.freeze({
@@ -141,13 +141,6 @@ class MetadataSourceView extends React.Component {
               title="Delete Metadata Source"
             />
           </IfPermission>
-          {/* <IconButton
-            icon="comment"
-            id="clickable-show-notes"
-            style={{ visibility: !initialValues ? 'hidden' : 'visible' }}
-            onClick={this.props.notesToggle}
-            aria-label="Notes"
-          /> */}
           <IfPermission perm="metadatasources.item.put">
             <IconButton
               icon="edit"
