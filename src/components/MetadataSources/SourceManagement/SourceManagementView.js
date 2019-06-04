@@ -13,9 +13,7 @@ import {
   Row
 } from '@folio/stripes/components';
 import css from './SourceManagement.css';
-import BasicCss from '../BasicStyle.css';
-
-// import ContactView from '../Contact/ContactView';
+import BasicCss from '../../BasicStyle.css';
 
 class SourceManagementView extends React.Component {
   static propTypes = {
@@ -26,11 +24,6 @@ class SourceManagementView extends React.Component {
       })
       .isRequired,
   };
-
-  // constructor(props) {
-  //   super(props);
-  //   this.connectedContactView = this.props.stripes.connect(ContactView);
-  // }
 
   render() {
     const { metadataSource } = this.props;
@@ -49,15 +42,9 @@ class SourceManagementView extends React.Component {
             />
           </Row>
           <Row className={css.addMarginForContacts}>
-            {/* <Row style={{ margin: '1em 0 2em 0' }}> */}
             <Col xs={6}>
-              {/* <this.connectedContactView
-                stripes={this.props.stripes}
-                metadataSource={metadataSource}
-              /> */}
               <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.internal" /></Headline>
               <MultiColumnList
-                // contentData={metadataSource.contacts.internal}
                 contentData={_.get(metadataSource.contacts, 'internal', [])}
                 isEmptyMessage="no internal contact"
                 visibleColumns={['name', 'role']}
@@ -70,7 +57,6 @@ class SourceManagementView extends React.Component {
             <Col xs={6}>
               <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.external" /></Headline>
               <MultiColumnList
-                // contentData={metadataSource.contacts.external}
                 contentData={_.get(metadataSource.contacts, 'external', [])}
                 isEmptyMessage="no external contact"
                 visibleColumns={['name', 'role']}

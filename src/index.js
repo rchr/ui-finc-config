@@ -21,7 +21,6 @@ class FincConfig extends React.Component {
     showSettings: PropTypes.bool,
   }
 
-  /* set stripes.connect for manifest in MyDataClass (to get data from okapi) */
   constructor(props, context) {
     super(props, context);
     this.connectedApp = props.stripes.connect(Main);

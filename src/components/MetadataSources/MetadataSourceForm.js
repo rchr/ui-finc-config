@@ -16,9 +16,9 @@ import {
 } from '@folio/stripes/components';
 import stripesForm from '@folio/stripes/form';
 
-import SourceInfoForm from '../SourceInfo/SourceInfoForm';
-import SourceManagementForm from '../SourceManagement/SourceManagementForm';
-import SourceTechnicalForm from '../SourceTechnical/SourceTechnicalForm';
+import SourceInfoForm from './SourceInfo/SourceInfoForm';
+import SourceManagementForm from './SourceManagement/SourceManagementForm';
+import SourceTechnicalForm from './SourceTechnical/SourceTechnicalForm';
 
 class MetadataSourceForm extends React.Component {
   static propTypes = {

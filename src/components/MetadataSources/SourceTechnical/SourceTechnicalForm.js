@@ -17,9 +17,9 @@ import {
 } from '@folio/stripes/components';
 import {
   Required
-} from '../DisplayUtils/Validate';
-import RepeatableField from '../DisplayUtils/RepeatableField';
-import BasicCss from '../BasicStyle.css';
+} from '../../DisplayUtils/Validate';
+import RepeatableField from '../../DisplayUtils/RepeatableField';
+import BasicCss from '../../BasicStyle.css';
 
 class SourceTechnicalForm extends React.Component {
   render() {

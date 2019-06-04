@@ -16,9 +16,9 @@ import {
 } from '@folio/stripes/components';
 import stripesForm from '@folio/stripes/form';
 
-import CollectionInfoForm from '../CollectionInfo/CollectionInfoForm';
-import CollectionManagementForm from '../CollectionManagement/CollectionManagementForm';
-import CollectionTechnicalForm from '../CollectionTechnical/CollectionTechnicalForm';
+import CollectionInfoForm from './CollectionInfo/CollectionInfoForm';
+import CollectionManagementForm from './CollectionManagement/CollectionManagementForm';
+import CollectionTechnicalForm from './CollectionTechnical/CollectionTechnicalForm';
 
 class MetadataCollectionForm extends React.Component {
   static propTypes = {

@@ -17,10 +17,10 @@ import {
 } from '@folio/stripes/components';
 import {
   Required
-} from '../DisplayUtils/Validate';
+} from '../../DisplayUtils/Validate';
 
-import RepeatableField from '../DisplayUtils/RepeatableField';
-import BasicCss from '../BasicStyle.css';
+import RepeatableField from '../../DisplayUtils/RepeatableField';
+import BasicCss from '../../BasicStyle.css';
 
 class CollectionManagementForm extends React.Component {
   render() {
