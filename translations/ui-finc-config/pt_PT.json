@@ -31,7 +31,6 @@
     "source.contacts.external": "Contacts External",
     "source.contacts.internal": "Contacts Internal",
     "source.indexingLevel": "Indexing Level",
-    "source.licensingNote": "Licensing Note",
     "source.contracts": "Contracts",
     "source.tickets": "Tickets",
     "source.accessUrl": "Access Url",
@@ -48,5 +47,7 @@
     "collection.productIsil": "Product Isil",
     "collection.tickets": "Tickets",
     "collection.contentFiles": "Content Files",
-    "collection.solrMegaCollections": "Solr Mega Collections"
+    "collection.solrMegaCollections": "Solr Mega Collections",
+    "source.generalNote": "General Note",
+    "collection.generalNote": "General Note"
 }
