@@ -31,7 +31,6 @@
     "source.contacts.external": "جهات الاتصال الخارجية",
     "source.contacts.internal": "جهات الاتصال الداخلية",
     "source.indexingLevel": "مستوى الفهرسة",
-    "source.licensingNote": "ملاحظة الترخيص",
     "source.contracts": "العقود",
     "source.tickets": "تذاكر",
     "source.accessUrl": "عنوان Url للوصول",
@@ -48,5 +47,7 @@
     "collection.productIsil": "Isil المنتج",
     "collection.tickets": "تذاكر",
     "collection.contentFiles": "ملفات المحتوى",
-    "collection.solrMegaCollections": "مجموعات Solr الضخمة"
+    "collection.solrMegaCollections": "مجموعات Solr الضخمة",
+    "source.generalNote": "ملاحظة عامة",
+    "collection.generalNote": "ملاحظة عامة"
 }
