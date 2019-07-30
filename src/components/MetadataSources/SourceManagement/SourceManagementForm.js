@@ -144,12 +144,12 @@ class SourceManagementForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.source.generalNote">
+                <FormattedMessage id="ui-finc-config.source.generalNotes">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter a general note for the metadata source"
-              name="generalNote"
-              id="addsource_generalNote"
+              name="generalNotes"
+              id="addsource_generalNotes"
               component={TextField}
               fullWidth
             />

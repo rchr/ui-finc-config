@@ -159,12 +159,12 @@ class CollectionManagementForm extends React.Component {
           <Col xs={4}>
             <Field
               label={
-                <FormattedMessage id="ui-finc-config.collection.generalNote">
+                <FormattedMessage id="ui-finc-config.collection.generalNotes">
                   {(msg) => msg}
                 </FormattedMessage>}
               placeholder="Enter a general note for the metadata collection"
-              name="generalNote"
-              id="addcollection_generalNote"
+              name="generalNotes"
+              id="addcollection_generalNotes"
               component={TextField}
               fullWidth
             />

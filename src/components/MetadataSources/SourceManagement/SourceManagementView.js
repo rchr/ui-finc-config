@@ -85,8 +85,8 @@ class SourceManagementView extends React.Component {
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.source.generalNote" />}
-              value={_.get(metadataSource, 'generalNote', '-')}
+              label={<FormattedMessage id="ui-finc-config.source.generalNotes" />}
+              value={_.get(metadataSource, 'generalNotes', '-')}
             />
           </Row>
         </div>
