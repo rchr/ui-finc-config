@@ -7,6 +7,7 @@ import {
 import {
   Button,
   Col,
+  ConfirmationModal,
   ExpandAllButton,
   IconButton,
   Pane,
@@ -156,6 +157,7 @@ class MetadataSourceForm extends React.Component {
                 onToggle={this.handleSectionToggle}
                 {...this.props}
               />
+              <ConfirmationModal />
             </div>
           </Pane>
         </Paneset>
