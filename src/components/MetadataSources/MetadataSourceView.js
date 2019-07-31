@@ -132,15 +132,6 @@ class MetadataSourceView extends React.Component {
       const sourceFormData = this.getSourceFormData(initialValues);
       const detailMenu = (
         <PaneMenu>
-          <IfPermission perm="metadatasources.item.delete">
-            <IconButton
-              icon="trash"
-              id="clickable-delete-source"
-              style={{ visibility: !initialValues ? 'hidden' : 'visible' }}
-              onClick={() => this.deleteSource(initialValues)}
-              title="Delete Metadata Source"
-            />
-          </IfPermission>
           <IfPermission perm="metadatasources.item.put">
             <IconButton
               icon="edit"

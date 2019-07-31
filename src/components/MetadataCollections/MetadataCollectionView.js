@@ -132,15 +132,6 @@ class MetadataCollectionView extends React.Component {
       const collectionFormData = this.getCollectionFormData(initialValues);
       const detailMenu = (
         <PaneMenu>
-          {/* <IfPermission perm="metadatacollections.item.delete">
-            <IconButton
-              icon="trash"
-              id="clickable-delete-collection"
-              style={{ visibility: !initialValues ? 'hidden' : 'visible' }}
-              onClick={() => this.deleteCollection(initialValues)}
-              title="Delete Metadata Collection"
-            />
-          </IfPermission> */}
           <IfPermission perm="metadatacollections.item.put">
             <IconButton
               icon="edit"

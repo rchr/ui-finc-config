@@ -29,6 +29,7 @@
 
   "source.form.createSource": "Create source",
   "source.form.updateSource": "Update source",
+  "source.form.deleteSource": "Delete source",
 
   "collection.collectionId": "Collection ID",
   "collection.contentFiles": "Content files",
@@ -53,6 +54,7 @@
 
   "collection.form.createCollection": "Create collection",
   "collection.form.updateCollection": "Update collection",
+  "collection.form.deleteCollection": "Delete collection",
 
   "settings.isils.label": "Isils",
   "settings.isils.labelSingular": "Isil",

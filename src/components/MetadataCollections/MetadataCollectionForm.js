@@ -114,7 +114,7 @@ class MetadataCollectionForm extends React.Component {
               disabled={confirmDelete}
               marginBottom0
             >
-              delete
+              <FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />
             </Button>
           </IfPermission>
         }
@@ -202,7 +202,7 @@ class MetadataCollectionForm extends React.Component {
               />
               <ConfirmationModal
                 id="delete-collection-confirmation"
-                heading="Delete Metadata Collection"
+                heading={<FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />}
                 message={`Do you really want to delete ${initialValues.label}?`}
                 open={confirmDelete}
                 onConfirm={() => { this.confirmDelete(true); }}
