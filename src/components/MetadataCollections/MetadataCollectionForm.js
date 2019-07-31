@@ -7,6 +7,7 @@ import {
 import {
   Button,
   Col,
+  ConfirmationModal,
   ExpandAllButton,
   IconButton,
   Pane,
@@ -14,6 +15,9 @@ import {
   Paneset,
   Row
 } from '@folio/stripes/components';
+import {
+  IfPermission
+} from '@folio/stripes/core';
 import stripesForm from '@folio/stripes/form';
 
 import CollectionInfoForm from './CollectionInfo/CollectionInfoForm';
@@ -38,6 +42,7 @@ class MetadataCollectionForm extends React.Component {
     super(props);
 
     this.state = {
+      confirmDelete: false,
       sections: {
         editCollectionInfo: true,
         editCollectionManagement: true,
@@ -46,6 +51,30 @@ class MetadataCollectionForm extends React.Component {
     };
 
     this.handleExpandAll = this.handleExpandAll.bind(this);
+  }
+
+  beginDelete = () => {
+    this.setState({
+      confirmDelete: true,
+    });
+  }
+
+  confirmDelete = (confirmation) => {
+    if (confirmation) {
+      this.deleteCollection();
+    } else {
+      this.setState({ confirmDelete: false });
+    }
+  }
+
+  deleteCollection = () => {
+    const { parentMutator, initialValues: { id } } = this.props;
+    parentMutator.records.DELETE({ id }).then(() => {
+      parentMutator.query.update({
+        _path: 'finc-config/metadata-collections',
+        layer: null
+      });
+    });
   }
 
   getAddFirstMenu() {
@@ -68,11 +97,27 @@ class MetadataCollectionForm extends React.Component {
   }
 
   getLastMenu(id, label) {
-    const { pristine, submitting } = this.props;
+    const { pristine, submitting, initialValues } = this.props;
+    const { confirmDelete } = this.state;
+    const isEditing = initialValues && initialValues.id;
 
     return (
       // set button to save changes
       <PaneMenu>
+        {isEditing &&
+          <IfPermission perm="metadatacollections.item.delete">
+            <Button
+              id="clickable-delete-udp"
+              title="delete"
+              buttonStyle="danger"
+              onClick={this.beginDelete}
+              disabled={confirmDelete}
+              marginBottom0
+            >
+              <FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />
+            </Button>
+          </IfPermission>
+        }
         <Button
           id={id}
           type="submit"
@@ -107,8 +152,7 @@ class MetadataCollectionForm extends React.Component {
 
   render() {
     const { initialValues, handleSubmit } = this.props;
-    const { sections } = this.state;
-    const firstMenu = this.getAddFirstMenu();
+    const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.collection.form.createCollection" />;
     const lastMenu = initialValues.id ?
       this.getLastMenu('clickable-createnewcollection', <FormattedMessage id="ui-finc-config.collection.form.updateCollection" />) :
@@ -119,7 +163,7 @@ class MetadataCollectionForm extends React.Component {
         <Paneset style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
-            firstMenu={firstMenu}
+            firstMenu={this.getAddFirstMenu()}
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
@@ -156,6 +200,14 @@ class MetadataCollectionForm extends React.Component {
                 onToggle={this.handleSectionToggle}
                 {...this.props}
               />
+              <ConfirmationModal
+                id="delete-collection-confirmation"
+                heading={<FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />}
+                message={`Do you really want to delete ${initialValues.label}?`}
+                open={confirmDelete}
+                onConfirm={() => { this.confirmDelete(true); }}
+                onCancel={() => { this.confirmDelete(false); }}
+              />
             </div>
           </Pane>
         </Paneset>
@@ -166,6 +218,8 @@ class MetadataCollectionForm extends React.Component {
 
 export default stripesForm({
   form: 'form-metadataCollection',
+  // set navigationCheck true for confirming changes
+  navigationCheck: true,
   // the form will reinitialize every time the initialValues prop changes
   enableReinitialize: true,
 })(MetadataCollectionForm);
