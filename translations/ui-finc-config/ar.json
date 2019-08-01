@@ -48,6 +48,8 @@
     "collection.tickets": "تذاكر",
     "collection.contentFiles": "ملفات المحتوى",
     "collection.solrMegaCollections": "مجموعات Solr الضخمة",
-    "source.generalNote": "ملاحظة عامة",
-    "collection.generalNote": "ملاحظة عامة"
+    "source.generalNotes": "ملاحظات عامة",
+    "collection.generalNotes": "ملاحظات عامة",
+    "source.form.deleteSource": "حذف المصدر",
+    "collection.form.deleteCollection": "حذف المجموعة"
 }
