@@ -48,6 +48,8 @@
     "collection.tickets": "Tickets",
     "collection.contentFiles": "Content files",
     "collection.solrMegaCollections": "Solr mega collections",
-    "source.generalNote": "General note",
-    "collection.generalNote": "General note"
+    "source.generalNotes": "General notes",
+    "collection.generalNotes": "General notes",
+    "source.form.deleteSource": "Delete source",
+    "collection.form.deleteCollection": "Delete collection"
 }
