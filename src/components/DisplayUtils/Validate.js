@@ -3,6 +3,12 @@ const Required = (value) => {
   return 'Required!';
 };
 
+const IntRequired = (value) => {
+  const valueInt = parseInt(value, 10);
+  if (valueInt === 0 || valueInt > 0) return undefined;
+  return 'Integer Required!';
+};
+
 const ArrayRequired = (value) => {
   if (!value || !value.length) {
     return 'Required!';
@@ -21,4 +27,4 @@ const Mail = (value) => {
   return undefined;
 };
 
-export { ArrayRequired, Required, Mail };
+export { IntRequired, ArrayRequired, Required, Mail };

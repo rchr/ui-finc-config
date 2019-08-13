@@ -16,7 +16,7 @@ import {
   TextField
 } from '@folio/stripes/components';
 import {
-  Required
+  IntRequired
 } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
 import BasicCss from '../../BasicStyle.css';
@@ -95,7 +95,7 @@ class SourceTechnicalForm extends React.Component {
               name="sourceId"
               id="addsource_sourceId"
               component={TextField}
-              validate={[Required]}
+              validate={[IntRequired]}
               fullWidth
             />
           </Col>
