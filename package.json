@@ -27,8 +27,8 @@
     "chai": "^4.2.0",
     "eslint": "^5.5.0",
     "mocha": "^5.2.0",
-    "react": "~16.6.3",
-    "react-dom": "~16.6.3",
+    "react": "~16.9.0",
+    "react-dom": "~16.9.0",
     "react-redux": "~5.1.1",
     "redux": "^4.0.0",
     "sinon": "^7.2.4"
@@ -56,8 +56,7 @@
     "queryResource": "query",
     "okapiInterfaces": {
       "finc-config/metadata-sources": "1.0",
-      "finc-config/metadata-collections": "1.0",
-      "organizations-storage.organizations": "1.0"
+      "finc-config/metadata-collections": "1.0"
     },
     "permissionSets": [
       {
