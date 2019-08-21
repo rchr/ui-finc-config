@@ -105,7 +105,7 @@ class MetadataSourceForm extends React.Component {
       // set button to save changes
       <PaneMenu>
         {isEditing &&
-          <IfPermission perm="metadatasources.item.delete">
+          <IfPermission perm="finc-config.metadata-sources.item.delete">
             <Button
               id="clickable-delete-udp"
               title="delete"

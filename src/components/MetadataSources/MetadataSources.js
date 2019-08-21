@@ -147,8 +147,8 @@ class MetadataSources extends React.Component {
           newRecordInitialValues={{}}
           visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
           onCreate={this.create}
-          viewRecordPerms="metadatasources.item.get"
-          newRecordPerms="metadatasources.item.post"
+          viewRecordPerms="finc-config.metadata-sources.item.get"
+          newRecordPerms="finc-config.metadata-sources.item.post"
           parentResources={this.props.resources}
           parentMutator={this.props.mutator}
           columnMapping={{

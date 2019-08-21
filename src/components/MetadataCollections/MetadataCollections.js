@@ -163,8 +163,8 @@ class MetadataCollections extends React.Component {
           visibleColumns={['label', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent']}
           resultsFormatter={resultsFormatter}
           onCreate={this.create}
-          viewRecordPerms="metadatacollections.item.get"
-          newRecordPerms="metadatacollections.item.post"
+          viewRecordPerms="finc-config.metadata-collections.item.get"
+          newRecordPerms="finc-config.metadata-collections.item.post"
           parentResources={this.props.resources}
           parentMutator={this.props.mutator}
           columnMapping={{

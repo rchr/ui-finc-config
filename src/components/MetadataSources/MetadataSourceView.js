@@ -132,7 +132,7 @@ class MetadataSourceView extends React.Component {
       const sourceFormData = this.getSourceFormData(initialValues);
       const detailMenu = (
         <PaneMenu>
-          <IfPermission perm="metadatasources.item.put">
+          <IfPermission perm="finc-config.metadata-sources.item.put">
             <IconButton
               icon="edit"
               id="clickable-edit-source"
