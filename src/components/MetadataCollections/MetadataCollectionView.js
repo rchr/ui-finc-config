@@ -132,7 +132,7 @@ class MetadataCollectionView extends React.Component {
       const collectionFormData = this.getCollectionFormData(initialValues);
       const detailMenu = (
         <PaneMenu>
-          <IfPermission perm="metadatacollections.item.put">
+          <IfPermission perm="finc-config.metadata-collections.item.put">
             <IconButton
               icon="edit"
               id="clickable-edit-collection"

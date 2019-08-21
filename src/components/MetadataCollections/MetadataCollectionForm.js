@@ -105,7 +105,7 @@ class MetadataCollectionForm extends React.Component {
       // set button to save changes
       <PaneMenu>
         {isEditing &&
-          <IfPermission perm="metadatacollections.item.delete">
+          <IfPermission perm="finc-config.metadata-collections.item.delete">
             <Button
               id="clickable-delete-udp"
               title="delete"
