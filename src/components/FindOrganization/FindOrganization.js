@@ -77,12 +77,13 @@ class FindOrganization extends React.Component {
   render() {
     const disableRecordCreation = true;
     const vendorName = this.renderVendorName(this.state.vendor);
-
+    const buttonProps = { 'marginBottom0': true };
     const pluggable =
       <Pluggable
         aria-haspopup="true"
         type="find-organization"
         id="clickable-find-organization"
+        buttonProps={buttonProps}
         {...this.props}
         searchLabel="Organization look-up"
         marginTop0
