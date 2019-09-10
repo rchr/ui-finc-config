@@ -10,6 +10,9 @@ import MetadataSources from './components/MetadataSources/MetadataSources';
 import MetadataCollections from './components/MetadataCollections/MetadataCollections';
 import css from './components/BasicStyle.css';
 
+const defaultFiltersCollections = 'metadataAvailable.Yes';
+const defaultFiltersSources = 'status.Active,status.Technical implementation';
+
 class Main extends React.Component {
   static propTypes = {
     location: PropTypes.shape({
@@ -38,16 +41,6 @@ class Main extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.setTabID();
-  }
-
-  setTabID(tabInCurrentUrl) {
-    this.setState({
-      activeTab: tabInCurrentUrl,
-    });
-  }
-
   handleClick(id) {
     this.props.history.push(`/finc-config/${id}`);
   }
@@ -67,7 +60,7 @@ class Main extends React.Component {
             <Button
               id="metadata-sources"
               fullWidth
-              onClick={() => this.handleClick('metadata-sources')}
+              onClick={() => this.handleClick(`metadata-sources?filters=${defaultFiltersSources}`)}
               buttonStyle={this.state.activeTab === 'metadata-sources' ? 'primary' : 'default'}
             >
               Sources
@@ -75,7 +68,7 @@ class Main extends React.Component {
             <Button
               id="metadata-collections"
               fullWidth
-              onClick={() => this.handleClick('metadata-collections')}
+              onClick={() => this.handleClick(`metadata-collections?filters=${defaultFiltersCollections}`)}
               buttonStyle={this.state.activeTab === 'metadata-collections' ? 'primary' : 'default'}
             >
               Collections
@@ -105,7 +98,7 @@ class Main extends React.Component {
               />
               }
             />
-            <Redirect exact from={`${match.path}`} to={`${match.path}/metadata-sources`} />
+            <Redirect exact from={`${match.path}`} to={`${match.path}/metadata-sources?filters=${defaultFiltersSources}`} />
           </Switch>
         </div>
       </div>
