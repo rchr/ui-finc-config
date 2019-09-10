@@ -48,8 +48,8 @@
     "collection.tickets": "票",
     "collection.contentFiles": "内容文件",
     "collection.solrMegaCollections": "Solr mega集合",
-    "source.generalNotes": "General notes",
-    "collection.generalNotes": "General notes",
-    "source.form.deleteSource": "Delete source",
-    "collection.form.deleteCollection": "Delete collection"
+    "source.generalNotes": "通用附注",
+    "collection.generalNotes": "通用附注",
+    "source.form.deleteSource": "删除来源",
+    "collection.form.deleteCollection": "删除集合"
 }
