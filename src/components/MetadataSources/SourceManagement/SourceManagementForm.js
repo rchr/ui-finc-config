@@ -165,7 +165,7 @@ SourceManagementForm.propTypes = {
   onToggle: PropTypes.func,
   accordionId: PropTypes.string.isRequired,
   initialValues: PropTypes.shape({
-    organization: PropTypes.string
+    organization: PropTypes.object
   }),
   change: PropTypes.func,
   stripes: PropTypes.object,
