@@ -164,6 +164,11 @@ SourceManagementForm.propTypes = {
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
   accordionId: PropTypes.string.isRequired,
+  initialValues: PropTypes.shape({
+    organization: PropTypes.string
+  }),
+  change: PropTypes.func,
+  stripes: PropTypes.object,
 };
 
 export default SourceManagementForm;

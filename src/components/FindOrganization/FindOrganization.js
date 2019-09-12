@@ -125,6 +125,7 @@ class FindOrganization extends React.Component {
 FindOrganization.propTypes = {
   stripes: PropTypes.object,
   intialVendorId: PropTypes.string,
+  intialVendor: PropTypes.string,
   change: PropTypes.func,
 };
 
