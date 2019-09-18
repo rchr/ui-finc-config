@@ -1,5 +1,15 @@
 # Change history for ui-finc-config
 
+## [1.1.0](https://github.com/folio-org/ui-finc-config/tree/v1.1.0) (2019-09-18)
+* Unsaved changes confirmation dialog (UIFC-63)
+* Required validation does not accept SourceID 0 (UIFC-65)
+* GeneraNotes cant be saved (UIFC-64)
+* change order of filter (UIFC-74)
+* organizations plugin (UIFC-75)
+* Rename permissions (UIFC-78)
+* Set default filters for finc-config (UIFC-79)
+* update dependencies; fixing warnings (UIFC-82)
+
 ## [1.0.0](https://github.com/folio-org/ui-finc-config/tree/v1.0.0) (2019-07-23)
 * Add Isil-Setting to ui-finc-config (UIFC-28)
 * Selected organization is not displayed when editing existing metadata source (UIFC-34)
