@@ -32,7 +32,7 @@ class SourceManagementForm extends React.Component {
     };
     this.selectVendor = this.selectVendor.bind(this);
 
-    const intialVendor = props.initialValues.organization || '';
+    const intialVendor = props.initialValues.organization || {};
     this.state = {
       organization: intialVendor,
     };
@@ -164,6 +164,11 @@ SourceManagementForm.propTypes = {
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
   accordionId: PropTypes.string.isRequired,
+  initialValues: PropTypes.shape({
+    organization: PropTypes.object
+  }),
+  change: PropTypes.func,
+  stripes: PropTypes.object,
 };
 
 export default SourceManagementForm;
