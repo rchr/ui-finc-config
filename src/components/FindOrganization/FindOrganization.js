@@ -19,7 +19,7 @@ import css from './OrganizationView.css';
 class FindOrganization extends React.Component {
   constructor(props) {
     super(props);
-    const o = props.intialVendor || '';
+    const o = props.intialVendor || {};
     this.state = {
       vendor: {
         id: o.id,
