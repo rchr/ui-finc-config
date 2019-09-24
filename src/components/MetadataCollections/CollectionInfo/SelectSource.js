@@ -28,7 +28,7 @@ class SelectSource extends React.Component {
             key={option.value}
             // need to transform sourceData: {label:"", value:""} to mdSource: {name:"", id:"" }
             value={`{"id":"${option.value}","name":"${option.label}"}`}
-            selected={input.value.id === option.value}
+            defaultValue={input.value.id === option.value}
           >
             {option.label}
           </option>
