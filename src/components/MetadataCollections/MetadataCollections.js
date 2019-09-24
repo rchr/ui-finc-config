@@ -141,6 +141,7 @@ class MetadataCollections extends React.Component {
 
     const resultsFormatter = {
       label: collection => collection.label,
+      mdSource: collection => _.get(collection, 'mdSource.name', '-'),
       metadataAvailable: collection => collection.metadataAvailable,
       usageRestricted: collection => collection.usageRestricted,
       permittedFor: collection => this.getArrayElementsCommaSeparated(collection.permittedFor),
@@ -160,7 +161,7 @@ class MetadataCollections extends React.Component {
           viewRecordComponent={MetadataCollectionView}
           editRecordComponent={MetadataCollectionForm}
           newRecordInitialValues={{}}
-          visibleColumns={['label', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent']}
+          visibleColumns={['label', 'mdSource', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent']}
           resultsFormatter={resultsFormatter}
           onCreate={this.create}
           viewRecordPerms="finc-config.metadata-collections.item.get"
@@ -169,6 +170,7 @@ class MetadataCollections extends React.Component {
           parentMutator={this.props.mutator}
           columnMapping={{
             label: intl.formatMessage({ id: 'ui-finc-config.collection.label' }),
+            mdSource: intl.formatMessage({ id: 'ui-finc-config.collection.mdSource' }),
             metadataAvailable: intl.formatMessage({ id: 'ui-finc-config.collection.metadataAvailable' }),
             usageRestricted: intl.formatMessage({ id: 'ui-finc-config.collection.usageRestricted' }),
             permittedFor: intl.formatMessage({ id: 'ui-finc-config.collection.permittedFor' }),
