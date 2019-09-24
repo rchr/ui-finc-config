@@ -11,12 +11,12 @@ import {
   Accordion,
   Col,
   Row,
-  TextField,
-  Select
+  TextField
 } from '@folio/stripes/components';
 import {
   Required
 } from '../../DisplayUtils/Validate';
+import SelectSource from './SelectSource';
 
 class CollectionInfoForm extends React.Component {
   static propTypes = {
@@ -91,22 +91,22 @@ class CollectionInfoForm extends React.Component {
             />
           </Col>
         </Row>
-
         <Row>
           <Col xs={4}>
             <Field
               label="Source*"
               placeholder="Select a source for the metadata collection"
-              name="mdSource.id"
+              name="mdSource"
               id="addcollection_source"
-              component={Select}
+              // mdSource.name has to be visible in resultlist
+              // need an component for saving a object of mdSource with id and name
+              component={SelectSource}
               fullWidth
               validate={[Required]}
               dataOptions={sourceData}
             />
           </Col>
         </Row>
-
       </Accordion>
     );
   }
