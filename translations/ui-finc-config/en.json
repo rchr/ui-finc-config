@@ -40,7 +40,7 @@
   "collection.label": "Collection name",
   "collection.lod.note": "LOD note",
   "collection.lod.publication": "LOD publication",
-  "collection.mdSource": "Source",
+  "collection.mdSource": "Source name",
   "collection.metadataAvailable": "Metadata available?",
   "collection.permittedFor": "Permitted for",
   "collection.productIsil": "Product ISIL",
