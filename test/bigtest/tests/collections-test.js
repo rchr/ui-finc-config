@@ -12,9 +12,10 @@ describe('Metadata Collection', () => {
 
   beforeEach(async function () {
     this.server.createList('finc-config-metadata-collection', 25);
-    this.visit('/finc-config/metadata-collections?filters=metadataAvailable.Yes');
+    await this.visit('/finc-config/metadata-collections?filters=metadataAvailable.Yes');
 
-    await collectionInteractor.clickMetadataAvailableCOLLECTIONsCheckbox();
+    // click checkbox not working always
+    // await collectionInteractor.clickMetadataAvailableCOLLECTIONsCheckbox();
   });
 
   it('shows the list of collection items', () => {

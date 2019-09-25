@@ -10,7 +10,7 @@ describe('Application', () => {
   setupApplication();
 
   beforeEach(function () {
-    this.visit('/fincconfig');
+    this.visit('/finc-config');
   });
 
   // it('shows a greeting message', () => {

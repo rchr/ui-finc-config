@@ -16,9 +16,10 @@ describe('CollectionDetailsPage', () => {
   let collection = null;
   beforeEach(async function () {
     collection = this.server.create('finc-config-metadata-collection');
-    this.visit('/finc-config/metadata-collections?filters=metadataAvailable.Yes');
+    await this.visit('/finc-config/metadata-collections?filters=metadataAvailable.Yes');
 
-    await collectionInteractor.clickMetadataAvailableCOLLECTIONsCheckbox();
+    // click checkbox not working always
+    // await collectionInteractor.clickMetadataAvailableCOLLECTIONsCheckbox();
   });
 
   it('shows the list of collection items', () => {

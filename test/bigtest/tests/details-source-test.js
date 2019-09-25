@@ -16,9 +16,10 @@ describe('SourceDetailsPage', () => {
   let source = null;
   beforeEach(async function () {
     source = this.server.create('finc-config-metadata-source');
-    this.visit('/finc-config/metadata-sources?filters=status.Active');
+    await this.visit('/finc-config/metadata-sources?filters=status.Active');
 
-    await sourceInteractor.clickActiveSOURCEsCheckbox();
+    // click checkbox not working always
+    // await sourceInteractor.clickActiveSOURCEsCheckbox();
   });
 
   it('shows the list of source items', () => {
