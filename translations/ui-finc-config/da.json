@@ -39,7 +39,7 @@
     "source.updateRhythm": "Update rhythm",
     "source.inferiorTo": "Inferior to",
     "collection.description": "Description",
-    "collection.mdSource": "Source",
+    "collection.mdSource": "Source name",
     "collection.lod.publication": "LOD publication",
     "collection.lod.note": "LOD note",
     "collection.collectionId": "Collection ID",
