@@ -12,7 +12,7 @@ describe('Metadata Source', () => {
 
   beforeEach(async function () {
     this.server.createList('finc-config-metadata-source', 25);
-    this.visit('/fincconfig/metadatasources?filters=status.Active');
+    this.visit('/finc-config/metadata-sources?filters=status.Active');
 
     await sourceInteractor.clickActiveSOURCEsCheckbox();
   });

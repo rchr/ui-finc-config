@@ -16,7 +16,7 @@ describe('SourceDetailsPage', () => {
   let source = null;
   beforeEach(async function () {
     source = this.server.create('finc-config-metadata-source');
-    this.visit('/fincconfig/metadatasources?filters=status.Active');
+    this.visit('/finc-config/metadata-sources?filters=status.Active');
 
     await sourceInteractor.clickActiveSOURCEsCheckbox();
   });
