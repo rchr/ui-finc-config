@@ -13,12 +13,13 @@ describe('CollectionDetailsPage', () => {
   const collectionDetailsPage = new CollectionDetailsPage();
   const collectionInteractor = new CollectionInteractor();
 
-  let source = null;
+  let collection = null;
   beforeEach(async function () {
-    source = this.server.create('finc-config-metadata-collection');
-    this.visit('/fincconfig/metadatacollections?filters=metadataAvailable.Yes');
+    collection = this.server.create('finc-config-metadata-collection');
+    await this.visit('/finc-config/metadata-collections?filters=metadataAvailable.Yes');
 
-    await collectionInteractor.clickMetadataAvailableCOLLECTIONsCheckbox();
+    // click checkbox not working always
+    // await collectionInteractor.clickMetadataAvailableCOLLECTIONsCheckbox();
   });
 
   it('shows the list of collection items', () => {
@@ -35,7 +36,7 @@ describe('CollectionDetailsPage', () => {
     });
 
     it('displays collection label in the pane header', function () {
-      expect(collectionDetailsPage.title).to.include(source.label);
+      expect(collectionDetailsPage.title).to.include(collection.label);
     });
 
     it('all accordions in collection-instance are present', function () {

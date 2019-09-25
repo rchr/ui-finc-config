@@ -8,8 +8,8 @@ export default @interactor class ApplicationInteractor {
   static defaultScope = '#ModuleContainer';
   // static defaultScope = '#finc-config-module-display';
   // button = scoped('[class*=buttonGroup---] button');
-  buttonSources = 'button[id="metadatasources"]';
-  buttonCollection = 'button[id="metadatacollections"]';
+  buttonSources = 'button[id="metadata-sources"]';
+  buttonCollection = 'button[id="metadata-collections"]';
 
   // static defaultScope = '#pane-results';
   // appTitle = text('[class*=paneTitleLabel---]');
