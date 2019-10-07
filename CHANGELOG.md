@@ -1,5 +1,8 @@
 # Change history for ui-finc-config
 
+## [1.2.0](https://github.com/folio-org/ui-finc-config/tree/v1.2.0) (2019-10-07)
+* Show name of metadata source in result list (UIFC-86)
+
 ## [1.1.0](https://github.com/folio-org/ui-finc-config/tree/v1.1.0) (2019-09-18)
 * Unsaved changes confirmation dialog (UIFC-63)
 * Required validation does not accept SourceID 0 (UIFC-65)
