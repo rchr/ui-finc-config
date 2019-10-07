@@ -5,6 +5,7 @@ const Required = (value) => {
 
 const IntRequired = (value) => {
   const valueInt = parseInt(value, 10);
+
   if (valueInt === 0 || valueInt > 0) return undefined;
   return 'Integer Required!';
 };

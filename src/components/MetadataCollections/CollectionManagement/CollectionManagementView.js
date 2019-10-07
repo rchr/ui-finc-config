@@ -1,15 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Headline,
   KeyValue,
   List,
   Row
 } from '@folio/stripes/components';
+
 import BasicCss from '../../BasicStyle.css';
 
 class CollectionManagementView extends React.Component {
@@ -40,7 +40,12 @@ class CollectionManagementView extends React.Component {
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.permittedFor" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.collection.permittedFor" />
+            </Headline>
           </Row>
           <Row>
             <List

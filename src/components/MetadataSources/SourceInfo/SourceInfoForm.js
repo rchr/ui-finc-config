@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Field
-} from 'redux-form';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { Field } from 'redux-form';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Accordion,
   Col,
@@ -13,9 +10,8 @@ import {
   Select,
   TextField
 } from '@folio/stripes/components';
-import {
-  Required
-} from '../../DisplayUtils/Validate';
+
+import { Required } from '../../DisplayUtils/Validate';
 
 class SourceInfoForm extends React.Component {
   render() {
@@ -92,9 +88,9 @@ class SourceInfoForm extends React.Component {
 }
 
 SourceInfoForm.propTypes = {
+  accordionId: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
-  accordionId: PropTypes.string.isRequired,
 };
 
 export default SourceInfoForm;

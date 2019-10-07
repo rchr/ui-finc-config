@@ -1,15 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage,
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Headline,
   KeyValue,
   List,
   Row
 } from '@folio/stripes/components';
+
 import BasicCss from '../../BasicStyle.css';
 
 class SourceTechnicalView extends React.Component {
@@ -21,7 +21,6 @@ class SourceTechnicalView extends React.Component {
       })
       .isRequired,
   };
-
 
   render() {
     const { metadataSource } = this.props;
@@ -50,7 +49,12 @@ class SourceTechnicalView extends React.Component {
           </Row>
           {/* TICKET is repeatable */}
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.tickets" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.source.tickets" />
+            </Headline>
           </Row>
           <Row>
             <List
@@ -79,7 +83,12 @@ class SourceTechnicalView extends React.Component {
           </Row>
           {/* DELIVERYMETHODS is repeatable */}
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.deliveryMethods" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.source.deliveryMethods" />
+            </Headline>
           </Row>
           <Row>
             <List
@@ -90,7 +99,12 @@ class SourceTechnicalView extends React.Component {
           </Row>
           {/* FORMATS is repeatable */}
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.formats" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.source.formats" />
+            </Headline>
           </Row>
           <Row>
             <List
@@ -107,7 +121,12 @@ class SourceTechnicalView extends React.Component {
           </Row>
           {/* INFERIORTO is repeatable */}
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.inferiorTo" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.source.inferiorTo" />
+            </Headline>
           </Row>
           <Row>
             <List

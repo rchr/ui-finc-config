@@ -4,6 +4,7 @@ import {
   it
 } from '@bigtest/mocha';
 import { expect } from 'chai';
+
 import setupApplication from '../helpers/setup-application';
 import SourceDetailsPage from '../interactors/source-details-page';
 import SourceInteractor from '../interactors/source';
@@ -14,6 +15,7 @@ describe('SourceDetailsPage', () => {
   const sourceInteractor = new SourceInteractor();
 
   let source = null;
+
   beforeEach(async function () {
     source = this.server.create('finc-config-metadata-source');
     await this.visit('/finc-config/metadata-sources?filters=status.Active');

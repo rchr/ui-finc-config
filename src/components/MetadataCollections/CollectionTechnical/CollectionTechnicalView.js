@@ -1,15 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage,
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Headline,
   KeyValue,
   List,
   Row
 } from '@folio/stripes/components';
+
 import BasicCss from '../../BasicStyle.css';
 
 class CollectionTechnicalView extends React.Component {
@@ -52,7 +52,12 @@ class CollectionTechnicalView extends React.Component {
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.tickets" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.collection.tickets" />
+            </Headline>
           </Row>
           <Row>
             <List
@@ -62,7 +67,12 @@ class CollectionTechnicalView extends React.Component {
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.contentFiles" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.collection.contentFiles" />
+            </Headline>
           </Row>
           <Row>
             <List
@@ -72,7 +82,12 @@ class CollectionTechnicalView extends React.Component {
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.solrMegaCollections" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.collection.solrMegaCollections" />
+            </Headline>
           </Row>
           <Row>
             <List

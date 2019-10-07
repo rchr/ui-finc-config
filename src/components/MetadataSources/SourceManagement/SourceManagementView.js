@@ -1,9 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Col,
   Headline,
@@ -12,8 +11,9 @@ import {
   MultiColumnList,
   Row
 } from '@folio/stripes/components';
-import css from './SourceManagement.css';
+
 import BasicCss from '../../BasicStyle.css';
+import css from './SourceManagement.css';
 
 class SourceManagementView extends React.Component {
   static propTypes = {
@@ -43,7 +43,12 @@ class SourceManagementView extends React.Component {
           </Row>
           <Row className={css.addMarginForContacts}>
             <Col xs={6}>
-              <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.internal" /></Headline>
+              <Headline
+                size="medium"
+                className={BasicCss.styleForHeadline}
+              >
+                <FormattedMessage id="ui-finc-config.source.contacts.internal" />
+              </Headline>
               <MultiColumnList
                 contentData={_.get(metadataSource.contacts, 'internal', [])}
                 isEmptyMessage="no internal contact"
@@ -55,7 +60,12 @@ class SourceManagementView extends React.Component {
               />
             </Col>
             <Col xs={6}>
-              <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.external" /></Headline>
+              <Headline
+                size="medium"
+                className={BasicCss.styleForHeadline}
+              >
+                <FormattedMessage id="ui-finc-config.source.contacts.external" />
+              </Headline>
               <MultiColumnList
                 contentData={_.get(metadataSource.contacts, 'external', [])}
                 isEmptyMessage="no external contact"
@@ -74,7 +84,12 @@ class SourceManagementView extends React.Component {
             />
           </Row>
           <Row>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contracts" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.source.contracts" />
+            </Headline>
           </Row>
           <Row>
             <List

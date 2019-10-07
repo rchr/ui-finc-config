@@ -2,9 +2,8 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Accordion,
   Col,
@@ -27,40 +26,39 @@ import SourceManagementView from './SourceManagement/SourceManagementView';
 import SourceTechnicalView from './SourceTechnical/SourceTechnicalView';
 
 class MetadataSourceView extends React.Component {
-  static manifest = Object.freeze({
-    query: {},
-  });
-
   static propTypes = {
+    mutator: PropTypes.shape({
+      query: PropTypes.object.isRequired,
+    }),
+    parentMutator: PropTypes.shape().isRequired,
     stripes: PropTypes
       .shape({
-        hasPerm: PropTypes.func,
         connect: PropTypes.func.isRequired,
-        logger: PropTypes
-          .shape({ log: PropTypes.func.isRequired })
-          .isRequired
-      })
-      .isRequired,
+        logger: PropTypes.shape({ log: PropTypes.func.isRequired }).isRequired,
+        hasPerm: PropTypes.func,
+      }).isRequired,
     paneWidth: PropTypes.string,
     resources: PropTypes.shape({
       metadataSource: PropTypes.shape(),
       query: PropTypes.object,
     }),
-    mutator: PropTypes.shape({
-      query: PropTypes.object.isRequired,
-    }),
     match: ReactRouterPropTypes.match,
     parentResources: PropTypes.shape(),
-    parentMutator: PropTypes.shape().isRequired,
     onClose: PropTypes.func,
     onEdit: PropTypes.func,
     editLink: PropTypes.string,
     onCloseEdit: PropTypes.func,
   };
 
+  static manifest = Object.freeze({
+    query: {},
+  });
+
   constructor(props) {
     super(props);
+
     const logger = props.stripes.logger;
+
     this.log = logger.log.bind(logger);
     this.connectedMetadataSourceForm = this.props.stripes.connect(MetadataSourceForm);
 
@@ -75,6 +73,7 @@ class MetadataSourceView extends React.Component {
   getData = () => {
     const { parentResources, match: { params: { id } } } = this.props;
     const source = (parentResources.records || {}).records || [];
+
     if (!source || source.length === 0 || !id) return null;
     return source.find(u => u.id === id);
   }
@@ -82,6 +81,7 @@ class MetadataSourceView extends React.Component {
   handleExpandAll = (obj) => {
     this.setState((curState) => {
       const newState = _.cloneDeep(curState);
+
       newState.accordions = obj;
       return newState;
     });
@@ -90,6 +90,7 @@ class MetadataSourceView extends React.Component {
   handleAccordionToggle = ({ id }) => {
     this.setState((state) => {
       const newState = _.cloneDeep(state);
+
       if (!_.has(newState.accordions, id)) newState.accordions[id] = true;
       newState.accordions[id] = !newState.accordions[id];
       return newState;
@@ -104,11 +105,13 @@ class MetadataSourceView extends React.Component {
 
   getSourceFormData = (source) => {
     const sourceFormData = source ? _.cloneDeep(source) : source;
+
     return sourceFormData;
   }
 
   deleteSource = (source) => {
     const { parentMutator } = this.props;
+
     parentMutator.records.DELETE({ id: source.id })
       .then(() => {
         parentMutator.query.update({

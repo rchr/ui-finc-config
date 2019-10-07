@@ -4,9 +4,8 @@ import {
   Field,
   FieldArray
 } from 'redux-form';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Accordion,
   Col,
@@ -14,11 +13,11 @@ import {
   Row,
   TextField
 } from '@folio/stripes/components';
-import {
-  ArrayRequired
-} from '../../DisplayUtils/Validate';
+
+import { ArrayRequired } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
 import RequiredRepeatableField from '../../DisplayUtils/RequiredRepeatableField';
+
 import BasicCss from '../../BasicStyle.css';
 
 class CollectionTechnicalForm extends React.Component {
@@ -79,7 +78,12 @@ class CollectionTechnicalForm extends React.Component {
         </Row>
         {/* TICKETS (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.tickets" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.collection.tickets" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -95,7 +99,12 @@ class CollectionTechnicalForm extends React.Component {
         </Row>
         {/* CONTENT FILES (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.contentFiles" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.collection.contentFiles" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -111,7 +120,10 @@ class CollectionTechnicalForm extends React.Component {
         </Row>
         {/* SOLR MEGA COLLECTION (is repeatable and required) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
             <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
               {(msg) => msg + ' *'}
             </FormattedMessage>
@@ -137,9 +149,9 @@ class CollectionTechnicalForm extends React.Component {
 }
 
 CollectionTechnicalForm.propTypes = {
+  accordionId: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
-  accordionId: PropTypes.string.isRequired,
 };
 
 export default CollectionTechnicalForm;

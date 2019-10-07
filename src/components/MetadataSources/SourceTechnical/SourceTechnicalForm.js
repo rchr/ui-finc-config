@@ -4,9 +4,8 @@ import {
   Field,
   FieldArray
 } from 'redux-form';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Accordion,
   Col,
@@ -15,10 +14,10 @@ import {
   Select,
   TextField
 } from '@folio/stripes/components';
-import {
-  IntRequired
-} from '../../DisplayUtils/Validate';
+
+import { IntRequired } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
+
 import BasicCss from '../../BasicStyle.css';
 
 class SourceTechnicalForm extends React.Component {
@@ -55,7 +54,12 @@ class SourceTechnicalForm extends React.Component {
         </Row>
         {/* TICKETS (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.tickets" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.source.tickets" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -119,7 +123,12 @@ class SourceTechnicalForm extends React.Component {
         </Row>
         {/* TODO: deliveryMethods (is repeatable; is value list ???) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.deliveryMethods" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.source.deliveryMethods" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -135,7 +144,12 @@ class SourceTechnicalForm extends React.Component {
         </Row>
         {/* formats (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.formats" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.source.formats" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -166,7 +180,12 @@ class SourceTechnicalForm extends React.Component {
         </Row>
         {/* inferiorTo (is repeatable) ... */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.inferiorTo" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.source.inferiorTo" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -186,9 +205,9 @@ class SourceTechnicalForm extends React.Component {
 }
 
 SourceTechnicalForm.propTypes = {
+  accordionId: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
-  accordionId: PropTypes.string.isRequired,
 };
 
 export default SourceTechnicalForm;
