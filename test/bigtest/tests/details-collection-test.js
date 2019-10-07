@@ -4,6 +4,7 @@ import {
   it
 } from '@bigtest/mocha';
 import { expect } from 'chai';
+
 import setupApplication from '../helpers/setup-application';
 import CollectionDetailsPage from '../interactors/collection-details-page';
 import CollectionInteractor from '../interactors/collection';
@@ -14,6 +15,7 @@ describe('CollectionDetailsPage', () => {
   const collectionInteractor = new CollectionInteractor();
 
   let collection = null;
+
   beforeEach(async function () {
     collection = this.server.create('finc-config-metadata-collection');
     await this.visit('/finc-config/metadata-collections?filters=metadataAvailable.Yes');

@@ -1,25 +1,24 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Col,
   Row,
   Headline
 } from '@folio/stripes/components';
-import {
-  Pluggable
-} from '@folio/stripes/core';
-import BasicCss from '../BasicStyle.css';
+import { Pluggable } from '@folio/stripes/core';
 
+import BasicCss from '../BasicStyle.css';
 import css from './OrganizationView.css';
 
 class FindOrganization extends React.Component {
   constructor(props) {
     super(props);
+
     const o = props.intialVendor || {};
+
     this.state = {
       vendor: {
         id: o.id,
@@ -107,7 +106,12 @@ class FindOrganization extends React.Component {
     return (
       <React.Fragment>
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.organization" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.source.organization" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={2}>

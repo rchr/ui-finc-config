@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import {
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
+
 import {
   Button,
   ButtonGroup,
   Layout
 } from '@folio/stripes/components';
+
 import MetadataSources from './components/MetadataSources/MetadataSources';
 import MetadataCollections from './components/MetadataCollections/MetadataCollections';
+
 import css from './components/BasicStyle.css';
 
 const defaultFiltersCollections = 'metadataAvailable.Yes';
@@ -31,6 +38,7 @@ class Main extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.connectedSource = props.stripes.connect(MetadataSources);
     this.connectedCollection = props.stripes.connect(MetadataCollections);
 

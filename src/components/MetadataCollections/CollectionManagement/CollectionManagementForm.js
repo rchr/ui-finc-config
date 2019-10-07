@@ -4,9 +4,8 @@ import {
   Field,
   FieldArray
 } from 'redux-form';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Accordion,
   Col,
@@ -15,11 +14,10 @@ import {
   Select,
   TextField
 } from '@folio/stripes/components';
-import {
-  Required
-} from '../../DisplayUtils/Validate';
 
+import { Required } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
+
 import BasicCss from '../../BasicStyle.css';
 
 class CollectionManagementForm extends React.Component {
@@ -92,7 +90,12 @@ class CollectionManagementForm extends React.Component {
         </Row>
         {/* PERMITTED FOR is repeatable */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.collection.permittedFor" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.collection.permittedFor" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -176,9 +179,9 @@ class CollectionManagementForm extends React.Component {
 }
 
 CollectionManagementForm.propTypes = {
+  accordionId: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
-  accordionId: PropTypes.string.isRequired,
 };
 
 export default CollectionManagementForm;

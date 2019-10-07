@@ -1,22 +1,18 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Field
-} from 'redux-form';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { Field } from 'redux-form';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Accordion,
   Col,
   Row,
   TextField
 } from '@folio/stripes/components';
-import {
-  Required
-} from '../../DisplayUtils/Validate';
+
 import SelectSource from './SelectSource';
+import { Required } from '../../DisplayUtils/Validate';
 
 class CollectionInfoForm extends React.Component {
   static propTypes = {
@@ -40,6 +36,7 @@ class CollectionInfoForm extends React.Component {
         label: _.toString(records[key].label),
         value: _.toString(records[key].id)
       };
+
       newArr.push(obj);
       if (Number(key) === (records.length - 1)) {
         return newArr;
@@ -113,9 +110,9 @@ class CollectionInfoForm extends React.Component {
 }
 
 CollectionInfoForm.propTypes = {
+  accordionId: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
-  accordionId: PropTypes.string.isRequired,
 };
 
 export default CollectionInfoForm;

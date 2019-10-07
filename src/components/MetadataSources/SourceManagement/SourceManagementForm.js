@@ -4,9 +4,8 @@ import {
   Field,
   FieldArray
 } from 'redux-form';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Accordion,
   Col,
@@ -17,13 +16,14 @@ import {
 
 import RepeatableField from '../../DisplayUtils/RepeatableField';
 import DisplayContact from '../../DisplayUtils/DisplayContact';
-import BasicCss from '../../BasicStyle.css';
-
 import FindOrganization from '../../FindOrganization/FindOrganization';
+
+import BasicCss from '../../BasicStyle.css';
 
 class SourceManagementForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.columnMapping =
     {
       name: 'Name',
@@ -33,6 +33,7 @@ class SourceManagementForm extends React.Component {
     this.selectVendor = this.selectVendor.bind(this);
 
     const intialVendor = props.initialValues.organization || {};
+
     this.state = {
       organization: intialVendor,
     };
@@ -63,14 +64,29 @@ class SourceManagementForm extends React.Component {
         </div>
         {/* CONTACTS INTERNAL is repeatable */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.internal" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.source.contacts.internal" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={2}>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.contact.name" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.contact.name" />
+            </Headline>
           </Col>
           <Col xs={2}>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.contact.role" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.contact.role" />
+            </Headline>
           </Col>
         </Row>
         <Row>
@@ -87,14 +103,29 @@ class SourceManagementForm extends React.Component {
         </Row>
         {/* CONTACTS EXTERNAL is repeatable */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contacts.external" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.source.contacts.external" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={2}>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.contact.name" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.contact.name" />
+            </Headline>
           </Col>
           <Col xs={2}>
-            <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.contact.role" /></Headline>
+            <Headline
+              size="medium"
+              className={BasicCss.styleForHeadline}
+            >
+              <FormattedMessage id="ui-finc-config.contact.role" />
+            </Headline>
           </Col>
         </Row>
         <Row>
@@ -126,7 +157,12 @@ class SourceManagementForm extends React.Component {
         </Row>
         {/* CONTRACTS is repeatable */}
         <Row>
-          <Headline size="medium" className={BasicCss.styleForHeadline}><FormattedMessage id="ui-finc-config.source.contracts" /></Headline>
+          <Headline
+            size="medium"
+            className={BasicCss.styleForHeadline}
+          >
+            <FormattedMessage id="ui-finc-config.source.contracts" />
+          </Headline>
         </Row>
         <Row>
           <Col xs={6}>
@@ -161,9 +197,9 @@ class SourceManagementForm extends React.Component {
 }
 
 SourceManagementForm.propTypes = {
+  accordionId: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
-  accordionId: PropTypes.string.isRequired,
   initialValues: PropTypes.shape({
     organization: PropTypes.object
   }),

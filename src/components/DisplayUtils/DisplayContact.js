@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Field
-} from 'redux-form';
+import { Field } from 'redux-form';
+
 import {
   Button,
   Col,
@@ -20,6 +19,7 @@ class DisplayContact extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.renderSubContact = this.renderSubContact.bind(this);
   }
 
@@ -44,8 +44,14 @@ class DisplayContact extends React.Component {
             placeholder="Enter a role for the contact"
           />
         </Col>
-        <Col xs={2} style={{ textAlign: 'right' }}>
-          <Button onClick={() => fields.remove(index)} buttonStyle="danger">
+        <Col
+          xs={2}
+          style={{ textAlign: 'right' }}
+        >
+          <Button
+            onClick={() => fields.remove(index)}
+            buttonStyle="danger"
+          >
             Remove
           </Button>
         </Col>
@@ -61,7 +67,10 @@ class DisplayContact extends React.Component {
         <Col xs={12}>
           {fields.map(this.renderSubContact)}
         </Col>
-        <Col xs={12} style={{ paddingTop: '10px' }}>
+        <Col
+          xs={12}
+          style={{ paddingTop: '10px' }}
+        >
           <Button onClick={() => fields.push('')}>+ Add Contact</Button>
         </Col>
       </Row>

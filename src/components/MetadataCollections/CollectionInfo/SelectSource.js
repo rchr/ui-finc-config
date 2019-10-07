@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Select
-} from '@folio/stripes/components';
+import { Select } from '@folio/stripes/components';
 
 class SelectSource extends React.Component {
   static propTypes = {

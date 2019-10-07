@@ -3,6 +3,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
+
 import Settings from './settings';
 import Main from './Main';
 
@@ -14,8 +15,7 @@ import Main from './Main';
 class FincConfig extends React.Component {
   static propTypes = {
     stripes: PropTypes
-      .shape({ connect: PropTypes.func.isRequired })
-      .isRequired,
+      .shape({ connect: PropTypes.func.isRequired }).isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
     showSettings: PropTypes.bool,
@@ -23,6 +23,7 @@ class FincConfig extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+
     this.connectedApp = props.stripes.connect(Main);
   }
 

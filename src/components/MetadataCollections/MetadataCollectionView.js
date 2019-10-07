@@ -2,9 +2,8 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Accordion,
   Col,
@@ -27,18 +26,16 @@ import CollectionManagementView from './CollectionManagement/CollectionManagemen
 import CollectionTechnicalView from './CollectionTechnical/CollectionTechnicalView';
 
 class MetadataCollectionView extends React.Component {
-  static manifest = Object.freeze({
-    query: {},
-  });
-
   static propTypes = {
+    mutator: PropTypes.shape({
+      query: PropTypes.object.isRequired,
+    }),
+    parentMutator: PropTypes.shape().isRequired,
     stripes: PropTypes
       .shape({
-        hasPerm: PropTypes.func,
         connect: PropTypes.func.isRequired,
-        logger: PropTypes
-          .shape({ log: PropTypes.func.isRequired })
-          .isRequired
+        logger: PropTypes.shape({ log: PropTypes.func.isRequired }).isRequired,
+        hasPerm: PropTypes.func,
       })
       .isRequired,
     paneWidth: PropTypes.string,
@@ -46,21 +43,23 @@ class MetadataCollectionView extends React.Component {
       metadataCollection: PropTypes.shape(),
       query: PropTypes.object,
     }),
-    mutator: PropTypes.shape({
-      query: PropTypes.object.isRequired,
-    }),
     match: ReactRouterPropTypes.match,
     parentResources: PropTypes.shape(),
-    parentMutator: PropTypes.shape().isRequired,
     onClose: PropTypes.func,
     onEdit: PropTypes.func,
     editLink: PropTypes.string,
     onCloseEdit: PropTypes.func,
   };
 
+  static manifest = Object.freeze({
+    query: {},
+  });
+
   constructor(props) {
     super(props);
+
     const logger = props.stripes.logger;
+
     this.log = logger.log.bind(logger);
     this.connectedMetadataCollectionForm = this.props.stripes.connect(MetadataCollectionForm);
 
@@ -75,6 +74,7 @@ class MetadataCollectionView extends React.Component {
   getData = () => {
     const { parentResources, match: { params: { id } } } = this.props;
     const collection = (parentResources.records || {}).records || [];
+
     if (!collection || collection.length === 0 || !id) return null;
     return collection.find(u => u.id === id);
   }
@@ -82,6 +82,7 @@ class MetadataCollectionView extends React.Component {
   handleExpandAll = (obj) => {
     this.setState((curState) => {
       const newState = _.cloneDeep(curState);
+
       newState.accordions = obj;
       return newState;
     });
@@ -90,6 +91,7 @@ class MetadataCollectionView extends React.Component {
   handleAccordionToggle = ({ id }) => {
     this.setState((state) => {
       const newState = _.cloneDeep(state);
+
       if (!_.has(newState.accordions, id)) newState.accordions[id] = true;
       newState.accordions[id] = !newState.accordions[id];
       return newState;
@@ -104,11 +106,13 @@ class MetadataCollectionView extends React.Component {
 
   getCollectionFormData = (collection) => {
     const collectionFormData = collection ? _.cloneDeep(collection) : collection;
+
     return collectionFormData;
   }
 
   deleteCollection = (collection) => {
     const { parentMutator } = this.props;
+
     parentMutator.records.DELETE({ id: collection.id })
       .then(() => {
         parentMutator.query.update({

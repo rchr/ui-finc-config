@@ -1,9 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import {
-  FormattedMessage
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Button,
   Col,
@@ -15,9 +14,7 @@ import {
   Paneset,
   Row
 } from '@folio/stripes/components';
-import {
-  IfPermission
-} from '@folio/stripes/core';
+import { IfPermission } from '@folio/stripes/core';
 import stripesForm from '@folio/stripes/form';
 
 import CollectionInfoForm from './CollectionInfo/CollectionInfoForm';
@@ -29,13 +26,13 @@ class MetadataCollectionForm extends React.Component {
     stripes: PropTypes.shape({
       connect: PropTypes.func,
     }).isRequired,
+    parentResources: PropTypes.shape().isRequired,
+    parentMutator: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     onCancel: PropTypes.func,
     pristine: PropTypes.bool,
     submitting: PropTypes.bool,
     initialValues: PropTypes.object,
-    parentResources: PropTypes.shape().isRequired,
-    parentMutator: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -69,6 +66,7 @@ class MetadataCollectionForm extends React.Component {
 
   deleteCollection = () => {
     const { parentMutator, initialValues: { id } } = this.props;
+
     parentMutator.records.DELETE({ id }).then(() => {
       parentMutator.query.update({
         _path: 'finc-config/metadata-collections',
@@ -145,6 +143,7 @@ class MetadataCollectionForm extends React.Component {
   handleSectionToggle = ({ id }) => {
     this.setState((state) => {
       const newState = _.cloneDeep(state);
+
       newState.sections[id] = !newState.sections[id];
       return newState;
     });
