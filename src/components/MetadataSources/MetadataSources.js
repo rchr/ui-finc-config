@@ -8,12 +8,26 @@ import {
 
 import {
   makeQueryFunction,
-  SearchAndSort
+  SearchAndSort,
+  SearchAndSortQuery,
+  SearchAndSortNoResultsMessage as NoResultsMessage,
+  SearchAndSortSearchButton as FilterPaneToggle,
 } from '@folio/stripes/smart-components';
+import {
+  MultiColumnList,
+  SearchField,
+  Pane,
+  Icon,
+  Button,
+  PaneMenu,
+  Paneset,
+  TextField
+} from '@folio/stripes/components';
 
 import packageInfo from '../../../package';
 import MetadataSourceView from './MetadataSourceView';
 import MetadataSourceForm from './MetadataSourceForm';
+import SourceFilters from './SourceFilters';
 
 const INITIAL_RESULT_COUNT = 30;
 const RESULT_COUNT_INCREMENT = 30;
@@ -102,6 +116,7 @@ class MetadataSources extends React.Component {
       }).isRequired,
     }).isRequired,
     stripes: PropTypes.object,
+    onSelectRow: PropTypes.func,
   };
 
   closeNewInstance = (e) => {
@@ -126,6 +141,14 @@ class MetadataSources extends React.Component {
   }
 
   render() {
+    const resultsFormatter = {
+      label: source => source.label,
+      sourceId: source => source.sourceId,
+      status: source => source.status,
+      solrShard: source => source.solrShard,
+      lastProcessed: source => source.lastProcessed,
+    };
+
     const packageInfoReWrite = () => {
       const path = '/finc-config/metadata-sources';
 
@@ -134,42 +157,96 @@ class MetadataSources extends React.Component {
       return packageInfo;
     };
 
-    const { stripes, intl } = this.props;
+    const { stripes, intl, onSelectRow } = this.props;
+
+    const test = _.get(this.props.resources, 'records.records', []);
 
     return (
-      <div data-test-source-instances>
-        <SearchAndSort
-          // change packageInfo to prevent ERROR:Cannot read property 'cql' of undefined if switching tab
-          // packageInfo={packageInfo}
-          packageInfo={packageInfoReWrite()}
-          objectName="metadataSource"
-          filterConfig={filterConfig}
-          initialResultCount={INITIAL_RESULT_COUNT}
-          resultCountIncrement={RESULT_COUNT_INCREMENT}
-          viewRecordComponent={MetadataSourceView}
-          editRecordComponent={MetadataSourceForm}
-          newRecordInitialValues={{}}
-          visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
-          onCreate={this.create}
-          viewRecordPerms="finc-config.metadata-sources.item.get"
-          newRecordPerms="finc-config.metadata-sources.item.post"
-          parentResources={this.props.resources}
-          parentMutator={this.props.mutator}
-          columnMapping={{
-            label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
-            sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
-            status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
-            solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
-            lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
-          }}
-          stripes={stripes}
-          // add values for search-selectbox
-          searchableIndexes={searchableIndexes}
-          selectedIndex={_.get(this.props.resources, 'qindex')}
-          searchableIndexesPlaceholder={null}
-          onChangeIndex={this.onChangeIndex}
-        />
-      </div>
+
+      <SearchAndSortQuery
+        querySetter={this.querySetter}
+        queryGetter={this.queryGetter}
+        // onComponentWillUnmount={onComponentWillUnmount}
+      >
+        {
+          ({
+            searchValue,
+            getSearchHandlers,
+            onSubmitSearch,
+            onSort,
+            getFilterHandlers,
+            activeFilters,
+          }) => (
+            <div>
+              <TextField
+                label="user search"
+                name="query"
+                onChange={getSearchHandlers().query}
+                value={searchValue.query}
+              />
+              <Button onClick={onSubmitSearch}>Search</Button>
+              <SourceFilters
+                // onChangeHandlers={getFilterHandlers()}
+                activeFilters={activeFilters.state}
+                filterHandlers={getFilterHandlers()}
+                // config={filterConfig}
+                // patronGroups={patronGroups}
+              />
+              <MultiColumnList
+                visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
+                contentData={_.get(this.props.resources, 'records.records', [])}
+                columnMapping={{
+                  label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
+                  sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
+                  status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
+                  solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
+                  lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
+                }}
+                formatter={resultsFormatter}
+                rowFormatter={this.anchorRowFormatter}
+                onRowClick={onSelectRow}
+                onNeedMore={this.onNeedMore}
+                onHeaderClick={onSort}
+              />
+            </div>
+          )
+        }
+      </SearchAndSortQuery>
+
+
+      // <div data-test-source-instances>
+      //   <SearchAndSort
+      //     // change packageInfo to prevent ERROR:Cannot read property 'cql' of undefined if switching tab
+      //     // packageInfo={packageInfo}
+      //     packageInfo={packageInfoReWrite()}
+      //     objectName="metadataSource"
+      //     filterConfig={filterConfig}
+      //     initialResultCount={INITIAL_RESULT_COUNT}
+      //     resultCountIncrement={RESULT_COUNT_INCREMENT}
+      //     viewRecordComponent={MetadataSourceView}
+      //     editRecordComponent={MetadataSourceForm}
+      //     newRecordInitialValues={{}}
+      //     visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
+      //     onCreate={this.create}
+      //     viewRecordPerms="finc-config.metadata-sources.item.get"
+      //     newRecordPerms="finc-config.metadata-sources.item.post"
+      //     parentResources={this.props.resources}
+      //     parentMutator={this.props.mutator}
+      //     columnMapping={{
+      //       label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
+      //       sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
+      //       status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
+      //       solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
+      //       lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
+      //     }}
+      //     stripes={stripes}
+      //     // add values for search-selectbox
+      //     searchableIndexes={searchableIndexes}
+      //     selectedIndex={_.get(this.props.resources, 'qindex')}
+      //     searchableIndexesPlaceholder={null}
+      //     onChangeIndex={this.onChangeIndex}
+      //   />
+      // </div>
     );
   }
 }
