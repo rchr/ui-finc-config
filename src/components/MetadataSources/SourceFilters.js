@@ -82,9 +82,7 @@ class SourceFilters extends React.Component {
       const values = filterConfig[`${filter}Values`];
 
       if (values.length !== state[filter].length) {
-        console.log('ungleich');
         newState[filter] = values;
-        console.log(newState);
       }
     });
 

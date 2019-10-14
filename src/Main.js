@@ -19,7 +19,7 @@ import MetadataCollections from './components/MetadataCollections/MetadataCollec
 import css from './components/BasicStyle.css';
 
 const defaultFiltersCollections = 'metadataAvailable.Yes';
-const defaultFiltersSources = 'status.Active,status.Technical implementation';
+const defaultFiltersSources = '';
 
 class Main extends React.Component {
   static propTypes = {
@@ -66,7 +66,7 @@ class Main extends React.Component {
             <Button
               id="metadata-sources"
               fullWidth
-              onClick={() => this.handleClick(`metadata-sources?filters=${defaultFiltersSources}`)}
+              onClick={() => this.handleClick('metadata-sources')}
               buttonStyle={this.state.activeTab === 'metadata-sources' ? 'primary' : 'default'}
             >
               Sources
@@ -104,7 +104,7 @@ class Main extends React.Component {
               />
               }
             />
-            <Redirect exact from={`${match.path}`} to={`${match.path}/metadata-sources?filters=${defaultFiltersSources}`} />
+            <Redirect exact from={`${match.path}`} to={`${match.path}/metadata-sources`} />
           </Switch>
         </div>
       </div>

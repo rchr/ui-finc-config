@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'react-router-dom/Link';
 import {
   injectIntl,
   intlShape
@@ -23,6 +24,7 @@ import {
   Paneset,
   TextField
 } from '@folio/stripes/components';
+import { AppIcon } from '@folio/stripes-core';
 
 import packageInfo from '../../../package';
 import MetadataSourceView from './MetadataSourceView';
@@ -115,8 +117,9 @@ class MetadataSources extends React.Component {
         update: PropTypes.func,
       }).isRequired,
     }).isRequired,
-    stripes: PropTypes.object,
     onSelectRow: PropTypes.func,
+    queryGetter: PropTypes.func,
+    querySetter: PropTypes.func,
   };
 
   closeNewInstance = (e) => {
@@ -157,13 +160,14 @@ class MetadataSources extends React.Component {
       return packageInfo;
     };
 
-    const { stripes, intl, onSelectRow } = this.props;
-
-    const test = _.get(this.props.resources, 'records.records', []);
+    const { intl, onSelectRow, queryGetter, querySetter } = this.props;
 
     return (
 
       <SearchAndSortQuery
+        // initialFilterState={{ status: ['active', 'technical implementation'] }}
+        // initialSortState={{ sort: '' }}
+        // initialSearchState={{ query: '' }}
         querySetter={this.querySetter}
         queryGetter={this.queryGetter}
         // onComponentWillUnmount={onComponentWillUnmount}
@@ -177,38 +181,50 @@ class MetadataSources extends React.Component {
             getFilterHandlers,
             activeFilters,
           }) => (
-            <div>
-              <TextField
-                label="user search"
-                name="query"
-                onChange={getSearchHandlers().query}
-                value={searchValue.query}
-              />
-              <Button onClick={onSubmitSearch}>Search</Button>
-              <SourceFilters
-                // onChangeHandlers={getFilterHandlers()}
-                activeFilters={activeFilters.state}
-                filterHandlers={getFilterHandlers()}
-                // config={filterConfig}
-                // patronGroups={patronGroups}
-              />
-              <MultiColumnList
-                visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
-                contentData={_.get(this.props.resources, 'records.records', [])}
-                columnMapping={{
-                  label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
-                  sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
-                  status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
-                  solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
-                  lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
-                }}
-                formatter={resultsFormatter}
-                rowFormatter={this.anchorRowFormatter}
-                onRowClick={onSelectRow}
-                onNeedMore={this.onNeedMore}
-                onHeaderClick={onSort}
-              />
-            </div>
+            <Paneset>
+              <Pane
+                defaultWidth="320px"
+                paneTitle="Search & filter"
+              >
+                <TextField
+                  label="user search"
+                  name="query"
+                  onChange={getSearchHandlers().query}
+                  value={searchValue.query}
+                />
+                <Button onClick={onSubmitSearch}>Search</Button>
+                <SourceFilters
+                  // onChangeHandlers={getFilterHandlers()}
+                  activeFilters={activeFilters.state}
+                  filterHandlers={getFilterHandlers()}
+                  // config={filterConfig}
+                  // patronGroups={patronGroups}
+                />
+              </Pane>
+              <Pane
+                id="pane-results"
+                defaultWidth="fill"
+                paneTitle="Finc Config"
+                // appIcon={<AppIcon app={moduleName} />}
+              >
+                <MultiColumnList
+                  visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
+                  contentData={_.get(this.props.resources, 'records.records', [])}
+                  columnMapping={{
+                    label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
+                    sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
+                    status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
+                    solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
+                    lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
+                  }}
+                  formatter={resultsFormatter}
+                  rowFormatter={this.anchorRowFormatter}
+                  onRowClick={onSelectRow}
+                  onNeedMore={this.onNeedMore}
+                  onHeaderClick={onSort}
+                />
+              </Pane>
+            </Paneset>
           )
         }
       </SearchAndSortQuery>
