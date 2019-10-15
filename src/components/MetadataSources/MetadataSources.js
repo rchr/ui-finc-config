@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
 import {
+  FormattedMessage,
   injectIntl,
   intlShape
 } from 'react-intl';
@@ -24,7 +25,10 @@ import {
   Paneset,
   TextField
 } from '@folio/stripes/components';
-import { AppIcon } from '@folio/stripes-core';
+import {
+  AppIcon,
+  IfPermission
+} from '@folio/stripes-core';
 
 import packageInfo from '../../../package';
 import MetadataSourceView from './MetadataSourceView';
@@ -104,6 +108,7 @@ class MetadataSources extends React.Component {
 
   static propTypes = {
     children: PropTypes.node,
+    disableRecordCreation: PropTypes.bool,
     intl: intlShape.isRequired,
     mutator: PropTypes.shape({
       metadataSources: PropTypes.shape({
@@ -130,6 +135,7 @@ class MetadataSources extends React.Component {
     }).isRequired,
     searchString: PropTypes.string,
     selectedIndex: PropTypes.string,
+    source: PropTypes.object,
   };
 
   static defaultProps = {
@@ -141,9 +147,9 @@ class MetadataSources extends React.Component {
 
     this.state = {
       selectedItem: '',
+      filterPaneIsVisible: true,
     };
   }
-
 
   closeNewInstance = (e) => {
     if (e) e.preventDefault();
@@ -208,11 +214,20 @@ class MetadataSources extends React.Component {
     );
   }
 
+  // generate url for record-details
   rowURL = (id) => {
     // TODO: need to get the current filters!
     return `/finc-config/metadata-sources/view/${id}${this.props.searchString}?filters=status.active`;
   }
 
+  // fade in/out of filter-pane
+  toggleFilterPane = () => {
+    this.setState(curState => ({
+      filterPaneIsVisible: !curState.filterPaneIsVisible,
+    }));
+  }
+
+  // if selecting a row, get record-details
   onSelectRow = (e, meta) => {
     const { onSelectRow } = this.props;
 
@@ -229,6 +244,69 @@ class MetadataSources extends React.Component {
     this.transitionToParams({ _path: `${packageInfo.stripes.route}/view/${meta.id}` });
   };
 
+  // fade in / out the filter menu
+  renderResultsFirstMenu = (filters) => {
+    const { filterPaneIsVisible } = this.state;
+    const filterCount = filters.string !== '' ? filters.string.split(',').length : 0;
+    const hideOrShowMessageId = filterPaneIsVisible ?
+      'stripes-smart-components.hideSearchPane' : 'stripes-smart-components.showSearchPane';
+
+    return (
+      <PaneMenu>
+        <FormattedMessage id="stripes-smart-components.numberOfFilters" values={{ count: filterCount }}>
+          {appliedFiltersMessage => (
+            <FormattedMessage id={hideOrShowMessageId}>
+              {hideOrShowMessage => (
+                <FilterPaneToggle
+                  visible={filterPaneIsVisible}
+                  aria-label={`${hideOrShowMessage}...${appliedFiltersMessage}`}
+                  onClick={this.toggleFilterPane}
+                />
+              )}
+            </FormattedMessage>
+          )}
+        </FormattedMessage>
+      </PaneMenu>
+    );
+  }
+
+  // counting records of result list
+  renderResultsPaneSubtitle = (source) => {
+    if (source) {
+      const count = source ? source.totalCount() : 0;
+      return <FormattedMessage id="stripes-smart-components.searchResultsCountHeader" values={{ count }} />;
+    }
+
+    return <FormattedMessage id="stripes-smart-components.searchCriteria" />;
+  }
+
+  // button for creating a new record
+  renderResultsLastMenu() {
+    if (this.props.disableRecordCreation) {
+      return null;
+    }
+
+    return (
+      <IfPermission perm="ui-licenses.licenses.edit">
+        <PaneMenu>
+          <FormattedMessage id="ui-licenses.createLicense">
+            {ariaLabel => (
+              <Button
+                aria-label={ariaLabel}
+                buttonStyle="primary"
+                id="clickable-new-license"
+                marginBottom0
+                to={`/licenses/create${this.props.searchString}`}
+              >
+                <FormattedMessage id="stripes-smart-components.new" />
+              </Button>
+            )}
+          </FormattedMessage>
+        </PaneMenu>
+      </IfPermission>
+    );
+  }
+
   render() {
     const packageInfoReWrite = () => {
       const path = '/finc-config/metadata-sources';
@@ -238,8 +316,9 @@ class MetadataSources extends React.Component {
       return packageInfo;
     };
 
-    const { children, intl, onSelectRow, queryGetter, querySetter } = this.props;
+    const { children, intl, onSelectRow, queryGetter, querySetter, source } = this.props;
 
+    const count = source ? source.totalCount() : 0;
     // const query = queryGetter() || {};
 
     return (
@@ -268,54 +347,66 @@ class MetadataSources extends React.Component {
 
             return (
               <Paneset>
-                <Pane
-                  defaultWidth="320px"
-                  paneTitle="Search & filter"
-                >
-                  <form onSubmit={onSubmitSearch}>
-                    <SearchField
-                      // label="user search"
-                      autoFocus
-                      inputRef={this.searchField}
-                      // marginBottom0
-                      name="query"
-                      onChange={getSearchHandlers().query}
-                      onClear={getSearchHandlers().reset}
-                      value={searchValue.query}
-                    />
-                    <Button
-                      buttonStyle="primary"
-                      disabled={!searchValue.query || searchValue.query === ''}
-                      // onClick={onSubmitSearch}
-                      fullWidth
-                      type="submit"
-                    >
-                      Search
-                    </Button>
-                    <Button
-                      buttonStyle="none"
-                      id="clickable-reset-all"
-                      disabled={disableReset()}
-                      onClick={resetAll}
-                    >
-                      <Icon icon="times-circle-solid">
-                        Reset all
-                      </Icon>
-                    </Button>
-                    <SourceFilters
-                      // onChangeHandlers={getFilterHandlers()}
-                      activeFilters={activeFilters.state}
-                      filterHandlers={getFilterHandlers()}
-                      // config={filterConfig}
-                      // patronGroups={patronGroups}
-                    />
-                  </form>
-                </Pane>
+                {this.state.filterPaneIsVisible &&
+                  <Pane
+                    defaultWidth="18%"
+                    onClose={this.toggleFilterPane}
+                    paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
+                  >
+                    <form onSubmit={onSubmitSearch}>
+                      <div>
+                        <SearchField
+                          // label="user search"
+                          autoFocus
+                          inputRef={this.searchField}
+                          name="query"
+                          onChange={getSearchHandlers().query}
+                          onClear={getSearchHandlers().reset}
+                          value={searchValue.query}
+                          // add values for search-selectbox
+                          onChangeIndex={this.onChangeIndex}
+                          searchableIndexes={searchableIndexes}
+                          selectedIndex={_.get(this.props.resources, 'qindex')}
+                          searchableIndexesPlaceholder={null}
+                        />
+                        <Button
+                          buttonStyle="primary"
+                          disabled={!searchValue.query || searchValue.query === ''}
+                          // onClick={onSubmitSearch}
+                          fullWidth
+                          type="submit"
+                        >
+                          <FormattedMessage id="stripes-smart-components.search" />
+                        </Button>
+                      </div>
+                      <Button
+                        buttonStyle="none"
+                        id="clickable-reset-all"
+                        disabled={disableReset()}
+                        onClick={resetAll}
+                      >
+                        <Icon icon="times-circle-solid">
+                          <FormattedMessage id="stripes-smart-components.resetAll" />
+                        </Icon>
+                      </Button>
+                      <SourceFilters
+                        // onChangeHandlers={getFilterHandlers()}
+                        activeFilters={activeFilters.state}
+                        filterHandlers={getFilterHandlers()}
+                        // config={filterConfig}
+                        // patronGroups={patronGroups}
+                      />
+                    </form>
+                  </Pane>
+                }
                 <Pane
                   id="pane-results"
                   defaultWidth="fill"
+                  firstMenu={this.renderResultsFirstMenu(activeFilters)}
+                  lastMenu={this.renderResultsLastMenu()}
                   paneTitle="Finc Config"
-                  // appIcon={<AppIcon app={moduleName} />}
+                  appIcon={<AppIcon app="finc-config" />}
+                  // paneSub={this.renderResultsPaneSubtitle(_.get(this.props.resources, 'records.records', []))}
                 >
                   <MultiColumnList
                     columnMapping={{
@@ -333,6 +424,7 @@ class MetadataSources extends React.Component {
                     onHeaderClick={onSort}
                     rowFormatter={this.rowFormatter}
                     selectedRow={this.state.selectedItem}
+                    totalCount={count}
                     visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
                   />
                 </Pane>
