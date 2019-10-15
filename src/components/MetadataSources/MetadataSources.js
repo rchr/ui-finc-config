@@ -120,7 +120,29 @@ class MetadataSources extends React.Component {
     onSelectRow: PropTypes.func,
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
+    searchString: PropTypes.string,
+    packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
+      initialFilters: PropTypes.string, // default filters
+      moduleName: PropTypes.string, // machine-readable, for HTML ids and translation keys
+      stripes: PropTypes.shape({
+        route: PropTypes.string, // base route; used to construct URLs
+      }).isRequired,
+    }),
+    selectedIndex: PropTypes.string,
   };
+
+  static defaultProps = {
+    searchString: '',
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedItem: '',
+    };
+  }
+
 
   closeNewInstance = (e) => {
     if (e) e.preventDefault();
@@ -142,6 +164,60 @@ class MetadataSources extends React.Component {
 
     this.props.mutator.query.update({ qindex });
   }
+
+  rowFormatter = (row) => {
+    const { rowClass, rowData, rowIndex, rowProps = {}, cells } = row;
+    let RowComponent;
+
+    if (this.props.onSelectRow) {
+      RowComponent = 'div';
+    } else {
+      RowComponent = Link;
+      rowProps.to = this.rowURL(rowData.id);
+    }
+
+    return (
+      <RowComponent
+        aria-rowindex={rowIndex + 2}
+        className={rowClass}
+        // data-label={[
+        //   rowData.name,
+        //   this.formatter.type(rowData),
+        //   this.formatter.status(rowData),
+        // ].join('...')}
+        data-label={[
+          rowData.name,
+        //   this.formatter.type(rowData),
+        //   this.formatter.status(rowData),
+        ]}
+        key={`row-${rowIndex}`}
+        role="row"
+        {...rowProps}
+      >
+        {cells}
+      </RowComponent>
+    );
+  }
+
+  rowURL = (id) => {
+    return `/finc-config/metadata-sources/view/${id}${this.props.searchString}?filters=status.active`;
+  }
+
+  onSelectRow = (e, meta) => {
+    const { onSelectRow } = this.props;
+
+    if (onSelectRow) {
+      const shouldFallBackToRegularRecordDisplay = onSelectRow(e, meta);
+
+      if (!shouldFallBackToRegularRecordDisplay) {
+        return;
+      }
+    }
+
+    this.log('action', `clicked ${meta.id}, selected record =`, meta);
+    this.setState({ selectedItem: meta });
+    this.transitionToParams({ _path: `${packageInfo.stripes.route}/view/${meta.id}` });
+  };
 
   render() {
     const resultsFormatter = {
@@ -218,10 +294,12 @@ class MetadataSources extends React.Component {
                     lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
                   }}
                   formatter={resultsFormatter}
-                  rowFormatter={this.anchorRowFormatter}
+                  // rowFormatter={this.anchorRowFormatter}
+                  rowFormatter={this.rowFormatter}
                   onRowClick={onSelectRow}
                   onNeedMore={this.onNeedMore}
                   onHeaderClick={onSort}
+                  selectedRow={this.state.selectedItem}
                 />
               </Pane>
             </Paneset>
