@@ -103,12 +103,8 @@ class MetadataSources extends React.Component {
   });
 
   static propTypes = {
+    children: PropTypes.node,
     intl: intlShape.isRequired,
-    resources: PropTypes.shape({
-      metadataSources: PropTypes.shape({
-        records: PropTypes.arrayOf(PropTypes.object),
-      }),
-    }).isRequired,
     mutator: PropTypes.shape({
       metadataSources: PropTypes.shape({
         POST: PropTypes.func.isRequired,
@@ -118,9 +114,6 @@ class MetadataSources extends React.Component {
       }).isRequired,
     }).isRequired,
     onSelectRow: PropTypes.func,
-    queryGetter: PropTypes.func,
-    querySetter: PropTypes.func,
-    searchString: PropTypes.string,
     packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
       initialFilters: PropTypes.string, // default filters
       moduleName: PropTypes.string, // machine-readable, for HTML ids and translation keys
@@ -128,6 +121,14 @@ class MetadataSources extends React.Component {
         route: PropTypes.string, // base route; used to construct URLs
       }).isRequired,
     }),
+    queryGetter: PropTypes.func,
+    querySetter: PropTypes.func,
+    resources: PropTypes.shape({
+      metadataSources: PropTypes.shape({
+        records: PropTypes.arrayOf(PropTypes.object),
+      }),
+    }).isRequired,
+    searchString: PropTypes.string,
     selectedIndex: PropTypes.string,
   };
 
@@ -165,6 +166,14 @@ class MetadataSources extends React.Component {
     this.props.mutator.query.update({ qindex });
   }
 
+  resultsFormatter = {
+    label: source => source.label,
+    sourceId: source => source.sourceId,
+    status: source => source.status,
+    solrShard: source => source.solrShard,
+    lastProcessed: source => source.lastProcessed,
+  };
+
   rowFormatter = (row) => {
     const { rowClass, rowData, rowIndex, rowProps = {}, cells } = row;
     let RowComponent;
@@ -200,6 +209,7 @@ class MetadataSources extends React.Component {
   }
 
   rowURL = (id) => {
+    // TODO: need to get the current filters!
     return `/finc-config/metadata-sources/view/${id}${this.props.searchString}?filters=status.active`;
   }
 
@@ -220,14 +230,6 @@ class MetadataSources extends React.Component {
   };
 
   render() {
-    const resultsFormatter = {
-      label: source => source.label,
-      sourceId: source => source.sourceId,
-      status: source => source.status,
-      solrShard: source => source.solrShard,
-      lastProcessed: source => source.lastProcessed,
-    };
-
     const packageInfoReWrite = () => {
       const path = '/finc-config/metadata-sources';
 
@@ -236,16 +238,18 @@ class MetadataSources extends React.Component {
       return packageInfo;
     };
 
-    const { intl, onSelectRow, queryGetter, querySetter } = this.props;
+    const { children, intl, onSelectRow, queryGetter, querySetter } = this.props;
+
+    // const query = queryGetter() || {};
 
     return (
 
       <SearchAndSortQuery
-        // initialFilterState={{ status: ['active', 'technical implementation'] }}
-        // initialSortState={{ sort: '' }}
-        // initialSearchState={{ query: '' }}
+        initialFilterState={{ status: ['active', 'technical implementation'] }}
+        initialSortState={{ sort: 'label' }}
+        initialSearchState={{ query: '' }}
         querySetter={this.querySetter}
-        queryGetter={this.queryGetter}
+        // queryGetter={this.queryGetter}
         // onComponentWillUnmount={onComponentWillUnmount}
       >
         {
@@ -256,54 +260,86 @@ class MetadataSources extends React.Component {
             onSort,
             getFilterHandlers,
             activeFilters,
-          }) => (
-            <Paneset>
-              <Pane
-                defaultWidth="320px"
-                paneTitle="Search & filter"
-              >
-                <TextField
-                  label="user search"
-                  name="query"
-                  onChange={getSearchHandlers().query}
-                  value={searchValue.query}
-                />
-                <Button onClick={onSubmitSearch}>Search</Button>
-                <SourceFilters
-                  // onChangeHandlers={getFilterHandlers()}
-                  activeFilters={activeFilters.state}
-                  filterHandlers={getFilterHandlers()}
-                  // config={filterConfig}
-                  // patronGroups={patronGroups}
-                />
-              </Pane>
-              <Pane
-                id="pane-results"
-                defaultWidth="fill"
-                paneTitle="Finc Config"
-                // appIcon={<AppIcon app={moduleName} />}
-              >
-                <MultiColumnList
-                  visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
-                  contentData={_.get(this.props.resources, 'records.records', [])}
-                  columnMapping={{
-                    label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
-                    sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
-                    status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
-                    solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
-                    lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
-                  }}
-                  formatter={resultsFormatter}
-                  // rowFormatter={this.anchorRowFormatter}
-                  rowFormatter={this.rowFormatter}
-                  onRowClick={onSelectRow}
-                  onNeedMore={this.onNeedMore}
-                  onHeaderClick={onSort}
-                  selectedRow={this.state.selectedItem}
-                />
-              </Pane>
-            </Paneset>
-          )
+            filterChanged,
+            searchChanged,
+            resetAll,
+          }) => {
+            const disableReset = () => (!filterChanged && !searchChanged);
+
+            return (
+              <Paneset>
+                <Pane
+                  defaultWidth="320px"
+                  paneTitle="Search & filter"
+                >
+                  <form onSubmit={onSubmitSearch}>
+                    <SearchField
+                      // label="user search"
+                      autoFocus
+                      inputRef={this.searchField}
+                      // marginBottom0
+                      name="query"
+                      onChange={getSearchHandlers().query}
+                      onClear={getSearchHandlers().reset}
+                      value={searchValue.query}
+                    />
+                    <Button
+                      buttonStyle="primary"
+                      disabled={!searchValue.query || searchValue.query === ''}
+                      // onClick={onSubmitSearch}
+                      fullWidth
+                      type="submit"
+                    >
+                      Search
+                    </Button>
+                    <Button
+                      buttonStyle="none"
+                      id="clickable-reset-all"
+                      disabled={disableReset()}
+                      onClick={resetAll}
+                    >
+                      <Icon icon="times-circle-solid">
+                        Reset all
+                      </Icon>
+                    </Button>
+                    <SourceFilters
+                      // onChangeHandlers={getFilterHandlers()}
+                      activeFilters={activeFilters.state}
+                      filterHandlers={getFilterHandlers()}
+                      // config={filterConfig}
+                      // patronGroups={patronGroups}
+                    />
+                  </form>
+                </Pane>
+                <Pane
+                  id="pane-results"
+                  defaultWidth="fill"
+                  paneTitle="Finc Config"
+                  // appIcon={<AppIcon app={moduleName} />}
+                >
+                  <MultiColumnList
+                    columnMapping={{
+                      label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
+                      sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
+                      status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
+                      solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
+                      lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
+                    }}
+                    contentData={_.get(this.props.resources, 'records.records', [])}
+                    formatter={this.resultsFormatter}
+                    // rowFormatter={this.anchorRowFormatter}
+                    onRowClick={onSelectRow}
+                    onNeedMore={this.onNeedMore}
+                    onHeaderClick={onSort}
+                    rowFormatter={this.rowFormatter}
+                    selectedRow={this.state.selectedItem}
+                    visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
+                  />
+                </Pane>
+                {children}
+              </Paneset>
+            );
+          }
         }
       </SearchAndSortQuery>
 
