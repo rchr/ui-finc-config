@@ -8,6 +8,7 @@ import {
   StripesConnectedSource
 } from '@folio/stripes/smart-components';
 
+import urls from '../components/DisplayUtils/urls';
 import MetadataSources from '../components/MetadataSources/MetadataSources';
 
 const INITIAL_RESULT_COUNT = 30;
@@ -114,7 +115,7 @@ class SourcesRoute extends React.Component {
 
       if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
         const record = newRecords[0];
-        history.push(`finc-config/metadata-sources/${record.id}${location.search}`);
+        history.push(`${urls.sourceView(record.id)}${location.search}`);
       }
     }
   }

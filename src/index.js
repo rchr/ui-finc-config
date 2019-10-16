@@ -10,7 +10,7 @@ import SourceEditRoute from './routes/SourceEditRoute';
 import SourceCreateRoute from './routes/SourceCreateRoute';
 
 import Settings from './settings';
-import Main from './Main';
+// import Main from './Main';
 
 /*
   STRIPES-NEW-APP
@@ -24,11 +24,11 @@ class FincConfig extends React.Component {
     stripes: PropTypes.object.isRequired,
   }
 
-  constructor(props, context) {
-    super(props, context);
+  // constructor(props, context) {
+  //   super(props, context);
 
-    this.connectedApp = props.stripes.connect(Main);
-  }
+  //   this.connectedApp = props.stripes.connect(Main);
+  // }
 
   render() {
     if (this.props.showSettings) {

@@ -13,13 +13,14 @@ import {
   SearchAndSortSearchButton as FilterPaneToggle,
 } from '@folio/stripes/smart-components';
 import {
-  MultiColumnList,
-  SearchField,
-  Pane,
-  Icon,
   Button,
+  ButtonGroup,
+  Icon,
+  MultiColumnList,
+  Pane,
   PaneMenu,
-  Paneset
+  Paneset,
+  SearchField,
 } from '@folio/stripes/components';
 import {
   AppIcon,
@@ -27,6 +28,7 @@ import {
 } from '@folio/stripes-core';
 
 import packageInfo from '../../../package';
+import urls from '../DisplayUtils/urls';
 import MetadataSourceView from './MetadataSourceView';
 import MetadataSourceForm from './MetadataSourceForm';
 import SourceFilters from './SourceFilters';
@@ -140,7 +142,7 @@ class MetadataSources extends React.Component {
 
   // generate url for record-details
   rowURL = (id) => {
-    return `/finc-config/metadata-sources/${id}${this.props.searchString}`;
+    return `${urls.sourceView(id)}${this.props.searchString}`;
   }
 
   // fade in/out of filter-pane
@@ -212,14 +214,14 @@ class MetadataSources extends React.Component {
     return (
       <IfPermission perm="ui-licenses.licenses.edit">
         <PaneMenu>
-          <FormattedMessage id="ui-licenses.createLicense">
+          <FormattedMessage id="ui-finc-config.source.form.createSource">
             {ariaLabel => (
               <Button
                 aria-label={ariaLabel}
                 buttonStyle="primary"
-                id="clickable-new-license"
+                id="clickable-new-source"
                 marginBottom0
-                to={`/licenses/create${this.props.searchString}`}
+                to={`${urls.sourceCreate()}${this.props.searchString}`}
               >
                 <FormattedMessage id="stripes-smart-components.new" />
               </Button>
@@ -267,6 +269,21 @@ class MetadataSources extends React.Component {
                     paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
                   >
                     <form onSubmit={onSubmitSearch}>
+                      <ButtonGroup tagName="nav" fullWidth>
+                        <Button
+                          id="metadata-sources"
+                          buttonStyle="primary"
+                        >
+                          Sources
+                        </Button>
+                        <Button
+                          id="metadata-collections"
+                          to={urls.collections()}
+                          buttonStyle="default"
+                        >
+                          Collections
+                        </Button>
+                      </ButtonGroup>
                       <div>
                         <SearchField
                           autoFocus
