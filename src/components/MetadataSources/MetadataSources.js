@@ -9,10 +9,7 @@ import {
 } from 'react-intl';
 
 import {
-  makeQueryFunction,
-  SearchAndSort,
   SearchAndSortQuery,
-  SearchAndSortNoResultsMessage as NoResultsMessage,
   SearchAndSortSearchButton as FilterPaneToggle,
 } from '@folio/stripes/smart-components';
 import {
@@ -22,8 +19,7 @@ import {
   Icon,
   Button,
   PaneMenu,
-  Paneset,
-  TextField
+  Paneset
 } from '@folio/stripes/components';
 import {
   AppIcon,
@@ -35,36 +31,6 @@ import MetadataSourceView from './MetadataSourceView';
 import MetadataSourceForm from './MetadataSourceForm';
 import SourceFilters from './SourceFilters';
 
-const INITIAL_RESULT_COUNT = 30;
-const RESULT_COUNT_INCREMENT = 30;
-
-const filterConfig = [
-  {
-    label: 'Implementaion Status',
-    name: 'status',
-    cql: 'status',
-    values: [
-      { name: 'Active', cql: 'active' },
-      { name: 'Wish', cql: 'wish' },
-      { name: 'Negotiation', cql: 'negotiation' },
-      { name: 'Technical implementation', cql: 'technical implementation' },
-      { name: 'Deactivated', cql: 'deactivated' },
-      { name: 'Terminated', cql: 'terminated' }
-    ],
-  },
-  {
-    label: 'Solr Shard',
-    name: 'solrShard',
-    cql: 'solrShard',
-    values: [
-      { name: 'UBL main', cql: 'UBL main' },
-      { name: 'UBL ai', cql: 'UBL ai' },
-      { name: 'SLUB main', cql: 'SLUB main' },
-      { name: 'SLUB DBoD', cql: 'SLUB DBoD' }
-    ],
-  }
-];
-
 const searchableIndexes = [
   { label: 'All', value: '', makeQuery: term => `(label="${term}*" or sourceId="${term}*")` },
   { label: 'Source Name', value: 'label', makeQuery: term => `(label="${term}*")` },
@@ -72,42 +38,9 @@ const searchableIndexes = [
 ];
 
 class MetadataSources extends React.Component {
-  static manifest = Object.freeze({
-    initializedFilterConfig: { initialValue: false },
-    query: {
-      initialValue: {
-        query: '',
-        filters: 'status.Active,status.Technical implementation',
-        sort: 'label',
-      },
-    },
-    resultCount: { initialValue: INITIAL_RESULT_COUNT },
-    records: {
-      type: 'okapi',
-      records: 'fincConfigMetadataSources',
-      recordsRequired: '%{resultCount}',
-      perRequest: 30,
-      path: 'finc-config/metadata-sources',
-      GET: {
-        params: {
-          query: makeQueryFunction(
-            'cql.allRecords=1',
-            '(label="%{query.query}*" or sourceId="%{query.query}*")',
-            {
-              'Source Name': 'label',
-              'Source ID': 'sourceId'
-            },
-            filterConfig,
-            2,
-          ),
-        },
-        staticFallback: { params: {} },
-      },
-    }
-  });
-
   static propTypes = {
     children: PropTypes.node,
+    contentData: PropTypes.object,
     disableRecordCreation: PropTypes.bool,
     intl: intlShape.isRequired,
     mutator: PropTypes.shape({
@@ -128,17 +61,15 @@ class MetadataSources extends React.Component {
     }),
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
-    resources: PropTypes.shape({
-      metadataSources: PropTypes.shape({
-        records: PropTypes.arrayOf(PropTypes.object),
-      }),
-    }).isRequired,
     searchString: PropTypes.string,
-    selectedIndex: PropTypes.string,
     source: PropTypes.object,
+    // add values for search-selectbox
+    onChangeIndex: PropTypes.func,
+    selectedIndex: PropTypes.object,
   };
 
   static defaultProps = {
+    contentData: {},
     searchString: '',
   }
 
@@ -163,13 +94,6 @@ class MetadataSources extends React.Component {
       .then(() => {
         this.closeNewInstance();
       });
-  }
-
-  // add update if search-selectbox is changing
-  onChangeIndex = (e) => {
-    const qindex = e.target.value;
-
-    this.props.mutator.query.update({ qindex });
   }
 
   resultsFormatter = {
@@ -216,8 +140,7 @@ class MetadataSources extends React.Component {
 
   // generate url for record-details
   rowURL = (id) => {
-    // TODO: need to get the current filters!
-    return `/finc-config/metadata-sources/view/${id}${this.props.searchString}?filters=status.active`;
+    return `/finc-config/metadata-sources/${id}${this.props.searchString}`;
   }
 
   // fade in/out of filter-pane
@@ -241,7 +164,7 @@ class MetadataSources extends React.Component {
 
     this.log('action', `clicked ${meta.id}, selected record =`, meta);
     this.setState({ selectedItem: meta });
-    this.transitionToParams({ _path: `${packageInfo.stripes.route}/view/${meta.id}` });
+    this.transitionToParams({ _path: `${packageInfo.stripes.route}/${meta.id}` });
   };
 
   // fade in / out the filter menu
@@ -308,27 +231,17 @@ class MetadataSources extends React.Component {
   }
 
   render() {
-    const packageInfoReWrite = () => {
-      const path = '/finc-config/metadata-sources';
-
-      packageInfo.stripes.route = path;
-      packageInfo.stripes.home = path;
-      return packageInfo;
-    };
-
-    const { children, intl, onSelectRow, queryGetter, querySetter, source } = this.props;
-
+    const { children, intl, onSelectRow, queryGetter, querySetter, onChangeIndex, source } = this.props;
     const count = source ? source.totalCount() : 0;
-    // const query = queryGetter() || {};
 
     return (
-
       <SearchAndSortQuery
         initialFilterState={{ status: ['active', 'technical implementation'] }}
         initialSortState={{ sort: 'label' }}
         initialSearchState={{ query: '' }}
-        querySetter={this.querySetter}
-        // queryGetter={this.queryGetter}
+        querySetter={querySetter}
+        queryGetter={queryGetter}
+        onChangeIndex={onChangeIndex}
         // onComponentWillUnmount={onComponentWillUnmount}
       >
         {
@@ -356,7 +269,6 @@ class MetadataSources extends React.Component {
                     <form onSubmit={onSubmitSearch}>
                       <div>
                         <SearchField
-                          // label="user search"
                           autoFocus
                           inputRef={this.searchField}
                           name="query"
@@ -364,9 +276,9 @@ class MetadataSources extends React.Component {
                           onClear={getSearchHandlers().reset}
                           value={searchValue.query}
                           // add values for search-selectbox
-                          onChangeIndex={this.onChangeIndex}
+                          onChangeIndex={onChangeIndex}
                           searchableIndexes={searchableIndexes}
-                          selectedIndex={_.get(this.props.resources, 'qindex')}
+                          selectedIndex={_.get(this.props.contentData, 'qindex')}
                           searchableIndexesPlaceholder={null}
                         />
                         <Button
@@ -416,9 +328,8 @@ class MetadataSources extends React.Component {
                       solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
                       lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
                     }}
-                    contentData={_.get(this.props.resources, 'records.records', [])}
+                    contentData={this.props.contentData}
                     formatter={this.resultsFormatter}
-                    // rowFormatter={this.anchorRowFormatter}
                     onRowClick={onSelectRow}
                     onNeedMore={this.onNeedMore}
                     onHeaderClick={onSort}
@@ -434,7 +345,6 @@ class MetadataSources extends React.Component {
           }
         }
       </SearchAndSortQuery>
-
 
       // <div data-test-source-instances>
       //   <SearchAndSort
