@@ -12,14 +12,10 @@ import SourceCreateRoute from './routes/SourceCreateRoute';
 import Settings from './settings';
 // import Main from './Main';
 
-/*
-  STRIPES-NEW-APP
-  This is the main entry point into your new app.
-*/
-
 class FincConfig extends React.Component {
   static propTypes = {
-    match: ReactRouterPropTypes.match.isRequired,
+    // match: ReactRouterPropTypes.match.isRequired,
+    match: PropTypes.object.isRequired,
     showSettings: PropTypes.bool,
     stripes: PropTypes.object.isRequired,
   }
@@ -39,13 +35,16 @@ class FincConfig extends React.Component {
 
     return (
       <Switch>
-        <Route path={`${path}/create`} component={SourceCreateRoute} />
-        <Route path={`${path}/:id/edit`} component={SourceEditRoute} />
-        <Route path={path} component={SourcesRoute}>
-          <Switch>
-            <Route path={`${path}/:id`} exact component={SourceViewRoute} />
-          </Switch>
-        </Route>
+        
+        <Route path={`${path}/metadata-sources/create`} component={SourceCreateRoute} />
+        <Route path={`${path}/metadata-sources/:sourceId/edit`} component={SourceEditRoute} />
+        {/* child (view) wird ignoriert */}
+        {/* <Route path={`${path}/metadata-sources`} component={SourcesRoute}>
+          <Route path={`${path}/metadata-sources/:sourceId`} component={SourceViewRoute} />
+        </Route> */}
+        {/* View wird aufgerufen */}
+        <Route path={`${path}/metadata-sources/:sourceId`} component={SourceViewRoute} />
+        <Route path={`${path}/metadata-sources`} component={SourcesRoute} />
       </Switch>
     );
   }

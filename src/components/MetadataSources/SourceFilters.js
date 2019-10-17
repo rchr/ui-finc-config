@@ -59,7 +59,7 @@ const filterConfig = {
 class SourceFilters extends React.Component {
   static propTypes = {
     activeFilters: PropTypes.object,
-    data: PropTypes.object.isRequired,
+    // data: PropTypes.object.isRequired,
     filterHandlers: PropTypes.object,
   };
 

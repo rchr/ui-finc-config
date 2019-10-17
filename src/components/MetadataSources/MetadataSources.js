@@ -42,17 +42,17 @@ const searchableIndexes = [
 class MetadataSources extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    contentData: PropTypes.object,
+    contentData: PropTypes.arrayOf(PropTypes.object),
     disableRecordCreation: PropTypes.bool,
     intl: intlShape.isRequired,
-    mutator: PropTypes.shape({
-      metadataSources: PropTypes.shape({
-        POST: PropTypes.func.isRequired,
-      }),
-      query: PropTypes.shape({
-        update: PropTypes.func,
-      }).isRequired,
-    }).isRequired,
+    // mutator: PropTypes.shape({
+    //   metadataSources: PropTypes.shape({
+    //     POST: PropTypes.func.isRequired,
+    //   }),
+    //   query: PropTypes.shape({
+    //     update: PropTypes.func,
+    //   }).isRequired,
+    // }).isRequired,
     onSelectRow: PropTypes.func,
     packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
       initialFilters: PropTypes.string, // default filters
@@ -79,23 +79,23 @@ class MetadataSources extends React.Component {
     super(props);
 
     this.state = {
-      selectedItem: '',
+      // selectedItem: '',
       filterPaneIsVisible: true,
     };
   }
 
   closeNewInstance = (e) => {
     if (e) e.preventDefault();
-    this.props.mutator.query.update({ layer: null });
+    // this.props.mutator.query.update({ layer: null });
   }
 
   create = (metadataSource) => {
-    const { mutator } = this.props;
+    // const { mutator } = this.props;
 
-    mutator.records.POST(metadataSource)
-      .then(() => {
-        this.closeNewInstance();
-      });
+    // mutator.records.POST(metadataSource)
+    //   .then(() => {
+    //     this.closeNewInstance();
+    //   });
   }
 
   resultsFormatter = {
@@ -142,7 +142,7 @@ class MetadataSources extends React.Component {
 
   // generate url for record-details
   rowURL = (id) => {
-    return `${urls.sourceView(id)}${this.props.searchString}`;
+    return `/finc-config/metadata-sources/${id}${this.props.searchString}`;
   }
 
   // fade in/out of filter-pane
@@ -153,21 +153,21 @@ class MetadataSources extends React.Component {
   }
 
   // if selecting a row, get record-details
-  onSelectRow = (e, meta) => {
-    const { onSelectRow } = this.props;
+  // onSelectRow = (e, meta) => {
+  //   const { onSelectRow } = this.props;
 
-    if (onSelectRow) {
-      const shouldFallBackToRegularRecordDisplay = onSelectRow(e, meta);
+  //   if (onSelectRow) {
+  //     const shouldFallBackToRegularRecordDisplay = onSelectRow(e, meta);
 
-      if (!shouldFallBackToRegularRecordDisplay) {
-        return;
-      }
-    }
+  //     if (!shouldFallBackToRegularRecordDisplay) {
+  //       return;
+  //     }
+  //   }
 
-    this.log('action', `clicked ${meta.id}, selected record =`, meta);
-    this.setState({ selectedItem: meta });
-    this.transitionToParams({ _path: `${packageInfo.stripes.route}/${meta.id}` });
-  };
+  //   this.log('action', `clicked ${meta.id}, selected record =`, meta);
+  //   // this.setState({ selectedItem: meta });
+  //   this.transitionToParams({ _path: `${packageInfo.stripes.route}/${meta.id}` });
+  // };
 
   // fade in / out the filter menu
   renderResultsFirstMenu = (filters) => {
@@ -338,6 +338,7 @@ class MetadataSources extends React.Component {
                   // paneSub={this.renderResultsPaneSubtitle(_.get(this.props.resources, 'records.records', []))}
                 >
                   <MultiColumnList
+                    autosize
                     columnMapping={{
                       label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
                       sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
@@ -351,8 +352,9 @@ class MetadataSources extends React.Component {
                     onNeedMore={this.onNeedMore}
                     onHeaderClick={onSort}
                     rowFormatter={this.rowFormatter}
-                    selectedRow={this.state.selectedItem}
+                    // selectedRow={this.state.selectedItem}
                     totalCount={count}
+                    virtualize
                     visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
                   />
                 </Pane>

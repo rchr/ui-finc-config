@@ -33,7 +33,12 @@ class MetadataSourceForm extends React.Component {
     pristine: PropTypes.bool,
     submitting: PropTypes.bool,
     initialValues: PropTypes.object,
+    contentData: PropTypes.object,
   };
+
+  static defaultProps = {
+    initialValues: {},
+  }
 
   constructor(props) {
     super(props);
@@ -166,48 +171,45 @@ class MetadataSourceForm extends React.Component {
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
-            {/* add padding behind last Row; otherwise content is cutted of */}
-            <div className="SourceForm" style={{ paddingBottom: '100px' }}>
-              <Row end="xs">
-                <Col xs>
-                  <ExpandAllButton
-                    id="clickable-expand-all"
-                    accordionStatus={sections}
-                    onToggle={this.handleExpandAll}
-                  />
-                </Col>
-              </Row>
-              <SourceInfoForm
-                accordionId="editSourceInfo"
-                expanded={sections.editSourceInfo}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <SourceManagementForm
-                accordionId="editSourceManagement"
-                expanded={sections.editSourceManagement}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
+            <Row end="xs">
+              <Col xs>
+                <ExpandAllButton
+                  id="clickable-expand-all"
+                  accordionStatus={sections}
+                  onToggle={this.handleExpandAll}
+                />
+              </Col>
+            </Row>
+            <SourceInfoForm
+              accordionId="editSourceInfo"
+              expanded={sections.editSourceInfo}
+              onToggle={this.handleSectionToggle}
+              {...this.props}
+            />
+            <SourceManagementForm
+              accordionId="editSourceManagement"
+              expanded={sections.editSourceManagement}
+              onToggle={this.handleSectionToggle}
+              {...this.props}
 
-                id="sourceManagement"
-                metadataSource={initialValues}
-                stripes={this.props.stripes}
-              />
-              <SourceTechnicalForm
-                accordionId="editSourceTechnical"
-                expanded={sections.editSourceTechnical}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <ConfirmationModal
-                id="delete-source-confirmation"
-                heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
-                message={`Do you really want to delete ${initialValues.label}?`}
-                open={confirmDelete}
-                onConfirm={() => { this.confirmDelete(true); }}
-                onCancel={() => { this.confirmDelete(false); }}
-              />
-            </div>
+              id="sourceManagement"
+              metadataSource={initialValues}
+              stripes={this.props.stripes}
+            />
+            <SourceTechnicalForm
+              accordionId="editSourceTechnical"
+              expanded={sections.editSourceTechnical}
+              onToggle={this.handleSectionToggle}
+              {...this.props}
+            />
+            {/* <ConfirmationModal
+              id="delete-source-confirmation"
+              heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
+              message={`Do you really want to delete ${initialValues.label}?`}
+              open={confirmDelete}
+              onConfirm={() => { this.confirmDelete(true); }}
+              onCancel={() => { this.confirmDelete(false); }}
+            /> */}
           </Pane>
         </Paneset>
       </form>
