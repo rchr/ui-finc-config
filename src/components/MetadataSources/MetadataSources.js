@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
+import Route from 'react-router-dom/Route';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
 import {
@@ -32,6 +34,7 @@ import urls from '../DisplayUtils/urls';
 import MetadataSourceView from './MetadataSourceView';
 import MetadataSourceForm from './MetadataSourceForm';
 import SourceFilters from './SourceFilters';
+import SourceViewRoute from '../../routes/SourceViewRoute';
 
 const searchableIndexes = [
   { label: 'All', value: '', makeQuery: term => `(label="${term}*" or sourceId="${term}*")` },
@@ -68,6 +71,20 @@ class MetadataSources extends React.Component {
     // add values for search-selectbox
     onChangeIndex: PropTypes.func,
     selectedIndex: PropTypes.object,
+    selectedRecordId: PropTypes.string,
+    // match: ReactRouterPropTypes.match.isRequired,
+    // match: PropTypes.shape({
+    //   params: PropTypes.shape({
+    //     sourceId: PropTypes.string.isRequired,
+    //   }).isRequired,
+    // }).isRequired,
+    // history: PropTypes.shape({
+    //   push: PropTypes.func.isRequired,
+    // }).isRequired,
+    // location: PropTypes.shape({
+    //   pathname: PropTypes.string,
+    //   search: PropTypes.string,
+    // }).isRequired,
   };
 
   static defaultProps = {
@@ -233,7 +250,7 @@ class MetadataSources extends React.Component {
   }
 
   render() {
-    const { children, intl, onSelectRow, queryGetter, querySetter, onChangeIndex, source } = this.props;
+    const { children, intl, onSelectRow, queryGetter, querySetter, onChangeIndex, source, selectedRecordId } = this.props;
     const count = source ? source.totalCount() : 0;
 
     return (
@@ -353,16 +370,20 @@ class MetadataSources extends React.Component {
                     onHeaderClick={onSort}
                     rowFormatter={this.rowFormatter}
                     // selectedRow={this.state.selectedItem}
+                    isSelected={({ item }) => item.id === selectedRecordId}
                     totalCount={count}
                     virtualize
                     visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
                   />
                 </Pane>
                 {children}
+                <Route path="/finc-config/metadata-sources/:sourceId" component={SourceViewRoute} />
+                {/* <Route path="/finc-config/metadata-sources/:sourceId" component={MetadataSourceView} /> */}
               </Paneset>
             );
           }
         }
+        
       </SearchAndSortQuery>
 
       // <div data-test-source-instances>

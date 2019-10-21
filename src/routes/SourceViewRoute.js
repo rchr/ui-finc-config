@@ -33,6 +33,10 @@ class SourceViewRoute extends React.Component {
       query: PropTypes.object,
     }).isRequired,
     handlers: PropTypes.object,
+    stripes: PropTypes.shape({
+      hasPerm: PropTypes.func.isRequired,
+      okapi: PropTypes.object.isRequired,
+    }).isRequired,
     tagsEnabled: PropTypes.bool,
   };
 
@@ -68,14 +72,10 @@ class SourceViewRoute extends React.Component {
   //   const currSource = _.get(this.props.resources, 'license.records[0]', {});
   // }
 
-  // getRecord = (id, resourceType) => {
-  //   return _.get(this.props.resources, `${resourceType}.records`, [])
-  //     .find(i => i.id === id);
-  // }
-
-  // handleClose = () => {
-  //   this.props.history.push(`${urls.sources}${this.props.location.search}`);
-  // }
+  handleClose = () => {
+    const { location } = this.props;
+    this.props.history.push(`${urls.sources()}${location.search}`);
+  }
 
   // getHelperApp = () => {
   //   const { match, resources } = this.props;
@@ -103,7 +103,7 @@ class SourceViewRoute extends React.Component {
 
   getSource = () => {
     const { resources } = this.props;
-    const source = _.get(resources, 'source');
+    const source = _.get(resources, 'source', {});
     const test = source;
 
 
@@ -132,7 +132,7 @@ class SourceViewRoute extends React.Component {
     const { match, resources } = this.props;
 
     return (
-      match.params.id !== _.get(resources, 'sources.records[0].id') &&
+      match.params.sourceId !== _.get(resources, 'sources.records[0].id') &&
       _.get(resources, 'sources.isPending', true)
     );
   }
@@ -148,13 +148,13 @@ class SourceViewRoute extends React.Component {
         handlers={{
           ...handlers,
           onClose: this.handleClose,
-          onFetchCredentials: this.handleFetchCredentials,
-          onToggleHelper: this.handleToggleHelper,
-          onToggleTags: tagsEnabled ? this.handleToggleTags : undefined,
+          // onFetchCredentials: this.handleFetchCredentials,
+          // onToggleHelper: this.handleToggleHelper,
+          // onToggleTags: tagsEnabled ? this.handleToggleTags : undefined,
         }}
-        // helperApp={this.getHelperApp()}
-        isLoading={this.isLoading()}
-        urls={this.urls}
+        // // helperApp={this.getHelperApp()}
+        // isLoading={this.isLoading()}
+        // urls={this.urls}
       />
     );
   }

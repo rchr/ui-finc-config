@@ -35,15 +35,14 @@ class FincConfig extends React.Component {
 
     return (
       <Switch>
-        
         <Route path={`${path}/metadata-sources/create`} component={SourceCreateRoute} />
         <Route path={`${path}/metadata-sources/:sourceId/edit`} component={SourceEditRoute} />
         {/* child (view) wird ignoriert */}
-        {/* <Route path={`${path}/metadata-sources`} component={SourcesRoute}>
-          <Route path={`${path}/metadata-sources/:sourceId`} component={SourceViewRoute} />
+        {/* <Route path={`${path}/metadata-sources/:sourceId?`} component={SourcesRoute}>
+          <Route path={`${path}/metadata-sources/:sourceId`} exact component={SourceViewRoute} />
         </Route> */}
         {/* View wird aufgerufen */}
-        <Route path={`${path}/metadata-sources/:sourceId`} component={SourceViewRoute} />
+        {/* <Route path={`${path}/metadata-sources/:sourceId`} component={SourceViewRoute} /> */}
         <Route path={`${path}/metadata-sources`} component={SourcesRoute} />
       </Switch>
     );
@@ -51,3 +50,4 @@ class FincConfig extends React.Component {
 }
 
 export default FincConfig;
+// export { default as MetadataSources } from './components/MetadataSources/MetadataSources';

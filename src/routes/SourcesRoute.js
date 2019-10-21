@@ -95,7 +95,7 @@ class SourcesRoute extends React.Component {
   }
 
   componentDidMount() {
-    // this.source = new StripesConnectedSource(this.props, this.logger, 'sources');
+    this.source = new StripesConnectedSource(this.props, this.logger, 'sources');
 
     if (this.searchField.current) {
       this.searchField.current.focus();
@@ -103,21 +103,21 @@ class SourcesRoute extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // const newCount = this.source.totalCount();
-    // const newRecords = this.source.records();
+    const newCount = this.source.totalCount();
+    const newRecords = this.source.records();
 
-    // if (newCount === 1) {
-    //   const { history, location } = this.props;
+    if (newCount === 1) {
+      const { history, location } = this.props;
 
-    //   const prevSource = new StripesConnectedSource(prevProps, this.logger, 'sources');
-    //   const oldCount = prevSource.totalCount();
-    //   const oldRecords = prevSource.records();
+      const prevSource = new StripesConnectedSource(prevProps, this.logger, 'sources');
+      const oldCount = prevSource.totalCount();
+      const oldRecords = prevSource.records();
 
-    //   if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
-    //     const record = newRecords[0];
-    //     history.push(`${urls.sourceView(record.id)}${location.search}`);
-    //   }
-    // }
+      if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
+        const record = newRecords[0];
+        history.push(`${urls.sourceView(record.id)}${location.search}`);
+      }
+    }
   }
 
   querySetter = ({ nsValues }) => {
