@@ -7,6 +7,7 @@ import compose from 'compose-function';
 import { stripesConnect } from '@folio/stripes-core';
 
 import MetadataSourceForm from '../components/MetadataSources/MetadataSourceForm';
+import urls from '../components/DisplayUtils/urls';
 
 class SourceCreateRoute extends React.Component {
   static manifest = Object.freeze({
@@ -35,6 +36,11 @@ class SourceCreateRoute extends React.Component {
         POST: PropTypes.func.isRequired,
       }).isRequired,
     }).isRequired,
+    handlers: PropTypes.object,
+  }
+
+  static defaultProps = {
+    handlers: {},
   }
 
   constructor(props) {
@@ -65,22 +71,31 @@ class SourceCreateRoute extends React.Component {
     };
   }
 
+  handleClose = () => {
+    const { location } = this.props;
+    this.props.history.push(`${urls.sources()}${location.search}`);
+  }
+
   handleSubmit = (source) => {
     const { history, location, mutator } = this.props;
 
     mutator.sources
       .POST(source)
       .then(({ id }) => {
-        history.push(`/finc-config/metadata-sources/${id}${location.search}`);
+        history.push(`${urls.sourceView(id)}${location.search}`);
       });
   }
 
   render() {
-    const { resources } = this.props;
+    const { handlers, resources } = this.props;
 
     return (
       <MetadataSourceForm
         contentData={resources}
+        handlers={{
+          ...handlers,
+          onClose: this.handleClose,
+        }}
         // initialValues={this.getInitialValues()}
         onSubmit={this.handleSubmit}
       />

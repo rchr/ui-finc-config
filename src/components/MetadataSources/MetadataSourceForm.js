@@ -34,6 +34,9 @@ class MetadataSourceForm extends React.Component {
     submitting: PropTypes.bool,
     initialValues: PropTypes.object,
     contentData: PropTypes.object,
+    handlers: PropTypes.PropTypes.shape({
+      onClose: PropTypes.func.isRequired,
+    }),
   };
 
   static defaultProps = {
@@ -89,7 +92,8 @@ class MetadataSourceForm extends React.Component {
           { ariaLabel => (
             <IconButton
               id="clickable-closesourcedialog"
-              onClick={onCancel}
+              // onClick={onCancel}
+              onClick={this.props.handlers.onClose}
               ariaLabel={ariaLabel}
               icon="times"
             />
