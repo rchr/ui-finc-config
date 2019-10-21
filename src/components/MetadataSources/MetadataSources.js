@@ -370,20 +370,18 @@ class MetadataSources extends React.Component {
                     onHeaderClick={onSort}
                     rowFormatter={this.rowFormatter}
                     // selectedRow={this.state.selectedItem}
-                    isSelected={({ item }) => item.id === selectedRecordId}
+                    // isSelected={({ item }) => item.id === selectedRecordId}
                     totalCount={count}
                     virtualize
                     visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
                   />
                 </Pane>
                 {children}
-                <Route path="/finc-config/metadata-sources/:sourceId" component={SourceViewRoute} />
-                {/* <Route path="/finc-config/metadata-sources/:sourceId" component={MetadataSourceView} /> */}
+                <Route path="/finc-config/metadata-sources/:id" component={SourceViewRoute} />
               </Paneset>
             );
           }
         }
-        
       </SearchAndSortQuery>
 
       // <div data-test-source-instances>

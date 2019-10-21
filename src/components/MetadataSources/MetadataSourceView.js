@@ -53,9 +53,9 @@ class MetadataSourceView extends React.Component {
   // };
 
   static propTypes = {
-    contentData: PropTypes.shape({
-      source: PropTypes.object,
-    }),
+    // contentData: PropTypes.shape({
+    //   source: PropTypes.object,
+    // }),
     urls: PropTypes.shape({
       edit: PropTypes.func,
     }).isRequired,
@@ -66,6 +66,7 @@ class MetadataSourceView extends React.Component {
     }).isRequired,
     helperApp: PropTypes.node,
     isLoading: PropTypes.bool.isRequired,
+    record: PropTypes.object,
   };
 
   static manifest = Object.freeze({
@@ -137,11 +138,11 @@ class MetadataSourceView extends React.Component {
   // }
 
   getSectionProps = (id) => {
-    const { contentData, handlers } = this.props;
+    const { handlers } = this.props;
 
     return {
-      source: contentData.source,
-      contentData,
+      // source: contentData.source,
+      // contentData,
       id,
       handlers,
       onToggle: this.handleSectionToggle,
@@ -152,11 +153,11 @@ class MetadataSourceView extends React.Component {
   renderLoadingPane = () => {
     return (
       <Pane
-        defaultWidth="60%"
+        defaultWidth="40%"
         // dismissible
         id="pane-view-agreement"
         onClose={this.props.handlers.onClose}
-        paneTitle={<FormattedMessage id="ui-agreements.loading" />}
+        paneTitle="panetitle"
       >
         <Layout className="marginTop1">
           <Spinner />
@@ -166,7 +167,7 @@ class MetadataSourceView extends React.Component {
   }
 
   render() {
-    const { contentData, isLoading, handlers } = this.props;
+    const { handlers, record } = this.props;
     // const query = resources.query;
     // const initialValues = this.getData();
     // const test = contentData.source;
@@ -197,7 +198,12 @@ class MetadataSourceView extends React.Component {
 
     //   const label = _.get(initialValues, 'label', '-');
 
-    if (isLoading) return this.renderLoadingPane();
+
+    console.log(`source view ${record}`);
+    console.log(this.props.isLoading);
+
+    if (this.props.isLoading) return this.renderLoadingPane();
+
     return (
       // <React.Fragment>
       //   <Pane
@@ -216,74 +222,74 @@ class MetadataSourceView extends React.Component {
       //   {/* {helperApp} */}
       // </React.Fragment>
     
-        <Pane
-          // defaultWidth={this.props.paneWidth}
-          defaultWidth="40%"
-          id="pane-sourcedetails"
-          // paneTitle={<span data-test-source-header-title>{label}</span>}
-          // lastMenu={detailMenu}
-          dismissible
-          // onClose={this.props.onClose}
-          onClose={this.props.handlers.onClose}
+      <Pane
+        // defaultWidth={this.props.paneWidth}
+        defaultWidth="40%"
+        id="pane-sourcedetails"
+        // paneTitle={<span data-test-source-header-title>{label}</span>}
+        // lastMenu={detailMenu}
+        dismissible
+        // onClose={this.props.onClose}
+        onClose={this.props.handlers.onClose}
+      >
+        {/* <TitleManager record={label} /> */}
+        <SourceInfoView
+          id="sourceInfo"
+          // metadataSource={initialValues}
+          stripes={this.props.stripes}
+        />
+        <Row end="xs">
+          <Col xs>
+            <ExpandAllButton
+              accordionStatus={this.state.accordions}
+              onToggle={this.handleExpandAll}
+            />
+          </Col>
+        </Row>
+        {/* <Accordion
+          open={this.state.accordions.managementAccordion}
+          onToggle={this.handleAccordionToggle}
+          label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
+          id="managementAccordion"
         >
-          {/* <TitleManager record={label} /> */}
-          <SourceInfoView
-            id="sourceInfo"
+          <SourceManagementView
+            id="sourceManagement"
             // metadataSource={initialValues}
             stripes={this.props.stripes}
           />
-          <Row end="xs">
-            <Col xs>
-              <ExpandAllButton
-                accordionStatus={this.state.accordions}
-                onToggle={this.handleExpandAll}
-              />
-            </Col>
-          </Row>
-          {/* <Accordion
-            open={this.state.accordions.managementAccordion}
-            onToggle={this.handleAccordionToggle}
-            label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
-            id="managementAccordion"
-          >
-            <SourceManagementView
-              id="sourceManagement"
-              // metadataSource={initialValues}
-              stripes={this.props.stripes}
-            />
-          </Accordion>
-          <Accordion
-            open={this.state.accordions.technicalAccordion}
-            onToggle={this.handleAccordionToggle}
-            label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
-            id="technicalAccordion"
-          >
-            <SourceTechnicalView
-              id="sourceTechnical"
-              // metadataSource={initialValues}
-              stripes={this.props.stripes}
-            />
-          </Accordion> */}
-          {/* <Layer
-            // isOpen={query.layer ? query.layer === 'edit' : false}
-            contentLabel="Edit Metadata Source Dialog"
-          > */}
-            {/* <this.connectedMetadataSourceForm
-              stripes={stripes}
-              initialValues={sourceFormData}
-              onSubmit={(record) => { this.update(record); }}
-              onCancel={this.props.onCloseEdit}
-              parentResources={{
-                ...this.props.resources,
-                ...this.props.parentResources,
-              }}
-              parentMutator={this.props.parentMutator}
-            /> */}
-          {/* </Layer> */}
-        </Pane>
-      );
-    }
+        </Accordion>
+        <Accordion
+          open={this.state.accordions.technicalAccordion}
+          onToggle={this.handleAccordionToggle}
+          label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
+          id="technicalAccordion"
+        >
+          <SourceTechnicalView
+            id="sourceTechnical"
+            // metadataSource={initialValues}
+            stripes={this.props.stripes}
+          />
+        </Accordion> */}
+        {/* <Layer
+          // isOpen={query.layer ? query.layer === 'edit' : false}
+          contentLabel="Edit Metadata Source Dialog"
+        > */}
+          {/* <this.connectedMetadataSourceForm
+            stripes={stripes}
+            initialValues={sourceFormData}
+            onSubmit={(record) => { this.update(record); }}
+            onCancel={this.props.onCloseEdit}
+            parentResources={{
+              ...this.props.resources,
+              ...this.props.parentResources,
+            }}
+            parentMutator={this.props.parentMutator}
+          /> */}
+        {/* </Layer> */}
+      </Pane>
+    );
   }
+}
 
 
 export default MetadataSourceView;

@@ -13,7 +13,7 @@ import MetadataSourceView from '../components/MetadataSources/MetadataSourceView
 
 class SourceViewRoute extends React.Component {
   static manifest = Object.freeze({
-    source: {
+    sources: {
       type: 'okapi',
       path: 'finc-config/metadata-sources/:{id}',
     },
@@ -25,7 +25,7 @@ class SourceViewRoute extends React.Component {
     location: ReactRouterPropTypes.location.isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({
-        sourceId: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
     resources: PropTypes.shape({
@@ -38,7 +38,12 @@ class SourceViewRoute extends React.Component {
       okapi: PropTypes.object.isRequired,
     }).isRequired,
     tagsEnabled: PropTypes.bool,
+    record: PropTypes.object,
   };
+
+  // constructor(props) {
+  //   super(props);
+  // }
 
   // static propTypes = {
   //   handlers: PropTypes.object,
@@ -96,43 +101,16 @@ class SourceViewRoute extends React.Component {
   //   );
   // }
 
-  getRecord = (id, resourceType) => {
-    return _.get(this.props.resources, `${resourceType}.records`, [])
+  getRecord = (id) => {
+    return _.get(this.props.resources, 'sources.records', [])
       .find(i => i.id === id);
-  }
-
-  getSource = () => {
-    const { resources } = this.props;
-    const source = _.get(resources, 'source', {});
-    const test = source;
-
-
-    // const contacts = agreement.contacts.map(c => ({
-    //   ...c,
-    //   user: this.getRecord(c.user, 'users') || c.user,
-    // }));
-
-    // const interfacesCredentials = uniqBy(get(resources, 'interfacesCredentials.records', []), 'id');
-
-    // const orgs = agreement.orgs.map(o => ({
-    //   ...o,
-    //   interfaces: get(o, 'org.orgsUuid_object.interfaces', [])
-    //     .map(id => ({
-    //       ...this.getRecord(id, 'interfaces') || {},
-    //       credentials: interfacesCredentials.find(cred => cred.interfaceId === id)
-    //     })),
-    // }));
-
-    return {
-      ...source
-    };
   }
 
   isLoading = () => {
     const { match, resources } = this.props;
 
     return (
-      match.params.sourceId !== _.get(resources, 'sources.records[0].id') &&
+      match.params.id !== _.get(resources, 'sources.records[0].id') &&
       _.get(resources, 'sources.isPending', true)
     );
   }
@@ -140,11 +118,26 @@ class SourceViewRoute extends React.Component {
   render() {
     const { handlers, resources, tagsEnabled } = this.props;
 
+    // const data = _.get(this.props.resources, 'sources.records', []);
+    // console.log(data);
+
+    // const testId = this.props.match.params.id;
+    // console.log(testId);
+
+    // const getRecord = this.getRecord(testId);
+
+    // const isLoading = this.isLoading();
+    // console.log(isLoading);
+
+    // const dataTest = this.getSource();
+    // console.log(dataTest);
+
+    const selectedRecord = this.getRecord(this.props.match.params.id);
+    console.log(selectedRecord);
+
     return (
       <MetadataSourceView
-        contentData={{
-          source: this.getSource()
-        }}
+        record={selectedRecord}
         handlers={{
           ...handlers,
           onClose: this.handleClose,
@@ -154,6 +147,7 @@ class SourceViewRoute extends React.Component {
         }}
         // // helperApp={this.getHelperApp()}
         // isLoading={this.isLoading()}
+        key={_.get(resources, 'sources.loadedAt', 'loading')}
         // urls={this.urls}
       />
     );
