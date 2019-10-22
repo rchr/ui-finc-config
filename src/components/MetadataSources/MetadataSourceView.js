@@ -214,12 +214,12 @@ class MetadataSourceView extends React.Component {
           label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
           id="managementAccordion"
         >
-          {/* <SourceManagementView
+          <SourceManagementView
             id="sourceManagement"
             metadataSource={rec}
             // metadataSource={initialValues}
             stripes={this.props.stripes}
-          /> */}
+          />
         </Accordion>
         <Accordion
           open={this.state.accordions.technicalAccordion}

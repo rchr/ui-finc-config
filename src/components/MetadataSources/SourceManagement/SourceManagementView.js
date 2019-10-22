@@ -25,12 +25,48 @@ class SourceManagementView extends React.Component {
       .isRequired,
   };
 
+  renderContacts = (type) => {
+    const { metadataSource } = this.props;
+
+    if (!metadataSource) {
+      return 'no values';
+    } else {
+      return (
+        <MultiColumnList
+          contentData={_.get(metadataSource.contacts, type, [])}
+          isEmptyMessage={`no ${type} contact`}
+          visibleColumns={['name', 'role']}
+          columnMapping={{
+            name: <FormattedMessage id="ui-finc-config.contact.name" />,
+            role: <FormattedMessage id="ui-finc-config.contact.role" />
+          }}
+        />
+      );
+    }
+  }
+
+  renderContracts = () => {
+    const { metadataSource } = this.props;
+
+    if (!metadataSource) {
+      return 'no values';
+    } else {
+      const contractsItems = metadataSource.contracts;
+      const contractsFormatter = (contractsItem) => (<li key={contractsItem}>{contractsItem}</li>);
+      const isEmptyMessage = 'No items to show';
+
+      return (
+        <List
+          items={contractsItems}
+          itemFormatter={contractsFormatter}
+          isEmptyMessage={isEmptyMessage}
+        />
+      );
+    }
+  }
+
   render() {
     const { metadataSource } = this.props;
-    // set values for contracts
-    const contractsItems = metadataSource.contracts;
-    const contractsFormatter = (contractsItem) => (<li key={contractsItem}>{contractsItem}</li>);
-    const isEmptyMessage = 'No items to show';
 
     return (
       <React.Fragment>
@@ -49,15 +85,7 @@ class SourceManagementView extends React.Component {
               >
                 <FormattedMessage id="ui-finc-config.source.contacts.internal" />
               </Headline>
-              <MultiColumnList
-                contentData={_.get(metadataSource.contacts, 'internal', [])}
-                isEmptyMessage="no internal contact"
-                visibleColumns={['name', 'role']}
-                columnMapping={{
-                  name: <FormattedMessage id="ui-finc-config.contact.name" />,
-                  role: <FormattedMessage id="ui-finc-config.contact.role" />
-                }}
-              />
+              { this.renderContacts('internal') }
             </Col>
             <Col xs={6}>
               <Headline
@@ -66,15 +94,7 @@ class SourceManagementView extends React.Component {
               >
                 <FormattedMessage id="ui-finc-config.source.contacts.external" />
               </Headline>
-              <MultiColumnList
-                contentData={_.get(metadataSource.contacts, 'external', [])}
-                isEmptyMessage="no external contact"
-                visibleColumns={['name', 'role']}
-                columnMapping={{
-                  name: <FormattedMessage id="ui-finc-config.contact.name" />,
-                  role: <FormattedMessage id="ui-finc-config.contact.role" />
-                }}
-              />
+              { this.renderContacts('external') }
             </Col>
           </Row>
           <Row>
@@ -92,11 +112,7 @@ class SourceManagementView extends React.Component {
             </Headline>
           </Row>
           <Row>
-            <List
-              items={contractsItems}
-              itemFormatter={contractsFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderContracts() }
           </Row>
           <Row>
             <KeyValue
