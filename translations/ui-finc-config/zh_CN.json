@@ -39,7 +39,7 @@
     "source.updateRhythm": "更新节奏",
     "source.inferiorTo": "不如",
     "collection.description": "描述",
-    "collection.mdSource": "来源",
+    "collection.mdSource": "来源名称",
     "collection.lod.publication": "LOD发布",
     "collection.lod.note": "LOD附注",
     "collection.collectionId": "集合ID",
