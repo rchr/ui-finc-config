@@ -6,14 +6,19 @@ import compose from 'compose-function';
 
 import { withTags } from '@folio/stripes/smart-components';
 import { Tags } from '@folio/stripes-erm-components';
-import Pane from '@folio/stripes/components';
+import {
+  Layout,
+  Pane
+} from '@folio/stripes/components';
 import { stripesConnect } from '@folio/stripes-core';
+import { Spinner } from '@folio/stripes-erm-components';
+
 import urls from '../components/DisplayUtils/urls';
 import MetadataSourceView from '../components/MetadataSources/MetadataSourceView';
 
 class SourceViewRoute extends React.Component {
   static manifest = Object.freeze({
-    sources: {
+    source: {
       type: 'okapi',
       path: 'finc-config/metadata-sources/:{id}',
     },
@@ -29,7 +34,9 @@ class SourceViewRoute extends React.Component {
       }).isRequired,
     }).isRequired,
     resources: PropTypes.shape({
-      source: PropTypes.object,
+      source: PropTypes.shape({
+        hasLoaded: PropTypes.bool
+      }),
       query: PropTypes.object,
     }).isRequired,
     handlers: PropTypes.object,
@@ -110,8 +117,8 @@ class SourceViewRoute extends React.Component {
     const { match, resources } = this.props;
 
     return (
-      match.params.id !== _.get(resources, 'sources.records[0].id') &&
-      _.get(resources, 'sources.isPending', true)
+      match.params.id !== _.get(resources, 'source.records[0].id') &&
+      _.get(resources, 'source.isPending', true)
     );
   }
 
@@ -119,25 +126,20 @@ class SourceViewRoute extends React.Component {
     const { handlers, resources, tagsEnabled } = this.props;
 
     // const data = _.get(this.props.resources, 'sources.records', []);
-    // console.log(data);
+    // console.log(`data ${data}`);
 
     // const testId = this.props.match.params.id;
-    // console.log(testId);
-
-    // const getRecord = this.getRecord(testId);
-
-    // const isLoading = this.isLoading();
-    // console.log(isLoading);
-
-    // const dataTest = this.getSource();
-    // console.log(dataTest);
+    // console.log(`id ${testId}`);
 
     const selectedRecord = this.getRecord(this.props.match.params.id);
-    console.log(selectedRecord);
+    console.log(`selected rec ${selectedRecord}`);
+
+    // if (this.props.resources.source.hasLoaded === false) return this.renderLoadingPane();
 
     return (
       <MetadataSourceView
-        record={selectedRecord}
+        // record={selectedRecord}
+        rec={_.get(this.props.resources, 'source.records', []).find(i => i.id === this.props.match.params.id)}
         handlers={{
           ...handlers,
           onClose: this.handleClose,
@@ -147,11 +149,11 @@ class SourceViewRoute extends React.Component {
         }}
         // // helperApp={this.getHelperApp()}
         // isLoading={this.isLoading()}
-        key={_.get(resources, 'sources.loadedAt', 'loading')}
+        // key={_.get(resources, 'sources.loadedAt', 'loading')}
         // urls={this.urls}
       />
     );
   }
 }
 
-export default SourceViewRoute;
+export default stripesConnect(SourceViewRoute);

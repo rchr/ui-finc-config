@@ -67,6 +67,7 @@ class MetadataSourceView extends React.Component {
     helperApp: PropTypes.node,
     isLoading: PropTypes.bool.isRequired,
     record: PropTypes.object,
+    rec: PropTypes.object,
   };
 
   static manifest = Object.freeze({
@@ -167,7 +168,9 @@ class MetadataSourceView extends React.Component {
   }
 
   render() {
-    const { handlers, record } = this.props;
+    const { handlers, record, rec, isLoading } = this.props;
+    const test = rec;
+    console.log(test);
     // const query = resources.query;
     // const initialValues = this.getData();
     // const test = contentData.source;
@@ -199,10 +202,10 @@ class MetadataSourceView extends React.Component {
     //   const label = _.get(initialValues, 'label', '-');
 
 
-    console.log(`source view ${record}`);
-    console.log(this.props.isLoading);
+    console.log(`source view ${rec}`);
 
-    if (this.props.isLoading) return this.renderLoadingPane();
+    // if (this.props.isLoading) return this.renderLoadingPane();
+    if (isLoading) return this.renderLoadingPane();
 
     return (
       // <React.Fragment>
@@ -235,6 +238,7 @@ class MetadataSourceView extends React.Component {
         {/* <TitleManager record={label} /> */}
         <SourceInfoView
           id="sourceInfo"
+          metadataSource={rec}
           // metadataSource={initialValues}
           stripes={this.props.stripes}
         />
