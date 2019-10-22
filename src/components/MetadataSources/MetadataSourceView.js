@@ -15,7 +15,6 @@ import {
   Pane,
   PaneMenu,
   Row,
-  Spinner
 } from '@folio/stripes/components';
 import {
   IfPermission,
@@ -64,7 +63,6 @@ class MetadataSourceView extends React.Component {
       onClose: PropTypes.func.isRequired,
       onEdit: PropTypes.func,
     }).isRequired,
-    helperApp: PropTypes.node,
     isLoading: PropTypes.bool.isRequired,
     record: PropTypes.object,
     rec: PropTypes.object,
@@ -95,24 +93,24 @@ class MetadataSourceView extends React.Component {
   //   return source.find(u => u.id === id);
   // }
 
-  // handleExpandAll = (obj) => {
-  //   this.setState((curState) => {
-  //     const newState = _.cloneDeep(curState);
+  handleExpandAll = (obj) => {
+    this.setState((curState) => {
+      const newState = _.cloneDeep(curState);
 
-  //     newState.accordions = obj;
-  //     return newState;
-  //   });
-  // }
+      newState.accordions = obj;
+      return newState;
+    });
+  }
 
-  // handleAccordionToggle = ({ id }) => {
-  //   this.setState((state) => {
-  //     const newState = _.cloneDeep(state);
+  handleAccordionToggle = ({ id }) => {
+    this.setState((state) => {
+      const newState = _.cloneDeep(state);
 
-  //     if (!_.has(newState.accordions, id)) newState.accordions[id] = true;
-  //     newState.accordions[id] = !newState.accordions[id];
-  //     return newState;
-  //   });
-  // }
+      if (!_.has(newState.accordions, id)) newState.accordions[id] = true;
+      newState.accordions[id] = !newState.accordions[id];
+      return newState;
+    });
+  }
 
   // update = (source) => {
   //   this.props.parentMutator.records.PUT(source).then(() => {
@@ -151,30 +149,11 @@ class MetadataSourceView extends React.Component {
     };
   }
 
-  renderLoadingPane = () => {
-    return (
-      <Pane
-        defaultWidth="40%"
-        // dismissible
-        id="pane-view-agreement"
-        onClose={this.props.handlers.onClose}
-        paneTitle="panetitle"
-      >
-        <Layout className="marginTop1">
-          <Spinner />
-        </Layout>
-      </Pane>
-    );
-  }
-
   render() {
     const { handlers, record, rec, isLoading } = this.props;
-    const test = rec;
-    console.log(test);
+
     // const query = resources.query;
     // const initialValues = this.getData();
-    // const test = contentData.source;
-    // console.log(`huhu ${test}`);
 
     // if (_.isEmpty(initialValues)) {
     //   return <div style={{ paddingTop: '1rem' }}><Icon icon="spinner-ellipsis" width="100px" /></div>;
@@ -201,30 +180,9 @@ class MetadataSourceView extends React.Component {
 
     //   const label = _.get(initialValues, 'label', '-');
 
-
-    console.log(`source view ${rec}`);
-
-    // if (this.props.isLoading) return this.renderLoadingPane();
-    if (isLoading) return this.renderLoadingPane();
+    if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
     return (
-      // <React.Fragment>
-      //   <Pane
-      //     defaultWidth="60%"
-      //     dismissible
-      //     onClose={this.props.handlers.onClose}
-      //     paneTitle="Pane View Source"
-      //   >
-      //     {/* <TitleManager record={contentData.source}> */}
-      //       <Row>
-      //         hallo hier spricht Welle Erdball
-      //         {/* {...this.getSectionProps()} */}
-      //       </Row>
-      //     {/* </TitleManager> */}
-      //   </Pane>
-      //   {/* {helperApp} */}
-      // </React.Fragment>
-    
       <Pane
         // defaultWidth={this.props.paneWidth}
         defaultWidth="40%"
@@ -250,17 +208,18 @@ class MetadataSourceView extends React.Component {
             />
           </Col>
         </Row>
-        {/* <Accordion
+        <Accordion
           open={this.state.accordions.managementAccordion}
           onToggle={this.handleAccordionToggle}
           label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
           id="managementAccordion"
         >
-          <SourceManagementView
+          {/* <SourceManagementView
             id="sourceManagement"
+            metadataSource={rec}
             // metadataSource={initialValues}
             stripes={this.props.stripes}
-          />
+          /> */}
         </Accordion>
         <Accordion
           open={this.state.accordions.technicalAccordion}
@@ -268,12 +227,13 @@ class MetadataSourceView extends React.Component {
           label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
           id="technicalAccordion"
         >
-          <SourceTechnicalView
+          {/* <SourceTechnicalView
             id="sourceTechnical"
+            metadataSource={rec}
             // metadataSource={initialValues}
             stripes={this.props.stripes}
-          />
-        </Accordion> */}
+          /> */}
+        </Accordion>
         {/* <Layer
           // isOpen={query.layer ? query.layer === 'edit' : false}
           contentLabel="Edit Metadata Source Dialog"

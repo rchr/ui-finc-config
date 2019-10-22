@@ -83,6 +83,11 @@ class SourcesRoute extends React.Component {
       hasPerm: PropTypes.func.isRequired,
       logger: PropTypes.object,
     }),
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string,
+      }),
+    }),
   }
 
   constructor(props) {
@@ -136,7 +141,7 @@ class SourcesRoute extends React.Component {
   }
 
   render() {
-    const { children, location, resources } = this.props;
+    const { children, location, resources, match } = this.props;
 
     if (this.source) {
       this.source.update(this.props, 'sources');
@@ -144,14 +149,8 @@ class SourcesRoute extends React.Component {
 
     return (
       <MetadataSources
-        // data={{
-        //   licenses: get(resources, 'licenses.records', []),
-        //   statusValues: get(resources, 'statusValues.records', []),
-        //   typeValues: get(resources, 'typeValues.records', []),
-        //   orgRoleValues: get(resources, 'orgRoleValues.records', []),
-        //   tagsValues: get(resources, 'tagsValues.records', []),
-        // }}
         contentData={_.get(this.props.resources, 'sources.records', [])}
+        selectedRecordId={match.params.id}
         onNeedMoreData={this.handleNeedMoreData}
         queryGetter={this.queryGetter}
         querySetter={this.querySetter}

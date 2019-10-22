@@ -11,7 +11,6 @@ import {
   Pane
 } from '@folio/stripes/components';
 import { stripesConnect } from '@folio/stripes-core';
-import { Spinner } from '@folio/stripes-erm-components';
 
 import urls from '../components/DisplayUtils/urls';
 import MetadataSourceView from '../components/MetadataSources/MetadataSourceView';
@@ -89,25 +88,6 @@ class SourceViewRoute extends React.Component {
     this.props.history.push(`${urls.sources()}${location.search}`);
   }
 
-  // getHelperApp = () => {
-  //   const { match, resources } = this.props;
-  //   const helper = resources.query.helper;
-  //   if (!helper) return null;
-
-  //   let HelperComponent = null;
-
-  //   if (helper === 'tags') HelperComponent = Tags;
-
-  //   if (!HelperComponent) return null;
-
-  //   return (
-  //     <HelperComponent
-  //       link={`erm/sas/${match.params.id}`}
-  //       onToggle={() => this.handleToggleHelper(helper)}
-  //     />
-  //   );
-  // }
-
   getRecord = (id) => {
     return _.get(this.props.resources, 'sources.records', [])
       .find(i => i.id === id);
@@ -123,18 +103,8 @@ class SourceViewRoute extends React.Component {
   }
 
   render() {
-    const { handlers, resources, tagsEnabled } = this.props;
-
-    // const data = _.get(this.props.resources, 'sources.records', []);
-    // console.log(`data ${data}`);
-
-    // const testId = this.props.match.params.id;
-    // console.log(`id ${testId}`);
-
-    const selectedRecord = this.getRecord(this.props.match.params.id);
-    console.log(`selected rec ${selectedRecord}`);
-
-    // if (this.props.resources.source.hasLoaded === false) return this.renderLoadingPane();
+    const { handlers, resources } = this.props;
+    // const selectedRecord = this.getRecord(this.props.match.params.id);
 
     return (
       <MetadataSourceView
@@ -143,13 +113,8 @@ class SourceViewRoute extends React.Component {
         handlers={{
           ...handlers,
           onClose: this.handleClose,
-          // onFetchCredentials: this.handleFetchCredentials,
-          // onToggleHelper: this.handleToggleHelper,
-          // onToggleTags: tagsEnabled ? this.handleToggleTags : undefined,
         }}
-        // // helperApp={this.getHelperApp()}
-        // isLoading={this.isLoading()}
-        // key={_.get(resources, 'sources.loadedAt', 'loading')}
+        isLoading={this.isLoading()}
         // urls={this.urls}
       />
     );
