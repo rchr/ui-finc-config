@@ -24,9 +24,6 @@ import SourceTechnicalView from './SourceTechnical/SourceTechnicalView';
 
 class MetadataSourceView extends React.Component {
   static propTypes = {
-    urls: PropTypes.shape({
-      edit: PropTypes.func,
-    }).isRequired,
     stripes: PropTypes.object,
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
@@ -42,8 +39,6 @@ class MetadataSourceView extends React.Component {
 
   constructor(props) {
     super(props);
-
-    // this.connectedMetadataSourceForm = this.props.stripes.connect(MetadataSourceForm);
 
     this.state = {
       accordions: {
@@ -102,8 +97,6 @@ class MetadataSourceView extends React.Component {
 
     return (
       <Pane
-        // actionMenu={this.getActionMenu}
-        // appIcon={<AppIcon app="finc-config" />}
         defaultWidth="40%"
         dismissible
         id="pane-sourcedetails"
@@ -149,22 +142,6 @@ class MetadataSourceView extends React.Component {
             stripes={this.props.stripes}
           />
         </Accordion>
-        {/* <Layer
-          // isOpen={query.layer ? query.layer === 'edit' : false}
-          contentLabel="Edit Metadata Source Dialog"
-        > */}
-        {/* <this.connectedMetadataSourceForm
-          stripes={stripes}
-          initialValues={sourceFormData}
-          onSubmit={(record) => { this.update(record); }}
-          onCancel={this.props.onCloseEdit}
-          parentResources={{
-            ...this.props.resources,
-            ...this.props.parentResources,
-          }}
-          parentMutator={this.props.parentMutator}
-        /> */}
-        {/* </Layer> */}
       </Pane>
     );
   }

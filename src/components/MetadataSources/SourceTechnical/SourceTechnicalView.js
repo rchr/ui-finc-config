@@ -15,11 +15,6 @@ import BasicCss from '../../BasicStyle.css';
 class SourceTechnicalView extends React.Component {
   static propTypes = {
     metadataSource: PropTypes.object.isRequired,
-    stripes: PropTypes
-      .shape({
-        connect: PropTypes.func.isRequired,
-      })
-      .isRequired,
   };
 
   renderList = (values) => {
