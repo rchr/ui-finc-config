@@ -227,12 +227,12 @@ class MetadataSourceView extends React.Component {
           label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
           id="technicalAccordion"
         >
-          {/* <SourceTechnicalView
+          <SourceTechnicalView
             id="sourceTechnical"
             metadataSource={rec}
             // metadataSource={initialValues}
             stripes={this.props.stripes}
-          /> */}
+          />
         </Accordion>
         {/* <Layer
           // isOpen={query.layer ? query.layer === 'edit' : false}
