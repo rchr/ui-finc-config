@@ -1,4 +1,3 @@
-// import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
@@ -42,24 +41,6 @@ class SourceCreateRoute extends React.Component {
     handlers: {},
   }
 
-  getInitialValues = () => {
-    const { resources } = this.props;
-
-    const status = get(resources, 'statusValues.records', []).find(v => v.value === 'active') || {};
-    const type = get(resources, 'typeValues.records', []).find(v => v.value === 'local') || {};
-
-    const customProperties = {};
-    get(resources, 'terms.records', [])
-      .filter(term => term.primary)
-      .forEach(term => { customProperties[term.name] = ''; });
-
-    return {
-      status: status.value,
-      type: type.value,
-      customProperties,
-    };
-  }
-
   handleClose = () => {
     const { location } = this.props;
     this.props.history.push(`${urls.sources()}${location.search}`);
@@ -85,6 +66,7 @@ class SourceCreateRoute extends React.Component {
           ...handlers,
           onClose: this.handleClose,
         }}
+        // initialValues={this.getInitialValues()}
         onSubmit={this.handleSubmit}
       />
     );

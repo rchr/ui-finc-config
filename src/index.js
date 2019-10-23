@@ -27,7 +27,7 @@ class FincConfig extends React.Component {
     return (
       <Switch>
         <Route path={`${path}/metadata-sources/create`} component={SourceCreateRoute} />
-        <Route path={`${path}/metadata-sources/:sourceId/edit`} component={SourceEditRoute} />
+        <Route path={`${path}/metadata-sources/:id/edit`} component={SourceEditRoute} />
         {/* child (view) wird ignoriert */}
         {/* <Route path={`${path}/metadata-sources/:sourceId?`} component={SourcesRoute}>
           <Route path={`${path}/metadata-sources/:sourceId`} exact component={SourceViewRoute} />

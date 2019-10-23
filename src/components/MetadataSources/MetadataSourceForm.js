@@ -8,6 +8,7 @@ import {
   Col,
   ConfirmationModal,
   ExpandAllButton,
+  Icon,
   IconButton,
   Pane,
   PaneMenu,
@@ -23,20 +24,22 @@ import SourceTechnicalForm from './SourceTechnical/SourceTechnicalForm';
 
 class MetadataSourceForm extends React.Component {
   static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    parentResources: PropTypes.shape().isRequired,
-    parentMutator: PropTypes.object.isRequired,
-    stripes: PropTypes.shape({
-      connect: PropTypes.func,
-    }).isRequired,
-    onCancel: PropTypes.func,
-    pristine: PropTypes.bool,
-    submitting: PropTypes.bool,
-    initialValues: PropTypes.object,
     contentData: PropTypes.object,
     handlers: PropTypes.PropTypes.shape({
       onClose: PropTypes.func.isRequired,
     }),
+    handleSubmit: PropTypes.func.isRequired,
+    initialValues: PropTypes.object,
+    isLoading: PropTypes.bool.isRequired,
+    onCancel: PropTypes.func,
+    onSubmit: PropTypes.func.isRequired,
+    parentResources: PropTypes.shape().isRequired,
+    parentMutator: PropTypes.object.isRequired,
+    pristine: PropTypes.bool,
+    stripes: PropTypes.shape({
+      connect: PropTypes.func,
+    }).isRequired,
+    submitting: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -101,7 +104,7 @@ class MetadataSourceForm extends React.Component {
   }
 
   getLastMenu(id, label) {
-    const { pristine, submitting, initialValues } = this.props;
+    const { pristine, submitting, initialValues, handleSubmit } = this.props;
     const { confirmDelete } = this.state;
     const isEditing = initialValues && initialValues.id;
 
@@ -129,6 +132,7 @@ class MetadataSourceForm extends React.Component {
           disabled={pristine || submitting}
           buttonStyle="primary paneHeaderNewButton"
           marginBottom0
+          onClick={handleSubmit}
         >
           {label}
         </Button>
@@ -156,15 +160,17 @@ class MetadataSourceForm extends React.Component {
   }
 
   render() {
-    const { initialValues, handleSubmit } = this.props;
+    const { initialValues, isLoading } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.source.form.createSource" />;
     const lastMenu = initialValues.id ?
       this.getLastMenu('clickable-createnewsource', <FormattedMessage id="ui-finc-config.source.form.updateSource" />) :
       this.getLastMenu('clickable-createnewsource', <FormattedMessage id="ui-finc-config.source.form.createSource" />);
 
+    if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
+
     return (
-      <form id="form-source" onSubmit={handleSubmit}>
+      <form id="form-source">
         <Paneset style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
