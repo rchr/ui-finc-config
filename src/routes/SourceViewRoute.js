@@ -88,6 +88,11 @@ class SourceViewRoute extends React.Component {
     this.props.history.push(`${urls.sources()}${location.search}`);
   }
 
+  handleEdit = () => {
+    const { location, match } = this.props;
+    this.props.history.push(`${urls.sourceEdit(match.params.id)}${location.search}`);
+  }
+
   getRecord = (id) => {
     return _.get(this.props.resources, 'sources.records', [])
       .find(i => i.id === id);
@@ -108,11 +113,11 @@ class SourceViewRoute extends React.Component {
 
     return (
       <MetadataSourceView
-        // record={selectedRecord}
-        rec={_.get(this.props.resources, 'source.records', []).find(i => i.id === this.props.match.params.id)}
+        record={_.get(this.props.resources, 'source.records', []).find(i => i.id === this.props.match.params.id)}
         handlers={{
           ...handlers,
           onClose: this.handleClose,
+          onEdit: this.handleEdit,
         }}
         isLoading={this.isLoading()}
         // urls={this.urls}

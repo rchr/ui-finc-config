@@ -101,20 +101,6 @@ class MetadataSources extends React.Component {
     };
   }
 
-  closeNewInstance = (e) => {
-    if (e) e.preventDefault();
-    // this.props.mutator.query.update({ layer: null });
-  }
-
-  create = (metadataSource) => {
-    // const { mutator } = this.props;
-
-    // mutator.records.POST(metadataSource)
-    //   .then(() => {
-    //     this.closeNewInstance();
-    //   });
-  }
-
   resultsFormatter = {
     label: source => source.label,
     sourceId: source => source.sourceId,
@@ -138,15 +124,8 @@ class MetadataSources extends React.Component {
       <RowComponent
         aria-rowindex={rowIndex + 2}
         className={rowClass}
-        // data-label={[
-        //   rowData.name,
-        //   this.formatter.type(rowData),
-        //   this.formatter.status(rowData),
-        // ].join('...')}
         data-label={[
           rowData.name,
-        //   this.formatter.type(rowData),
-        //   this.formatter.status(rowData),
         ]}
         key={`row-${rowIndex}`}
         role="row"
@@ -260,8 +239,6 @@ class MetadataSources extends React.Component {
         initialSearchState={{ query: '' }}
         querySetter={querySetter}
         queryGetter={queryGetter}
-        onChangeIndex={onChangeIndex}
-        // onComponentWillUnmount={onComponentWillUnmount}
       >
         {
           ({
@@ -318,7 +295,6 @@ class MetadataSources extends React.Component {
                         <Button
                           buttonStyle="primary"
                           disabled={!searchValue.query || searchValue.query === ''}
-                          // onClick={onSubmitSearch}
                           fullWidth
                           type="submit"
                         >
@@ -336,23 +312,20 @@ class MetadataSources extends React.Component {
                         </Icon>
                       </Button>
                       <SourceFilters
-                        // onChangeHandlers={getFilterHandlers()}
                         activeFilters={activeFilters.state}
                         filterHandlers={getFilterHandlers()}
-                        // config={filterConfig}
-                        // patronGroups={patronGroups}
                       />
                     </form>
                   </Pane>
                 }
                 <Pane
-                  id="pane-results"
+                  appIcon={<AppIcon app="finc-config" />}
                   defaultWidth="fill"
                   firstMenu={this.renderResultsFirstMenu(activeFilters)}
                   lastMenu={this.renderResultsLastMenu()}
+                  padContent={false}
                   paneTitle="Finc Config"
-                  appIcon={<AppIcon app="finc-config" />}
-                  // paneSub={this.renderResultsPaneSubtitle(_.get(this.props.resources, 'records.records', []))}
+                  paneSub={this.renderResultsPaneSubtitle(source)}
                 >
                   <MultiColumnList
                     autosize
@@ -365,58 +338,24 @@ class MetadataSources extends React.Component {
                     }}
                     contentData={this.props.contentData}
                     formatter={this.resultsFormatter}
-                    onRowClick={onSelectRow}
-                    onNeedMore={this.onNeedMore}
+                    isEmptyMessage="no results"
+                    // isSelected={({ item }) => item.id === selectedRecordId}
                     onHeaderClick={onSort}
+                    // onRowClick={onSelectRow}
                     rowFormatter={this.rowFormatter}
                     // selectedRow={this.state.selectedItem}
-                    // isSelected={({ item }) => item.id === selectedRecordId}
                     totalCount={count}
                     virtualize
                     visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
                   />
                 </Pane>
-                {children}
+                {/* {children} */}
                 <Route path="/finc-config/metadata-sources/:id" component={SourceViewRoute} />
               </Paneset>
             );
           }
         }
       </SearchAndSortQuery>
-
-      // <div data-test-source-instances>
-      //   <SearchAndSort
-      //     // change packageInfo to prevent ERROR:Cannot read property 'cql' of undefined if switching tab
-      //     // packageInfo={packageInfo}
-      //     packageInfo={packageInfoReWrite()}
-      //     objectName="metadataSource"
-      //     filterConfig={filterConfig}
-      //     initialResultCount={INITIAL_RESULT_COUNT}
-      //     resultCountIncrement={RESULT_COUNT_INCREMENT}
-      //     viewRecordComponent={MetadataSourceView}
-      //     editRecordComponent={MetadataSourceForm}
-      //     newRecordInitialValues={{}}
-      //     visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
-      //     onCreate={this.create}
-      //     viewRecordPerms="finc-config.metadata-sources.item.get"
-      //     newRecordPerms="finc-config.metadata-sources.item.post"
-      //     parentResources={this.props.resources}
-      //     parentMutator={this.props.mutator}
-      //     columnMapping={{
-      //       label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
-      //       sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
-      //       status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
-      //       solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
-      //       lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
-      //     }}
-      //     stripes={stripes}
-      //     // add values for search-selectbox
-      //     searchableIndexes={searchableIndexes}
-      //     selectedIndex={_.get(this.props.resources, 'qindex')}
-      //     searchableIndexesPlaceholder={null}
-      //     onChangeIndex={this.onChangeIndex}
-      //   />
-      // </div>
     );
   }
 }

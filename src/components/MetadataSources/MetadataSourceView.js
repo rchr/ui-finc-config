@@ -20,6 +20,9 @@ import {
   IfPermission,
   TitleManager
 } from '@folio/stripes/core';
+import {
+  AppIcon
+} from '@folio/stripes-core';
 
 import MetadataSourceForm from './MetadataSourceForm';
 import SourceInfoView from './SourceInfo/SourceInfoView';
@@ -64,8 +67,7 @@ class MetadataSourceView extends React.Component {
       onEdit: PropTypes.func,
     }).isRequired,
     isLoading: PropTypes.bool.isRequired,
-    record: PropTypes.object,
-    rec: PropTypes.object,
+    record: PropTypes.object.isRequired,
   };
 
   static manifest = Object.freeze({
@@ -149,54 +151,73 @@ class MetadataSourceView extends React.Component {
     };
   }
 
+  renderEditPaneMenu = () => {
+    const { record, handlers } = this.props;
+
+    return (
+      <IfPermission perm="finc-config.metadata-sources.item.put">
+        <PaneMenu>
+          <IconButton
+            icon="edit"
+            id="clickable-edit-source"
+            style={{
+              visibility: !record
+                ? 'hidden'
+                : 'visible'
+            }}
+            onClick={handlers.onEdit}
+            // href={this.props.editLink}
+            title="Edit Metadata Source"
+          />
+        </PaneMenu>
+      </IfPermission>
+    );
+  }
+
   render() {
-    const { handlers, record, rec, isLoading } = this.props;
+    const { handlers, record, isLoading } = this.props;
 
     // const query = resources.query;
     // const initialValues = this.getData();
+    const detailMenu = (
+      <IfPermission perm="finc-config.metadata-sources.item.put">
+        <PaneMenu>
+          <IconButton
+            icon="edit"
+            id="clickable-edit-source"
+            style={{
+              visibility: !record
+                ? 'hidden'
+                : 'visible'
+            }}
+            // onClick={this.props.onEdit}
+            // href={this.props.editLink}
+            title="Edit Metadata Source"
+          />
+        </PaneMenu>
+      </IfPermission>
+    );
 
-    // if (_.isEmpty(initialValues)) {
-    //   return <div style={{ paddingTop: '1rem' }}><Icon icon="spinner-ellipsis" width="100px" /></div>;
-    // } else {
-    //   const sourceFormData = this.getSourceFormData(initialValues);
-    //   const detailMenu = (
-    //     <PaneMenu>
-    //       <IfPermission perm="finc-config.metadata-sources.item.put">
-    //         <IconButton
-    //           icon="edit"
-    //           id="clickable-edit-source"
-    //           style={{
-    //             visibility: !initialValues
-    //               ? 'hidden'
-    //               : 'visible'
-    //           }}
-    //           // onClick={this.props.onEdit}
-    //           // href={this.props.editLink}
-    //           title="Edit Metadata Source"
-    //         />
-    //       </IfPermission>
-    //     </PaneMenu>
-    //   );
-
-    //   const label = _.get(initialValues, 'label', '-');
+    const label = _.get(record, 'label', '-');
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
     return (
       <Pane
-        // defaultWidth={this.props.paneWidth}
+        // actionMenu={this.getActionMenu}
+        // appIcon={<AppIcon app="finc-config" />}
         defaultWidth="40%"
-        id="pane-sourcedetails"
-        // paneTitle={<span data-test-source-header-title>{label}</span>}
-        // lastMenu={detailMenu}
         dismissible
-        // onClose={this.props.onClose}
+        id="pane-sourcedetails"
+        // lastMenu={detailMenu}
+        lastMenu={this.renderEditPaneMenu()}
         onClose={this.props.handlers.onClose}
+        paneTitle={<span data-test-source-header-title>{label}</span>}
       >
         {/* <TitleManager record={label} /> */}
         <SourceInfoView
           id="sourceInfo"
-          metadataSource={rec}
+          metadataSource={record}
           // metadataSource={initialValues}
           stripes={this.props.stripes}
         />
@@ -216,7 +237,7 @@ class MetadataSourceView extends React.Component {
         >
           <SourceManagementView
             id="sourceManagement"
-            metadataSource={rec}
+            metadataSource={record}
             // metadataSource={initialValues}
             stripes={this.props.stripes}
           />
@@ -229,7 +250,7 @@ class MetadataSourceView extends React.Component {
         >
           <SourceTechnicalView
             id="sourceTechnical"
-            metadataSource={rec}
+            metadataSource={record}
             // metadataSource={initialValues}
             stripes={this.props.stripes}
           />

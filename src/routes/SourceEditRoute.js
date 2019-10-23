@@ -16,7 +16,9 @@ class SourceEditRoute extends React.Component {
   componentDidUpdate(prevProps) {}
 
   render() {
-    return (null);
+    return (
+      'edit route'
+    );
   }
 }
 
