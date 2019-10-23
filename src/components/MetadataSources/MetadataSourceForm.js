@@ -84,15 +84,12 @@ class MetadataSourceForm extends React.Component {
   }
 
   getAddFirstMenu() {
-    const { onCancel } = this.props;
-
     return (
       <PaneMenu>
         <FormattedMessage id="ui-finc-config.source.form.close">
           { ariaLabel => (
             <IconButton
               id="clickable-closesourcedialog"
-              // onClick={onCancel}
               onClick={this.props.handlers.onClose}
               ariaLabel={ariaLabel}
               icon="times"
@@ -206,14 +203,14 @@ class MetadataSourceForm extends React.Component {
               onToggle={this.handleSectionToggle}
               {...this.props}
             />
-            {/* <ConfirmationModal
+            <ConfirmationModal
               id="delete-source-confirmation"
               heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
               message={`Do you really want to delete ${initialValues.label}?`}
               open={confirmDelete}
               onConfirm={() => { this.confirmDelete(true); }}
               onCancel={() => { this.confirmDelete(false); }}
-            /> */}
+            />
           </Pane>
         </Paneset>
       </form>

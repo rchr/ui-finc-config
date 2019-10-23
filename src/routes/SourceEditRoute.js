@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { stripesConnect } from '@folio/stripes-core';
+import { stripesConnect } from '@folio/stripes/core';
 
 class SourceEditRoute extends React.Component {
   static manifest = Object.freeze({});
@@ -11,6 +11,7 @@ class SourceEditRoute extends React.Component {
 
     this.state = {};
   }
+
   componentDidMount() {}
 
   componentDidUpdate(prevProps) {}

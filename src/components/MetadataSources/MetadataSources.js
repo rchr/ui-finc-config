@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 import Route from 'react-router-dom/Route';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
 import {
@@ -27,12 +26,9 @@ import {
 import {
   AppIcon,
   IfPermission
-} from '@folio/stripes-core';
+} from '@folio/stripes/core';
 
-import packageInfo from '../../../package';
 import urls from '../DisplayUtils/urls';
-import MetadataSourceView from './MetadataSourceView';
-import MetadataSourceForm from './MetadataSourceForm';
 import SourceFilters from './SourceFilters';
 import SourceViewRoute from '../../routes/SourceViewRoute';
 
@@ -48,14 +44,6 @@ class MetadataSources extends React.Component {
     contentData: PropTypes.arrayOf(PropTypes.object),
     disableRecordCreation: PropTypes.bool,
     intl: intlShape.isRequired,
-    // mutator: PropTypes.shape({
-    //   metadataSources: PropTypes.shape({
-    //     POST: PropTypes.func.isRequired,
-    //   }),
-    //   query: PropTypes.shape({
-    //     update: PropTypes.func,
-    //   }).isRequired,
-    // }).isRequired,
     onSelectRow: PropTypes.func,
     packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
       initialFilters: PropTypes.string, // default filters
@@ -72,19 +60,6 @@ class MetadataSources extends React.Component {
     onChangeIndex: PropTypes.func,
     selectedIndex: PropTypes.object,
     selectedRecordId: PropTypes.string,
-    // match: ReactRouterPropTypes.match.isRequired,
-    // match: PropTypes.shape({
-    //   params: PropTypes.shape({
-    //     sourceId: PropTypes.string.isRequired,
-    //   }).isRequired,
-    // }).isRequired,
-    // history: PropTypes.shape({
-    //   push: PropTypes.func.isRequired,
-    // }).isRequired,
-    // location: PropTypes.shape({
-    //   pathname: PropTypes.string,
-    //   search: PropTypes.string,
-    // }).isRequired,
   };
 
   static defaultProps = {
@@ -229,7 +204,7 @@ class MetadataSources extends React.Component {
   }
 
   render() {
-    const { children, intl, onSelectRow, queryGetter, querySetter, onChangeIndex, source, selectedRecordId } = this.props;
+    const { intl, queryGetter, querySetter, onChangeIndex, source } = this.props;
     const count = source ? source.totalCount() : 0;
 
     return (

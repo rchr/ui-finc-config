@@ -19,7 +19,7 @@ import MetadataCollections from './components/MetadataCollections/MetadataCollec
 import css from './components/BasicStyle.css';
 
 const defaultFiltersCollections = 'metadataAvailable.Yes';
-const defaultFiltersSources = '';
+// const defaultFiltersSources = '';
 
 class Main extends React.Component {
   static propTypes = {

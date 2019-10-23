@@ -1,10 +1,9 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import compose from 'compose-function';
 
-import { stripesConnect } from '@folio/stripes-core';
+import { stripesConnect } from '@folio/stripes/core';
 
 import MetadataSourceForm from '../components/MetadataSources/MetadataSourceForm';
 import urls from '../components/DisplayUtils/urls';
@@ -42,16 +41,6 @@ class SourceCreateRoute extends React.Component {
   static defaultProps = {
     handlers: {},
   }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps) {}
 
   getInitialValues = () => {
     const { resources } = this.props;
@@ -96,7 +85,6 @@ class SourceCreateRoute extends React.Component {
           ...handlers,
           onClose: this.handleClose,
         }}
-        // initialValues={this.getInitialValues()}
         onSubmit={this.handleSubmit}
       />
     );

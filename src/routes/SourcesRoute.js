@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { stripesConnect } from '@folio/stripes-core';
+import { stripesConnect } from '@folio/stripes/core';
 import {
   makeQueryFunction,
   StripesConnectedSource
@@ -12,7 +12,8 @@ import urls from '../components/DisplayUtils/urls';
 import MetadataSources from '../components/MetadataSources/MetadataSources';
 
 const INITIAL_RESULT_COUNT = 30;
-const RESULT_COUNT_INCREMENT = 30;
+// const RESULT_COUNT_INCREMENT = 30;
+
 const filterConfig = [
   {
     label: 'Implementaion Status',
@@ -77,16 +78,16 @@ class SourcesRoute extends React.Component {
       pathname: PropTypes.string,
       search: PropTypes.string,
     }).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string,
+      }),
+    }),
     mutator: PropTypes.object,
     resources: PropTypes.object,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func.isRequired,
       logger: PropTypes.object,
-    }),
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string,
-      }),
     }),
   }
 
@@ -141,7 +142,7 @@ class SourcesRoute extends React.Component {
   }
 
   render() {
-    const { children, location, resources, match } = this.props;
+    const { children, location, match } = this.props;
 
     if (this.source) {
       this.source.update(this.props, 'sources');
@@ -150,11 +151,11 @@ class SourcesRoute extends React.Component {
     return (
       <MetadataSources
         contentData={_.get(this.props.resources, 'sources.records', [])}
-        selectedRecordId={match.params.id}
         onNeedMoreData={this.handleNeedMoreData}
         queryGetter={this.queryGetter}
         querySetter={this.querySetter}
         searchString={location.search}
+        selectedRecordId={match.params.id}
         source={this.source}
         // add values for search-selectbox
         onChangeIndex={this.onChangeIndex}
