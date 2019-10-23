@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 
 import { stripesConnect } from '@folio/stripes/core';
 
@@ -66,7 +65,6 @@ class SourceCreateRoute extends React.Component {
           ...handlers,
           onClose: this.handleClose,
         }}
-        // initialValues={this.getInitialValues()}
         onSubmit={this.handleSubmit}
       />
     );

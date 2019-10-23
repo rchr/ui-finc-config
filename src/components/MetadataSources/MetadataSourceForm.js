@@ -32,6 +32,7 @@ class MetadataSourceForm extends React.Component {
     initialValues: PropTypes.object,
     isLoading: PropTypes.bool.isRequired,
     onCancel: PropTypes.func,
+    onDelete: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     parentResources: PropTypes.shape().isRequired,
     parentMutator: PropTypes.object.isRequired,
@@ -68,22 +69,9 @@ class MetadataSourceForm extends React.Component {
   }
 
   confirmDelete = (confirmation) => {
-    if (confirmation) {
-      this.deleteSource();
-    } else {
+    if (!confirmation) {
       this.setState({ confirmDelete: false });
     }
-  }
-
-  deleteSource = () => {
-    const { parentMutator, initialValues: { id } } = this.props;
-
-    parentMutator.records.DELETE({ id }).then(() => {
-      parentMutator.query.update({
-        _path: 'finc-config/metadata-sources',
-        layer: null
-      });
-    });
   }
 
   getAddFirstMenu() {
@@ -160,7 +148,7 @@ class MetadataSourceForm extends React.Component {
   }
 
   render() {
-    const { initialValues, isLoading } = this.props;
+    const { initialValues, isLoading, onDelete } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.source.form.createSource" />;
     const lastMenu = initialValues.id ?
@@ -214,7 +202,8 @@ class MetadataSourceForm extends React.Component {
               heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
               message={`Do you really want to delete ${initialValues.label}?`}
               open={confirmDelete}
-              onConfirm={() => { this.confirmDelete(true); }}
+              // onConfirm={() => { this.confirmDelete(true); }}
+              onConfirm={onDelete}
               onCancel={() => { this.confirmDelete(false); }}
             />
           </Pane>

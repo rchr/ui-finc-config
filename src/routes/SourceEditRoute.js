@@ -31,7 +31,6 @@ class SourceEditRoute extends React.Component {
     }).isRequired,
     mutator: PropTypes.shape({
       sources: PropTypes.shape({
-        POST: PropTypes.func.isRequired,
       }).isRequired,
     }).isRequired,
     resources: PropTypes.object,
@@ -66,6 +65,14 @@ class SourceEditRoute extends React.Component {
       });
   }
 
+  deleteSource = (source) => {
+    const { history, location, mutator } = this.props;
+
+    mutator.sources.DELETE({ source }).then(() => {
+      history.push(`${urls.sources()}${location.search}`);
+    });
+  }
+
   isLoading = () => {
     const { match, resources } = this.props;
 
@@ -96,6 +103,7 @@ class SourceEditRoute extends React.Component {
         initialValues={this.getInitialValues()}
         isLoading={this.fetchIsPending()}
         onSubmit={this.handleSubmit}
+        onDelete={this.deleteSource}
       />
     );
   }
