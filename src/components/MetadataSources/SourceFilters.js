@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Accordion, AccordionSet, FilterAccordionHeader } from '@folio/stripes/components';
 import { CheckboxFilter } from '@folio/stripes/smart-components';
+// import filterConfig from './filterConfigData';
 
 const FILTERS = [
   'status',

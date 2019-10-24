@@ -30,7 +30,6 @@ import {
 
 import urls from '../DisplayUtils/urls';
 import SourceFilters from './SourceFilters';
-import SourceViewRoute from '../../routes/SourceViewRoute';
 
 const searchableIndexes = [
   { label: 'All', value: '', makeQuery: term => `(label="${term}*" or sourceId="${term}*")` },
@@ -40,7 +39,7 @@ const searchableIndexes = [
 
 class MetadataSources extends React.Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.object,
     contentData: PropTypes.arrayOf(PropTypes.object),
     disableRecordCreation: PropTypes.bool,
     intl: intlShape.isRequired,
@@ -186,7 +185,7 @@ class MetadataSources extends React.Component {
   }
 
   render() {
-    const { intl, queryGetter, querySetter, onChangeIndex, source } = this.props;
+    const { intl, queryGetter, querySetter, onChangeIndex, onSelectRow, selectedRecordId, source } = this.props;
     const count = source ? source.totalCount() : 0;
 
     return (
@@ -295,10 +294,11 @@ class MetadataSources extends React.Component {
                     }}
                     contentData={this.props.contentData}
                     formatter={this.resultsFormatter}
+                    id="list-sources"
                     isEmptyMessage="no results"
-                    // isSelected={({ item }) => item.id === selectedRecordId}
+                    isSelected={({ item }) => item.id === selectedRecordId}
                     onHeaderClick={onSort}
-                    // onRowClick={onSelectRow}
+                    onRowClick={onSelectRow}
                     rowFormatter={this.rowFormatter}
                     // selectedRow={this.state.selectedItem}
                     totalCount={count}
@@ -306,8 +306,8 @@ class MetadataSources extends React.Component {
                     visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
                   />
                 </Pane>
-                {/* {children} */}
-                <Route path="/finc-config/metadata-sources/:id" component={SourceViewRoute} />
+                {this.props.children}
+                {/* <Route path="/finc-config/metadata-sources/:id" component={SourceViewRoute} /> */}
               </Paneset>
             );
           }

@@ -10,36 +10,10 @@ import {
 
 import urls from '../components/DisplayUtils/urls';
 import MetadataSources from '../components/MetadataSources/MetadataSources';
+import filterConfig from '../components/MetadataSources/filterConfigData';
 
 const INITIAL_RESULT_COUNT = 30;
 // const RESULT_COUNT_INCREMENT = 30;
-
-const filterConfig = [
-  {
-    label: 'Implementaion Status',
-    name: 'status',
-    cql: 'status',
-    values: [
-      { name: 'Active', cql: 'active' },
-      { name: 'Wish', cql: 'wish' },
-      { name: 'Negotiation', cql: 'negotiation' },
-      { name: 'Technical implementation', cql: 'technical implementation' },
-      { name: 'Deactivated', cql: 'deactivated' },
-      { name: 'Terminated', cql: 'terminated' }
-    ],
-  },
-  {
-    label: 'Solr Shard',
-    name: 'solrShard',
-    cql: 'solrShard',
-    values: [
-      { name: 'UBL main', cql: 'UBL main' },
-      { name: 'UBL ai', cql: 'UBL ai' },
-      { name: 'SLUB main', cql: 'SLUB main' },
-      { name: 'SLUB DBoD', cql: 'SLUB DBoD' }
-    ],
-  }
-];
 
 class SourcesRoute extends React.Component {
   static manifest = Object.freeze({
@@ -70,6 +44,7 @@ class SourcesRoute extends React.Component {
   });
 
   static propTypes = {
+    children: PropTypes.node,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -158,8 +133,9 @@ class SourcesRoute extends React.Component {
         source={this.source}
         // add values for search-selectbox
         onChangeIndex={this.onChangeIndex}
-        // searchableIndexesPlaceholder={null}
-      />
+      >
+        {this.props.children}
+      </MetadataSources>
     );
   }
 }
