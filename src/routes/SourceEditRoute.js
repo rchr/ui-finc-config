@@ -73,14 +73,14 @@ class SourceEditRoute extends React.Component {
     });
   }
 
-  isLoading = () => {
-    const { match, resources } = this.props;
+  // isLoading = () => {
+  //   const { match, resources } = this.props;
 
-    return (
-      match.params.id !== _.get(resources, 'source.records.id') &&
-      _.get(resources, 'source.isPending', true)
-    );
-  }
+  //   return (
+  //     match.params.id !== _.get(resources, 'source.records.id') &&
+  //     _.get(resources, 'source.isPending', true)
+  //   );
+  // }
 
   fetchIsPending = () => {
     return Object.values(this.props.resources)
@@ -102,8 +102,8 @@ class SourceEditRoute extends React.Component {
         }}
         initialValues={this.getInitialValues()}
         isLoading={this.fetchIsPending()}
-        onSubmit={this.handleSubmit}
         onDelete={this.deleteSource}
+        onSubmit={this.handleSubmit}
       />
     );
   }

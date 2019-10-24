@@ -17,23 +17,22 @@ class SourceCreateRoute extends React.Component {
   });
 
   static propTypes = {
+    handlers: PropTypes.object,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
     location: PropTypes.shape({
       search: PropTypes.string.isRequired,
     }).isRequired,
+    mutator: PropTypes.shape({
+      sources: PropTypes.shape({
+      }).isRequired,
+    }).isRequired,
     resources: PropTypes.object,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func.isRequired,
       okapi: PropTypes.object.isRequired,
     }).isRequired,
-    mutator: PropTypes.shape({
-      licenses: PropTypes.shape({
-        POST: PropTypes.func.isRequired,
-      }).isRequired,
-    }).isRequired,
-    handlers: PropTypes.object,
   }
 
   static defaultProps = {
@@ -62,8 +61,8 @@ class SourceCreateRoute extends React.Component {
       <MetadataSourceForm
         contentData={resources}
         handlers={{
-          ...handlers,
           onClose: this.handleClose,
+          ...handlers,
         }}
         onSubmit={this.handleSubmit}
       />

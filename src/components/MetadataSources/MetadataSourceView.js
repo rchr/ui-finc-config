@@ -24,13 +24,13 @@ import SourceTechnicalView from './SourceTechnical/SourceTechnicalView';
 
 class MetadataSourceView extends React.Component {
   static propTypes = {
-    stripes: PropTypes.object,
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
       onEdit: PropTypes.func,
     }).isRequired,
     isLoading: PropTypes.bool.isRequired,
     record: PropTypes.object.isRequired,
+    stripes: PropTypes.object,
   };
 
   static manifest = Object.freeze({
@@ -76,12 +76,12 @@ class MetadataSourceView extends React.Component {
           <IconButton
             icon="edit"
             id="clickable-edit-source"
+            onClick={handlers.onEdit}
             style={{
               visibility: !record
                 ? 'hidden'
                 : 'visible'
             }}
-            onClick={handlers.onEdit}
             title="Edit Metadata Source"
           />
         </PaneMenu>
@@ -119,10 +119,10 @@ class MetadataSourceView extends React.Component {
           </Col>
         </Row>
         <Accordion
-          open={this.state.accordions.managementAccordion}
-          onToggle={this.handleAccordionToggle}
-          label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
           id="managementAccordion"
+          label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
+          onToggle={this.handleAccordionToggle}
+          open={this.state.accordions.managementAccordion}
         >
           <SourceManagementView
             id="sourceManagement"
@@ -131,10 +131,10 @@ class MetadataSourceView extends React.Component {
           />
         </Accordion>
         <Accordion
-          open={this.state.accordions.technicalAccordion}
-          onToggle={this.handleAccordionToggle}
-          label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
           id="technicalAccordion"
+          label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
+          onToggle={this.handleAccordionToggle}
+          open={this.state.accordions.technicalAccordion}
         >
           <SourceTechnicalView
             id="sourceTechnical"

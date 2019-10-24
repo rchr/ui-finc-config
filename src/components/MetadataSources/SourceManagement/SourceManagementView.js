@@ -28,13 +28,13 @@ class SourceManagementView extends React.Component {
     } else {
       return (
         <MultiColumnList
-          contentData={_.get(metadataSource.contacts, type, [])}
-          isEmptyMessage={`no ${type} contact`}
-          visibleColumns={['name', 'role']}
           columnMapping={{
             name: <FormattedMessage id="ui-finc-config.contact.name" />,
             role: <FormattedMessage id="ui-finc-config.contact.role" />
           }}
+          contentData={_.get(metadataSource.contacts, type, [])}
+          isEmptyMessage={`no ${type} contact`}
+          visibleColumns={['name', 'role']}
         />
       );
     }
@@ -75,8 +75,8 @@ class SourceManagementView extends React.Component {
           <Row className={css.addMarginForContacts}>
             <Col xs={6}>
               <Headline
-                size="medium"
                 className={BasicCss.styleForHeadline}
+                size="medium"
               >
                 <FormattedMessage id="ui-finc-config.source.contacts.internal" />
               </Headline>
@@ -84,8 +84,8 @@ class SourceManagementView extends React.Component {
             </Col>
             <Col xs={6}>
               <Headline
-                size="medium"
                 className={BasicCss.styleForHeadline}
+                size="medium"
               >
                 <FormattedMessage id="ui-finc-config.source.contacts.external" />
               </Headline>
@@ -100,8 +100,8 @@ class SourceManagementView extends React.Component {
           </Row>
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.contracts" />
             </Headline>

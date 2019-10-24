@@ -24,22 +24,16 @@ import SourceTechnicalForm from './SourceTechnical/SourceTechnicalForm';
 
 class MetadataSourceForm extends React.Component {
   static propTypes = {
-    contentData: PropTypes.object,
     handlers: PropTypes.PropTypes.shape({
       onClose: PropTypes.func.isRequired,
     }),
     handleSubmit: PropTypes.func.isRequired,
     initialValues: PropTypes.object,
-    isLoading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool,
     onCancel: PropTypes.func,
-    onDelete: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    parentResources: PropTypes.shape().isRequired,
-    parentMutator: PropTypes.object.isRequired,
+    onDelete: PropTypes.func,
+    onSubmit: PropTypes.func,
     pristine: PropTypes.bool,
-    stripes: PropTypes.shape({
-      connect: PropTypes.func,
-    }).isRequired,
     submitting: PropTypes.bool,
   };
 
@@ -80,10 +74,10 @@ class MetadataSourceForm extends React.Component {
         <FormattedMessage id="ui-finc-config.source.form.close">
           { ariaLabel => (
             <IconButton
-              id="clickable-closesourcedialog"
-              onClick={this.props.handlers.onClose}
               ariaLabel={ariaLabel}
               icon="times"
+              id="clickable-closesourcedialog"
+              onClick={this.props.handlers.onClose}
             />
           )}
         </FormattedMessage>
@@ -102,25 +96,25 @@ class MetadataSourceForm extends React.Component {
         {isEditing &&
           <IfPermission perm="finc-config.metadata-sources.item.delete">
             <Button
-              id="clickable-delete-udp"
-              title="delete"
               buttonStyle="danger"
-              onClick={this.beginDelete}
               disabled={confirmDelete}
+              id="clickable-delete-udp"
               marginBottom0
+              onClick={this.beginDelete}
+              title="delete"
             >
               <FormattedMessage id="ui-finc-config.source.form.deleteSource" />
             </Button>
           </IfPermission>
         }
         <Button
-          id={id}
-          type="submit"
-          title={label}
-          disabled={pristine || submitting}
           buttonStyle="primary paneHeaderNewButton"
+          disabled={pristine || submitting}
+          id={id}
           marginBottom0
           onClick={handleSubmit}
+          title={label}
+          type="submit"
         >
           {label}
         </Button>
@@ -130,12 +124,6 @@ class MetadataSourceForm extends React.Component {
 
   handleExpandAll(sections) {
     this.setState({ sections });
-  }
-
-  handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-    }
   }
 
   handleSectionToggle = ({ id }) => {
@@ -169,8 +157,8 @@ class MetadataSourceForm extends React.Component {
             <Row end="xs">
               <Col xs>
                 <ExpandAllButton
-                  id="clickable-expand-all"
                   accordionStatus={sections}
+                  id="clickable-expand-all"
                   onToggle={this.handleExpandAll}
                 />
               </Col>
@@ -189,7 +177,7 @@ class MetadataSourceForm extends React.Component {
 
               id="sourceManagement"
               metadataSource={initialValues}
-              stripes={this.props.stripes}
+              // stripes={this.props.stripes}
             />
             <SourceTechnicalForm
               accordionId="editSourceTechnical"
@@ -198,13 +186,12 @@ class MetadataSourceForm extends React.Component {
               {...this.props}
             />
             <ConfirmationModal
-              id="delete-source-confirmation"
               heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
+              id="delete-source-confirmation"
               message={`Do you really want to delete ${initialValues.label}?`}
-              open={confirmDelete}
-              // onConfirm={() => { this.confirmDelete(true); }}
-              onConfirm={onDelete}
               onCancel={() => { this.confirmDelete(false); }}
+              onConfirm={onDelete}
+              open={confirmDelete}
             />
           </Pane>
         </Paneset>
@@ -214,9 +201,9 @@ class MetadataSourceForm extends React.Component {
 }
 
 export default stripesForm({
+  // the form will reinitialize every time the initialValues prop changes
+  enableReinitialize: true,
   form: 'form-metadataSource',
   // set navigationCheck true for confirming changes
   navigationCheck: true,
-  // the form will reinitialize every time the initialValues prop changes
-  enableReinitialize: true,
 })(MetadataSourceForm);

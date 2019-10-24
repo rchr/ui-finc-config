@@ -70,7 +70,6 @@ class SourcesRoute extends React.Component {
   });
 
   static propTypes = {
-    children: PropTypes.node,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -142,7 +141,7 @@ class SourcesRoute extends React.Component {
   }
 
   render() {
-    const { children, location, match } = this.props;
+    const { location, match } = this.props;
 
     if (this.source) {
       this.source.update(this.props, 'sources');
@@ -160,9 +159,7 @@ class SourcesRoute extends React.Component {
         // add values for search-selectbox
         onChangeIndex={this.onChangeIndex}
         // searchableIndexesPlaceholder={null}
-      >
-        {children}
-      </MetadataSources>
+      />
     );
   }
 }

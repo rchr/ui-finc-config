@@ -59,7 +59,6 @@ const filterConfig = {
 class SourceFilters extends React.Component {
   static propTypes = {
     activeFilters: PropTypes.object,
-    // data: PropTypes.object.isRequired,
     filterHandlers: PropTypes.object,
   };
 
@@ -97,9 +96,9 @@ class SourceFilters extends React.Component {
 
     return (
       <Accordion
-        id={`filter-accordion-${name}`}
         displayClearButton={groupFilters.length > 0}
         header={FilterAccordionHeader}
+        id={`filter-accordion-${name}`}
         label={<FormattedMessage id={`${name}`} />}
         onClearFilter={() => { this.props.filterHandlers.clearGroup(name); }}
         separator={false}

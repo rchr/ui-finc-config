@@ -52,8 +52,8 @@ class SourceTechnicalView extends React.Component {
           {/* TICKET is repeatable */}
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.tickets" />
             </Headline>
@@ -82,8 +82,8 @@ class SourceTechnicalView extends React.Component {
           {/* DELIVERYMETHODS is repeatable */}
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.deliveryMethods" />
             </Headline>
@@ -94,8 +94,8 @@ class SourceTechnicalView extends React.Component {
           {/* FORMATS is repeatable */}
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.formats" />
             </Headline>
@@ -112,8 +112,8 @@ class SourceTechnicalView extends React.Component {
           {/* INFERIORTO is repeatable */}
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.inferiorTo" />
             </Headline>

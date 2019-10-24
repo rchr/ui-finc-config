@@ -68,13 +68,13 @@ class SourceViewRoute extends React.Component {
 
     return (
       <MetadataSourceView
-        record={_.get(this.props.resources, 'source.records', []).find(i => i.id === this.props.match.params.id)}
         handlers={{
           ...handlers,
           onClose: this.handleClose,
           onEdit: this.handleEdit,
         }}
         isLoading={this.isLoading()}
+        record={_.get(this.props.resources, 'source.records', []).find(i => i.id === this.props.match.params.id)}
       />
     );
   }

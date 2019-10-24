@@ -26,9 +26,9 @@ class SourceManagementForm extends React.Component {
 
     this.columnMapping =
     {
-      name: 'Name',
       code: 'Code',
       description: 'description',
+      name: 'Name',
     };
     this.selectVendor = this.selectVendor.bind(this);
 
@@ -49,24 +49,24 @@ class SourceManagementForm extends React.Component {
 
     return (
       <Accordion
-        label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
-        open={expanded}
         id={accordionId}
+        label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
         onToggle={onToggle}
+        open={expanded}
       >
         {/* add link to organization app */}
         <div>
           <FindOrganization
-            intialVendor={this.state.organization}
             change={this.props.change}
+            intialVendor={this.state.organization}
             stripes={this.props.stripes}
           />
         </div>
         {/* CONTACTS INTERNAL is repeatable */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.source.contacts.internal" />
           </Headline>
@@ -74,16 +74,16 @@ class SourceManagementForm extends React.Component {
         <Row>
           <Col xs={2}>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.contact.name" />
             </Headline>
           </Col>
           <Col xs={2}>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.contact.role" />
             </Headline>
@@ -93,10 +93,10 @@ class SourceManagementForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={DisplayContact}
+              id="display_contact_internal"
+              label="Displaycontactinternal"
               // add name to the array-field, which should be changed
               name="contacts.internal"
-              label="Displaycontactinternal"
-              id="display_contact_internal"
               {...this.props}
             />
           </Col>
@@ -104,8 +104,8 @@ class SourceManagementForm extends React.Component {
         {/* CONTACTS EXTERNAL is repeatable */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.source.contacts.external" />
           </Headline>
@@ -113,16 +113,16 @@ class SourceManagementForm extends React.Component {
         <Row>
           <Col xs={2}>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.contact.name" />
             </Headline>
           </Col>
           <Col xs={2}>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.contact.role" />
             </Headline>
@@ -132,10 +132,10 @@ class SourceManagementForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={DisplayContact}
+              id="display_contact_external"
+              label="Displaycontactexternal"
               // add name to the array-field, which should be changed
               name="contacts.external"
-              label="Displaycontactexternal"
-              id="display_contact_external"
               {...this.props}
             />
           </Col>
@@ -143,23 +143,23 @@ class SourceManagementForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addsource_indexingLevel"
               label={
                 <FormattedMessage id="ui-finc-config.source.indexingLevel">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter a indexing level for the metadata source"
               name="indexingLevel"
-              id="addsource_indexingLevel"
-              component={TextField}
-              fullWidth
+              placeholder="Enter a indexing level for the metadata source"
             />
           </Col>
         </Row>
         {/* CONTRACTS is repeatable */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.source.contracts" />
           </Headline>
@@ -168,10 +168,10 @@ class SourceManagementForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={RepeatableField}
+              id="display_contract"
+              label="Displaycontract"
               // add name to the array-field, which should be changed
               name="contracts"
-              label="Displaycontract"
-              id="display_contract"
               {...this.props}
             />
           </Col>
@@ -179,15 +179,15 @@ class SourceManagementForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addsource_generalNotes"
               label={
                 <FormattedMessage id="ui-finc-config.source.generalNotes">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter a general note for the metadata source"
               name="generalNotes"
-              id="addsource_generalNotes"
-              component={TextField}
-              fullWidth
+              placeholder="Enter a general note for the metadata source"
             />
           </Col>
         </Row>
@@ -198,12 +198,12 @@ class SourceManagementForm extends React.Component {
 
 SourceManagementForm.propTypes = {
   accordionId: PropTypes.string.isRequired,
+  change: PropTypes.func,
   expanded: PropTypes.bool,
-  onToggle: PropTypes.func,
   initialValues: PropTypes.shape({
     organization: PropTypes.object
   }),
-  change: PropTypes.func,
+  onToggle: PropTypes.func,
   stripes: PropTypes.object,
 };
 

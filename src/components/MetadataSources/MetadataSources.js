@@ -71,7 +71,6 @@ class MetadataSources extends React.Component {
     super(props);
 
     this.state = {
-      // selectedItem: '',
       filterPaneIsVisible: true,
     };
   }
@@ -123,23 +122,6 @@ class MetadataSources extends React.Component {
     }));
   }
 
-  // if selecting a row, get record-details
-  // onSelectRow = (e, meta) => {
-  //   const { onSelectRow } = this.props;
-
-  //   if (onSelectRow) {
-  //     const shouldFallBackToRegularRecordDisplay = onSelectRow(e, meta);
-
-  //     if (!shouldFallBackToRegularRecordDisplay) {
-  //       return;
-  //     }
-  //   }
-
-  //   this.log('action', `clicked ${meta.id}, selected record =`, meta);
-  //   // this.setState({ selectedItem: meta });
-  //   this.transitionToParams({ _path: `${packageInfo.stripes.route}/${meta.id}` });
-  // };
-
   // fade in / out the filter menu
   renderResultsFirstMenu = (filters) => {
     const { filterPaneIsVisible } = this.state;
@@ -154,9 +136,9 @@ class MetadataSources extends React.Component {
             <FormattedMessage id={hideOrShowMessageId}>
               {hideOrShowMessage => (
                 <FilterPaneToggle
-                  visible={filterPaneIsVisible}
                   aria-label={`${hideOrShowMessage}...${appliedFiltersMessage}`}
                   onClick={this.toggleFilterPane}
+                  visible={filterPaneIsVisible}
                 />
               )}
             </FormattedMessage>
@@ -210,22 +192,22 @@ class MetadataSources extends React.Component {
     return (
       <SearchAndSortQuery
         initialFilterState={{ status: ['active', 'technical implementation'] }}
-        initialSortState={{ sort: 'label' }}
         initialSearchState={{ query: '' }}
-        querySetter={querySetter}
+        initialSortState={{ sort: 'label' }}
         queryGetter={queryGetter}
+        querySetter={querySetter}
       >
         {
           ({
-            searchValue,
-            getSearchHandlers,
-            onSubmitSearch,
-            onSort,
-            getFilterHandlers,
             activeFilters,
             filterChanged,
-            searchChanged,
+            getFilterHandlers,
+            getSearchHandlers,
+            onSort,
+            onSubmitSearch,
             resetAll,
+            searchChanged,
+            searchValue,
           }) => {
             const disableReset = () => (!filterChanged && !searchChanged);
 
@@ -240,15 +222,15 @@ class MetadataSources extends React.Component {
                     <form onSubmit={onSubmitSearch}>
                       <ButtonGroup tagName="nav" fullWidth>
                         <Button
-                          id="metadata-sources"
                           buttonStyle="primary"
+                          id="metadata-sources"
                         >
                           Sources
                         </Button>
                         <Button
+                          buttonStyle="default"
                           id="metadata-collections"
                           to={urls.collections()}
-                          buttonStyle="default"
                         >
                           Collections
                         </Button>
@@ -264,8 +246,8 @@ class MetadataSources extends React.Component {
                           // add values for search-selectbox
                           onChangeIndex={onChangeIndex}
                           searchableIndexes={searchableIndexes}
-                          selectedIndex={_.get(this.props.contentData, 'qindex')}
                           searchableIndexesPlaceholder={null}
+                          selectedIndex={_.get(this.props.contentData, 'qindex')}
                         />
                         <Button
                           buttonStyle="primary"
@@ -278,8 +260,8 @@ class MetadataSources extends React.Component {
                       </div>
                       <Button
                         buttonStyle="none"
-                        id="clickable-reset-all"
                         disabled={disableReset()}
+                        id="clickable-reset-all"
                         onClick={resetAll}
                       >
                         <Icon icon="times-circle-solid">
