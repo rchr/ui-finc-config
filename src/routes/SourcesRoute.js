@@ -116,7 +116,7 @@ class SourcesRoute extends React.Component {
   }
 
   render() {
-    const { location, match } = this.props;
+    const { location, match, children } = this.props;
 
     if (this.source) {
       this.source.update(this.props, 'sources');
@@ -134,7 +134,7 @@ class SourcesRoute extends React.Component {
         // add values for search-selectbox
         onChangeIndex={this.onChangeIndex}
       >
-        {this.props.children}
+        {children}
       </MetadataSources>
     );
   }

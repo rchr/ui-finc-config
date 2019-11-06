@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React from 'react';
-import Route from 'react-router-dom/Route';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
 import {

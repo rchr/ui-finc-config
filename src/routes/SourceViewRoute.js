@@ -27,10 +27,7 @@ class SourceViewRoute extends React.Component {
       }).isRequired,
     }).isRequired,
     resources: PropTypes.shape({
-      source: PropTypes.shape({
-        hasLoaded: PropTypes.bool
-      }),
-      query: PropTypes.object,
+      source: PropTypes.object,
     }).isRequired,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func.isRequired,
@@ -53,15 +50,6 @@ class SourceViewRoute extends React.Component {
       .find(i => i.id === id);
   }
 
-  isLoading = () => {
-    const { match, resources } = this.props;
-
-    return (
-      match.params.id !== _.get(resources, 'source.records[0].id') &&
-      _.get(resources, 'source.isPending', true)
-    );
-  }
-
   render() {
     const { handlers } = this.props;
     // const selectedRecord = this.getRecord(this.props.match.params.id);
@@ -73,7 +61,7 @@ class SourceViewRoute extends React.Component {
           onClose: this.handleClose,
           onEdit: this.handleEdit,
         }}
-        isLoading={this.isLoading()}
+        isLoading={_.get(this.props.resources, 'source.isPending', true)}
         record={_.get(this.props.resources, 'source.records', []).find(i => i.id === this.props.match.params.id)}
       />
     );

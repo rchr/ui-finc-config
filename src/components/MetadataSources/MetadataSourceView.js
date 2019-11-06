@@ -9,6 +9,7 @@ import {
   ExpandAllButton,
   Icon,
   IconButton,
+  Layout,
   Pane,
   PaneMenu,
   Row,
@@ -28,14 +29,10 @@ class MetadataSourceView extends React.Component {
       onClose: PropTypes.func.isRequired,
       onEdit: PropTypes.func,
     }).isRequired,
-    isLoading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool,
     record: PropTypes.object.isRequired,
     stripes: PropTypes.object,
   };
-
-  static manifest = Object.freeze({
-    query: {},
-  });
 
   constructor(props) {
     super(props);
@@ -89,60 +86,78 @@ class MetadataSourceView extends React.Component {
     );
   }
 
-  render() {
-    const { record, isLoading } = this.props;
-    const label = _.get(record, 'label', '-');
-
-    if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
-
+  renderLoadingPane = () => {
     return (
       <Pane
         defaultWidth="40%"
         dismissible
         id="pane-sourcedetails"
-        lastMenu={this.renderEditPaneMenu()}
         onClose={this.props.handlers.onClose}
-        paneTitle={<span data-test-source-header-title>{label}</span>}
+        paneTitle={<span data-test-source-header-title>loading</span>}
       >
-        {/* <TitleManager record={label} /> */}
-        <SourceInfoView
-          id="sourceInfo"
-          metadataSource={record}
-          stripes={this.props.stripes}
-        />
-        <Row end="xs">
-          <Col xs>
-            <ExpandAllButton
-              accordionStatus={this.state.accordions}
-              onToggle={this.handleExpandAll}
-            />
-          </Col>
-        </Row>
-        <Accordion
-          id="managementAccordion"
-          label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
-          onToggle={this.handleAccordionToggle}
-          open={this.state.accordions.managementAccordion}
-        >
-          <SourceManagementView
-            id="sourceManagement"
-            metadataSource={record}
-            stripes={this.props.stripes}
-          />
-        </Accordion>
-        <Accordion
-          id="technicalAccordion"
-          label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
-          onToggle={this.handleAccordionToggle}
-          open={this.state.accordions.technicalAccordion}
-        >
-          <SourceTechnicalView
-            id="sourceTechnical"
-            metadataSource={record}
-            stripes={this.props.stripes}
-          />
-        </Accordion>
+        <Layout className="marginTop1">
+          <Icon icon="spinner-ellipsis" width="10px" />
+        </Layout>
       </Pane>
+    );
+  }
+
+  render() {
+    const { record, isLoading } = this.props;
+    const label = _.get(record, 'label', '-');
+
+    if (isLoading) return this.renderLoadingPane();
+
+    return (
+      <React.Fragment>
+        <Pane
+          defaultWidth="40%"
+          dismissible
+          id="pane-sourcedetails"
+          lastMenu={this.renderEditPaneMenu()}
+          onClose={this.props.handlers.onClose}
+          paneTitle={<span data-test-source-header-title>{label}</span>}
+        >
+          {/* <TitleManager record={label} /> */}
+          <SourceInfoView
+            id="sourceInfo"
+            metadataSource={record}
+            stripes={this.props.stripes}
+          />
+          <Row end="xs">
+            <Col xs>
+              <ExpandAllButton
+                accordionStatus={this.state.accordions}
+                onToggle={this.handleExpandAll}
+              />
+            </Col>
+          </Row>
+          <Accordion
+            id="managementAccordion"
+            label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
+            onToggle={this.handleAccordionToggle}
+            open={this.state.accordions.managementAccordion}
+          >
+            <SourceManagementView
+              id="sourceManagement"
+              metadataSource={record}
+              stripes={this.props.stripes}
+            />
+          </Accordion>
+          <Accordion
+            id="technicalAccordion"
+            label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
+            onToggle={this.handleAccordionToggle}
+            open={this.state.accordions.technicalAccordion}
+          >
+            <SourceTechnicalView
+              id="sourceTechnical"
+              metadataSource={record}
+              stripes={this.props.stripes}
+            />
+          </Accordion>
+        </Pane>
+      </React.Fragment>
     );
   }
 }
