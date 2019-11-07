@@ -110,7 +110,7 @@ class MetadataSources extends React.Component {
 
   // generate url for record-details
   rowURL = (id) => {
-    return `/finc-config/metadata-sources/${id}${this.props.searchString}`;
+    return `${urls.sourceView(id)}${this.props.searchString}`;
   }
 
   // fade in/out of filter-pane

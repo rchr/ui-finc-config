@@ -113,7 +113,7 @@ class MetadataCollections extends React.Component {
 
   // generate url for record-details
   rowURL = (id) => {
-    return `/finc-config/metadata-collections/${id}${this.props.searchString}`;
+    return `${urls.collectionView(id)}${this.props.searchString}`;
   }
 
   // fade in/out of filter-pane

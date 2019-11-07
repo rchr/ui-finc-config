@@ -10,7 +10,7 @@ import SourceEditRoute from './routes/SourceEditRoute';
 import SourceCreateRoute from './routes/SourceCreateRoute';
 import SourceViewRoute from './routes/SourceViewRoute';
 import CollectionsRoute from './routes/CollectionsRoute';
-
+import CollectionViewRoute from './routes/CollectionViewRoute';
 
 import Settings from './settings';
 
@@ -38,7 +38,7 @@ class FincConfig extends React.Component {
         {/* <Route path={`${path}/metadata-collections/create`} component={CollectionCreateRoute} />
         <Route path={`${path}/metadata-collections/:id/edit`} component={CollectionEditRoute} /> */}
         <Route path={`${path}/metadata-collections/:id?`} component={CollectionsRoute}>
-          {/* <Route path={`${path}/metadata-collections/:id`} component={CollectionViewRoute} /> */}
+          <Route path={`${path}/metadata-collections/:id`} component={CollectionViewRoute} />
         </Route>
       </Switch>
     );
