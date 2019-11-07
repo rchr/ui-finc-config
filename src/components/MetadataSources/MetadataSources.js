@@ -306,7 +306,6 @@ class MetadataSources extends React.Component {
                   />
                 </Pane>
                 {this.props.children}
-                {/* <Route path="/finc-config/metadata-sources/:id" component={SourceViewRoute} /> */}
               </Paneset>
             );
           }
