@@ -1,6 +1,6 @@
 const filterConfig = [
   {
-    label: 'Implementaion Status',
+    label: 'Implementation Status',
     name: 'status',
     cql: 'status',
     values: [

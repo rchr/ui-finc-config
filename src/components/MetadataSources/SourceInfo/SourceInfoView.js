@@ -11,7 +11,7 @@ import {
 class SourceInfoView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
-    metadataSource: PropTypes.object.isRequired,
+    metadataSource: PropTypes.object,
   };
 
   render() {

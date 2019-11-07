@@ -30,7 +30,7 @@ class MetadataSourceView extends React.Component {
       onEdit: PropTypes.func,
     }).isRequired,
     isLoading: PropTypes.bool,
-    record: PropTypes.object.isRequired,
+    record: PropTypes.object,
     stripes: PropTypes.object,
   };
 

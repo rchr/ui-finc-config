@@ -17,7 +17,7 @@ import css from './SourceManagement.css';
 
 class SourceManagementView extends React.Component {
   static propTypes = {
-    metadataSource: PropTypes.object.isRequired,
+    metadataSource: PropTypes.object,
   };
 
   renderContacts = (type) => {
