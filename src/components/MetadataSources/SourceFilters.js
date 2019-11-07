@@ -4,58 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Accordion, AccordionSet, FilterAccordionHeader } from '@folio/stripes/components';
 import { CheckboxFilter } from '@folio/stripes/smart-components';
-// import filterConfig from './filterConfigData';
-
-const FILTERS = [
-  'status',
-  'solrShard'
-];
-
-// const filterConfig = [
-//   {
-//     label: 'Implementaion Status',
-//     name: 'status',
-//     cql: 'status',
-//     statusValues: [
-//       { label: 'Active', cql: 'active' },
-//       { label: 'Wish', cql: 'wish' },
-//       { label: 'Negotiation', cql: 'negotiation' },
-//       { label: 'Technical implementation', cql: 'technical implementation' },
-//       { label: 'Deactivated', cql: 'deactivated' },
-//       { label: 'Terminated', cql: 'terminated' }
-//     ],
-//   },
-//   {
-//     label: 'Solr Shard',
-//     name: 'solrShard',
-//     cql: 'solrShard',
-//     solrShardValues: [
-//       { label: 'UBL main', cql: 'UBL main' },
-//       { label: 'UBL ai', cql: 'UBL ai' },
-//       { label: 'SLUB main', cql: 'SLUB main' },
-//       { label: 'SLUB DBoD', cql: 'SLUB DBoD' }
-//     ],
-//   }
-// ];
-
-const filterConfig = {
-  // statusValues: ['active', 'wish', 'negotiation', 'technical implementation', 'deactivated', 'terminated'],
-  statusValues: [
-    { label: 'Active', value: 'active' },
-    { label: 'Wish', value: 'wish' },
-    { label: 'Negotiation', value: 'negotiation' },
-    { label: 'Technical implementation', value: 'technical implementation' },
-    { label: 'Deactivated', value: 'deactivated' },
-    { label: 'Terminated', value: 'terminated' }
-  ],
-  // solrShardValues: ['UBL main', 'UBL ai', 'SLUB main', 'SLUB DBoD']
-  solrShardValues: [
-    { label: 'UBL main', value: 'UBL main' },
-    { label: 'UBL ai', value: 'UBL ai' },
-    { label: 'SLUB main', value: 'SLUB main' },
-    { label: 'SLUB DBoD', value: 'SLUB DBoD' }
-  ]
-};
+import filterConfig from './filterConfigData';
 
 class SourceFilters extends React.Component {
   static propTypes = {
@@ -77,12 +26,29 @@ class SourceFilters extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     const newState = {};
+    const arr = [];
 
-    FILTERS.forEach(filter => {
-      const values = filterConfig[`${filter}Values`];
+    filterConfig.forEach(filter => {
+      const newValues = [];
+      const name = filter.name;
 
-      if (values.length !== state[filter].length) {
-        newState[filter] = values;
+      let values = {};
+      values = filter.values;
+
+      values.forEach((key) => {
+        let newValue = {};
+        newValue = {
+          'value': key.cql,
+          'label': key.name,
+        };
+
+        newValues.push(newValue);
+      });
+
+      arr[name] = newValues;
+
+      if (state[filter.name] && arr[name].length !== state[filter.name].length) {
+        newState[filter.name] = arr[name];
       }
     });
 
