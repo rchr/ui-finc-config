@@ -16,13 +16,13 @@ import { Required } from '../../DisplayUtils/Validate';
 
 class CollectionInfoForm extends React.Component {
   static propTypes = {
-    parentResources: PropTypes.arrayOf(PropTypes.object)
+    sourceData: PropTypes.arrayOf({
+      source: PropTypes.object,
+    }),
   };
 
-  getData(resourceName) {
-    const { parentResources } = this.props;
-    const records = (parentResources[`${resourceName}`] || {}).records || [];
-    if (!records || records.length === 0) return null;
+  formatSourceData(sources) {
+    if (!sources || sources.length === 0) return null;
     const newArr = [];
 
     // add an empty object
@@ -31,14 +31,14 @@ class CollectionInfoForm extends React.Component {
     // newArr.push(preObj);
 
     // Loop through records
-    Object.keys(records).map((key) => {
+    Object.keys(sources).map((key) => {
       const obj = {
-        label: _.toString(records[key].label),
-        value: _.toString(records[key].id)
+        label: _.toString(sources[key].label),
+        value: _.toString(sources[key].id)
       };
 
       newArr.push(obj);
-      if (Number(key) === (records.length - 1)) {
+      if (Number(key) === (sources.length - 1)) {
         return newArr;
       }
       return newArr;
@@ -48,7 +48,9 @@ class CollectionInfoForm extends React.Component {
 
   render() {
     const { expanded, onToggle, accordionId } = this.props;
-    const sourceData = this.getData('source');
+    const sourceDataFormatted = this.formatSourceData(this.props.sourceData);
+
+    if (!sourceDataFormatted || sourceDataFormatted.length === 0) return null;
 
     return (
       <Accordion
@@ -60,31 +62,31 @@ class CollectionInfoForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addcollection_label"
               label={
                 <FormattedMessage id="ui-finc-config.collection.label">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>}
-              placeholder="Enter a name to identify the metadata collection"
               name="label"
-              id="addcollection_label"
-              component={TextField}
+              placeholder="Enter a name to identify the metadata collection"
               validate={[Required]}
-              fullWidth
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addcollection_description"
               label={
                 <FormattedMessage id="ui-finc-config.collection.description">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter a description for the metadata collection"
               name="description"
-              id="addcollection_description"
-              component={TextField}
-              fullWidth
+              placeholder="Enter a description for the metadata collection"
             />
           </Col>
         </Row>
@@ -100,7 +102,7 @@ class CollectionInfoForm extends React.Component {
               component={SelectSource}
               fullWidth
               validate={[Required]}
-              dataOptions={sourceData}
+              dataOptions={sourceDataFormatted}
             />
           </Col>
         </Row>

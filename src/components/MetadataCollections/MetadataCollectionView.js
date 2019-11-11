@@ -119,40 +119,6 @@ class MetadataCollectionView extends React.Component {
     });
   }
 
-  // getAllInfosForSource() {
-  //   const { record, isLoading, sources } = this.props;
-
-  //   if (isLoading) return null;
-
-  //   // get the source-ID, which is saved in the collection
-  //   const sourceId = _.get(record, 'mdSource.id', '-');
-  //   const sourceName = _.get(record, 'mdSource.name', '-');
-
-  //   // get all sources
-
-
-  //   // get the source 
-  //   const sourceElement = this.getSourceElement(sourceId, sources);
-  //   const sourceStatus = _.get(sourceElement, 'status', '-');
-
-  //   console.log(sourceElement);
-  //   console.log(sourceStatus);
-
-  //   const sourceLink = (
-  //     <React.Fragment>
-  //       <Link to={{
-  //         pathname: `/finc-config/metadata-sources/view/${sourceId}`,
-  //         // search: `?filters=status.${sourceStatus}`
-  //       }}
-  //       >
-  //         {sourceName}
-  //       </Link>
-  //     </React.Fragment>
-  //   );
-
-  //   return sources;
-  // }
-
   render() {
     const { record, isLoading } = this.props;
     const label = _.get(record, 'label', '-');

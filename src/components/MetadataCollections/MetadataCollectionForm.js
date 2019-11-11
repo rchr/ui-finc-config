@@ -8,6 +8,7 @@ import {
   Col,
   ConfirmationModal,
   ExpandAllButton,
+  Icon,
   IconButton,
   Pane,
   PaneMenu,
@@ -23,17 +24,25 @@ import CollectionTechnicalForm from './CollectionTechnical/CollectionTechnicalFo
 
 class MetadataCollectionForm extends React.Component {
   static propTypes = {
-    stripes: PropTypes.shape({
-      connect: PropTypes.func,
-    }).isRequired,
-    parentResources: PropTypes.shape().isRequired,
-    parentMutator: PropTypes.object.isRequired,
+    handlers: PropTypes.PropTypes.shape({
+      onClose: PropTypes.func.isRequired,
+    }),
     handleSubmit: PropTypes.func.isRequired,
-    onCancel: PropTypes.func,
-    pristine: PropTypes.bool,
-    submitting: PropTypes.bool,
     initialValues: PropTypes.object,
+    isLoading: PropTypes.bool,
+    onCancel: PropTypes.func,
+    onDelete: PropTypes.func,
+    onSubmit: PropTypes.func,
+    pristine: PropTypes.bool,
+    sources: PropTypes.shape({
+      source: PropTypes.object,
+    }),
+    submitting: PropTypes.bool,
   };
+
+  static defaultProps = {
+    initialValues: {},
+  }
 
   constructor(props) {
     super(props);
@@ -64,29 +73,16 @@ class MetadataCollectionForm extends React.Component {
     }
   }
 
-  deleteCollection = () => {
-    const { parentMutator, initialValues: { id } } = this.props;
-
-    parentMutator.records.DELETE({ id }).then(() => {
-      parentMutator.query.update({
-        _path: 'finc-config/metadata-collections',
-        layer: null
-      });
-    });
-  }
-
   getAddFirstMenu() {
-    const { onCancel } = this.props;
-
     return (
       <PaneMenu>
         <FormattedMessage id="ui-finc-config.collection.form.close">
           { ariaLabel => (
             <IconButton
-              id="clickable-closecollectiondialog"
-              onClick={onCancel}
               ariaLabel={ariaLabel}
               icon="times"
+              id="clickable-closecollectiondialog"
+              onClick={this.props.handlers.onClose}
             />
           )}
         </FormattedMessage>
@@ -95,7 +91,7 @@ class MetadataCollectionForm extends React.Component {
   }
 
   getLastMenu(id, label) {
-    const { pristine, submitting, initialValues } = this.props;
+    const { pristine, submitting, initialValues, handleSubmit } = this.props;
     const { confirmDelete } = this.state;
     const isEditing = initialValues && initialValues.id;
 
@@ -105,24 +101,25 @@ class MetadataCollectionForm extends React.Component {
         {isEditing &&
           <IfPermission perm="finc-config.metadata-collections.item.delete">
             <Button
-              id="clickable-delete-udp"
-              title="delete"
               buttonStyle="danger"
-              onClick={this.beginDelete}
               disabled={confirmDelete}
+              id="clickable-delete-udp"
               marginBottom0
+              onClick={this.beginDelete}
+              title="delete"
             >
               <FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />
             </Button>
           </IfPermission>
         }
         <Button
-          id={id}
-          type="submit"
-          title={label}
-          disabled={pristine || submitting}
           buttonStyle="primary paneHeaderNewButton"
+          disabled={pristine || submitting}
+          id={id}
           marginBottom0
+          onClick={handleSubmit}
+          title={label}
+          type="submit"
         >
           {label}
         </Button>
@@ -132,12 +129,6 @@ class MetadataCollectionForm extends React.Component {
 
   handleExpandAll(sections) {
     this.setState({ sections });
-  }
-
-  handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-    }
   }
 
   handleSectionToggle = ({ id }) => {
@@ -150,15 +141,17 @@ class MetadataCollectionForm extends React.Component {
   }
 
   render() {
-    const { initialValues, handleSubmit } = this.props;
+    const { initialValues, isLoading, onDelete } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.collection.form.createCollection" />;
     const lastMenu = initialValues.id ?
       this.getLastMenu('clickable-createnewcollection', <FormattedMessage id="ui-finc-config.collection.form.updateCollection" />) :
       this.getLastMenu('clickable-createnewcollection', <FormattedMessage id="ui-finc-config.collection.form.createCollection" />);
 
+    if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
+
     return (
-      <form id="form-collection" onSubmit={handleSubmit}>
+      <form id="form-collection">
         <Paneset style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
@@ -167,47 +160,48 @@ class MetadataCollectionForm extends React.Component {
             paneTitle={paneTitle}
           >
             {/* add padding behind last Row; otherwise content is cutted of */}
-            <div className="CollectionForm" style={{ paddingBottom: '100px' }}>
-              <Row end="xs">
-                <Col xs>
-                  <ExpandAllButton
-                    id="clickable-expand-all"
-                    accordionStatus={sections}
-                    onToggle={this.handleExpandAll}
-                  />
-                </Col>
-              </Row>
-              <CollectionInfoForm
-                accordionId="editCollectionInfo"
-                expanded={sections.editCollectionInfo}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <CollectionManagementForm
-                accordionId="editCollectionManagement"
-                expanded={sections.editCollectionManagement}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
+            {/* <div className="CollectionForm" style={{ paddingBottom: '100px' }}> */}
+            <Row end="xs">
+              <Col xs>
+                <ExpandAllButton
+                  id="clickable-expand-all"
+                  accordionStatus={sections}
+                  onToggle={this.handleExpandAll}
+                />
+              </Col>
+            </Row>
+            <CollectionInfoForm
+              accordionId="editCollectionInfo"
+              expanded={sections.editCollectionInfo}
+              onToggle={this.handleSectionToggle}
+              sourceData={this.props.sources}
+              {...this.props}
+            />
+            <CollectionManagementForm
+              accordionId="editCollectionManagement"
+              expanded={sections.editCollectionManagement}
+              onToggle={this.handleSectionToggle}
+              {...this.props}
 
-                id="collectionManagement"
-                metadataCollection={initialValues}
-                stripes={this.props.stripes}
-              />
-              <CollectionTechnicalForm
-                accordionId="editCollectionTechnical"
-                expanded={sections.editCollectionTechnical}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <ConfirmationModal
-                id="delete-collection-confirmation"
-                heading={<FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />}
-                message={`Do you really want to delete ${initialValues.label}?`}
-                open={confirmDelete}
-                onConfirm={() => { this.confirmDelete(true); }}
-                onCancel={() => { this.confirmDelete(false); }}
-              />
-            </div>
+              id="collectionManagement"
+              metadataCollection={initialValues}
+              // stripes={this.props.stripes}
+            />
+            <CollectionTechnicalForm
+              accordionId="editCollectionTechnical"
+              expanded={sections.editCollectionTechnical}
+              onToggle={this.handleSectionToggle}
+              {...this.props}
+            />
+            <ConfirmationModal
+              heading={<FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />}
+              id="delete-collection-confirmation"
+              message={`Do you really want to delete ${initialValues.label}?`}
+              onCancel={() => { this.confirmDelete(false); }}
+              onConfirm={onDelete}
+              open={confirmDelete}
+            />
+            {/* </div> */}
           </Pane>
         </Paneset>
       </form>
@@ -216,9 +210,9 @@ class MetadataCollectionForm extends React.Component {
 }
 
 export default stripesForm({
+  // the form will reinitialize every time the initialValues prop changes
+  enableReinitialize: true,
   form: 'form-metadataCollection',
   // set navigationCheck true for confirming changes
   navigationCheck: true,
-  // the form will reinitialize every time the initialValues prop changes
-  enableReinitialize: true,
 })(MetadataCollectionForm);
