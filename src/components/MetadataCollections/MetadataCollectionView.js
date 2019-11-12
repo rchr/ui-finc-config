@@ -10,7 +10,7 @@ import {
   Icon,
   IconButton,
   Layout,
-  Link,
+  // Link,
   Pane,
   PaneMenu,
   Row
@@ -32,7 +32,7 @@ class MetadataCollectionView extends React.Component {
     isLoading: PropTypes.bool,
     record: PropTypes.object,
     stripes: PropTypes.object,
-    sources: PropTypes.object,
+    sources: PropTypes.arrayOf(PropTypes.object),
   };
 
   constructor(props) {
@@ -130,22 +130,22 @@ class MetadataCollectionView extends React.Component {
     const sourceId = _.get(record, 'mdSource.id', '-');
     // get the one source and all its information (which has the source ID saved in the collection)
     const sourceElement = this.getSourceElement(sourceId, sourceData);
-    // get the name of the source
-    const sourceName = _.get(sourceElement, 'label', '-');
-    // get the status of the source for setting filter in url
-    const sourceStatus = _.get(sourceElement, 'status', '-');
-    // set the complete source link with name and status
-    const sourceLink = (
-      <React.Fragment>
-        <Link to={{
-          pathname: `/finc-config/metadata-sources/view/${sourceId}`,
-          search: `?filters=status.${sourceStatus}`
-        }}
-        >
-          {sourceName}
-        </Link>
-      </React.Fragment>
-    );
+    // // get the name of the source
+    // const sourceName = _.get(sourceElement, 'label', '-');
+    // // get the status of the source for setting filter in url
+    // const sourceStatus = _.get(sourceElement, 'status', '-');
+    // // set the complete source link with name and status
+    // const sourceLink = (
+    //   <React.Fragment>
+    //     <Link to={{
+    //       pathname: `/finc-config/metadata-sources/view/${sourceId}`,
+    //       search: `?filters=status.${sourceStatus}`
+    //     }}
+    //     >
+    //       {sourceName}
+    //     </Link>
+    //   </React.Fragment>
+    // );
 
     return (
       <React.Fragment>

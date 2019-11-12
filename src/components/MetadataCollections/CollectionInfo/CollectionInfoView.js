@@ -14,7 +14,7 @@ import urls from '../../DisplayUtils/urls';
 class CollectionInfoView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
-    metadataCollection: PropTypes.object.isRequired,
+    metadataCollection: PropTypes.object,
     sourceElement: PropTypes.object,
   };
 

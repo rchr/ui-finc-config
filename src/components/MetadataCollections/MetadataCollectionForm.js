@@ -148,9 +148,6 @@ class MetadataCollectionForm extends React.Component {
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
-    // const test = initialValues;
-    // console.log(test);
-
     return (
       <form id="form-collection">
         <Paneset style={{ position: 'relative' }}>
@@ -163,8 +160,8 @@ class MetadataCollectionForm extends React.Component {
             <Row end="xs">
               <Col xs>
                 <ExpandAllButton
-                  id="clickable-expand-all"
                   accordionStatus={sections}
+                  id="clickable-expand-all"
                   onToggle={this.handleExpandAll}
                 />
               </Col>
@@ -180,12 +177,10 @@ class MetadataCollectionForm extends React.Component {
             <CollectionManagementForm
               accordionId="editCollectionManagement"
               expanded={sections.editCollectionManagement}
-              onToggle={this.handleSectionToggle}
-              {...this.props}
-
               id="collectionManagement"
               metadataCollection={initialValues}
-              // stripes={this.props.stripes}
+              onToggle={this.handleSectionToggle}
+              {...this.props}
             />
             <CollectionTechnicalForm
               accordionId="editCollectionTechnical"

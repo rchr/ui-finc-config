@@ -14,7 +14,7 @@ import BasicCss from '../../BasicStyle.css';
 
 class CollectionManagementView extends React.Component {
   static propTypes = {
-    metadataCollection: PropTypes.object.isRequired
+    metadataCollection: PropTypes.object,
   };
 
   renderList = (values) => {
