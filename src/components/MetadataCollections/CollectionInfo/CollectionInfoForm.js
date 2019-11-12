@@ -51,13 +51,14 @@ class CollectionInfoForm extends React.Component {
     const sourceDataFormatted = this.formatSourceData(this.props.sourceData);
 
     if (!sourceDataFormatted || sourceDataFormatted.length === 0) return null;
+    // console.log(sourceDataFormatted);
 
     return (
       <Accordion
-        label={<FormattedMessage id="ui-finc-config.collection.generalAccordion" />}
-        open={expanded}
         id={accordionId}
+        label={<FormattedMessage id="ui-finc-config.collection.generalAccordion" />}
         onToggle={onToggle}
+        open={expanded}
       >
         <Row>
           <Col xs={4}>
@@ -93,14 +94,12 @@ class CollectionInfoForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
-              label="Source*"
-              placeholder="Select a source for the metadata collection"
-              name="mdSource"
-              id="addcollection_source"
-              // mdSource.name has to be visible in resultlist
-              // need an component for saving a object of mdSource with id and name
-              component={SelectSource}
               fullWidth
+              id="addcollection_source"
+              label="Source*"
+              name="mdSource"
+              component={SelectSource}
+              placeholder="Select a source for the metadata collection"
               validate={[Required]}
               dataOptions={sourceDataFormatted}
             />

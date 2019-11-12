@@ -4,8 +4,8 @@ import { Select } from '@folio/stripes/components';
 
 class SelectSource extends React.Component {
   static propTypes = {
-    input: PropTypes.object,
     dataOptions: PropTypes.arrayOf(PropTypes.object),
+    input: PropTypes.object,
   };
 
   render() {
@@ -20,6 +20,7 @@ class SelectSource extends React.Component {
         onBlur={event => input.onBlur(parse(event))}
         onChange={event => input.onChange(parse(event))}
         {...rest}
+        // inputValue={`{"id":"${input.value}","name":"${input.label}"}`}
       >
         {dataOptions.map(option => (
           <option

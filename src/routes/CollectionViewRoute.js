@@ -34,7 +34,7 @@ class CollectionViewRoute extends React.Component {
     }).isRequired,
     resources: PropTypes.shape({
       collection: PropTypes.object,
-      sources: PropTypes.arrayOf(PropTypes.object),
+      sources: PropTypes.object,
     }).isRequired,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func.isRequired,

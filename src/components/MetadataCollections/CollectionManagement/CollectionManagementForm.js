@@ -48,51 +48,51 @@ class CollectionManagementForm extends React.Component {
 
     return (
       <Accordion
-        label={<FormattedMessage id="ui-finc-config.collection.managementAccordion" />}
-        open={expanded}
         id={accordionId}
+        label={<FormattedMessage id="ui-finc-config.collection.managementAccordion" />}
         onToggle={onToggle}
+        open={expanded}
       >
         <Row>
           <Col xs={4}>
             <Field
+              component={Select}
+              dataOptions={dataOptionsMetadataAvailable}
+              fullWidth
+              id="addcollection_metadataAvailable"
               label={
                 <FormattedMessage id="ui-finc-config.collection.metadataAvailable">
                   {(msg) => msg}
                 </FormattedMessage>
               }
               name="metadataAvailable"
-              id="addcollection_metadataAvailable"
               placeholder="Select if metadata is available for the metadata collection"
-              component={Select}
-              dataOptions={dataOptionsMetadataAvailable}
-              fullWidth
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={Select}
+              dataOptions={dataOptionsUsageRestricted}
+              fullWidth
+              id="addcollection_usageRestricted"
               label={
                 <FormattedMessage id="ui-finc-config.collection.usageRestricted">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>
               }
               name="usageRestricted"
-              id="addcollection_usageRestricted"
               placeholder="Select if usage is restricted for the metadata collection"
-              component={Select}
-              dataOptions={dataOptionsUsageRestricted}
               validate={[Required]}
-              fullWidth
             />
           </Col>
         </Row>
         {/* PERMITTED FOR is repeatable */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.collection.permittedFor" />
           </Headline>
@@ -101,10 +101,10 @@ class CollectionManagementForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={RepeatableField}
+              id="display_permittedFor"
+              label="Displaypermittedfor"
               // add name to the array-field, which should be changed
               name="permittedFor"
-              label="Displaypermittedfor"
-              id="display_permittedFor"
               {...this.props}
             />
           </Col>
@@ -112,64 +112,64 @@ class CollectionManagementForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
+              component={Select}
+              dataOptions={dataOptionsFreeContent}
+              fullWidth
+              id="addcollection_freeContent"
               label={
                 <FormattedMessage id="ui-finc-config.collection.freeContent">
                   {(msg) => msg}
                 </FormattedMessage>
               }
               name="freeContent"
-              id="addcollection_freeContent"
               placeholder="Select if content is free for the metadata collection"
-              component={Select}
-              dataOptions={dataOptionsFreeContent}
-              fullWidth
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={Select}
+              dataOptions={dataOptionsLodPublication}
+              fullWidth
+              id="addcollection_lodpublication"
               label={
                 <FormattedMessage id="ui-finc-config.collection.lod.publication">
                   {(msg) => msg}
                 </FormattedMessage>
               }
               name="lod.publication"
-              id="addcollection_lodpublication"
               placeholder="Select the LOD publication for the metadata collection"
-              component={Select}
-              dataOptions={dataOptionsLodPublication}
-              fullWidth
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addcollection_lodnote"
               label={
                 <FormattedMessage id="ui-finc-config.collection.lod.note">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter a LOD note for the metadata collection"
               name="lod.note"
-              id="addcollection_lodnote"
-              component={TextField}
-              fullWidth
+              placeholder="Enter a LOD note for the metadata collection"
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addcollection_generalNotes"
               label={
                 <FormattedMessage id="ui-finc-config.collection.generalNotes">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter a general note for the metadata collection"
               name="generalNotes"
-              id="addcollection_generalNotes"
-              component={TextField}
-              fullWidth
+              placeholder="Enter a general note for the metadata collection"
             />
           </Col>
         </Row>

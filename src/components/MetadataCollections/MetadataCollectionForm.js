@@ -34,9 +34,7 @@ class MetadataCollectionForm extends React.Component {
     onDelete: PropTypes.func,
     onSubmit: PropTypes.func,
     pristine: PropTypes.bool,
-    sources: PropTypes.shape({
-      source: PropTypes.object,
-    }),
+    sources: PropTypes.arrayOf(PropTypes.object),
     submitting: PropTypes.bool,
   };
 
@@ -150,6 +148,9 @@ class MetadataCollectionForm extends React.Component {
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
+    // const test = initialValues;
+    // console.log(test);
+
     return (
       <form id="form-collection">
         <Paneset style={{ position: 'relative' }}>
@@ -159,8 +160,6 @@ class MetadataCollectionForm extends React.Component {
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
-            {/* add padding behind last Row; otherwise content is cutted of */}
-            {/* <div className="CollectionForm" style={{ paddingBottom: '100px' }}> */}
             <Row end="xs">
               <Col xs>
                 <ExpandAllButton
@@ -173,6 +172,7 @@ class MetadataCollectionForm extends React.Component {
             <CollectionInfoForm
               accordionId="editCollectionInfo"
               expanded={sections.editCollectionInfo}
+              // initialValues={initialValues}
               onToggle={this.handleSectionToggle}
               sourceData={this.props.sources}
               {...this.props}
@@ -201,7 +201,6 @@ class MetadataCollectionForm extends React.Component {
               onConfirm={onDelete}
               open={confirmDelete}
             />
-            {/* </div> */}
           </Pane>
         </Paneset>
       </form>

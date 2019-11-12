@@ -74,8 +74,8 @@ class CollectionTechnicalView extends React.Component {
           </Row>
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.collection.contentFiles" />
             </Headline>
@@ -85,8 +85,8 @@ class CollectionTechnicalView extends React.Component {
           </Row>
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.collection.solrMegaCollections" />
             </Headline>

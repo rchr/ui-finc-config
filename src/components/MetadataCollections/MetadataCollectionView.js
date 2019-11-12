@@ -32,9 +32,7 @@ class MetadataCollectionView extends React.Component {
     isLoading: PropTypes.bool,
     record: PropTypes.object,
     stripes: PropTypes.object,
-    sources: PropTypes.shape({
-      source: PropTypes.object,
-    }),
+    sources: PropTypes.object,
   };
 
   constructor(props) {

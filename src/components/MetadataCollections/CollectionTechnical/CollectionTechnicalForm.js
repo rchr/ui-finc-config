@@ -26,61 +26,61 @@ class CollectionTechnicalForm extends React.Component {
 
     return (
       <Accordion
-        label={<FormattedMessage id="ui-finc-config.collection.technicalAccordion" />}
-        open={expanded}
         id={accordionId}
+        label={<FormattedMessage id="ui-finc-config.collection.technicalAccordion" />}
         onToggle={onToggle}
+        open={expanded}
       >
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addcollection_collectionId"
               label={
                 <FormattedMessage id="ui-finc-config.collection.collectionId">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter collection ID for the metadata collection"
               name="collectionId"
-              id="addcollection_collectionId"
-              component={TextField}
-              fullWidth
+              placeholder="Enter collection ID for the metadata collection"
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addcollection_facetLabel"
               label={
                 <FormattedMessage id="ui-finc-config.collection.facetLabel">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter facet label for the metadata collection"
               name="facetLabel"
-              id="addcollection_facetLabel"
-              component={TextField}
-              fullWidth
+              placeholder="Enter facet label for the metadata collection"
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addcollection_productIsil"
               label={
                 <FormattedMessage id="ui-finc-config.collection.productIsil">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter product ISIL for the metadata collection"
               name="productIsil"
-              id="addcollection_productIsil"
-              component={TextField}
-              fullWidth
+              placeholder="Enter product ISIL for the metadata collection"
             />
           </Col>
         </Row>
         {/* TICKETS (is repeatable) ... */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.collection.tickets" />
           </Headline>
@@ -89,10 +89,10 @@ class CollectionTechnicalForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={RepeatableField}
+              id="display_tickets"
+              label="Displaytickets"
               // add name to the array-field, which should be changed
               name="tickets"
-              label="Displaytickets"
-              id="display_tickets"
               {...this.props}
             />
           </Col>
@@ -100,8 +100,8 @@ class CollectionTechnicalForm extends React.Component {
         {/* CONTENT FILES (is repeatable) ... */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.collection.contentFiles" />
           </Headline>
@@ -110,10 +110,10 @@ class CollectionTechnicalForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={RepeatableField}
+              id="display_contentFiles"
+              label="DisplaycontentFiles"
               // add name to the array-field, which should be changed
               name="contentFiles"
-              label="DisplaycontentFiles"
-              id="display_contentFiles"
               {...this.props}
             />
           </Col>
@@ -121,8 +121,8 @@ class CollectionTechnicalForm extends React.Component {
         {/* SOLR MEGA COLLECTION (is repeatable and required) ... */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
               {(msg) => msg + ' *'}
@@ -134,10 +134,10 @@ class CollectionTechnicalForm extends React.Component {
             <FieldArray
               // get component, which is rendering the validation-error
               component={RequiredRepeatableField}
+              id="display_solrMegaCollections"
+              label="DisplaysolrMegaCollections"
               // add name to the array-field, which should be changed
               name="solrMegaCollections"
-              label="DisplaysolrMegaCollections"
-              id="display_solrMegaCollections"
               validate={ArrayRequired}
               {...this.props}
             />
