@@ -28,29 +28,29 @@ class DisplayContact extends React.Component {
       <Row key={index}>
         <Col xs={4}>
           <Field
-            name={`${elem}.name`}
-            id={elem}
             component={TextField}
             fullWidth
+            id={elem}
+            name={`${elem}.name`}
             placeholder="Enter a name for the contact"
           />
         </Col>
         <Col xs={4}>
           <Field
-            name={`${elem}.role`}
-            id={elem}
             component={TextField}
             fullWidth
+            id={elem}
+            name={`${elem}.role`}
             placeholder="Enter a role for the contact"
           />
         </Col>
         <Col
-          xs={2}
           style={{ textAlign: 'right' }}
+          xs={2}
         >
           <Button
-            onClick={() => fields.remove(index)}
             buttonStyle="danger"
+            onClick={() => fields.remove(index)}
           >
             Remove
           </Button>
@@ -68,8 +68,8 @@ class DisplayContact extends React.Component {
           {fields.map(this.renderSubContact)}
         </Col>
         <Col
-          xs={12}
           style={{ paddingTop: '10px' }}
+          xs={12}
         >
           <Button onClick={() => fields.push('')}>+ Add Contact</Button>
         </Col>

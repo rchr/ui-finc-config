@@ -51,7 +51,6 @@ class CollectionInfoForm extends React.Component {
     const sourceDataFormatted = this.formatSourceData(this.props.sourceData);
 
     if (!sourceDataFormatted || sourceDataFormatted.length === 0) return null;
-    // console.log(sourceDataFormatted);
 
     return (
       <Accordion
@@ -94,14 +93,14 @@ class CollectionInfoForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
+              component={SelectSource}
+              dataOptions={sourceDataFormatted}
               fullWidth
               id="addcollection_source"
               label="Source*"
               name="mdSource"
-              component={SelectSource}
               placeholder="Select a source for the metadata collection"
               validate={[Required]}
-              dataOptions={sourceDataFormatted}
             />
           </Col>
         </Row>

@@ -15,7 +15,6 @@ import {
   Row,
 } from '@folio/stripes/components';
 import {
-  // AppIcon,
   IfPermission
 } from '@folio/stripes/core';
 

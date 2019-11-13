@@ -35,23 +35,23 @@ class IsilSettings extends React.Component {
       <IntlConsumer>
         {intl => (
           <this.connectedControlledVocab
-            {...this.props}
             baseUrl="finc-config/isils"
-            records="isils"
-            label={<FormattedMessage id="ui-finc-config.settings.isils.label" />}
-            labelSingular={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
-            objectLabel={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
-            visibleFields={['library', 'isil', 'tenant']}
             columnMapping={{
               library: intl.formatMessage({ id: 'ui-finc-config.settings.isils.library' }),
               isil: intl.formatMessage({ id: 'ui-finc-config.settings.isils.labelSingular' }),
               tenant: intl.formatMessage({ id: 'ui-finc-config.settings.isils.tenant' }),
             }}
             hiddenFields={['description', 'numberOfObjects']}
-            nameKey="name"
             id="isils"
+            label={<FormattedMessage id="ui-finc-config.settings.isils.label" />}
+            labelSingular={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
+            nameKey="name"
+            objectLabel={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
+            records="isils"
             sortby="name"
             validate={this.setRequiredValidation}
+            visibleFields={['library', 'isil', 'tenant']}
+            {...this.props}
           />
         )}
       </IntlConsumer>

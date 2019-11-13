@@ -8,18 +8,18 @@ import IsilSettings from './IsilSettings';
 export default class FincConfigSettings extends React.Component {
   pages = [
     {
-      route: 'isils',
-      label: <FormattedMessage id="ui-finc-config.settings.isils.label" />,
       component: IsilSettings,
+      label: <FormattedMessage id="ui-finc-config.settings.isils.label" />,
+      route: 'isils',
     }
   ];
 
   render() {
     return (
       <Settings
-        {...this.props}
         pages={this.pages}
         paneTitle="Finc Config"
+        {...this.props}
       />
     );
   }

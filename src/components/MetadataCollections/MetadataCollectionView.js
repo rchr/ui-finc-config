@@ -10,7 +10,6 @@ import {
   Icon,
   IconButton,
   Layout,
-  // Link,
   Pane,
   PaneMenu,
   Row
@@ -130,22 +129,6 @@ class MetadataCollectionView extends React.Component {
     const sourceId = _.get(record, 'mdSource.id', '-');
     // get the one source and all its information (which has the source ID saved in the collection)
     const sourceElement = this.getSourceElement(sourceId, sourceData);
-    // // get the name of the source
-    // const sourceName = _.get(sourceElement, 'label', '-');
-    // // get the status of the source for setting filter in url
-    // const sourceStatus = _.get(sourceElement, 'status', '-');
-    // // set the complete source link with name and status
-    // const sourceLink = (
-    //   <React.Fragment>
-    //     <Link to={{
-    //       pathname: `/finc-config/metadata-sources/view/${sourceId}`,
-    //       search: `?filters=status.${sourceStatus}`
-    //     }}
-    //     >
-    //       {sourceName}
-    //     </Link>
-    //   </React.Fragment>
-    // );
 
     return (
       <React.Fragment>
