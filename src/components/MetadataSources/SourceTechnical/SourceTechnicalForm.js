@@ -22,7 +22,7 @@ import BasicCss from '../../BasicStyle.css';
 
 class SourceTechnicalForm extends React.Component {
   render() {
-    const { expanded, onToggle, accordionId } = this.props;
+    const { accordionId, expanded, onToggle } = this.props;
     const dataOptionsSolrShard = [
       { value: 'UBL main', label: 'UBL main' },
       { value: 'UBL ai', label: 'UBL ai' },
@@ -32,31 +32,31 @@ class SourceTechnicalForm extends React.Component {
 
     return (
       <Accordion
-        label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
-        open={expanded}
         id={accordionId}
+        label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
         onToggle={onToggle}
+        open={expanded}
       >
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addsource_lastProcessed"
               label={
                 <FormattedMessage id="ui-finc-config.source.lastProcessed">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter date and time for the metadata source"
               name="lastProcessed"
-              id="addsource_lastProcessed"
-              component={TextField}
-              fullWidth
+              placeholder="Enter date and time for the metadata source"
             />
           </Col>
         </Row>
         {/* TICKETS (is repeatable) ... */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.source.tickets" />
           </Headline>
@@ -65,10 +65,10 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={RepeatableField}
+              id="display_tickets"
+              label="Displaytickets"
               // add name to the array-field, which should be changed
               name="tickets"
-              label="Displaytickets"
-              id="display_tickets"
               {...this.props}
             />
           </Col>
@@ -76,56 +76,56 @@ class SourceTechnicalForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addsource_accessUrl"
               label={
                 <FormattedMessage id="ui-finc-config.source.accessUrl">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter an access url for the metadata source"
               name="accessUrl"
-              id="addsource_accessUrl"
-              component={TextField}
-              fullWidth
+              placeholder="Enter an access url for the metadata source"
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addsource_sourceId"
               label={
                 <FormattedMessage id="ui-finc-config.source.id">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>}
-              placeholder="Enter a source id for the metadata source"
               name="sourceId"
-              id="addsource_sourceId"
-              component={TextField}
+              placeholder="Enter a source id for the metadata source"
               validate={[IntRequired]}
-              fullWidth
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={Select}
+              dataOptions={dataOptionsSolrShard}
+              fullWidth
+              id="addsource_solrShard"
               label={
                 <FormattedMessage id="ui-finc-config.source.solrShard">
                   {(msg) => msg}
                 </FormattedMessage>
               }
               name="solrShard"
-              id="addsource_solrShard"
               placeholder="Select a solr shard for the metadata source"
-              component={Select}
-              dataOptions={dataOptionsSolrShard}
-              fullWidth
             />
           </Col>
         </Row>
         {/* TODO: deliveryMethods (is repeatable; is value list ???) ... */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.source.deliveryMethods" />
           </Headline>
@@ -134,10 +134,10 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={RepeatableField}
+              id="display_delivery_methods"
+              label="Displaydeliverymethods"
               // add name to the array-field, which should be changed
               name="deliveryMethods"
-              label="Displaydeliverymethods"
-              id="display_delivery_methods"
               {...this.props}
             />
           </Col>
@@ -145,8 +145,8 @@ class SourceTechnicalForm extends React.Component {
         {/* formats (is repeatable) ... */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.source.formats" />
           </Headline>
@@ -155,10 +155,10 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={RepeatableField}
+              id="display_formats"
+              label="Displayformats"
               // add name to the array-field, which should be changed
               name="formats"
-              label="Displayformats"
-              id="display_formats"
               {...this.props}
             />
           </Col>
@@ -166,23 +166,23 @@ class SourceTechnicalForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addsource_updateRhythm"
               label={
                 <FormattedMessage id="ui-finc-config.source.updateRhythm">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter a update rhythm for the metadata source"
               name="updateRhythm"
-              id="addsource_updateRhythm"
-              component={TextField}
-              fullWidth
+              placeholder="Enter a update rhythm for the metadata source"
             />
           </Col>
         </Row>
         {/* inferiorTo (is repeatable) ... */}
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.source.inferiorTo" />
           </Headline>
@@ -191,10 +191,10 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={6}>
             <FieldArray
               component={RepeatableField}
+              id="display_inferior_to"
+              label="Displayinferiorto"
               // add name to the array-field, which should be changed
               name="inferiorTo"
-              label="Displayinferiorto"
-              id="display_inferior_to"
               {...this.props}
             />
           </Col>

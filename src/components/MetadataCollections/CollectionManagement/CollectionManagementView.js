@@ -14,15 +14,31 @@ import BasicCss from '../../BasicStyle.css';
 
 class CollectionManagementView extends React.Component {
   static propTypes = {
-    metadataCollection: PropTypes.object.isRequired
+    metadataCollection: PropTypes.object,
   };
+
+  renderList = (values) => {
+    const { metadataCollection } = this.props;
+
+    if (!metadataCollection) {
+      return 'no values';
+    } else {
+      const valueItems = metadataCollection[values];
+      const valueFormatter = (valueItem) => (<li key={valueItem}>{valueItem}</li>);
+      const isEmptyMessage = 'No items to show';
+
+      return (
+        <List
+          items={valueItems}
+          itemFormatter={valueFormatter}
+          isEmptyMessage={isEmptyMessage}
+        />
+      );
+    }
+  }
 
   render() {
     const { metadataCollection } = this.props;
-    const isEmptyMessage = 'No items to show';
-    // set values for permittedFor
-    const permittedForItems = metadataCollection.permittedFor;
-    const permittedForFormatter = (permittedForItem) => (<li key={permittedForItem}>{permittedForItem}</li>);
 
     return (
       <React.Fragment>
@@ -41,18 +57,14 @@ class CollectionManagementView extends React.Component {
           </Row>
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.collection.permittedFor" />
             </Headline>
           </Row>
           <Row>
-            <List
-              items={permittedForItems}
-              itemFormatter={permittedForFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderList('permittedFor') }
           </Row>
           <Row>
             <KeyValue

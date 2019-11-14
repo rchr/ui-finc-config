@@ -29,10 +29,10 @@ class RequiredRepeatableField extends React.Component {
       <Row key={index}>
         <Col xs={8}>
           <Field
-            name={elem}
-            id={elem}
             component={TextField}
             fullWidth
+            id={elem}
+            name={elem}
           />
         </Col>
         <Col

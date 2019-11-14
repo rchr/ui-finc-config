@@ -36,49 +36,49 @@ class SourceInfoForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addsource_label"
               label={
                 <FormattedMessage id="ui-finc-config.source.label">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>}
-              placeholder="Enter a name to identify the metadata source"
               name="label"
-              id="addsource_label"
-              component={TextField}
+              placeholder="Enter a name to identify the metadata source"
               validate={[Required]}
-              fullWidth
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={TextField}
+              fullWidth
+              id="addsource_description"
               label={
                 <FormattedMessage id="ui-finc-config.source.description">
                   {(msg) => msg}
                 </FormattedMessage>}
-              placeholder="Enter a description for the metadata source"
               name="description"
-              id="addsource_description"
-              component={TextField}
-              fullWidth
+              placeholder="Enter a description for the metadata source"
             />
           </Col>
         </Row>
         <Row>
           <Col xs={4}>
             <Field
+              component={Select}
+              dataOptions={dataOptionsStatus}
+              fullWidth
+              id="addsource_status"
               label={
                 <FormattedMessage id="ui-finc-config.source.status">
                   {(msg) => msg + ' *'}
                 </FormattedMessage>
               }
               name="status"
-              id="addsource_status"
               placeholder="Select a status for the metadata source"
-              component={Select}
-              dataOptions={dataOptionsStatus}
               validate={[Required]}
-              fullWidth
             />
           </Col>
         </Row>

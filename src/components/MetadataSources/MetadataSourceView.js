@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -10,57 +9,32 @@ import {
   ExpandAllButton,
   Icon,
   IconButton,
-  Layer,
+  Layout,
   Pane,
   PaneMenu,
-  Row
+  Row,
 } from '@folio/stripes/components';
 import {
-  IfPermission,
-  TitleManager
+  IfPermission
 } from '@folio/stripes/core';
 
-import MetadataSourceForm from './MetadataSourceForm';
 import SourceInfoView from './SourceInfo/SourceInfoView';
 import SourceManagementView from './SourceManagement/SourceManagementView';
 import SourceTechnicalView from './SourceTechnical/SourceTechnicalView';
 
 class MetadataSourceView extends React.Component {
   static propTypes = {
-    mutator: PropTypes.shape({
-      query: PropTypes.object.isRequired,
-    }),
-    parentMutator: PropTypes.shape().isRequired,
-    stripes: PropTypes
-      .shape({
-        connect: PropTypes.func.isRequired,
-        logger: PropTypes.shape({ log: PropTypes.func.isRequired }).isRequired,
-        hasPerm: PropTypes.func,
-      }).isRequired,
-    paneWidth: PropTypes.string,
-    resources: PropTypes.shape({
-      metadataSource: PropTypes.shape(),
-      query: PropTypes.object,
-    }),
-    match: ReactRouterPropTypes.match,
-    parentResources: PropTypes.shape(),
-    onClose: PropTypes.func,
-    onEdit: PropTypes.func,
-    editLink: PropTypes.string,
-    onCloseEdit: PropTypes.func,
+    handlers: PropTypes.shape({
+      onClose: PropTypes.func.isRequired,
+      onEdit: PropTypes.func,
+    }).isRequired,
+    isLoading: PropTypes.bool,
+    record: PropTypes.object,
+    stripes: PropTypes.object,
   };
-
-  static manifest = Object.freeze({
-    query: {},
-  });
 
   constructor(props) {
     super(props);
-
-    const logger = props.stripes.logger;
-
-    this.log = logger.log.bind(logger);
-    this.connectedMetadataSourceForm = this.props.stripes.connect(MetadataSourceForm);
 
     this.state = {
       accordions: {
@@ -68,14 +42,6 @@ class MetadataSourceView extends React.Component {
         technicalAccordion: false
       },
     };
-  }
-
-  getData = () => {
-    const { parentResources, match: { params: { id } } } = this.props;
-    const source = (parentResources.records || {}).records || [];
-
-    if (!source || source.length === 0 || !id) return null;
-    return source.find(u => u.id === id);
   }
 
   handleExpandAll = (obj) => {
@@ -97,73 +63,64 @@ class MetadataSourceView extends React.Component {
     });
   }
 
-  update = (source) => {
-    this.props.parentMutator.records.PUT(source).then(() => {
-      this.props.onCloseEdit();
-    });
+  renderEditPaneMenu = () => {
+    const { record, handlers } = this.props;
+
+    return (
+      <IfPermission perm="finc-config.metadata-sources.item.put">
+        <PaneMenu>
+          <IconButton
+            icon="edit"
+            id="clickable-edit-source"
+            onClick={handlers.onEdit}
+            style={{
+              visibility: !record
+                ? 'hidden'
+                : 'visible'
+            }}
+            title="Edit Metadata Source"
+          />
+        </PaneMenu>
+      </IfPermission>
+    );
   }
 
-  getSourceFormData = (source) => {
-    const sourceFormData = source ? _.cloneDeep(source) : source;
-
-    return sourceFormData;
-  }
-
-  deleteSource = (source) => {
-    const { parentMutator } = this.props;
-
-    parentMutator.records.DELETE({ id: source.id })
-      .then(() => {
-        parentMutator.query.update({
-          _path: '/finc-config/metadata-sources',
-          layer: null
-        });
-      });
+  renderLoadingPane = () => {
+    return (
+      <Pane
+        defaultWidth="40%"
+        dismissible
+        id="pane-sourcedetails"
+        onClose={this.props.handlers.onClose}
+        paneTitle={<span data-test-source-header-title>loading</span>}
+      >
+        <Layout className="marginTop1">
+          <Icon icon="spinner-ellipsis" width="10px" />
+        </Layout>
+      </Pane>
+    );
   }
 
   render() {
-    const { resources, stripes } = this.props;
-    const query = resources.query;
-    const initialValues = this.getData();
+    const { record, isLoading } = this.props;
+    const label = _.get(record, 'label', '-');
 
-    if (_.isEmpty(initialValues)) {
-      return <div style={{ paddingTop: '1rem' }}><Icon icon="spinner-ellipsis" width="100px" /></div>;
-    } else {
-      const sourceFormData = this.getSourceFormData(initialValues);
-      const detailMenu = (
-        <PaneMenu>
-          <IfPermission perm="finc-config.metadata-sources.item.put">
-            <IconButton
-              icon="edit"
-              id="clickable-edit-source"
-              style={{
-                visibility: !initialValues
-                  ? 'hidden'
-                  : 'visible'
-              }}
-              onClick={this.props.onEdit}
-              href={this.props.editLink}
-              title="Edit Metadata Source"
-            />
-          </IfPermission>
-        </PaneMenu>
-      );
+    if (isLoading) return this.renderLoadingPane();
 
-      const label = _.get(initialValues, 'label', '-');
-
-      return (
+    return (
+      <React.Fragment>
         <Pane
-          defaultWidth={this.props.paneWidth}
-          id="pane-sourcedetails"
-          paneTitle={<span data-test-source-header-title>{label}</span>}
-          lastMenu={detailMenu}
+          defaultWidth="40%"
           dismissible
-          onClose={this.props.onClose}
+          id="pane-sourcedetails"
+          lastMenu={this.renderEditPaneMenu()}
+          onClose={this.props.handlers.onClose}
+          paneTitle={<span data-test-source-header-title>{label}</span>}
         >
-          <TitleManager record={label} />
+          {/* <TitleManager record={label} /> */}
           <SourceInfoView
             id="sourceInfo"
-            metadataSource={initialValues}
+            metadataSource={record}
             stripes={this.props.stripes}
           />
           <Row end="xs">
@@ -175,49 +132,34 @@ class MetadataSourceView extends React.Component {
             </Col>
           </Row>
           <Accordion
-            open={this.state.accordions.managementAccordion}
-            onToggle={this.handleAccordionToggle}
-            label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
             id="managementAccordion"
+            label={<FormattedMessage id="ui-finc-config.source.managementAccordion" />}
+            onToggle={this.handleAccordionToggle}
+            open={this.state.accordions.managementAccordion}
           >
             <SourceManagementView
               id="sourceManagement"
-              metadataSource={initialValues}
+              metadataSource={record}
               stripes={this.props.stripes}
             />
           </Accordion>
           <Accordion
-            open={this.state.accordions.technicalAccordion}
-            onToggle={this.handleAccordionToggle}
-            label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
             id="technicalAccordion"
+            label={<FormattedMessage id="ui-finc-config.source.technicalAccordion" />}
+            onToggle={this.handleAccordionToggle}
+            open={this.state.accordions.technicalAccordion}
           >
             <SourceTechnicalView
               id="sourceTechnical"
-              metadataSource={initialValues}
+              metadataSource={record}
               stripes={this.props.stripes}
             />
           </Accordion>
-          <Layer
-            isOpen={query.layer ? query.layer === 'edit' : false}
-            contentLabel="Edit Metadata Source Dialog"
-          >
-            <this.connectedMetadataSourceForm
-              stripes={stripes}
-              initialValues={sourceFormData}
-              onSubmit={(record) => { this.update(record); }}
-              onCancel={this.props.onCloseEdit}
-              parentResources={{
-                ...this.props.resources,
-                ...this.props.parentResources,
-              }}
-              parentMutator={this.props.parentMutator}
-            />
-          </Layer>
         </Pane>
-      );
-    }
+      </React.Fragment>
+    );
   }
 }
+
 
 export default MetadataSourceView;

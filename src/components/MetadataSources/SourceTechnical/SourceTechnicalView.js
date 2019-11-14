@@ -14,29 +14,31 @@ import BasicCss from '../../BasicStyle.css';
 
 class SourceTechnicalView extends React.Component {
   static propTypes = {
-    metadataSource: PropTypes.object.isRequired,
-    stripes: PropTypes
-      .shape({
-        connect: PropTypes.func.isRequired,
-      })
-      .isRequired,
+    metadataSource: PropTypes.object,
   };
+
+  renderList = (values) => {
+    const { metadataSource } = this.props;
+
+    if (!metadataSource) {
+      return 'no values';
+    } else {
+      const valueItems = metadataSource[values];
+      const valueFormatter = (valueItem) => (<li key={valueItem}>{valueItem}</li>);
+      const isEmptyMessage = 'No items to show';
+
+      return (
+        <List
+          items={valueItems}
+          itemFormatter={valueFormatter}
+          isEmptyMessage={isEmptyMessage}
+        />
+      );
+    }
+  }
 
   render() {
     const { metadataSource } = this.props;
-    const isEmptyMessage = 'No items to show';
-    // set values for deliveryMethods
-    const deliveryMethodsItems = metadataSource.deliveryMethods;
-    const deliveryMethodsFormatter = (deliveryMethodsItem) => (<li key={deliveryMethodsItem}>{deliveryMethodsItem}</li>);
-    // set values for tickets
-    const ticketsItems = metadataSource.tickets;
-    const ticketsFormatter = (ticketsItem) => (<li key={ticketsItem}>{ticketsItem}</li>);
-    // set values for formats
-    const formatsItems = metadataSource.formats;
-    const formatsFormatter = (formatsItem) => (<li key={formatsItem}>{formatsItem}</li>);
-    // set values for inferiorTo
-    const inferiorToItems = metadataSource.inferiorTo;
-    const inferiorToFormatter = (inferiorToItem) => (<li key={inferiorToItem}>{inferiorToItem}</li>);
 
     return (
       <React.Fragment>
@@ -50,18 +52,14 @@ class SourceTechnicalView extends React.Component {
           {/* TICKET is repeatable */}
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.tickets" />
             </Headline>
           </Row>
           <Row>
-            <List
-              items={ticketsItems}
-              itemFormatter={ticketsFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderList('tickets') }
           </Row>
           <Row>
             <KeyValue
@@ -84,34 +82,26 @@ class SourceTechnicalView extends React.Component {
           {/* DELIVERYMETHODS is repeatable */}
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.deliveryMethods" />
             </Headline>
           </Row>
           <Row>
-            <List
-              items={deliveryMethodsItems}
-              itemFormatter={deliveryMethodsFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderList('deliveryMethods') }
           </Row>
           {/* FORMATS is repeatable */}
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.formats" />
             </Headline>
           </Row>
           <Row>
-            <List
-              items={formatsItems}
-              itemFormatter={formatsFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderList('formats') }
           </Row>
           <Row>
             <KeyValue
@@ -122,18 +112,14 @@ class SourceTechnicalView extends React.Component {
           {/* INFERIORTO is repeatable */}
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.inferiorTo" />
             </Headline>
           </Row>
           <Row>
-            <List
-              items={inferiorToItems}
-              itemFormatter={inferiorToFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderList('inferiorTo') }
           </Row>
         </div>
       </React.Fragment>

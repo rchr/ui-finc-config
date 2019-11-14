@@ -66,8 +66,8 @@ class FindOrganization extends React.Component {
 
     return (
       <div
-        name="organizationName"
         className={`${css.section} ${css.active}`}
+        name="organizationName"
       >
         <div>{name}</div>
       </div>);
@@ -80,15 +80,12 @@ class FindOrganization extends React.Component {
     const pluggable =
       <Pluggable
         aria-haspopup="true"
-        type="find-organization"
-        id="clickable-find-organization"
         buttonProps={buttonProps}
-        {...this.props}
-        searchLabel="Organization look-up"
-        marginTop0
-        searchButtonStyle="default"
+        columnMapping={this.columnMapping}
         dataKey="vendor"
-        selectVendor={this.selectVendor}
+        disableRecordCreation={disableRecordCreation}
+        id="clickable-find-organization"
+        marginTop0
         onCloseModal={(modalProps) => {
           modalProps.parentMutator.query.update({
             query: '',
@@ -96,9 +93,12 @@ class FindOrganization extends React.Component {
             sort: 'Name',
           });
         }}
+        searchButtonStyle="default"
+        searchLabel="Organization look-up"
+        selectVendor={this.selectVendor}
+        type="find-organization"
         visibleColumns={['name', 'code', 'description']}
-        columnMapping={this.columnMapping}
-        disableRecordCreation={disableRecordCreation}
+        {...this.props}
       >
         <div style={{ background: 'red' }}>Plugin not found</div>
       </Pluggable>;
@@ -107,8 +107,8 @@ class FindOrganization extends React.Component {
       <React.Fragment>
         <Row>
           <Headline
-            size="medium"
             className={BasicCss.styleForHeadline}
+            size="medium"
           >
             <FormattedMessage id="ui-finc-config.source.organization" />
           </Headline>
@@ -127,10 +127,10 @@ class FindOrganization extends React.Component {
 }
 
 FindOrganization.propTypes = {
-  stripes: PropTypes.object,
+  change: PropTypes.func,
   intialVendorId: PropTypes.string,
   intialVendor: PropTypes.object,
-  change: PropTypes.func,
+  stripes: PropTypes.object,
 };
 
 export default FindOrganization;

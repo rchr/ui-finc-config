@@ -14,21 +14,31 @@ import BasicCss from '../../BasicStyle.css';
 
 class CollectionTechnicalView extends React.Component {
   static propTypes = {
-    metadataCollection: PropTypes.object.isRequired
+    metadataCollection: PropTypes.object,
   };
+
+  renderList = (values) => {
+    const { metadataCollection } = this.props;
+
+    if (!metadataCollection) {
+      return 'no values';
+    } else {
+      const valueItems = metadataCollection[values];
+      const valueFormatter = (valueItem) => (<li key={valueItem}>{valueItem}</li>);
+      const isEmptyMessage = 'No items to show';
+
+      return (
+        <List
+          items={valueItems}
+          itemFormatter={valueFormatter}
+          isEmptyMessage={isEmptyMessage}
+        />
+      );
+    }
+  }
 
   render() {
     const { metadataCollection } = this.props;
-    const isEmptyMessage = 'No items to show';
-    // set values for tickets
-    const ticketsItems = metadataCollection.tickets;
-    const ticketsFormatter = (ticketsItem) => (<li key={ticketsItem}>{ticketsItem}</li>);
-    // set values for contentFiles
-    const contentFilesItems = metadataCollection.contentFiles;
-    const contentFilesFormatter = (contentFilesItem) => (<li key={contentFilesItem}>{contentFilesItem}</li>);
-    // set values for solrMegaCollections
-    const solrMegaCollectionsItems = metadataCollection.solrMegaCollections;
-    const solrMegaCollectionsFormatter = (solrMegaCollectionsItem) => (<li key={solrMegaCollectionsItem}>{solrMegaCollectionsItem}</li>);
 
     return (
       <React.Fragment>
@@ -53,48 +63,36 @@ class CollectionTechnicalView extends React.Component {
           </Row>
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.collection.tickets" />
             </Headline>
           </Row>
           <Row>
-            <List
-              items={ticketsItems}
-              itemFormatter={ticketsFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderList('tickets') }
           </Row>
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.collection.contentFiles" />
             </Headline>
           </Row>
           <Row>
-            <List
-              items={contentFilesItems}
-              itemFormatter={contentFilesFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderList('contentFiles') }
           </Row>
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.collection.solrMegaCollections" />
             </Headline>
           </Row>
           <Row>
-            <List
-              items={solrMegaCollectionsItems}
-              itemFormatter={solrMegaCollectionsFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderList('solrMegaCollections') }
           </Row>
         </div>
       </React.Fragment>

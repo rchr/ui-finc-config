@@ -17,20 +17,51 @@ import css from './SourceManagement.css';
 
 class SourceManagementView extends React.Component {
   static propTypes = {
-    metadataSource: PropTypes.object.isRequired,
-    stripes: PropTypes
-      .shape({
-        connect: PropTypes.func.isRequired,
-      })
-      .isRequired,
+    metadataSource: PropTypes.object,
   };
+
+  renderContacts = (type) => {
+    const { metadataSource } = this.props;
+
+    if (!metadataSource) {
+      return 'no values';
+    } else {
+      return (
+        <MultiColumnList
+          columnMapping={{
+            name: <FormattedMessage id="ui-finc-config.contact.name" />,
+            role: <FormattedMessage id="ui-finc-config.contact.role" />
+          }}
+          contentData={_.get(metadataSource.contacts, type, [])}
+          isEmptyMessage={`no ${type} contact`}
+          visibleColumns={['name', 'role']}
+        />
+      );
+    }
+  }
+
+  renderContracts = () => {
+    const { metadataSource } = this.props;
+
+    if (!metadataSource) {
+      return 'no values';
+    } else {
+      const contractsItems = metadataSource.contracts;
+      const contractsFormatter = (contractsItem) => (<li key={contractsItem}>{contractsItem}</li>);
+      const isEmptyMessage = 'No items to show';
+
+      return (
+        <List
+          items={contractsItems}
+          itemFormatter={contractsFormatter}
+          isEmptyMessage={isEmptyMessage}
+        />
+      );
+    }
+  }
 
   render() {
     const { metadataSource } = this.props;
-    // set values for contracts
-    const contractsItems = metadataSource.contracts;
-    const contractsFormatter = (contractsItem) => (<li key={contractsItem}>{contractsItem}</li>);
-    const isEmptyMessage = 'No items to show';
 
     return (
       <React.Fragment>
@@ -44,37 +75,21 @@ class SourceManagementView extends React.Component {
           <Row className={css.addMarginForContacts}>
             <Col xs={6}>
               <Headline
-                size="medium"
                 className={BasicCss.styleForHeadline}
+                size="medium"
               >
                 <FormattedMessage id="ui-finc-config.source.contacts.internal" />
               </Headline>
-              <MultiColumnList
-                contentData={_.get(metadataSource.contacts, 'internal', [])}
-                isEmptyMessage="no internal contact"
-                visibleColumns={['name', 'role']}
-                columnMapping={{
-                  name: <FormattedMessage id="ui-finc-config.contact.name" />,
-                  role: <FormattedMessage id="ui-finc-config.contact.role" />
-                }}
-              />
+              { this.renderContacts('internal') }
             </Col>
             <Col xs={6}>
               <Headline
-                size="medium"
                 className={BasicCss.styleForHeadline}
+                size="medium"
               >
                 <FormattedMessage id="ui-finc-config.source.contacts.external" />
               </Headline>
-              <MultiColumnList
-                contentData={_.get(metadataSource.contacts, 'external', [])}
-                isEmptyMessage="no external contact"
-                visibleColumns={['name', 'role']}
-                columnMapping={{
-                  name: <FormattedMessage id="ui-finc-config.contact.name" />,
-                  role: <FormattedMessage id="ui-finc-config.contact.role" />
-                }}
-              />
+              { this.renderContacts('external') }
             </Col>
           </Row>
           <Row>
@@ -85,18 +100,14 @@ class SourceManagementView extends React.Component {
           </Row>
           <Row>
             <Headline
-              size="medium"
               className={BasicCss.styleForHeadline}
+              size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.contracts" />
             </Headline>
           </Row>
           <Row>
-            <List
-              items={contractsItems}
-              itemFormatter={contractsFormatter}
-              isEmptyMessage={isEmptyMessage}
-            />
+            { this.renderContracts() }
           </Row>
           <Row>
             <KeyValue

@@ -8,6 +8,7 @@ import {
   Col,
   ConfirmationModal,
   ExpandAllButton,
+  Icon,
   IconButton,
   Pane,
   PaneMenu,
@@ -23,17 +24,22 @@ import SourceTechnicalForm from './SourceTechnical/SourceTechnicalForm';
 
 class MetadataSourceForm extends React.Component {
   static propTypes = {
+    handlers: PropTypes.PropTypes.shape({
+      onClose: PropTypes.func.isRequired,
+    }),
     handleSubmit: PropTypes.func.isRequired,
-    parentResources: PropTypes.shape().isRequired,
-    parentMutator: PropTypes.object.isRequired,
-    stripes: PropTypes.shape({
-      connect: PropTypes.func,
-    }).isRequired,
+    initialValues: PropTypes.object,
+    isLoading: PropTypes.bool,
     onCancel: PropTypes.func,
+    onDelete: PropTypes.func,
+    onSubmit: PropTypes.func,
     pristine: PropTypes.bool,
     submitting: PropTypes.bool,
-    initialValues: PropTypes.object,
   };
+
+  static defaultProps = {
+    initialValues: {},
+  }
 
   constructor(props) {
     super(props);
@@ -57,36 +63,21 @@ class MetadataSourceForm extends React.Component {
   }
 
   confirmDelete = (confirmation) => {
-    if (confirmation) {
-      this.deleteSource();
-    } else {
+    if (!confirmation) {
       this.setState({ confirmDelete: false });
     }
   }
 
-  deleteSource = () => {
-    const { parentMutator, initialValues: { id } } = this.props;
-
-    parentMutator.records.DELETE({ id }).then(() => {
-      parentMutator.query.update({
-        _path: 'finc-config/metadata-sources',
-        layer: null
-      });
-    });
-  }
-
   getAddFirstMenu() {
-    const { onCancel } = this.props;
-
     return (
       <PaneMenu>
         <FormattedMessage id="ui-finc-config.source.form.close">
           { ariaLabel => (
             <IconButton
-              id="clickable-closesourcedialog"
-              onClick={onCancel}
               ariaLabel={ariaLabel}
               icon="times"
+              id="clickable-closesourcedialog"
+              onClick={this.props.handlers.onClose}
             />
           )}
         </FormattedMessage>
@@ -95,7 +86,7 @@ class MetadataSourceForm extends React.Component {
   }
 
   getLastMenu(id, label) {
-    const { pristine, submitting, initialValues } = this.props;
+    const { pristine, submitting, initialValues, handleSubmit } = this.props;
     const { confirmDelete } = this.state;
     const isEditing = initialValues && initialValues.id;
 
@@ -105,24 +96,25 @@ class MetadataSourceForm extends React.Component {
         {isEditing &&
           <IfPermission perm="finc-config.metadata-sources.item.delete">
             <Button
-              id="clickable-delete-udp"
-              title="delete"
               buttonStyle="danger"
-              onClick={this.beginDelete}
               disabled={confirmDelete}
+              id="clickable-delete-udp"
               marginBottom0
+              onClick={this.beginDelete}
+              title="delete"
             >
               <FormattedMessage id="ui-finc-config.source.form.deleteSource" />
             </Button>
           </IfPermission>
         }
         <Button
-          id={id}
-          type="submit"
-          title={label}
-          disabled={pristine || submitting}
           buttonStyle="primary paneHeaderNewButton"
+          disabled={pristine || submitting}
+          id={id}
           marginBottom0
+          onClick={handleSubmit}
+          title={label}
+          type="submit"
         >
           {label}
         </Button>
@@ -132,12 +124,6 @@ class MetadataSourceForm extends React.Component {
 
   handleExpandAll(sections) {
     this.setState({ sections });
-  }
-
-  handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-    }
   }
 
   handleSectionToggle = ({ id }) => {
@@ -150,15 +136,17 @@ class MetadataSourceForm extends React.Component {
   }
 
   render() {
-    const { initialValues, handleSubmit } = this.props;
+    const { initialValues, isLoading, onDelete } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.source.form.createSource" />;
     const lastMenu = initialValues.id ?
       this.getLastMenu('clickable-createnewsource', <FormattedMessage id="ui-finc-config.source.form.updateSource" />) :
       this.getLastMenu('clickable-createnewsource', <FormattedMessage id="ui-finc-config.source.form.createSource" />);
 
+    if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
+
     return (
-      <form id="form-source" onSubmit={handleSubmit}>
+      <form id="form-source">
         <Paneset style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
@@ -166,48 +154,43 @@ class MetadataSourceForm extends React.Component {
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
-            {/* add padding behind last Row; otherwise content is cutted of */}
-            <div className="SourceForm" style={{ paddingBottom: '100px' }}>
-              <Row end="xs">
-                <Col xs>
-                  <ExpandAllButton
-                    id="clickable-expand-all"
-                    accordionStatus={sections}
-                    onToggle={this.handleExpandAll}
-                  />
-                </Col>
-              </Row>
-              <SourceInfoForm
-                accordionId="editSourceInfo"
-                expanded={sections.editSourceInfo}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <SourceManagementForm
-                accordionId="editSourceManagement"
-                expanded={sections.editSourceManagement}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-
-                id="sourceManagement"
-                metadataSource={initialValues}
-                stripes={this.props.stripes}
-              />
-              <SourceTechnicalForm
-                accordionId="editSourceTechnical"
-                expanded={sections.editSourceTechnical}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <ConfirmationModal
-                id="delete-source-confirmation"
-                heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
-                message={`Do you really want to delete ${initialValues.label}?`}
-                open={confirmDelete}
-                onConfirm={() => { this.confirmDelete(true); }}
-                onCancel={() => { this.confirmDelete(false); }}
-              />
-            </div>
+            <Row end="xs">
+              <Col xs>
+                <ExpandAllButton
+                  accordionStatus={sections}
+                  id="clickable-expand-all"
+                  onToggle={this.handleExpandAll}
+                />
+              </Col>
+            </Row>
+            <SourceInfoForm
+              accordionId="editSourceInfo"
+              expanded={sections.editSourceInfo}
+              onToggle={this.handleSectionToggle}
+              {...this.props}
+            />
+            <SourceManagementForm
+              accordionId="editSourceManagement"
+              expanded={sections.editSourceManagement}
+              id="sourceManagement"
+              metadataSource={initialValues}
+              onToggle={this.handleSectionToggle}
+              {...this.props}
+            />
+            <SourceTechnicalForm
+              accordionId="editSourceTechnical"
+              expanded={sections.editSourceTechnical}
+              onToggle={this.handleSectionToggle}
+              {...this.props}
+            />
+            <ConfirmationModal
+              heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
+              id="delete-source-confirmation"
+              message={`Do you really want to delete ${initialValues.label}?`}
+              onCancel={() => { this.confirmDelete(false); }}
+              onConfirm={onDelete}
+              open={confirmDelete}
+            />
           </Pane>
         </Paneset>
       </form>
@@ -216,9 +199,9 @@ class MetadataSourceForm extends React.Component {
 }
 
 export default stripesForm({
+  // the form will reinitialize every time the initialValues prop changes
+  enableReinitialize: true,
   form: 'form-metadataSource',
   // set navigationCheck true for confirming changes
   navigationCheck: true,
-  // the form will reinitialize every time the initialValues prop changes
-  enableReinitialize: true,
 })(MetadataSourceForm);
