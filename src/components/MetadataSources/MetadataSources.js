@@ -188,129 +188,131 @@ class MetadataSources extends React.Component {
     const count = source ? source.totalCount() : 0;
 
     return (
-      <SearchAndSortQuery
-        initialFilterState={{ status: ['active', 'technical implementation'] }}
-        initialSearchState={{ query: '' }}
-        initialSortState={{ sort: 'label' }}
-        queryGetter={queryGetter}
-        querySetter={querySetter}
-      >
-        {
-          ({
-            activeFilters,
-            filterChanged,
-            getFilterHandlers,
-            getSearchHandlers,
-            onSort,
-            onSubmitSearch,
-            resetAll,
-            searchChanged,
-            searchValue,
-          }) => {
-            const disableReset = () => (!filterChanged && !searchChanged);
+      <div data-test-source-instances>
+        <SearchAndSortQuery
+          initialFilterState={{ status: ['active', 'technical implementation'] }}
+          initialSearchState={{ query: '' }}
+          initialSortState={{ sort: 'label' }}
+          queryGetter={queryGetter}
+          querySetter={querySetter}
+        >
+          {
+            ({
+              activeFilters,
+              filterChanged,
+              getFilterHandlers,
+              getSearchHandlers,
+              onSort,
+              onSubmitSearch,
+              resetAll,
+              searchChanged,
+              searchValue,
+            }) => {
+              const disableReset = () => (!filterChanged && !searchChanged);
 
-            return (
-              <Paneset>
-                {this.state.filterPaneIsVisible &&
-                  <Pane
-                    defaultWidth="18%"
-                    onClose={this.toggleFilterPane}
-                    paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
-                  >
-                    <form onSubmit={onSubmitSearch}>
-                      <ButtonGroup tagName="nav" fullWidth>
+              return (
+                <Paneset>
+                  {this.state.filterPaneIsVisible &&
+                    <Pane
+                      defaultWidth="18%"
+                      onClose={this.toggleFilterPane}
+                      paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
+                    >
+                      <form onSubmit={onSubmitSearch}>
+                        <ButtonGroup tagName="nav" fullWidth>
+                          <Button
+                            buttonStyle="primary"
+                            id="metadata-sources"
+                          >
+                            Sources
+                          </Button>
+                          <Button
+                            buttonStyle="default"
+                            id="metadata-collections"
+                            to={urls.collections()}
+                          >
+                            Collections
+                          </Button>
+                        </ButtonGroup>
+                        <div>
+                          <SearchField
+                            autoFocus
+                            inputRef={this.searchField}
+                            name="query"
+                            onChange={getSearchHandlers().query}
+                            onClear={getSearchHandlers().reset}
+                            value={searchValue.query}
+                            // add values for search-selectbox
+                            onChangeIndex={onChangeIndex}
+                            searchableIndexes={searchableIndexes}
+                            searchableIndexesPlaceholder={null}
+                            selectedIndex={_.get(this.props.contentData, 'qindex')}
+                          />
+                          <Button
+                            buttonStyle="primary"
+                            disabled={!searchValue.query || searchValue.query === ''}
+                            fullWidth
+                            type="submit"
+                          >
+                            <FormattedMessage id="stripes-smart-components.search" />
+                          </Button>
+                        </div>
                         <Button
-                          buttonStyle="primary"
-                          id="metadata-sources"
+                          buttonStyle="none"
+                          disabled={disableReset()}
+                          id="clickable-reset-all"
+                          onClick={resetAll}
                         >
-                          Sources
+                          <Icon icon="times-circle-solid">
+                            <FormattedMessage id="stripes-smart-components.resetAll" />
+                          </Icon>
                         </Button>
-                        <Button
-                          buttonStyle="default"
-                          id="metadata-collections"
-                          to={urls.collections()}
-                        >
-                          Collections
-                        </Button>
-                      </ButtonGroup>
-                      <div>
-                        <SearchField
-                          autoFocus
-                          inputRef={this.searchField}
-                          name="query"
-                          onChange={getSearchHandlers().query}
-                          onClear={getSearchHandlers().reset}
-                          value={searchValue.query}
-                          // add values for search-selectbox
-                          onChangeIndex={onChangeIndex}
-                          searchableIndexes={searchableIndexes}
-                          searchableIndexesPlaceholder={null}
-                          selectedIndex={_.get(this.props.contentData, 'qindex')}
+                        <SourceFilters
+                          activeFilters={activeFilters.state}
+                          filterHandlers={getFilterHandlers()}
                         />
-                        <Button
-                          buttonStyle="primary"
-                          disabled={!searchValue.query || searchValue.query === ''}
-                          fullWidth
-                          type="submit"
-                        >
-                          <FormattedMessage id="stripes-smart-components.search" />
-                        </Button>
-                      </div>
-                      <Button
-                        buttonStyle="none"
-                        disabled={disableReset()}
-                        id="clickable-reset-all"
-                        onClick={resetAll}
-                      >
-                        <Icon icon="times-circle-solid">
-                          <FormattedMessage id="stripes-smart-components.resetAll" />
-                        </Icon>
-                      </Button>
-                      <SourceFilters
-                        activeFilters={activeFilters.state}
-                        filterHandlers={getFilterHandlers()}
-                      />
-                    </form>
+                      </form>
+                    </Pane>
+                  }
+                  <Pane
+                    appIcon={<AppIcon app="finc-config" />}
+                    defaultWidth="fill"
+                    firstMenu={this.renderResultsFirstMenu(activeFilters)}
+                    lastMenu={this.renderResultsLastMenu()}
+                    padContent={false}
+                    paneTitle="Finc Config"
+                    paneSub={this.renderResultsPaneSubtitle(source)}
+                  >
+                    <MultiColumnList
+                      autosize
+                      columnMapping={{
+                        label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
+                        sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
+                        status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
+                        solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
+                        lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
+                      }}
+                      contentData={this.props.contentData}
+                      formatter={this.resultsFormatter}
+                      id="list-sources"
+                      isEmptyMessage="no results"
+                      isSelected={({ item }) => item.id === selectedRecordId}
+                      onHeaderClick={onSort}
+                      onRowClick={onSelectRow}
+                      rowFormatter={this.rowFormatter}
+                      // selectedRow={this.state.selectedItem}
+                      totalCount={count}
+                      virtualize
+                      visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
+                    />
                   </Pane>
-                }
-                <Pane
-                  appIcon={<AppIcon app="finc-config" />}
-                  defaultWidth="fill"
-                  firstMenu={this.renderResultsFirstMenu(activeFilters)}
-                  lastMenu={this.renderResultsLastMenu()}
-                  padContent={false}
-                  paneTitle="Finc Config"
-                  paneSub={this.renderResultsPaneSubtitle(source)}
-                >
-                  <MultiColumnList
-                    autosize
-                    columnMapping={{
-                      label: intl.formatMessage({ id: 'ui-finc-config.source.label' }),
-                      sourceId: intl.formatMessage({ id: 'ui-finc-config.source.id' }),
-                      status: intl.formatMessage({ id: 'ui-finc-config.source.status' }),
-                      solrShard: intl.formatMessage({ id: 'ui-finc-config.source.solrShard' }),
-                      lastProcessed: intl.formatMessage({ id: 'ui-finc-config.source.lastProcessed' }),
-                    }}
-                    contentData={this.props.contentData}
-                    formatter={this.resultsFormatter}
-                    id="list-sources"
-                    isEmptyMessage="no results"
-                    isSelected={({ item }) => item.id === selectedRecordId}
-                    onHeaderClick={onSort}
-                    onRowClick={onSelectRow}
-                    rowFormatter={this.rowFormatter}
-                    // selectedRow={this.state.selectedItem}
-                    totalCount={count}
-                    virtualize
-                    visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
-                  />
-                </Pane>
-                {this.props.children}
-              </Paneset>
-            );
+                  {this.props.children}
+                </Paneset>
+              );
+            }
           }
-        }
-      </SearchAndSortQuery>
+        </SearchAndSortQuery>
+      </div>
     );
   }
 }

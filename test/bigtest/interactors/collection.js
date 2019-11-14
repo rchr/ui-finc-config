@@ -9,7 +9,7 @@ export default @interactor class CollectionInteractor {
   static defaultScope = '[data-test-collection-instances]';
   clickMetadataAvailableCOLLECTIONsCheckbox = clickable('#clickable-filter-metadata-available-yes');
 
-  instances = collection('[role=row] a');
+  instances = collection('[role=group] div a');
 
   instance = scoped('#pane-collectiondetails');
 }
