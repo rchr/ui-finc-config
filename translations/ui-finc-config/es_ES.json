@@ -16,7 +16,7 @@
     "collection.form.updateCollection": "Actualizar colección",
     "collection.label": "Nombre de la colección",
     "collection.metadataAvailable": "Metadatos disponibles?",
-    "collection.usageRestricted": "Usage restricted?",
+    "collection.usageRestricted": "Usage restricted",
     "collection.permittedFor": "Permitted for",
     "collection.freeContent": "Contenido Gratuito?",
     "collection.generalAccordion": "Metadata collection general",
