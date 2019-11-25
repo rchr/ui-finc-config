@@ -8,10 +8,10 @@ import {
   Accordion,
   Col,
   Row,
-  TextField
+  TextField,
+  Select,
 } from '@folio/stripes/components';
 
-import SelectSource from './SelectSource';
 import { Required } from '../../DisplayUtils/Validate';
 
 class CollectionInfoForm extends React.Component {
@@ -93,12 +93,12 @@ class CollectionInfoForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
-              component={SelectSource}
+              component={Select}
               dataOptions={sourceDataFormatted}
               fullWidth
               id="addcollection_source"
               label="Source*"
-              name="mdSource"
+              name="mdSource.id"
               placeholder="Select a source for the metadata collection"
               validate={[Required]}
             />

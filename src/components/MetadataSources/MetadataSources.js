@@ -163,7 +163,7 @@ class MetadataSources extends React.Component {
     }
 
     return (
-      <IfPermission perm="ui-licenses.licenses.edit">
+      <IfPermission perm="finc-config.metadata-sources.edit">
         <PaneMenu>
           <FormattedMessage id="ui-finc-config.source.form.createSource">
             {ariaLabel => (
