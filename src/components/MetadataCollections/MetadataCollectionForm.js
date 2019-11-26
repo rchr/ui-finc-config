@@ -101,7 +101,7 @@ class MetadataCollectionForm extends React.Component {
             <Button
               buttonStyle="danger"
               disabled={confirmDelete}
-              id="clickable-delete-udp"
+              id="clickable-delete-collection"
               marginBottom0
               onClick={this.beginDelete}
               title="delete"
@@ -149,7 +149,7 @@ class MetadataCollectionForm extends React.Component {
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
     return (
-      <form id="form-collection">
+      <form id="form-collection" data-test-collection-form-page>
         <Paneset style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
