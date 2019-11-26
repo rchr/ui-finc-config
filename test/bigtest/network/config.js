@@ -84,6 +84,9 @@ export default function config() {
 
 
   // return a model, which will pass through the serializer:
+  this.get('/finc-config/isils', ({ isils }) => {
+    return isils.all();
+  });
   this.get('/finc-config/metadata-sources', ({ fincConfigMetadataSources }) => {
     return fincConfigMetadataSources.all();
   });

@@ -41,6 +41,7 @@ class IsilSettings extends React.Component {
               isil: intl.formatMessage({ id: 'ui-finc-config.settings.isils.labelSingular' }),
               tenant: intl.formatMessage({ id: 'ui-finc-config.settings.isils.tenant' }),
             }}
+            data-test-settings-finc-config-isils
             hiddenFields={['description', 'numberOfObjects']}
             id="isils"
             label={<FormattedMessage id="ui-finc-config.settings.isils.label" />}

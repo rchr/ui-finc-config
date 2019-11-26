@@ -17,8 +17,9 @@ export default class FincConfigSettings extends React.Component {
   render() {
     return (
       <Settings
+        data-test-settings-finc-config
         pages={this.pages}
-        paneTitle="Finc Config"
+        paneTitle="Finc config"
         {...this.props}
       />
     );
