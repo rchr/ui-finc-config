@@ -98,7 +98,7 @@ class MetadataSourceForm extends React.Component {
             <Button
               buttonStyle="danger"
               disabled={confirmDelete}
-              id="clickable-delete-udp"
+              id="clickable-delete-source"
               marginBottom0
               onClick={this.beginDelete}
               title="delete"
@@ -146,7 +146,7 @@ class MetadataSourceForm extends React.Component {
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
     return (
-      <form id="form-source">
+      <form id="form-source" data-test-source-form-page>
         <Paneset style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
