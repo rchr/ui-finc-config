@@ -4,14 +4,17 @@ import { expect } from 'chai';
 import setupApplication from '../helpers/setup-application';
 import SourceInteractor from '../interactors/source';
 
+const SOURCE_COUNT = 25;
+
 describe('Metadata Source', () => {
   setupApplication();
 
   const sourceInteractor = new SourceInteractor();
 
   beforeEach(async function () {
-    this.server.createList('finc-config-metadata-source', 25);
-    await this.visit('/finc-config/metadata-sources?filters=status.Active');
+    this.server.createList('finc-config-metadata-source', SOURCE_COUNT);
+    this.visit('/finc-config/metadata-sources?filters=status.Active');
+    await sourceInteractor.whenLoaded();
 
     // click checkbox not working always
     // await sourceInteractor.clickActiveSOURCEsCheckbox();
@@ -22,7 +25,7 @@ describe('Metadata Source', () => {
   });
 
   it('renders each source-instance', () => {
-    expect(sourceInteractor.instances().length).to.be.gte(5);
+    expect(sourceInteractor.instances().length).to.be.equal(SOURCE_COUNT);
   });
 
   describe('clicking on the first source', function () {

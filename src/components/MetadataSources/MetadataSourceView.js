@@ -110,6 +110,7 @@ class MetadataSourceView extends React.Component {
     return (
       <React.Fragment>
         <Pane
+          data-test-source-pane-details
           defaultWidth="40%"
           dismissible
           id="pane-sourcedetails"
