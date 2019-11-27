@@ -14,7 +14,6 @@ import {
 } from '@folio/stripes/smart-components';
 import {
   Button,
-  ButtonGroup,
   Icon,
   MultiColumnList,
   Pane,
@@ -29,6 +28,7 @@ import {
 
 import urls from '../DisplayUtils/urls';
 import CollectionFilters from './CollectionFilters';
+import FincNavigation from '../Navigation/FincNavigation';
 
 class MetadataCollections extends React.Component {
   static propTypes = {
@@ -186,6 +186,12 @@ class MetadataCollections extends React.Component {
     );
   }
 
+  renderNavigation = (id) => (
+    <FincNavigation
+      id={id}
+    />
+  );
+
   render() {
     const { intl, queryGetter, querySetter, onSelectRow, selectedRecordId, collection } = this.props;
     const count = collection ? collection.totalCount() : 0;
@@ -224,21 +230,7 @@ class MetadataCollections extends React.Component {
                       paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
                     >
                       <form onSubmit={onSubmitSearch}>
-                        <ButtonGroup tagName="nav" fullWidth>
-                          <Button
-                            buttonStyle="default"
-                            id="metadata-sources"
-                            to={urls.sources()}
-                          >
-                            Sources
-                          </Button>
-                          <Button
-                            buttonStyle="primary"
-                            id="metadata-collections"
-                          >
-                            Collections
-                          </Button>
-                        </ButtonGroup>
+                        {this.renderNavigation('collection')}
                         <div>
                           <SearchField
                             autoFocus
