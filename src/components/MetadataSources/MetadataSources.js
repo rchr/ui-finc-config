@@ -188,7 +188,7 @@ class MetadataSources extends React.Component {
     const count = source ? source.totalCount() : 0;
 
     return (
-      <div data-test-source-instances>
+      <div data-test-sources>
         <SearchAndSortQuery
           initialFilterState={{ status: ['active', 'technical implementation'] }}
           initialSearchState={{ query: '' }}
@@ -214,7 +214,9 @@ class MetadataSources extends React.Component {
                 <Paneset>
                   {this.state.filterPaneIsVisible &&
                     <Pane
+                      data-test-source-pane-filter
                       defaultWidth="18%"
+                      id="pane-sourcefilter"
                       onClose={this.toggleFilterPane}
                       paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
                     >
@@ -276,8 +278,10 @@ class MetadataSources extends React.Component {
                   }
                   <Pane
                     appIcon={<AppIcon app="finc-config" />}
+                    data-test-source-pane-results
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
+                    id="pane-sourceresults"
                     lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
                     paneTitle="Finc Config"

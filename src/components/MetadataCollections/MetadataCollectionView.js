@@ -133,6 +133,7 @@ class MetadataCollectionView extends React.Component {
     return (
       <React.Fragment>
         <Pane
+          data-test-collection-pane-details
           defaultWidth="40%"
           dismissible
           id="pane-collectiondetails"

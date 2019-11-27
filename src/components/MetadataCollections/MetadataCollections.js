@@ -191,7 +191,7 @@ class MetadataCollections extends React.Component {
     const count = collection ? collection.totalCount() : 0;
 
     return (
-      <div data-test-collection-instances>
+      <div data-test-collections>
         <SearchAndSortQuery
           initialFilterState={{ metadataAvailable: ['yes'] }}
           initialSearchState={{ query: '' }}
@@ -217,7 +217,9 @@ class MetadataCollections extends React.Component {
                 <Paneset>
                   {this.state.filterPaneIsVisible &&
                     <Pane
+                      data-test-collection-pane-filter
                       defaultWidth="18%"
+                      id="pane-collectionfilter"
                       onClose={this.toggleFilterPane}
                       paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
                     >
@@ -274,8 +276,10 @@ class MetadataCollections extends React.Component {
                   }
                   <Pane
                     appIcon={<AppIcon app="finc-config" />}
+                    data-test-collection-pane-results
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
+                    id="pane-collectionresults"
                     lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
                     paneTitle="Finc Config"
