@@ -41,4 +41,15 @@ describe('Create Source', () => {
       expect(editSourcePage.implementationStatusSelect.value).to.be.equal('wish');
     });
   });
+
+  describe('close source form', () => {
+    beforeEach(async function () {
+      await editSourcePage.closePane.click();
+    });
+
+    it('closes source form', () => {
+      expect(editSourcePage.isPresent).to.be.false;
+      expect(sourceInteractor.isPresent).to.be.true;
+    });
+  });
 });

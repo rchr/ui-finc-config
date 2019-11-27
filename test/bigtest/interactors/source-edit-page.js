@@ -1,10 +1,15 @@
 import {
   clickable,
   interactor,
+  is,
   isPresent,
   text,
   value,
 } from '@bigtest/interactor';
+
+@interactor class ButtonInteractor {
+  isButton = is('button');
+}
 
 @interactor class ImplementationStatusSelect {
   static defaultScope = 'select[name="status"]';
@@ -26,6 +31,6 @@ export default @interactor class EditSourcePage {
   title = text('[class*=paneTitleLabel---]');
   implementationStatusSelect = new ImplementationStatusSelect();
   deleteSourceConfirmation = new DeleteSourceConfirmation();
-
   clickDeleteSource = clickable('#clickable-delete-source');
+  closePane = new ButtonInteractor('[icon=times]');
 }
