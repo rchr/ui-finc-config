@@ -37,6 +37,10 @@ describe('SourceDetailsPage', () => {
       await sourceInteractor.instances(0).click();
     });
 
+    it('shows source details pane', () => {
+      expect(sourceDetailsPage.isPresent).to.be.true;
+    });
+
     it('displays source label in the pane header', function () {
       expect(sourceDetailsPage.title).to.include(source.label);
     });
@@ -44,6 +48,16 @@ describe('SourceDetailsPage', () => {
     it('all accordions in source-instance are present', function () {
       expect(sourceDetailsPage.managementAccordion.isPresent).to.equal(true);
       expect(sourceDetailsPage.technicalAccordion.isPresent).to.equal(true);
+    });
+  });
+
+  describe('close source details pane', () => {
+    beforeEach(async function () {
+      await sourceDetailsPage.closePane.click();
+    });
+
+    it('source details pane is not presented', () => {
+      expect(sourceDetailsPage.isPresent).to.be.false;
     });
   });
 });

@@ -69,4 +69,15 @@ describe('Create Collection', () => {
       expect(editCollectionPage.freeContentSelect.value).to.be.equal('undetermined');
     });
   });
+
+  describe('close collection form', () => {
+    beforeEach(async function () {
+      await editCollectionPage.closePane.click();
+    });
+
+    it('closes collection form', () => {
+      expect(editCollectionPage.isPresent).to.be.false;
+      expect(collectionInteractor.isPresent).to.be.true;
+    });
+  });
 });

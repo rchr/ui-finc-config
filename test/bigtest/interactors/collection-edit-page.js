@@ -1,10 +1,15 @@
 import {
   clickable,
   interactor,
+  is,
   isPresent,
   text,
   value,
 } from '@bigtest/interactor';
+
+@interactor class ButtonInteractor {
+  isButton = is('button');
+}
 
 @interactor class UsageRestrictedSelect {
   static defaultScope = 'select[name="usageRestricted"]';
@@ -32,6 +37,6 @@ export default @interactor class EditCollectionPage {
   usageRestrictedSelect = new UsageRestrictedSelect();
   freeContentSelect = new FreeContentSelect();
   deleteCollectionConfirmation = new DeleteCollectionConfirmation();
-
   clickDeleteCollection = clickable('#clickable-delete-collection');
+  closePane = new ButtonInteractor('[icon=times]');
 }

@@ -37,6 +37,10 @@ describe('CollectionDetailsPage', () => {
       await collectionInteractor.instances(0).click();
     });
 
+    it('shows collection details pane', () => {
+      expect(collectionDetailsPage.isPresent).to.be.true;
+    });
+
     it('displays collection label in the pane header', function () {
       expect(collectionDetailsPage.title).to.include(collection.label);
     });
@@ -44,6 +48,16 @@ describe('CollectionDetailsPage', () => {
     it('all accordions in collection-instance are present', function () {
       expect(collectionDetailsPage.managementAccordion.isPresent).to.equal(true);
       expect(collectionDetailsPage.technicalAccordion.isPresent).to.equal(true);
+    });
+  });
+
+  describe('close collection details pane', () => {
+    beforeEach(async function () {
+      await collectionDetailsPage.closePane.click();
+    });
+
+    it('collection details pane is not presented', () => {
+      expect(collectionDetailsPage.isPresent).to.be.false;
     });
   });
 });
