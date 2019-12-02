@@ -5,7 +5,7 @@
     "source.status": "Impl. status",
     "source.solrShard": "Solar shard",
     "source.lastProcessed": "Last processed",
-    "source.generalAccordion": "Metadata source general",
+    "source.generalAccordion": "Общий источник метаданных",
     "source.managementAccordion": "Management",
     "source.technicalAccordion": "Технический",
     "source.form.createSource": "Создать источник",
