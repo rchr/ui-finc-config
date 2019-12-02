@@ -31,7 +31,7 @@ describe('Create Source', () => {
     });
   });
 
-  describe('implementationStatus can be changed to wish', () => {
+  describe('implementationStatus can be changed', () => {
     beforeEach(async () => {
       await editSourcePage.implementationStatusSelect.select('Active');
       await editSourcePage.implementationStatusSelect.select('Wish');

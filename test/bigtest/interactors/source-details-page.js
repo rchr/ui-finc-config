@@ -1,7 +1,8 @@
 import {
   interactor,
   is,
-  text
+  isPresent,
+  text,
 } from '@bigtest/interactor';
 
 @interactor class ButtonInteractor {
@@ -23,4 +24,6 @@ export default @interactor class SourceDetailsPage {
   managementAccordion = new ManagementAccordion();
   technicalAccordion = new TechnicalAccordion();
   closePane = new ButtonInteractor('[icon=times]');
+  editButtonPresent = isPresent('#clickable-edit-source');
+  clickEditButton = new ButtonInteractor('#clickable-edit-source');
 }

@@ -45,6 +45,10 @@ describe('SourceDetailsPage', () => {
       expect(sourceDetailsPage.title).to.include(source.label);
     });
 
+    it('edit button is present', () => {
+      expect(sourceDetailsPage.editButtonPresent).to.be.true;
+    });
+
     it('all accordions in source-instance are present', function () {
       expect(sourceDetailsPage.managementAccordion.isPresent).to.equal(true);
       expect(sourceDetailsPage.technicalAccordion.isPresent).to.equal(true);

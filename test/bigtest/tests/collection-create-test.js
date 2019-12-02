@@ -32,7 +32,7 @@ describe('Create Collection', () => {
     });
   });
 
-  describe('usageRestricted can be changed to inactive', () => {
+  describe('usageRestricted can be changed', () => {
     beforeEach(async () => {
       await editCollectionPage.usageRestrictedSelect.select('Yes');
       await editCollectionPage.usageRestrictedSelect.select('No');
@@ -59,7 +59,7 @@ describe('Create Collection', () => {
     });
   });
 
-  describe('freeContent can be changed to undetermined', () => {
+  describe('freeContent can be changed', () => {
     beforeEach(async () => {
       await editCollectionPage.freeContentSelect.select('Yes');
       await editCollectionPage.freeContentSelect.select('Undetermined');

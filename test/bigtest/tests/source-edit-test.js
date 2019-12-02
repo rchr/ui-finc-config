@@ -25,7 +25,6 @@ describe('Edit Source', () => {
 
   describe('source edit form is displayed', () => {
     beforeEach(async function () {
-      // await sourceInteractor.clickActiveXXXsCheckbox();
       await this.visit('/finc-config/metadata-sources?filters=status.Active');
       return this.visit(`/finc-config/metadata-sources/${source.id}/edit?filters=status.Active`);
     });
