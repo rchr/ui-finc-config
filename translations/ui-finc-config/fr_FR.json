@@ -48,7 +48,7 @@
     "collection.tickets": "Tickets",
     "collection.contentFiles": "Content files",
     "collection.solrMegaCollections": "Collections Solr méga",
-    "source.generalNotes": "General notes",
+    "source.generalNotes": "Notes générales",
     "collection.generalNotes": "Notes générales",
     "source.form.deleteSource": "Supprimer la source",
     "collection.form.deleteCollection": "Supprimer la collection"
