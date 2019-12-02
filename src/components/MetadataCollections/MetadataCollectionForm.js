@@ -143,7 +143,7 @@ class MetadataCollectionForm extends React.Component {
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.collection.form.createCollection" />;
     const lastMenu = initialValues.id ?
-      this.getLastMenu('clickable-createnewcollection', <FormattedMessage id="ui-finc-config.collection.form.updateCollection" />) :
+      this.getLastMenu('clickable-updatenewcollection', <FormattedMessage id="ui-finc-config.collection.form.updateCollection" />) :
       this.getLastMenu('clickable-createnewcollection', <FormattedMessage id="ui-finc-config.collection.form.createCollection" />);
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;

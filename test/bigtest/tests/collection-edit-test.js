@@ -25,7 +25,6 @@ describe('Edit Collection', () => {
 
   describe('collection edit form is displayed', () => {
     beforeEach(async function () {
-      // await collectionInteractor.clickActiveXXXsCheckbox();
       await this.visit('/finc-config/metadata-collections?filters=metadataAvailable.yes');
       return this.visit(`/finc-config/metadata-collections/${collection.id}/edit?filters=metadataAvailable.yes`);
     });

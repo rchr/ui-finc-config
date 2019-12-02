@@ -10,8 +10,18 @@ export default Factory.extend({
     id: 'mdSource id',
     name: 'mdSource name'
   },
+  metadataAvailable: '',
+  usageRestricted: '',
   permittedFor: [],
+  freeContent: '',
+  lod: {
+    publication: '',
+    note: ''
+  },
+  collectionId: '',
+  facetLabel: '',
   tickets: [],
   contentFiles: [],
-  solrMegaCollections: []
+  solrMegaCollections: [],
+  selectedBy: [],
 });

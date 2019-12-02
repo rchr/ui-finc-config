@@ -45,6 +45,10 @@ describe('CollectionDetailsPage', () => {
       expect(collectionDetailsPage.title).to.include(collection.label);
     });
 
+    it('edit button is present', () => {
+      expect(collectionDetailsPage.editButtonPresent).to.be.true;
+    });
+
     it('all accordions in collection-instance are present', function () {
       expect(collectionDetailsPage.managementAccordion.isPresent).to.equal(true);
       expect(collectionDetailsPage.technicalAccordion.isPresent).to.equal(true);
