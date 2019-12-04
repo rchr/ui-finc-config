@@ -166,7 +166,7 @@ class MetadataCollections extends React.Component {
     }
 
     return (
-      <IfPermission perm="finc-config.metadata-collections.edit">
+      <IfPermission perm="finc-config.metadata-collections.item.post">
         <PaneMenu>
           <FormattedMessage id="ui-finc-config.collection.form.createCollection">
             {ariaLabel => (
