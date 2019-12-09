@@ -231,6 +231,7 @@ class MetadataSources extends React.Component {
                         <div>
                           <SearchField
                             autoFocus
+                            id="sourceSearchField"
                             inputRef={this.searchField}
                             name="query"
                             onChange={getSearchHandlers().query}
@@ -246,6 +247,7 @@ class MetadataSources extends React.Component {
                             buttonStyle="primary"
                             disabled={!searchValue.query || searchValue.query === ''}
                             fullWidth
+                            id="sourceSubmitSearch"
                             type="submit"
                           >
                             <FormattedMessage id="stripes-smart-components.search" />

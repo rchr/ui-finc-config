@@ -15,6 +15,12 @@ export default @interactor class CollectionInteractor {
   instances = collection('[role=group] div a');
   instance = scoped('#pane-collectiondetails');
   navigation = new NavigationInteractor();
+  metadataAvailableFilterIsPresent = isPresent('section[id="filter-accordion-metadataAvailable"]');
+  usageRestrictedFilterIsPresent = isPresent('section[id="filter-accordion-usageRestricted"]');
+  freeContentFilterIsPresent = isPresent('section[id="filter-accordion-freeContent"]');
+  resetAllBtnIsPresent = isPresent('button[id="clickable-reset-all"]');
+  submitBtnIsPresent = isPresent('button[id="collectionSubmitSearch"]');
+  searchFieldIsPresent = isPresent('input[id="collectionSearchField"]');
 
   isLoaded = isPresent('#pane-collectionresults');
   whenLoaded() {
