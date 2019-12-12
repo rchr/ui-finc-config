@@ -3,7 +3,6 @@ import {
   interactor,
   is,
   isPresent,
-  text,
   value,
 } from '@bigtest/interactor';
 
@@ -33,10 +32,9 @@ export default @interactor class EditCollectionPage {
     return this.when(() => this.isLoaded);
   }
 
-  title = text('[class*=paneTitleLabel---]');
   usageRestrictedSelect = new UsageRestrictedSelect();
   freeContentSelect = new FreeContentSelect();
   deleteCollectionConfirmation = new DeleteCollectionConfirmation();
   clickDeleteCollection = clickable('#clickable-delete-collection');
-  closePane = new ButtonInteractor('[icon=times]');
+  closePaneBtn = new ButtonInteractor('[icon=times]');
 }

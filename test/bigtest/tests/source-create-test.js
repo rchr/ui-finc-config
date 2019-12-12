@@ -1,19 +1,19 @@
 import { beforeEach, describe, it } from '@bigtest/mocha';
 import { expect } from 'chai';
 
-import SourceInteractor from '../interactors/source';
+import SourcesList from '../interactors/sources-list';
 import EditSourcePage from '../interactors/source-edit-page';
 
 import setupApplication from '../helpers/setup-application';
 
 describe('Create Source', () => {
   setupApplication();
-  const sourceInteractor = new SourceInteractor();
+  const sourcesList = new SourcesList();
   const editSourcePage = new EditSourcePage();
 
   beforeEach(function () {
     return this.visit('/finc-config/metadata-sources/create?filters=status.Active', () => {
-      expect(sourceInteractor.$root).to.exist;
+      expect(sourcesList.$root).to.exist;
     });
   });
 
@@ -44,12 +44,12 @@ describe('Create Source', () => {
 
   describe('close source form', () => {
     beforeEach(async function () {
-      await editSourcePage.closePane.click();
+      await editSourcePage.closePaneBtn.click();
     });
 
     it('closes source form', () => {
       expect(editSourcePage.isPresent).to.be.false;
-      expect(sourceInteractor.isPresent).to.be.true;
+      expect(sourcesList.isPresent).to.be.true;
     });
   });
 });

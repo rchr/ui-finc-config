@@ -3,7 +3,6 @@ import {
   interactor,
   is,
   isPresent,
-  text,
   value,
 } from '@bigtest/interactor';
 
@@ -28,9 +27,8 @@ export default @interactor class EditSourcePage {
     return this.when(() => this.isLoaded);
   }
 
-  title = text('[class*=paneTitleLabel---]');
   implementationStatusSelect = new ImplementationStatusSelect();
   deleteSourceConfirmation = new DeleteSourceConfirmation();
   clickDeleteSource = clickable('#clickable-delete-source');
-  closePane = new ButtonInteractor('[icon=times]');
+  closePaneBtn = new ButtonInteractor('[icon=times]');
 }

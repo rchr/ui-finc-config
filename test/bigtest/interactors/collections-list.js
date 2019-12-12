@@ -8,7 +8,7 @@ import {
 
 import NavigationInteractor from './navigation';
 
-export default @interactor class CollectionInteractor {
+export default @interactor class CollectionsList {
   static defaultScope = '[data-test-collections]';
 
   clickMetadataAvailableCOLLECTIONsCheckbox = clickable('#clickable-filter-metadata-available-yes');

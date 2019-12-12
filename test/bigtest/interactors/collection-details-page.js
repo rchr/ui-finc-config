@@ -20,10 +20,10 @@ import {
 export default @interactor class CollectionDetailsPage {
   static defaultScope = '#pane-collectiondetails';
 
-  title = text('[data-test-collection-header-title]');
+  collectionTitle = text('[data-test-collection-header-title]');
   managementAccordion = new ManagementAccordion();
   technicalAccordion = new TechnicalAccordion();
-  closePane = new ButtonInteractor('[icon=times]');
-  editButtonPresent = isPresent('#clickable-edit-collection');
+  closePaneBtn = new ButtonInteractor('[icon=times]');
   clickEditButton = new ButtonInteractor('#clickable-edit-collection');
+  editButtonPresent = isPresent('#clickable-edit-collection');
 }

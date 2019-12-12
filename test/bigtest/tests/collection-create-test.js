@@ -1,19 +1,22 @@
-import { beforeEach, describe, it } from '@bigtest/mocha';
+import {
+  beforeEach,
+  describe,
+  it,
+} from '@bigtest/mocha';
 import { expect } from 'chai';
 
-import CollectionInteractor from '../interactors/collection';
-import EditCollectionPage from '../interactors/collection-edit-page';
-
 import setupApplication from '../helpers/setup-application';
+import CollectionsList from '../interactors/collections-list';
+import EditCollectionPage from '../interactors/collection-edit-page';
 
 describe('Create Collection', () => {
   setupApplication();
-  const collectionInteractor = new CollectionInteractor();
+  const collectionsList = new CollectionsList();
   const editCollectionPage = new EditCollectionPage();
 
   beforeEach(function () {
     return this.visit('/finc-config/metadata-collections/create?filters=metadataAvailable.yes', () => {
-      expect(collectionInteractor.$root).to.exist;
+      expect(collectionsList.$root).to.exist;
     });
   });
 
@@ -72,12 +75,12 @@ describe('Create Collection', () => {
 
   describe('close collection form', () => {
     beforeEach(async function () {
-      await editCollectionPage.closePane.click();
+      await editCollectionPage.closePaneBtn.click();
     });
 
     it('closes collection form', () => {
       expect(editCollectionPage.isPresent).to.be.false;
-      expect(collectionInteractor.isPresent).to.be.true;
+      expect(collectionsList.isPresent).to.be.true;
     });
   });
 });

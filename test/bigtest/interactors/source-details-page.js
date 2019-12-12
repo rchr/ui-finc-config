@@ -20,10 +20,10 @@ import {
 export default @interactor class SourceDetailsPage {
   static defaultScope = '#pane-sourcedetails';
 
-  title = text('[data-test-source-header-title]');
+  sourceTitle = text('[data-test-source-header-title]');
   managementAccordion = new ManagementAccordion();
   technicalAccordion = new TechnicalAccordion();
-  closePane = new ButtonInteractor('[icon=times]');
+  closePaneBtn = new ButtonInteractor('[icon=times]');
   editButtonPresent = isPresent('#clickable-edit-source');
   clickEditButton = new ButtonInteractor('#clickable-edit-source');
 }

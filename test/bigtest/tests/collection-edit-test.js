@@ -7,11 +7,11 @@ import { expect } from 'chai';
 
 import setupApplication from '../helpers/setup-application';
 import EditCollectionPage from '../interactors/collection-edit-page';
-import CollectionInteractor from '../interactors/collection';
+import CollectionsList from '../interactors/collections-list';
 
 describe('Edit Collection', () => {
   setupApplication();
-  const collectionInteractor = new CollectionInteractor();
+  const collectionsList = new CollectionsList();
   const editCollectionPage = new EditCollectionPage();
 
   let collection = null;
@@ -19,7 +19,7 @@ describe('Edit Collection', () => {
   beforeEach(async function () {
     collection = this.server.create('finc-config-metadata-collection');
     return this.visit('/finc-config/metadata-collections?filters=metadataAvailable.yes', () => {
-      expect(collectionInteractor.$root).to.exist;
+      expect(collectionsList.$root).to.exist;
     });
   });
 

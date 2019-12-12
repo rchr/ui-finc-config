@@ -1,17 +1,17 @@
 import {
   beforeEach,
   describe,
-  it
+  it,
 } from '@bigtest/mocha';
 import { expect } from 'chai';
 
 import setupApplication from '../helpers/setup-application';
 import EditSourcePage from '../interactors/source-edit-page';
-import SourceInteractor from '../interactors/source';
+import SourcesList from '../interactors/sources-list';
 
 describe('Edit Source', () => {
   setupApplication();
-  const sourceInteractor = new SourceInteractor();
+  const sourcesList = new SourcesList();
   const sourceEditPage = new EditSourcePage();
 
   let source = null;
@@ -19,7 +19,7 @@ describe('Edit Source', () => {
   beforeEach(async function () {
     source = this.server.create('finc-config-metadata-source');
     return this.visit('/finc-config/metadata-sources?filters=status.Active', () => {
-      expect(sourceInteractor.$root).to.exist;
+      expect(sourcesList.$root).to.exist;
     });
   });
 

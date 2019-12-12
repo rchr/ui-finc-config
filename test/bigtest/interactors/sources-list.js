@@ -8,7 +8,7 @@ import {
 
 import NavigationInteractor from './navigation';
 
-export default @interactor class SourceInteractor {
+export default @interactor class SourcesList {
   static defaultScope = '[data-test-sources]';
 
   clickActiveSOURCEsCheckbox = clickable('#clickable-filter-status-active');
