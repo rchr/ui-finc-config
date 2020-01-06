@@ -42,9 +42,9 @@ describe('CollectionDetailsPage', () => {
       expect(collectionDetailsPage.collectionTitle).to.include(collection.label);
     });
 
-    it('edit button is present', () => {
-      expect(collectionDetailsPage.editButtonPresent).to.be.true;
-    });
+    // it('edit button is present', () => {
+    //   expect(collectionDetailsPage.editButtonPresent).to.be.true;
+    // });
 
     it('all accordions in collection-instance are present', function () {
       expect(collectionDetailsPage.managementAccordion.isPresent).to.equal(true);

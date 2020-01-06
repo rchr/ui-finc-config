@@ -42,9 +42,9 @@ describe('Source Details', () => {
       expect(sourceDetailsPage.sourceTitle).to.include(source.label);
     });
 
-    it('edit button is present', () => {
-      expect(sourceDetailsPage.editButtonPresent).to.be.true;
-    });
+    // it('edit button is present', () => {
+    //   expect(sourceDetailsPage.editButtonPresent).to.be.true;
+    // });
 
     it('all accordions in source-instance are present', function () {
       expect(sourceDetailsPage.managementAccordion.isPresent).to.equal(true);

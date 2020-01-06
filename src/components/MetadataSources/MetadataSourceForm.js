@@ -140,8 +140,8 @@ class MetadataSourceForm extends React.Component {
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.source.form.createSource" />;
     const lastMenu = initialValues.id ?
-      this.getLastMenu('clickable-updatenewsource', <FormattedMessage id="ui-finc-config.source.form.updateSource" />) :
-      this.getLastMenu('clickable-createnewsource', <FormattedMessage id="ui-finc-config.source.form.createSource" />);
+      this.getLastMenu('clickable-updatesource', <FormattedMessage id="ui-finc-config.source.form.updateSource" />) :
+      this.getLastMenu('clickable-createsource', <FormattedMessage id="ui-finc-config.source.form.createSource" />);
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 

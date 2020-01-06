@@ -24,6 +24,5 @@ export default @interactor class CollectionDetailsPage {
   managementAccordion = new ManagementAccordion();
   technicalAccordion = new TechnicalAccordion();
   closePaneBtn = new ButtonInteractor('[icon=times]');
-  clickEditButton = new ButtonInteractor('#clickable-edit-collection');
-  editButtonPresent = isPresent('#clickable-edit-collection');
+  editCollectionBtn = new ButtonInteractor('#clickable-edit-collection');
 }
