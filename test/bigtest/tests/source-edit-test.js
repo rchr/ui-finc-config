@@ -73,7 +73,7 @@ describe('Edit Source', () => {
     });
 
     // TODO ERROR Mirage: Your app tried to PUT but there was no route defined to handle this request.
-    // it('source form is still presented, since validation errors xxx', () => {
+    // it('source form is still presented, since validation errors', () => {
     //   expect(editSourcePage.isPresent).to.be.true;
     // });
   });
