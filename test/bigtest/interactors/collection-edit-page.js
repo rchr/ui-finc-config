@@ -21,9 +21,9 @@ import {
   value = value();
 }
 
-// @interactor class DeleteCollectionConfirmation {
-//   static defaultScope = '#delete-collection-confirmation';
-// }
+@interactor class DeleteCollectionConfirmation {
+  static defaultScope = '#delete-collection-confirmation';
+}
 
 export default @interactor class EditCollectionPage {
   static defaultScope = '[data-test-collection-form-page]';
@@ -31,8 +31,8 @@ export default @interactor class EditCollectionPage {
   usageRestrictedSelect = new UsageRestrictedSelect();
   freeContentSelect = new FreeContentSelect();
   collectionName = new Interactor('input[name=label]');
-  // deleteCollectionConfirmation = new DeleteCollectionConfirmation();
-  // clickDeleteCollection = clickable('#clickable-delete-collection');
+  deleteCollectionConfirmation = new DeleteCollectionConfirmation();
+  clickDeleteCollection = clickable('#clickable-delete-collection');
   closePaneBtn = new ButtonInteractor('[icon=times]');
   closeWithoutSaving = new ButtonInteractor('#clickable-cancel-editing-confirmation-cancel');
   // addFilterFileBtn = new ButtonInteractor('#add-filter-file-btn');
