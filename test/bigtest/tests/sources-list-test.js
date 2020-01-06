@@ -10,7 +10,7 @@ import SourcesList from '../interactors/sources-list';
 
 const SOURCE_COUNT = 25;
 
-describe('Metadata Source', () => {
+describe('Sources List', () => {
   setupApplication();
 
   const sourcesList = new SourcesList();

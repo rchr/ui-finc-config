@@ -1,7 +1,7 @@
 import {
   beforeEach,
   describe,
-  it
+  it,
 } from '@bigtest/mocha';
 import { expect } from 'chai';
 
@@ -9,7 +9,7 @@ import setupApplication from '../helpers/setup-application';
 import SourceDetailsPage from '../interactors/source-details-page';
 import SourcesList from '../interactors/sources-list';
 
-describe('SourceDetailsPage', () => {
+describe('Source Details', () => {
   setupApplication();
   const sourceDetailsPage = new SourceDetailsPage();
   const sourcesList = new SourcesList();
@@ -19,9 +19,6 @@ describe('SourceDetailsPage', () => {
   beforeEach(async function () {
     source = this.server.create('finc-config-metadata-source');
     await this.visit('/finc-config/metadata-sources?filters=status.Active');
-
-    // click checkbox not working always
-    // await sourceInteractor.clickActiveSOURCEsCheckbox();
   });
 
   it('shows the list of source items', () => {
@@ -37,8 +34,8 @@ describe('SourceDetailsPage', () => {
       await sourcesList.instances(0).click();
     });
 
-    it('shows source details pane', () => {
-      expect(sourceDetailsPage.isPresent).to.be.true;
+    it('source details should be visible', () => {
+      expect(sourceDetailsPage.isVisible).to.equal(true);
     });
 
     it('displays source label in the pane header', function () {

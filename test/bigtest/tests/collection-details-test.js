@@ -1,7 +1,7 @@
 import {
   beforeEach,
   describe,
-  it
+  it,
 } from '@bigtest/mocha';
 import { expect } from 'chai';
 
@@ -19,9 +19,6 @@ describe('CollectionDetailsPage', () => {
   beforeEach(async function () {
     collection = this.server.create('finc-config-metadata-collection');
     await this.visit('/finc-config/metadata-collections?filters=metadataAvailable.Yes');
-
-    // click checkbox not working always
-    // await collectionsList.clickMetadataAvailableCOLLECTIONsCheckbox();
   });
 
   it('shows the list of collection items', () => {
@@ -37,8 +34,8 @@ describe('CollectionDetailsPage', () => {
       await collectionsList.instances(0).click();
     });
 
-    it('shows collection details pane', () => {
-      expect(collectionDetailsPage.isPresent).to.be.true;
+    it('collection details should be visible', function () {
+      expect(collectionDetailsPage.isVisible).to.equal(true);
     });
 
     it('displays collection label in the pane header', function () {
@@ -60,7 +57,7 @@ describe('CollectionDetailsPage', () => {
       await collectionDetailsPage.closePaneBtn.click();
     });
 
-    it('collection details pane is not presented', () => {
+    it('collection details should not be visible', () => {
       expect(collectionDetailsPage.isPresent).to.be.false;
     });
   });

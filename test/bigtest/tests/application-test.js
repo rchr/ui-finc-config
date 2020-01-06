@@ -1,4 +1,8 @@
-import { beforeEach, describe, it } from '@bigtest/mocha';
+import {
+  beforeEach,
+  describe,
+  it,
+} from '@bigtest/mocha';
 import { expect } from 'chai';
 
 import setupApplication from '../helpers/setup-application';
@@ -13,15 +17,15 @@ describe('Application', () => {
     this.visit('/finc-config');
   });
 
-  it('renders', () => {
+  it('app should be present', () => {
     expect(app.isPresent).to.be.true;
   });
 
-  it('displays source-tab', () => {
-    expect(app.buttonSources).to.exist;
+  it('source-tab should be visible', () => {
+    expect(app.navigationSourcesBtn).to.exist;
   });
 
-  it('displays collection-tab', () => {
-    expect(app.buttonCollection).to.exist;
+  it('collection-tab should be visible', () => {
+    expect(app.navigationCollectionBtn).to.exist;
   });
 });

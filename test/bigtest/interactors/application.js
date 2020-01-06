@@ -6,7 +6,7 @@ import NavigationInteractor from './navigation';
 export default @interactor class ApplicationInteractor {
   static defaultScope = '#ModuleContainer';
 
-  buttonSources = 'button[id="metadata-sources"]';
-  buttonCollection = 'button[id="metadata-collections"]';
+  navigationSourcesBtn = 'button[id="metadata-sources"]';
+  navigationCollectionBtn = 'button[id="metadata-collections"]';
   navigation = new NavigationInteractor();
 }

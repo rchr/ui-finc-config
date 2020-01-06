@@ -1,5 +1,6 @@
 import {
   interactor,
+  is,
   isPresent,
   scoped,
   collection,
@@ -7,6 +8,10 @@ import {
 } from '@bigtest/interactor';
 
 import NavigationInteractor from './navigation';
+
+@interactor class ButtonInteractor {
+  isButton = is('button');
+}
 
 export default @interactor class CollectionsList {
   static defaultScope = '[data-test-collections]';
@@ -21,6 +26,7 @@ export default @interactor class CollectionsList {
   resetAllBtnIsPresent = isPresent('button[id="clickable-reset-all"]');
   submitBtnIsPresent = isPresent('button[id="collectionSubmitSearch"]');
   searchFieldIsPresent = isPresent('input[id="collectionSearchField"]');
+  addNewCollectionBtn = new ButtonInteractor('#clickable-new-collection');
 
   isLoaded = isPresent('#pane-collectionresults');
   whenLoaded() {

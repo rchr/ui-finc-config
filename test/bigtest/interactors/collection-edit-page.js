@@ -1,6 +1,7 @@
 import {
   clickable,
   interactor,
+  Interactor,
   is,
   isPresent,
   value,
@@ -20,21 +21,28 @@ import {
   value = value();
 }
 
-@interactor class DeleteCollectionConfirmation {
-  static defaultScope = '#delete-collection-confirmation';
-}
+// @interactor class DeleteCollectionConfirmation {
+//   static defaultScope = '#delete-collection-confirmation';
+// }
 
 export default @interactor class EditCollectionPage {
   static defaultScope = '[data-test-collection-form-page]';
-  isLoaded = isPresent('[class*=paneTitleLabel---]');
-
-  whenLoaded() {
-    return this.when(() => this.isLoaded);
-  }
 
   usageRestrictedSelect = new UsageRestrictedSelect();
   freeContentSelect = new FreeContentSelect();
-  deleteCollectionConfirmation = new DeleteCollectionConfirmation();
-  clickDeleteCollection = clickable('#clickable-delete-collection');
+  collectionName = new Interactor('input[name=label]');
+  // deleteCollectionConfirmation = new DeleteCollectionConfirmation();
+  // clickDeleteCollection = clickable('#clickable-delete-collection');
   closePaneBtn = new ButtonInteractor('[icon=times]');
+  closeWithoutSaving = new ButtonInteractor('#clickable-cancel-editing-confirmation-cancel');
+  // addFilterFileBtn = new ButtonInteractor('#add-filter-file-btn');
+  createNewCollectionBtn = new ButtonInteractor('#clickable-createnewcollection');
+  updateCollectionBtn = new ButtonInteractor('#clickable-updatenewcollection');
+  closeEditPaneBtn = new ButtonInteractor('#clickable-closecollectiondialog');
+  keepEditingBtn = new ButtonInteractor('#clickable-cancel-editing-confirmation-confirm');
+
+  isLoaded = isPresent('[class*=paneTitleLabel---]');
+  whenLoaded() {
+    return this.when(() => this.isLoaded);
+  }
 }
