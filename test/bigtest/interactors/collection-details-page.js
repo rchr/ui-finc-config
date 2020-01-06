@@ -1,7 +1,6 @@
 import {
   interactor,
   is,
-  isPresent,
   text,
 } from '@bigtest/interactor';
 

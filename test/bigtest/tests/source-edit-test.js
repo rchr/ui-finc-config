@@ -19,7 +19,8 @@ describe('Edit Source', () => {
   beforeEach(async function () {
     const source = this.server.create('finc-config-metadata-source');
 
-    this.visit(`/finc-config/metadata-sources/${source.id}?filters=status.Active`);
+    this.visit(`/finc-config/metadata-sources/${source.id}`);
+    // this.visit(`/finc-config/metadata-sources/${source.id}?filters=status.Active`);
     await sourcesList.whenLoaded();
     await sourcesDetailsPage.editSourceBtn.click();
     await editSourcePage.whenLoaded();

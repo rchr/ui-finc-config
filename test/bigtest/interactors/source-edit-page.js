@@ -1,6 +1,7 @@
 import {
   clickable,
   interactor,
+  Interactor,
   is,
   isPresent,
   value,
@@ -28,6 +29,10 @@ export default @interactor class EditSourcePage {
   closePaneBtn = new ButtonInteractor('[icon=times]');
   closeWithoutSaving = new ButtonInteractor('#clickable-cancel-editing-confirmation-cancel');
   updateSourceBtn = new ButtonInteractor('#clickable-updatesource');
+  createSourceBtn = new ButtonInteractor('#clickable-createsource');
+  closeEditPaneBtn = new ButtonInteractor('#clickable-closesourcedialog');
+  sourceName = new Interactor('input[name=label]');
+
 
   isLoaded = isPresent('[class*=paneTitleLabel---]');
   whenLoaded() {

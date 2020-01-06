@@ -43,7 +43,7 @@ describe('Create Collection', () => {
     //   beforeEach(async function () {
     //     // await editCollectionPage.collectionName.fill(TEST_NAME);
     //     await editCollectionPage.usageRestrictedSelect.select(TEST_USAGE_RESTRICTED);
-    //     await editCollectionPage.createNewCollectionBtn.click();
+    //     await editCollectionPage.createCollectionBtn.click();
     //   });
 
     //   it('collection details view should be open and create collection form should be closed', () => {

@@ -1,5 +1,6 @@
 import {
   interactor,
+  is,
   isPresent,
   scoped,
   collection,
@@ -7,6 +8,10 @@ import {
 } from '@bigtest/interactor';
 
 import NavigationInteractor from './navigation';
+
+@interactor class ButtonInteractor {
+  isButton = is('button');
+}
 
 export default @interactor class SourcesList {
   static defaultScope = '[data-test-sources]';
@@ -20,6 +25,7 @@ export default @interactor class SourcesList {
   resetAllBtnIsPresent = isPresent('button[id="clickable-reset-all"]');
   submitBtnIsPresent = isPresent('button[id="sourceSubmitSearch"]');
   searchFieldIsPresent = isPresent('input[id="sourceSearchField"]');
+  addNewSourceBtn = new ButtonInteractor('#clickable-new-source');
 
   isLoaded = isPresent('#pane-sourceresults');
   whenLoaded() {
