@@ -31,6 +31,8 @@ describe('Create Collection', () => {
   describe('edit, try save and close collection edit form', () => {
     const TEST_NAME = 'Collection test name';
     const TEST_USAGE_RESTRICTED = 'Yes';
+    // const TEST_SOLR_MEGA_COLLECTION = 'Mega Collection';
+    // const TEST_MDSOURCE = 1;
 
     beforeEach(async function () {
       await editCollectionPage.collectionInfoAccordion.isLoaded;

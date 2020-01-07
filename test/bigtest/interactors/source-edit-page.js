@@ -32,7 +32,7 @@ export default @interactor class EditSourcePage {
   createSourceBtn = new ButtonInteractor('#clickable-createsource');
   closeEditPaneBtn = new ButtonInteractor('#clickable-closesourcedialog');
   sourceName = new Interactor('input[name=label]');
-
+  sourceID = new Interactor('input[name=sourceId]');
 
   isLoaded = isPresent('[class*=paneTitleLabel---]');
   whenLoaded() {

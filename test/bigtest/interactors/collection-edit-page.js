@@ -40,6 +40,8 @@ export default @interactor class EditCollectionPage {
   keepEditingBtn = new ButtonInteractor('#clickable-cancel-editing-confirmation-confirm');
   collectionName = new Interactor('input[name=label]');
   collectionInfoAccordion = new ButtonInteractor('#editCollectionInfo');
+  // collectionSolrMegaCollection = new Interactor('input[name=solrMegaCollections[0]]');
+  // collectionMdSourceId = new Interactor('select[name=mdSource.id]');
 
   isLoaded = isPresent('[class*=paneTitleLabel---]');
   whenLoaded() {

@@ -31,22 +31,22 @@ describe('Edit Source', () => {
   });
 
   it('implementationStatus select is available', () => {
-    expect(editSourcePage.implementationStatusSelect.value).to.be.equal('');
+    expect(editSourcePage.implementationStatusSelect.value).to.be.equal('active');
   });
 
-  describe('implementationStatus "Active" can be selected', () => {
+  describe('implementationStatus "Negotiation" can be selected', () => {
     beforeEach(async () => {
-      await editSourcePage.implementationStatusSelect.select('Active');
+      await editSourcePage.implementationStatusSelect.select('Negotiation');
     });
 
-    it('implementationStatus is changed to "Active"', () => {
-      expect(editSourcePage.implementationStatusSelect.value).to.be.equal('active');
+    it('implementationStatus is changed to "Negotiation"', () => {
+      expect(editSourcePage.implementationStatusSelect.value).to.be.equal('negotiation');
     });
   });
 
   describe('implementationStatus can be changed', () => {
     beforeEach(async () => {
-      await editSourcePage.implementationStatusSelect.select('Active');
+      await editSourcePage.implementationStatusSelect.select('Negotiation');
       await editSourcePage.implementationStatusSelect.select('Wish');
     });
 
@@ -67,15 +67,17 @@ describe('Edit Source', () => {
   });
 
   describe('change and save source edit form', () => {
+    const TEST_NAME = 'Source test name';
+
     beforeEach(async function () {
-      await editSourcePage.implementationStatusSelect.select('Active');
+      await editSourcePage.sourceName.fill(TEST_NAME);
+      await editSourcePage.implementationStatusSelect.select('Wish');
       await editSourcePage.updateSourceBtn.click();
     });
 
-    // TODO ERROR Mirage: Your app tried to PUT but there was no route defined to handle this request.
-    // it('source form is still presented, since validation errors', () => {
-    //   expect(editSourcePage.isPresent).to.be.true;
-    // });
+    it('source form is still presented, since validation errors', () => {
+      expect(editSourcePage.isPresent).to.be.true;
+    });
   });
 
   describe('change, close pane and cancel changes', () => {

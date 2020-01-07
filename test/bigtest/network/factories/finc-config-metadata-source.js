@@ -6,7 +6,7 @@ export default Factory.extend({
   id: () => faker.random.uuid(),
   label: (i) => 'SOURCE ' + i,
   description: (i) => 'description' + i,
-  status: '',
+  status: 'Active',
   organization: {
     id: '',
     name: ''
