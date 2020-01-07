@@ -29,13 +29,12 @@ describe('Create Collection', () => {
   });
 
   describe('edit, try save and close collection edit form', () => {
-    // const TEST_NAME = 'Collection test name';
+    const TEST_NAME = 'Collection test name';
     const TEST_USAGE_RESTRICTED = 'Yes';
 
     beforeEach(async function () {
-      // TODO: CollectionInfoAccordion will not be loaded?!
-      // await editCollectionPage.collectionInfoAccordion.isLoaded;
-      // await editCollectionPage.collectionName.fill(TEST_NAME);
+      await editCollectionPage.collectionInfoAccordion.isLoaded;
+      await editCollectionPage.collectionName.fill(TEST_NAME);
       await editCollectionPage.usageRestrictedSelect.select(TEST_USAGE_RESTRICTED);
       await editCollectionPage.createCollectionBtn.click();
     });
