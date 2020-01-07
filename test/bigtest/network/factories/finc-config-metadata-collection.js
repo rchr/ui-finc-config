@@ -7,11 +7,21 @@ export default Factory.extend({
   label: (i) => 'COLLECTION ' + i,
   description: (i) => 'description' + i,
   mdSource: {
-    id: 'mdSource id',
+    id: 1,
     name: 'mdSource name'
   },
+  metadataAvailable: '',
+  usageRestricted: '',
   permittedFor: [],
+  freeContent: '',
+  lod: {
+    publication: '',
+    note: ''
+  },
+  collectionId: '',
+  facetLabel: '',
   tickets: [],
   contentFiles: [],
-  solrMegaCollections: []
+  solrMegaCollections: ['21st Century Political Science'],
+  selectedBy: [],
 });

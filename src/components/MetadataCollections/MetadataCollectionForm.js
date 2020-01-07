@@ -101,7 +101,7 @@ class MetadataCollectionForm extends React.Component {
             <Button
               buttonStyle="danger"
               disabled={confirmDelete}
-              id="clickable-delete-udp"
+              id="clickable-delete-collection"
               marginBottom0
               onClick={this.beginDelete}
               title="delete"
@@ -143,13 +143,13 @@ class MetadataCollectionForm extends React.Component {
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.collection.form.createCollection" />;
     const lastMenu = initialValues.id ?
-      this.getLastMenu('clickable-createnewcollection', <FormattedMessage id="ui-finc-config.collection.form.updateCollection" />) :
-      this.getLastMenu('clickable-createnewcollection', <FormattedMessage id="ui-finc-config.collection.form.createCollection" />);
+      this.getLastMenu('clickable-updatecollection', <FormattedMessage id="ui-finc-config.collection.form.updateCollection" />) :
+      this.getLastMenu('clickable-createcollection', <FormattedMessage id="ui-finc-config.collection.form.createCollection" />);
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
     return (
-      <form id="form-collection">
+      <form id="form-collection" data-test-collection-form-page>
         <Paneset style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"

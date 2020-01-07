@@ -1,4 +1,8 @@
-import { beforeEach, describe, it } from '@bigtest/mocha';
+import {
+  beforeEach,
+  describe,
+  it,
+} from '@bigtest/mocha';
 import { expect } from 'chai';
 
 import setupApplication from '../helpers/setup-application';
@@ -13,33 +17,15 @@ describe('Application', () => {
     this.visit('/finc-config');
   });
 
-  // it('shows a greeting message', () => {
-  //   expect(app.greetingMessage).to.equal('Congratulations!');
-  // });
-
-  // it('has a link to the developer guides', () => {
-  //   expect(app.guideLink).to.include('/dev-guide.md');
-  // });
-
-  it('renders', () => {
+  it('app should be present', () => {
     expect(app.isPresent).to.be.true;
   });
 
-  it('displays source-tab', () => {
-    expect(app.buttonSources).to.exist;
+  it('source-tab should be visible', () => {
+    expect(app.navigationSourcesBtn).to.exist;
   });
 
-  it('displays collection-tab', () => {
-    expect(app.buttonCollection).to.exist;
+  it('collection-tab should be visible', () => {
+    expect(app.navigationCollectionBtn).to.exist;
   });
-
-
-  // it('show app title', () => {
-  //   expect(app.appTitle).to.equal('Finc Config');
-  // });
-
-  // describe('clicking the example button', () => {
-  //   beforeEach(async () => {
-  //     await examplePage.button.click();
-  //   });
 });

@@ -1,7 +1,12 @@
 import {
   interactor,
-  text
+  is,
+  text,
 } from '@bigtest/interactor';
+
+@interactor class ButtonInteractor {
+  isButton = is('button');
+}
 
 @interactor class ManagementAccordion {
   static defaultScope = '#managementAccordion';
@@ -13,7 +18,10 @@ import {
 
 export default @interactor class SourceDetailsPage {
   static defaultScope = '#pane-sourcedetails';
-  title = text('[data-test-source-header-title]');
+
+  sourceTitle = text('[data-test-source-header-title]');
   managementAccordion = new ManagementAccordion();
   technicalAccordion = new TechnicalAccordion();
+  closePaneBtn = new ButtonInteractor('[icon=times]');
+  editSourceBtn = new ButtonInteractor('#clickable-edit-source');
 }

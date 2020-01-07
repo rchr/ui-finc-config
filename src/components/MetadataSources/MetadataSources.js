@@ -14,7 +14,6 @@ import {
 } from '@folio/stripes/smart-components';
 import {
   Button,
-  ButtonGroup,
   Icon,
   MultiColumnList,
   Pane,
@@ -29,6 +28,7 @@ import {
 
 import urls from '../DisplayUtils/urls';
 import SourceFilters from './SourceFilters';
+import FincNavigation from '../Navigation/FincNavigation';
 
 const searchableIndexes = [
   { label: 'All', value: '', makeQuery: term => `(label="${term}*" or sourceId="${term}*")` },
@@ -183,12 +183,18 @@ class MetadataSources extends React.Component {
     );
   }
 
+  renderNavigation = (id) => (
+    <FincNavigation
+      id={id}
+    />
+  );
+
   render() {
     const { intl, queryGetter, querySetter, onChangeIndex, onSelectRow, selectedRecordId, source } = this.props;
     const count = source ? source.totalCount() : 0;
 
     return (
-      <div data-test-source-instances>
+      <div data-test-sources>
         <SearchAndSortQuery
           initialFilterState={{ status: ['active', 'technical implementation'] }}
           initialSearchState={{ query: '' }}
@@ -214,29 +220,18 @@ class MetadataSources extends React.Component {
                 <Paneset>
                   {this.state.filterPaneIsVisible &&
                     <Pane
+                      data-test-source-pane-filter
                       defaultWidth="18%"
+                      id="pane-sourcefilter"
                       onClose={this.toggleFilterPane}
                       paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
                     >
                       <form onSubmit={onSubmitSearch}>
-                        <ButtonGroup tagName="nav" fullWidth>
-                          <Button
-                            buttonStyle="primary"
-                            id="metadata-sources"
-                          >
-                            Sources
-                          </Button>
-                          <Button
-                            buttonStyle="default"
-                            id="metadata-collections"
-                            to={urls.collections()}
-                          >
-                            Collections
-                          </Button>
-                        </ButtonGroup>
+                        {this.renderNavigation('source')}
                         <div>
                           <SearchField
                             autoFocus
+                            id="sourceSearchField"
                             inputRef={this.searchField}
                             name="query"
                             onChange={getSearchHandlers().query}
@@ -252,6 +247,7 @@ class MetadataSources extends React.Component {
                             buttonStyle="primary"
                             disabled={!searchValue.query || searchValue.query === ''}
                             fullWidth
+                            id="sourceSubmitSearch"
                             type="submit"
                           >
                             <FormattedMessage id="stripes-smart-components.search" />
@@ -276,8 +272,10 @@ class MetadataSources extends React.Component {
                   }
                   <Pane
                     appIcon={<AppIcon app="finc-config" />}
+                    data-test-source-pane-results
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
+                    id="pane-sourceresults"
                     lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
                     paneTitle="Finc Config"

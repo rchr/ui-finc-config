@@ -10,7 +10,7 @@ import {
 } from '@folio/stripes/components';
 import { Pluggable } from '@folio/stripes/core';
 
-import BasicCss from '../BasicStyle.css';
+import BasicCss from '../../../BasicStyle.css';
 import css from './OrganizationView.css';
 
 class FindOrganization extends React.Component {

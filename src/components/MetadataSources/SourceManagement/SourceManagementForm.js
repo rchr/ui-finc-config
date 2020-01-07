@@ -16,7 +16,7 @@ import {
 
 import RepeatableField from '../../DisplayUtils/RepeatableField';
 import DisplayContact from '../../DisplayUtils/DisplayContact';
-import FindOrganization from '../../FindOrganization/FindOrganization';
+import FindOrganization from './FindOrganization/FindOrganization';
 
 import BasicCss from '../../BasicStyle.css';
 

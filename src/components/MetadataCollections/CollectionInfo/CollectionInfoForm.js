@@ -50,8 +50,6 @@ class CollectionInfoForm extends React.Component {
     const { expanded, onToggle, accordionId } = this.props;
     const sourceDataFormatted = this.formatSourceData(this.props.sourceData);
 
-    if (!sourceDataFormatted || sourceDataFormatted.length === 0) return null;
-
     return (
       <Accordion
         id={accordionId}
