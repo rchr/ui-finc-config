@@ -9,6 +9,8 @@ import {
   TextField
 } from '@folio/stripes/components';
 
+import { Required } from './Validate';
+
 class DisplayContact extends React.Component {
   static propTypes = {
     fields: PropTypes.object,
@@ -33,6 +35,7 @@ class DisplayContact extends React.Component {
             id={elem}
             name={`${elem}.name`}
             placeholder="Enter a name for the contact"
+            validate={[Required]}
           />
         </Col>
         <Col xs={4}>
@@ -42,6 +45,7 @@ class DisplayContact extends React.Component {
             id={elem}
             name={`${elem}.role`}
             placeholder="Enter a role for the contact"
+            validate={[Required]}
           />
         </Col>
         <Col
