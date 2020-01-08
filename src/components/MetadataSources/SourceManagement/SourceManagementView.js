@@ -9,7 +9,7 @@ import {
   KeyValue,
   List,
   MultiColumnList,
-  Row
+  Row,
 } from '@folio/stripes/components';
 
 import BasicCss from '../../BasicStyle.css';
@@ -28,11 +28,16 @@ class SourceManagementView extends React.Component {
     } else {
       return (
         <MultiColumnList
+          columnWidths={{
+            name: '46%',
+            role: '46%'
+          }}
           columnMapping={{
             name: <FormattedMessage id="ui-finc-config.contact.name" />,
             role: <FormattedMessage id="ui-finc-config.contact.role" />
           }}
           contentData={_.get(metadataSource.contacts, type, [])}
+          interactive={false}
           isEmptyMessage={`no ${type} contact`}
           visibleColumns={['name', 'role']}
         />
