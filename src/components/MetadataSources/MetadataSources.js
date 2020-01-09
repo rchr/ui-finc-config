@@ -1,6 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
+import { useHistory } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import Link from 'react-router-dom/Link';
 import {
   FormattedMessage,
@@ -44,6 +47,9 @@ class MetadataSources extends React.Component {
     children: PropTypes.object,
     contentData: PropTypes.arrayOf(PropTypes.object),
     disableRecordCreation: PropTypes.bool,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
     intl: intlShape.isRequired,
     onSelectRow: PropTypes.func,
     packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
@@ -52,6 +58,7 @@ class MetadataSources extends React.Component {
       stripes: PropTypes.shape({
         route: PropTypes.string, // base route; used to construct URLs
       }).isRequired,
+      router: PropTypes.object,
     }),
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
@@ -68,8 +75,8 @@ class MetadataSources extends React.Component {
     // searchString: '',
   }
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       filterPaneIsVisible: true,
@@ -197,6 +204,21 @@ class MetadataSources extends React.Component {
     localStorage.setItem('sourceSearchString', JSON.stringify(searchValue));
   }
 
+  resetAll = () => {
+    const history = useHistory();
+    localStorage.removeItem('sourceFilter');
+    localStorage.removeItem('sourceSearchString');
+    this.setState({
+      storedFilter: { status: ['active', 'technical implementation'] },
+      storedSearchString: { query: '' },
+    });
+    console.log(this.state.storedFilter);
+    // browserHistory.push('/finc-config/metadata-sources');
+    history.push(`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`);
+    // this.context.router.history.push('/finc-config/metadata-sources');
+    // window.location.reload(false);
+  }
+
   renderNavigation = (id) => (
     <FincNavigation
       id={id}
@@ -276,7 +298,9 @@ class MetadataSources extends React.Component {
                           buttonStyle="none"
                           disabled={disableReset()}
                           id="clickable-reset-all"
-                          onClick={resetAll}
+                          // onClick={resetAll}
+                          onClick={() => this.resetAll()}
+                          to={`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`}
                         >
                           <Icon icon="times-circle-solid">
                             <FormattedMessage id="stripes-smart-components.resetAll" />
@@ -334,4 +358,4 @@ class MetadataSources extends React.Component {
   }
 }
 
-export default injectIntl(MetadataSources);
+export default withRouter(injectIntl(MetadataSources));
