@@ -36,6 +36,9 @@ const searchableIndexes = [
   { label: 'Source ID', value: 'sourceId', makeQuery: term => `(sourceId="${term}*")` }
 ];
 
+const defaultFilter = { status: ['active', 'technical implementation'] };
+const defaultSearchString = { query: '' };
+
 class MetadataSources extends React.Component {
   static propTypes = {
     children: PropTypes.object,
@@ -52,7 +55,7 @@ class MetadataSources extends React.Component {
     }),
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
-    searchString: PropTypes.string,
+    // searchString: PropTypes.string,
     source: PropTypes.object,
     // add values for search-selectbox
     onChangeIndex: PropTypes.func,
@@ -62,7 +65,7 @@ class MetadataSources extends React.Component {
 
   static defaultProps = {
     contentData: {},
-    searchString: '',
+    // searchString: '',
   }
 
   constructor(props) {
@@ -70,6 +73,8 @@ class MetadataSources extends React.Component {
 
     this.state = {
       filterPaneIsVisible: true,
+      storedFilter: localStorage.getItem('sourceFilter') ? JSON.parse(localStorage.getItem('sourceFilter')) : defaultFilter,
+      storedSearchString: localStorage.getItem('sourceSearchString') ? JSON.parse(localStorage.getItem('sourceSearchString')) : defaultSearchString,
     };
   }
 
@@ -110,7 +115,8 @@ class MetadataSources extends React.Component {
 
   // generate url for record-details
   rowURL = (id) => {
-    return `${urls.sourceView(id)}${this.props.searchString}`;
+    // return `${urls.sourceView(id)}${this.props.searchString}`;
+    return `${urls.sourceView(id)}${this.state.storedSearchString}`;
   }
 
   // fade in/out of filter-pane
@@ -172,7 +178,8 @@ class MetadataSources extends React.Component {
                 buttonStyle="primary"
                 id="clickable-new-source"
                 marginBottom0
-                to={`${urls.sourceCreate()}${this.props.searchString}`}
+                // to={`${urls.sourceCreate()}${this.props.searchString}`}
+                to={`${urls.sourceCreate()}${this.state.storedSearchString}`}
               >
                 <FormattedMessage id="stripes-smart-components.new" />
               </Button>
@@ -181,6 +188,13 @@ class MetadataSources extends React.Component {
         </PaneMenu>
       </IfPermission>
     );
+  }
+
+  cacheFilter(activeFilters, searchValue) {
+    // console.log(`searchValue: ${JSON.stringify(searchValue)}`);
+    // console.log(`cache Filters ${JSON.stringify(activeFilters.state)}`);
+    localStorage.setItem('sourceFilter', JSON.stringify(activeFilters.state));
+    localStorage.setItem('sourceSearchString', JSON.stringify(searchValue));
   }
 
   renderNavigation = (id) => (
@@ -196,8 +210,10 @@ class MetadataSources extends React.Component {
     return (
       <div data-test-sources>
         <SearchAndSortQuery
-          initialFilterState={{ status: ['active', 'technical implementation'] }}
-          initialSearchState={{ query: '' }}
+          // initialFilterState={defaultFilter}
+          initialFilterState={this.state.storedFilter}
+          // initialSearchState={{ query: '' }}
+          initialSearchState={this.state.storedSearchString}
           initialSortState={{ sort: 'label' }}
           queryGetter={queryGetter}
           querySetter={querySetter}
@@ -215,6 +231,9 @@ class MetadataSources extends React.Component {
               searchValue,
             }) => {
               const disableReset = () => (!filterChanged && !searchChanged);
+              if (filterChanged || searchChanged) {
+                this.cacheFilter(activeFilters, searchValue);
+              }
 
               return (
                 <Paneset>
