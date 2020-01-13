@@ -1,9 +1,11 @@
 import _ from 'lodash';
 import React from 'react';
-import { useHistory } from "react-router-dom";
-import { withRouter } from 'react-router-dom';
+import {
+  useHistory,
+  withRouter
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
+// import ReactRouterPropTypes from 'react-router-prop-types';
 import Link from 'react-router-dom/Link';
 import {
   FormattedMessage,
@@ -39,7 +41,7 @@ const searchableIndexes = [
   { label: 'Source ID', value: 'sourceId', makeQuery: term => `(sourceId="${term}*")` }
 ];
 
-const defaultFilter = { status: ['active', 'technical implementation'] };
+const defaultFilter = { state: { status: ['active', 'technical implementation'] }, string: 'status.active,status.technical implementation' };
 const defaultSearchString = { query: '' };
 
 class MetadataSources extends React.Component {
@@ -62,7 +64,7 @@ class MetadataSources extends React.Component {
     }),
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
-    // searchString: PropTypes.string,
+    searchString: PropTypes.string,
     source: PropTypes.object,
     // add values for search-selectbox
     onChangeIndex: PropTypes.func,
@@ -72,7 +74,7 @@ class MetadataSources extends React.Component {
 
   static defaultProps = {
     contentData: {},
-    // searchString: '',
+    searchString: '',
   }
 
   constructor(props, context) {
@@ -122,8 +124,9 @@ class MetadataSources extends React.Component {
 
   // generate url for record-details
   rowURL = (id) => {
-    // return `${urls.sourceView(id)}${this.props.searchString}`;
-    return `${urls.sourceView(id)}${this.state.storedSearchString}`;
+    return `${urls.sourceView(id)}${this.props.searchString}`;
+    // NEED FILTER: "status.active,status.technical implementation,status.wish,status.negotiation"
+    // return `${urls.sourceView(id)}${this.state.storedSearchString}`;
   }
 
   // fade in/out of filter-pane
@@ -185,8 +188,8 @@ class MetadataSources extends React.Component {
                 buttonStyle="primary"
                 id="clickable-new-source"
                 marginBottom0
-                // to={`${urls.sourceCreate()}${this.props.searchString}`}
-                to={`${urls.sourceCreate()}${this.state.storedSearchString}`}
+                to={`${urls.sourceCreate()}${this.props.searchString}`}
+                // to={`${urls.sourceCreate()}${this.state.storedSearchString}`}
               >
                 <FormattedMessage id="stripes-smart-components.new" />
               </Button>
@@ -198,9 +201,7 @@ class MetadataSources extends React.Component {
   }
 
   cacheFilter(activeFilters, searchValue) {
-    // console.log(`searchValue: ${JSON.stringify(searchValue)}`);
-    // console.log(`cache Filters ${JSON.stringify(activeFilters.state)}`);
-    localStorage.setItem('sourceFilter', JSON.stringify(activeFilters.state));
+    localStorage.setItem('sourceFilter', JSON.stringify(activeFilters));
     localStorage.setItem('sourceSearchString', JSON.stringify(searchValue));
   }
 
@@ -209,12 +210,11 @@ class MetadataSources extends React.Component {
     localStorage.removeItem('sourceFilter');
     localStorage.removeItem('sourceSearchString');
     this.setState({
-      storedFilter: { status: ['active', 'technical implementation'] },
-      storedSearchString: { query: '' },
+      storedFilter: this.defaultFilter.state,
+      storedSearchString: this.defaultSearchString,
     });
-    console.log(this.state.storedFilter);
-    // browserHistory.push('/finc-config/metadata-sources');
-    history.push(`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`);
+    history.push(`${urls.sources()}?filters=${this.state.defaultFilter.string}&${defaultSearchString}`);
+    // history.push(`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`);
     // this.context.router.history.push('/finc-config/metadata-sources');
     // window.location.reload(false);
   }
@@ -233,7 +233,8 @@ class MetadataSources extends React.Component {
       <div data-test-sources>
         <SearchAndSortQuery
           // initialFilterState={defaultFilter}
-          initialFilterState={this.state.storedFilter}
+          // NEED FILTER: {"status":["active","technical implementation","wish"]}
+          initialFilterState={this.state.storedFilter.state}
           // initialSearchState={{ query: '' }}
           initialSearchState={this.state.storedSearchString}
           initialSortState={{ sort: 'label' }}
@@ -248,11 +249,11 @@ class MetadataSources extends React.Component {
               getSearchHandlers,
               onSort,
               onSubmitSearch,
-              resetAll,
+              // resetAll,
               searchChanged,
               searchValue,
             }) => {
-              const disableReset = () => (!filterChanged && !searchChanged);
+              // const disableReset = () => (!filterChanged && !searchChanged);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
               }
@@ -296,7 +297,8 @@ class MetadataSources extends React.Component {
                         </div>
                         <Button
                           buttonStyle="none"
-                          disabled={disableReset()}
+                          // TODO: get disabled working
+                          // disabled={disableReset()}
                           id="clickable-reset-all"
                           // onClick={resetAll}
                           onClick={() => this.resetAll()}
