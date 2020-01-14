@@ -1,5 +1,13 @@
 # Change history for ui-finc-config
 
+## [1.3.0](https://github.com/folio-org/ui-finc-config/tree/v1.3.0) (2020-01-14)
+* Sort column "Source ID" numerically (UIFC-105)
+* Bugfix: Horizontal scroll bar for contacts, incorrect display, changes (UIFC-107)
+* Bugfix: Validate contacts (UIFC-108)
+* Bugfix: Incorrect permission names (UIFC-103)
+* List for metadata sources in edit view of metadata collection (UIFC-94)
+* Use SearchAndSortQuery instead SearchAndSort (UIFC-93)
+
 ## [1.2.0](https://github.com/folio-org/ui-finc-config/tree/v1.2.0) (2019-10-07)
 * Show name of metadata source in result list (UIFC-86)
 
