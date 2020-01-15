@@ -2,11 +2,14 @@ import _ from 'lodash';
 import React from 'react';
 import {
   useHistory,
-  withRouter
+  withRouter,
+  Redirect,
+  Link,
+  BrowserRouter,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import ReactRouterPropTypes from 'react-router-prop-types';
-import Link from 'react-router-dom/Link';
+// import Link from 'react-router-dom/Link';
 import {
   FormattedMessage,
   injectIntl,
@@ -53,6 +56,7 @@ class MetadataSources extends React.Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
     intl: intlShape.isRequired,
+    onSearchChange: PropTypes.func.isRequired,
     onSelectRow: PropTypes.func,
     packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
       initialFilters: PropTypes.string, // default filters
@@ -85,6 +89,10 @@ class MetadataSources extends React.Component {
       storedFilter: localStorage.getItem('sourceFilter') ? JSON.parse(localStorage.getItem('sourceFilter')) : defaultFilter,
       storedSearchString: localStorage.getItem('sourceSearchString') ? JSON.parse(localStorage.getItem('sourceSearchString')) : defaultSearchString,
     };
+
+    this.cacheFilter = this.cacheFilter.bind(this);
+    this.resetAll = this.resetAll.bind(this);
+    // console.log(`constructor storedFilter: ${JSON.stringify(this.state.storedFilter)}`);
   }
 
   resultsFormatter = {
@@ -203,20 +211,51 @@ class MetadataSources extends React.Component {
   cacheFilter(activeFilters, searchValue) {
     localStorage.setItem('sourceFilter', JSON.stringify(activeFilters));
     localStorage.setItem('sourceSearchString', JSON.stringify(searchValue));
+
+    // this.setState({
+    //   storedFilter: activeFilters,
+    //   storedSearchString: searchValue,
+    // });
+
+    console.log(`cacheFilter state.storedFilter: ${JSON.stringify(this.state.storedFilter)}`);
   }
 
-  resetAll = () => {
-    const history = useHistory();
+  resetAll(getFilterHandlers, getSearchHandlers, resetAll) {
     localStorage.removeItem('sourceFilter');
     localStorage.removeItem('sourceSearchString');
+    console.log(`resetAll localStorage.getItem('sourceFilter'): ${localStorage.getItem('sourceFilter')}`);
+
+    // will be changed to initialState, but this is ...
+    // getSearchHandlers().state = {};
+    // getSearchHandlers().reset();
+    // getFilterHandlers().state = defaultFilter.state;
+    // getFilterHandlers().reset();
+
+    // resetAll();
+
+    // getSearchHandlers().reset();
+
     this.setState({
-      storedFilter: this.defaultFilter.state,
-      storedSearchString: this.defaultSearchString,
+      storedFilter: defaultFilter,
+      storedSearchString: defaultSearchString,
     });
-    history.push(`${urls.sources()}?filters=${this.state.defaultFilter.string}&${defaultSearchString}`);
-    // history.push(`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`);
-    // this.context.router.history.push('/finc-config/metadata-sources');
-    // window.location.reload(false);
+
+    // console.log(`resetAll state.storedFilter: ${JSON.stringify(this.state.storedFilter)}`);
+
+
+    // TODO: set selection of Filter ???!!!
+    // activeFilters has to be updated....
+
+    // ODER: history.push ????
+    return (this.props.history.push(`${urls.sources()}?filters=${defaultFilter.string}`));
+
+    // return <BrowserRouter
+    //   basename="/finc-config/metadata-sources"
+    //   forceRefresh
+    // />;
+
+    // url will be set to default values:
+    // return urls.sources;
   }
 
   renderNavigation = (id) => (
@@ -224,6 +263,16 @@ class MetadataSources extends React.Component {
       id={id}
     />
   );
+
+  handleClearSearch = (xxxdefaultSearchString) => {
+    // const history = useHistory();
+    localStorage.removeItem('sourceSearchString');
+    this.setState({
+      storedSearchString: xxxdefaultSearchString,
+    });
+    // history.push(`${urls.sources()}?filters=${this.state.storedFilter.string}&${defaultSearchString}`);
+    // this.props.onSearchChange('');
+  }
 
   render() {
     const { intl, queryGetter, querySetter, onChangeIndex, onSelectRow, selectedRecordId, source } = this.props;
@@ -249,10 +298,12 @@ class MetadataSources extends React.Component {
               getSearchHandlers,
               onSort,
               onSubmitSearch,
-              // resetAll,
+              resetAll,
               searchChanged,
               searchValue,
             }) => {
+              console.log(`SASQ activeFilters: ${JSON.stringify(activeFilters)}`);
+              console.log(`SASQ activeFilters: ${JSON.stringify(activeFilters)}`);
               // const disableReset = () => (!filterChanged && !searchChanged);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
@@ -277,7 +328,8 @@ class MetadataSources extends React.Component {
                             inputRef={this.searchField}
                             name="query"
                             onChange={getSearchHandlers().query}
-                            onClear={getSearchHandlers().reset}
+                            // onClear={getSearchHandlers().reset}
+                            onClear={() => this.handleClearSearch(defaultSearchString)}
                             value={searchValue.query}
                             // add values for search-selectbox
                             onChangeIndex={onChangeIndex}
@@ -301,8 +353,8 @@ class MetadataSources extends React.Component {
                           // disabled={disableReset()}
                           id="clickable-reset-all"
                           // onClick={resetAll}
-                          onClick={() => this.resetAll()}
-                          to={`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`}
+                          onClick={() => this.resetAll(getFilterHandlers, getSearchHandlers, resetAll)}
+                          // to={`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`}
                         >
                           <Icon icon="times-circle-solid">
                             <FormattedMessage id="stripes-smart-components.resetAll" />
@@ -310,6 +362,7 @@ class MetadataSources extends React.Component {
                         </Button>
                         <SourceFilters
                           activeFilters={activeFilters.state}
+                          // activeFilters={this.state.storedFilter.state}
                           filterHandlers={getFilterHandlers()}
                         />
                       </form>
