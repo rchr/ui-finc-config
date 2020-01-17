@@ -1,8 +1,8 @@
 {
-    "meta.title": "Finc config",
+    "meta.title": "Config Fin",
     "source.label": "Nom de la source",
     "source.id": "Identifiant de la source",
-    "source.status": "Impl. status",
+    "source.status": "Statut d'impl",
     "source.solrShard": "Solar shard",
     "source.lastProcessed": "Dernier enregistré",
     "source.generalAccordion": "Source de métadonnées (générale)",
