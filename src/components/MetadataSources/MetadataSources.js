@@ -74,6 +74,8 @@ class MetadataSources extends React.Component {
     onChangeIndex: PropTypes.func,
     selectedIndex: PropTypes.object,
     selectedRecordId: PropTypes.string,
+    filterHandlers: PropTypes.object,
+    activeFilters: PropTypes.object,
   };
 
   static defaultProps = {
@@ -221,6 +223,7 @@ class MetadataSources extends React.Component {
   }
 
   resetAll(getFilterHandlers, getSearchHandlers, resetAll) {
+    const { activeFilters } = this.props;
     localStorage.removeItem('sourceFilter');
     localStorage.removeItem('sourceSearchString');
     console.log(`resetAll localStorage.getItem('sourceFilter'): ${localStorage.getItem('sourceFilter')}`);
@@ -235,10 +238,14 @@ class MetadataSources extends React.Component {
 
     // getSearchHandlers().reset();
 
-    this.setState({
-      storedFilter: defaultFilter,
-      storedSearchString: defaultSearchString,
-    });
+    // this.props.filterHandlers.state({ ...activeFilters, defaultFilter });
+    // reset the filter state to default filters
+    getFilterHandlers.state(defaultFilter.state);
+
+    // this.setState({
+    //   storedFilter: defaultFilter,
+    //   storedSearchString: defaultSearchString,
+    // });
 
     // console.log(`resetAll state.storedFilter: ${JSON.stringify(this.state.storedFilter)}`);
 
@@ -247,7 +254,7 @@ class MetadataSources extends React.Component {
     // activeFilters has to be updated....
 
     // ODER: history.push ????
-    return (this.props.history.push(`${urls.sources()}?filters=${defaultFilter.string}`));
+    // return (this.props.history.push(`${urls.sources()}?filters=${defaultFilter.string}`));
 
     // return <BrowserRouter
     //   basename="/finc-config/metadata-sources"
@@ -353,7 +360,7 @@ class MetadataSources extends React.Component {
                           // disabled={disableReset()}
                           id="clickable-reset-all"
                           // onClick={resetAll}
-                          onClick={() => this.resetAll(getFilterHandlers, getSearchHandlers, resetAll)}
+                          onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers, resetAll)}
                           // to={`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`}
                         >
                           <Icon icon="times-circle-solid">
