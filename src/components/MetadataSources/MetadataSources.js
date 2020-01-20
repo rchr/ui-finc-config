@@ -218,25 +218,14 @@ class MetadataSources extends React.Component {
     //   storedFilter: activeFilters,
     //   storedSearchString: searchValue,
     // });
-
-    // console.log(`cacheFilter state.storedFilter: ${JSON.stringify(this.state.storedFilter)}`);
   }
 
   resetAll(getFilterHandlers, getSearchHandlers, resetAll) {
-    const { activeFilters } = this.props;
     localStorage.removeItem('sourceFilter');
     localStorage.removeItem('sourceSearchString');
-    console.log(`resetAll localStorage.getItem('sourceFilter'): ${localStorage.getItem('sourceFilter')}`);
-
-    // will be changed to initialState, but this is ...
-    // getSearchHandlers().state = {};
-    // getSearchHandlers().reset();
-    // getFilterHandlers().state = defaultFilter.state;
-    // getFilterHandlers().reset();
 
     // resetAll();
 
-    // this.props.filterHandlers.state({ ...activeFilters, defaultFilter });
     // reset the filter state to default filters
     getFilterHandlers.state(defaultFilter.state);
 
@@ -248,10 +237,6 @@ class MetadataSources extends React.Component {
     //   storedSearchString: defaultSearchString,
     // });
 
-    // TODO: set selection of Filter ???!!!
-    // activeFilters has to be updated....
-
-    // ODER: history.push ????
     return (this.props.history.push(`${urls.sources()}?filters=${defaultFilter.string}`));
   }
 
@@ -261,10 +246,8 @@ class MetadataSources extends React.Component {
     />
   );
 
-  handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue, activeFilters) {
+  handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue) {
     localStorage.removeItem('sourceSearchString');
-
-    console.log(`clearSearch: ${JSON.stringify(activeFilters)}`);
 
     // getSearchHandlers.state({
     //   query: '',
@@ -274,21 +257,16 @@ class MetadataSources extends React.Component {
     // getSearchHandlers.query('');
     searchValue.query = '';
     getSearchHandlers.state(defaultSearchString);
-    
-    // getSearchHandlers.query('');
-    // TODO: onSubmitSearch
-    // return onSubmitSearch;
-
-    // return (this.props.history.push(`${urls.sources()}?query=`));
 
     // return (this.props.history.push(`${urls.sources()}`));
-    // history.push(`${urls.sources()}?filters=${this.state.storedFilter.string}&${defaultSearchString}`);
-    // this.props.onSearchChange('');
   }
 
   render() {
     const { intl, queryGetter, querySetter, onChangeIndex, onSelectRow, selectedRecordId, source } = this.props;
     const count = source ? source.totalCount() : 0;
+
+    console.log(`render ${onChangeIndex}`);
+    console.log(`render selectedIndex ${this.props.selectedIndex}`);
 
     return (
       <div data-test-sources>
@@ -342,7 +320,7 @@ class MetadataSources extends React.Component {
                             onChange={getSearchHandlers().query}
                             // onClear={getSearchHandlers().reset}
 
-                            onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue, activeFilters)}
+                            onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
                             value={searchValue.query}
                             // add values for search-selectbox
                             onChangeIndex={onChangeIndex}
