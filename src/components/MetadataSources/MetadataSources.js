@@ -219,7 +219,7 @@ class MetadataSources extends React.Component {
     //   storedSearchString: searchValue,
     // });
 
-    console.log(`cacheFilter state.storedFilter: ${JSON.stringify(this.state.storedFilter)}`);
+    // console.log(`cacheFilter state.storedFilter: ${JSON.stringify(this.state.storedFilter)}`);
   }
 
   resetAll(getFilterHandlers, getSearchHandlers, resetAll) {
@@ -236,33 +236,23 @@ class MetadataSources extends React.Component {
 
     // resetAll();
 
-    // getSearchHandlers().reset();
-
     // this.props.filterHandlers.state({ ...activeFilters, defaultFilter });
     // reset the filter state to default filters
     getFilterHandlers.state(defaultFilter.state);
+
+    // reset the search query
+    getSearchHandlers.state(defaultSearchString);
 
     // this.setState({
     //   storedFilter: defaultFilter,
     //   storedSearchString: defaultSearchString,
     // });
 
-    // console.log(`resetAll state.storedFilter: ${JSON.stringify(this.state.storedFilter)}`);
-
-
     // TODO: set selection of Filter ???!!!
     // activeFilters has to be updated....
 
     // ODER: history.push ????
-    // return (this.props.history.push(`${urls.sources()}?filters=${defaultFilter.string}`));
-
-    // return <BrowserRouter
-    //   basename="/finc-config/metadata-sources"
-    //   forceRefresh
-    // />;
-
-    // url will be set to default values:
-    // return urls.sources;
+    return (this.props.history.push(`${urls.sources()}?filters=${defaultFilter.string}`));
   }
 
   renderNavigation = (id) => (
@@ -271,12 +261,27 @@ class MetadataSources extends React.Component {
     />
   );
 
-  handleClearSearch = (xxxdefaultSearchString) => {
-    // const history = useHistory();
+  handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue, activeFilters) {
     localStorage.removeItem('sourceSearchString');
-    this.setState({
-      storedSearchString: xxxdefaultSearchString,
-    });
+
+    console.log(`clearSearch: ${JSON.stringify(activeFilters)}`);
+
+    // getSearchHandlers.state({
+    //   query: '',
+    //   qindex: '',
+    // });
+
+    // getSearchHandlers.query('');
+    searchValue.query = '';
+    getSearchHandlers.state(defaultSearchString);
+    
+    // getSearchHandlers.query('');
+    // TODO: onSubmitSearch
+    // return onSubmitSearch;
+
+    // return (this.props.history.push(`${urls.sources()}?query=`));
+
+    // return (this.props.history.push(`${urls.sources()}`));
     // history.push(`${urls.sources()}?filters=${this.state.storedFilter.string}&${defaultSearchString}`);
     // this.props.onSearchChange('');
   }
@@ -309,8 +314,8 @@ class MetadataSources extends React.Component {
               searchChanged,
               searchValue,
             }) => {
-              console.log(`SASQ activeFilters: ${JSON.stringify(activeFilters)}`);
-              console.log(`SASQ activeFilters: ${JSON.stringify(activeFilters)}`);
+              // console.log(`SASQ activeFilters: ${JSON.stringify(activeFilters)}`);
+              // console.log(`SASQ activeFilters: ${JSON.stringify(activeFilters)}`);
               // const disableReset = () => (!filterChanged && !searchChanged);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
@@ -336,7 +341,8 @@ class MetadataSources extends React.Component {
                             name="query"
                             onChange={getSearchHandlers().query}
                             // onClear={getSearchHandlers().reset}
-                            onClear={() => this.handleClearSearch(defaultSearchString)}
+
+                            onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue, activeFilters)}
                             value={searchValue.query}
                             // add values for search-selectbox
                             onChangeIndex={onChangeIndex}
@@ -346,7 +352,7 @@ class MetadataSources extends React.Component {
                           />
                           <Button
                             buttonStyle="primary"
-                            disabled={!searchValue.query || searchValue.query === ''}
+                            // disabled={!searchValue.query || searchValue.query === ''}
                             fullWidth
                             id="sourceSubmitSearch"
                             type="submit"
@@ -360,7 +366,8 @@ class MetadataSources extends React.Component {
                           // disabled={disableReset()}
                           id="clickable-reset-all"
                           // onClick={resetAll}
-                          onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers, resetAll)}
+
+                          onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers(), resetAll)}
                           // to={`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`}
                         >
                           <Icon icon="times-circle-solid">
