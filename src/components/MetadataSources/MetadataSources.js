@@ -46,6 +46,7 @@ const searchableIndexes = [
 
 const defaultFilter = { state: { status: ['active', 'technical implementation'] }, string: 'status.active,status.technical implementation' };
 const defaultSearchString = { query: '' };
+const defaultSearchIndex = '';
 
 class MetadataSources extends React.Component {
   static propTypes = {
@@ -90,6 +91,8 @@ class MetadataSources extends React.Component {
       filterPaneIsVisible: true,
       storedFilter: localStorage.getItem('sourceFilter') ? JSON.parse(localStorage.getItem('sourceFilter')) : defaultFilter,
       storedSearchString: localStorage.getItem('sourceSearchString') ? JSON.parse(localStorage.getItem('sourceSearchString')) : defaultSearchString,
+      storedSearchIndex: localStorage.getItem('sourceSearchIndex') ? JSON.parse(localStorage.getItem('sourceSearchIndex')) : defaultSearchIndex,
+      // test: '',
     };
 
     this.cacheFilter = this.cacheFilter.bind(this);
@@ -223,6 +226,7 @@ class MetadataSources extends React.Component {
   resetAll(getFilterHandlers, getSearchHandlers, resetAll) {
     localStorage.removeItem('sourceFilter');
     localStorage.removeItem('sourceSearchString');
+    localStorage.removeItem('sourceSearchIndex');
 
     // resetAll();
 
@@ -261,12 +265,18 @@ class MetadataSources extends React.Component {
     // return (this.props.history.push(`${urls.sources()}`));
   }
 
+  onChangeIndex(index) {
+    localStorage.setItem('sourceSearchIndex', JSON.stringify(index));
+    this.setState({ storedSearchIndex: index });
+    console.log(`my index: ${index}`);
+    this.props.onChangeIndex(index);
+  }
+
   render() {
     const { intl, queryGetter, querySetter, onChangeIndex, onSelectRow, selectedRecordId, source } = this.props;
     const count = source ? source.totalCount() : 0;
 
-    console.log(`render ${onChangeIndex}`);
-    console.log(`render selectedIndex ${this.props.selectedIndex}`);
+    // console.log(`render test: ${this.state.test}`);
 
     return (
       <div data-test-sources>
@@ -299,6 +309,8 @@ class MetadataSources extends React.Component {
                 this.cacheFilter(activeFilters, searchValue);
               }
 
+              console.log(`render index state: ${this.state.storedSearchIndex}`);
+
               return (
                 <Paneset>
                   {this.state.filterPaneIsVisible &&
@@ -323,10 +335,15 @@ class MetadataSources extends React.Component {
                             onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
                             value={searchValue.query}
                             // add values for search-selectbox
-                            onChangeIndex={onChangeIndex}
+                            // call function
+                            // onChangeIndex={onChangeIndex}
+                            // get current index into state:
+                            // onChangeIndex={(e) => { this.setState({ test: e.target.value }); }}
+                            onChangeIndex={(e) => { this.onChangeIndex(e.target.value); }}
                             searchableIndexes={searchableIndexes}
                             searchableIndexesPlaceholder={null}
-                            selectedIndex={_.get(this.props.contentData, 'qindex')}
+                            // selectedIndex={_.get(this.props.contentData, 'qindex')}
+                            selectedIndex={this.state.storedSearchIndex}
                           />
                           <Button
                             buttonStyle="primary"
