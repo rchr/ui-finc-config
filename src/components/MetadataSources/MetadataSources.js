@@ -92,12 +92,12 @@ class MetadataSources extends React.Component {
       storedFilter: localStorage.getItem('sourceFilter') ? JSON.parse(localStorage.getItem('sourceFilter')) : defaultFilter,
       storedSearchString: localStorage.getItem('sourceSearchString') ? JSON.parse(localStorage.getItem('sourceSearchString')) : defaultSearchString,
       storedSearchIndex: localStorage.getItem('sourceSearchIndex') ? JSON.parse(localStorage.getItem('sourceSearchIndex')) : defaultSearchIndex,
-      // test: '',
+      // combinedSearch: '',
     };
 
     this.cacheFilter = this.cacheFilter.bind(this);
     this.resetAll = this.resetAll.bind(this);
-    // console.log(`constructor storedFilter: ${JSON.stringify(this.state.storedFilter)}`);
+    console.log(`constructor storedSearchIndex: ${JSON.stringify(this.state.storedSearchIndex)}`);
   }
 
   resultsFormatter = {
@@ -236,10 +236,11 @@ class MetadataSources extends React.Component {
     // reset the search query
     getSearchHandlers.state(defaultSearchString);
 
-    // this.setState({
-    //   storedFilter: defaultFilter,
-    //   storedSearchString: defaultSearchString,
-    // });
+    this.setState({
+      storedFilter: defaultFilter,
+      storedSearchString: defaultSearchString,
+      storedSearchIndex: defaultSearchIndex,
+    });
 
     return (this.props.history.push(`${urls.sources()}?filters=${defaultFilter.string}`));
   }
@@ -252,15 +253,18 @@ class MetadataSources extends React.Component {
 
   handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue) {
     localStorage.removeItem('sourceSearchString');
-
-    // getSearchHandlers.state({
-    //   query: '',
-    //   qindex: '',
-    // });
+    localStorage.removeItem('sourceSearchIndex');
 
     // getSearchHandlers.query('');
     searchValue.query = '';
-    getSearchHandlers.state(defaultSearchString);
+    // getSearchHandlers.state(defaultSearchString);
+
+    getSearchHandlers.state({
+      query: '',
+      qindex: '',
+    });
+
+    this.setState({ storedSearchIndex: defaultSearchIndex });
 
     // return (this.props.history.push(`${urls.sources()}`));
   }
@@ -268,15 +272,31 @@ class MetadataSources extends React.Component {
   onChangeIndex(index) {
     localStorage.setItem('sourceSearchIndex', JSON.stringify(index));
     this.setState({ storedSearchIndex: index });
-    console.log(`my index: ${index}`);
+    // call function in SourcesRoute.js:
     this.props.onChangeIndex(index);
+  }
+
+  getCombinedSearch = () => {
+    if (this.state.storedSearchIndex.qindex !== '') {
+      const combined = {
+        query: this.state.storedSearchString.query,
+        qindex: this.state.storedSearchIndex,
+      };
+      return combined;
+    } else {
+      return this.state.storedSearchString;
+    }
   }
 
   render() {
     const { intl, queryGetter, querySetter, onChangeIndex, onSelectRow, selectedRecordId, source } = this.props;
     const count = source ? source.totalCount() : 0;
 
-    // console.log(`render test: ${this.state.test}`);
+    // console.log('hier return: ');
+    // console.log(JSON.stringify(this.getCombinedSearch()));
+
+    // console.log('hier state: ');
+    // console.log(JSON.stringify(this.state.storedSearchString));
 
     return (
       <div data-test-sources>
@@ -285,7 +305,12 @@ class MetadataSources extends React.Component {
           // NEED FILTER: {"status":["active","technical implementation","wish"]}
           initialFilterState={this.state.storedFilter.state}
           // initialSearchState={{ query: '' }}
-          initialSearchState={this.state.storedSearchString}
+
+          // initialSearchState={this.state.storedSearchString}
+          // TODO: initialSearchState has to look like:
+          // initialSearchState={{ 'query': 'music', 'qindex': 'label' }}
+          initialSearchState={this.getCombinedSearch()}
+
           initialSortState={{ sort: 'label' }}
           queryGetter={queryGetter}
           querySetter={querySetter}
@@ -302,14 +327,10 @@ class MetadataSources extends React.Component {
               searchChanged,
               searchValue,
             }) => {
-              // console.log(`SASQ activeFilters: ${JSON.stringify(activeFilters)}`);
-              // console.log(`SASQ activeFilters: ${JSON.stringify(activeFilters)}`);
               // const disableReset = () => (!filterChanged && !searchChanged);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
               }
-
-              console.log(`render index state: ${this.state.storedSearchIndex}`);
 
               return (
                 <Paneset>
