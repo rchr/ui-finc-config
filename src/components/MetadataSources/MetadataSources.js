@@ -1,15 +1,9 @@
-import _ from 'lodash';
 import React from 'react';
 import {
-  useHistory,
   withRouter,
-  Redirect,
   Link,
-  BrowserRouter,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import ReactRouterPropTypes from 'react-router-prop-types';
-// import Link from 'react-router-dom/Link';
 import {
   FormattedMessage,
   injectIntl,
@@ -92,12 +86,10 @@ class MetadataSources extends React.Component {
       storedFilter: localStorage.getItem('sourceFilter') ? JSON.parse(localStorage.getItem('sourceFilter')) : defaultFilter,
       storedSearchString: localStorage.getItem('sourceSearchString') ? JSON.parse(localStorage.getItem('sourceSearchString')) : defaultSearchString,
       storedSearchIndex: localStorage.getItem('sourceSearchIndex') ? JSON.parse(localStorage.getItem('sourceSearchIndex')) : defaultSearchIndex,
-      // combinedSearch: '',
     };
 
     this.cacheFilter = this.cacheFilter.bind(this);
     this.resetAll = this.resetAll.bind(this);
-    console.log(`constructor storedSearchIndex: ${JSON.stringify(this.state.storedSearchIndex)}`);
   }
 
   resultsFormatter = {
@@ -202,7 +194,6 @@ class MetadataSources extends React.Component {
                 id="clickable-new-source"
                 marginBottom0
                 to={`${urls.sourceCreate()}${this.props.searchString}`}
-                // to={`${urls.sourceCreate()}${this.state.storedSearchString}`}
               >
                 <FormattedMessage id="stripes-smart-components.new" />
               </Button>
@@ -213,22 +204,21 @@ class MetadataSources extends React.Component {
     );
   }
 
+  renderNavigation = (id) => (
+    <FincNavigation
+      id={id}
+    />
+  );
+
   cacheFilter(activeFilters, searchValue) {
     localStorage.setItem('sourceFilter', JSON.stringify(activeFilters));
     localStorage.setItem('sourceSearchString', JSON.stringify(searchValue));
-
-    // this.setState({
-    //   storedFilter: activeFilters,
-    //   storedSearchString: searchValue,
-    // });
   }
 
-  resetAll(getFilterHandlers, getSearchHandlers, resetAll) {
+  resetAll(getFilterHandlers, getSearchHandlers) {
     localStorage.removeItem('sourceFilter');
     localStorage.removeItem('sourceSearchString');
     localStorage.removeItem('sourceSearchIndex');
-
-    // resetAll();
 
     // reset the filter state to default filters
     getFilterHandlers.state(defaultFilter.state);
@@ -245,35 +235,31 @@ class MetadataSources extends React.Component {
     return (this.props.history.push(`${urls.sources()}?filters=${defaultFilter.string}`));
   }
 
-  renderNavigation = (id) => (
-    <FincNavigation
-      id={id}
-    />
-  );
-
   handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue) {
     localStorage.removeItem('sourceSearchString');
     localStorage.removeItem('sourceSearchIndex');
 
-    // getSearchHandlers.query('');
+    this.setState({ storedSearchIndex: defaultSearchIndex });
+
     searchValue.query = '';
-    // getSearchHandlers.state(defaultSearchString);
 
     getSearchHandlers.state({
       query: '',
       qindex: '',
     });
 
-    this.setState({ storedSearchIndex: defaultSearchIndex });
-
-    // return (this.props.history.push(`${urls.sources()}`));
+    // TODO: url still contains old qindex?!
   }
 
-  onChangeIndex(index) {
+  onChangeIndex(index, getSearchHandlers, searchValue) {
     localStorage.setItem('sourceSearchIndex', JSON.stringify(index));
     this.setState({ storedSearchIndex: index });
     // call function in SourcesRoute.js:
     this.props.onChangeIndex(index);
+    getSearchHandlers.state({
+      query: searchValue.query,
+      qindex: index,
+    });
   }
 
   getCombinedSearch = () => {
@@ -289,14 +275,8 @@ class MetadataSources extends React.Component {
   }
 
   render() {
-    const { intl, queryGetter, querySetter, onChangeIndex, onSelectRow, selectedRecordId, source } = this.props;
+    const { intl, queryGetter, querySetter, onSelectRow, selectedRecordId, source } = this.props;
     const count = source ? source.totalCount() : 0;
-
-    // console.log('hier return: ');
-    // console.log(JSON.stringify(this.getCombinedSearch()));
-
-    // console.log('hier state: ');
-    // console.log(JSON.stringify(this.state.storedSearchString));
 
     return (
       <div data-test-sources>
@@ -305,12 +285,10 @@ class MetadataSources extends React.Component {
           // NEED FILTER: {"status":["active","technical implementation","wish"]}
           initialFilterState={this.state.storedFilter.state}
           // initialSearchState={{ query: '' }}
-
           // initialSearchState={this.state.storedSearchString}
           // TODO: initialSearchState has to look like:
           // initialSearchState={{ 'query': 'music', 'qindex': 'label' }}
           initialSearchState={this.getCombinedSearch()}
-
           initialSortState={{ sort: 'label' }}
           queryGetter={queryGetter}
           querySetter={querySetter}
@@ -352,15 +330,11 @@ class MetadataSources extends React.Component {
                             name="query"
                             onChange={getSearchHandlers().query}
                             // onClear={getSearchHandlers().reset}
-
                             onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
                             value={searchValue.query}
                             // add values for search-selectbox
-                            // call function
                             // onChangeIndex={onChangeIndex}
-                            // get current index into state:
-                            // onChangeIndex={(e) => { this.setState({ test: e.target.value }); }}
-                            onChangeIndex={(e) => { this.onChangeIndex(e.target.value); }}
+                            onChangeIndex={(e) => { this.onChangeIndex(e.target.value, getSearchHandlers(), searchValue); }}
                             searchableIndexes={searchableIndexes}
                             searchableIndexesPlaceholder={null}
                             // selectedIndex={_.get(this.props.contentData, 'qindex')}
@@ -378,7 +352,7 @@ class MetadataSources extends React.Component {
                         </div>
                         <Button
                           buttonStyle="none"
-                          // TODO: get disabled working
+                          // TODO: get disabled working?!
                           // disabled={disableReset()}
                           id="clickable-reset-all"
                           // onClick={resetAll}
@@ -392,7 +366,6 @@ class MetadataSources extends React.Component {
                         </Button>
                         <SourceFilters
                           activeFilters={activeFilters.state}
-                          // activeFilters={this.state.storedFilter.state}
                           filterHandlers={getFilterHandlers()}
                         />
                       </form>
