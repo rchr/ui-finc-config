@@ -1,7 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom/Link';
+import {
+  Link,
+  withRouter,
+} from 'react-router-dom';
 import {
   FormattedMessage,
   injectIntl,
@@ -30,12 +33,18 @@ import urls from '../DisplayUtils/urls';
 import CollectionFilters from './CollectionFilters';
 import FincNavigation from '../Navigation/FincNavigation';
 
+const defaultFilter = { state: { metadataAvailable: ['yes'] }, string: 'metadataAvailable.yes' };
+const defaultSearchString = { query: '' };
+
 class MetadataCollections extends React.Component {
   static propTypes = {
     children: PropTypes.object,
     collection: PropTypes.object,
     contentData: PropTypes.arrayOf(PropTypes.object),
     disableRecordCreation: PropTypes.bool,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
     intl: intlShape.isRequired,
     onSelectRow: PropTypes.func,
     packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
@@ -61,6 +70,8 @@ class MetadataCollections extends React.Component {
 
     this.state = {
       filterPaneIsVisible: true,
+      storedFilter: localStorage.getItem('fincConfigCollectionFilters') ? JSON.parse(localStorage.getItem('fincConfigCollectionFilters')) : defaultFilter,
+      storedSearchString: localStorage.getItem('fincConfigCollectionSearchString') ? JSON.parse(localStorage.getItem('fincConfigCollectionSearchString')) : defaultSearchString,
     };
   }
 
@@ -192,6 +203,42 @@ class MetadataCollections extends React.Component {
     />
   );
 
+  cacheFilter(activeFilters, searchValue) {
+    localStorage.setItem('fincConfigCollectionFilters', JSON.stringify(activeFilters));
+    localStorage.setItem('fincConfigCollectionSearchString', JSON.stringify(searchValue));
+  }
+
+  resetAll(getFilterHandlers, getSearchHandlers) {
+    localStorage.removeItem('fincConfigCollectionFilters');
+    localStorage.removeItem('fincConfigCollectionSearchString');
+
+    // reset the filter state to default filters
+    getFilterHandlers.state(defaultFilter.state);
+
+    // reset the search query
+    getSearchHandlers.state(defaultSearchString);
+
+    this.setState({
+      storedFilter: defaultFilter,
+      storedSearchString: defaultSearchString,
+    });
+
+    return (this.props.history.push(`${urls.collections()}?filters=${defaultFilter.string}`));
+  }
+
+  handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue) {
+    localStorage.removeItem('fincConfigCollectionSearchString');
+    localStorage.removeItem('fincConfigCollectionSearchIndex');
+
+    searchValue.query = '';
+
+    getSearchHandlers.state({
+      query: '',
+    });
+
+    // TODO: url still contains old qindex?!
+  }
+
   render() {
     const { intl, queryGetter, querySetter, onSelectRow, selectedRecordId, collection } = this.props;
     const count = collection ? collection.totalCount() : 0;
@@ -199,8 +246,10 @@ class MetadataCollections extends React.Component {
     return (
       <div data-test-collections>
         <SearchAndSortQuery
-          initialFilterState={{ metadataAvailable: ['yes'] }}
-          initialSearchState={{ query: '' }}
+          // initialFilterState={{ metadataAvailable: ['yes'] }}
+          initialFilterState={this.state.storedFilter.state}
+          // initialSearchState={{ query: '' }}
+          initialSearchState={this.state.storedSearchString}
           initialSortState={{ sort: 'label' }}
           queryGetter={queryGetter}
           querySetter={querySetter}
@@ -217,7 +266,10 @@ class MetadataCollections extends React.Component {
               searchChanged,
               searchValue,
             }) => {
-              const disableReset = () => (!filterChanged && !searchChanged);
+              // const disableReset = () => (!filterChanged && !searchChanged);
+              if (filterChanged || searchChanged) {
+                this.cacheFilter(activeFilters, searchValue);
+              }
 
               return (
                 <Paneset>
@@ -238,12 +290,13 @@ class MetadataCollections extends React.Component {
                             inputRef={this.searchField}
                             name="query"
                             onChange={getSearchHandlers().query}
-                            onClear={getSearchHandlers().reset}
+                            // onClear={getSearchHandlers().reset}
+                            onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
                             value={searchValue.query}
                           />
                           <Button
                             buttonStyle="primary"
-                            disabled={!searchValue.query || searchValue.query === ''}
+                            // disabled={!searchValue.query || searchValue.query === ''}
                             fullWidth
                             id="collectionSubmitSearch"
                             type="submit"
@@ -253,9 +306,10 @@ class MetadataCollections extends React.Component {
                         </div>
                         <Button
                           buttonStyle="none"
-                          disabled={disableReset()}
+                          // disabled={disableReset()}
                           id="clickable-reset-all"
-                          onClick={resetAll}
+                          // onClick={resetAll}
+                          onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers(), resetAll)}
                         >
                           <Icon icon="times-circle-solid">
                             <FormattedMessage id="stripes-smart-components.resetAll" />
@@ -314,4 +368,4 @@ class MetadataCollections extends React.Component {
   }
 }
 
-export default injectIntl(MetadataCollections);
+export default withRouter(injectIntl(MetadataCollections));

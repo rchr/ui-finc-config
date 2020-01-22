@@ -51,7 +51,6 @@ class MetadataSources extends React.Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
     intl: intlShape.isRequired,
-    onSearchChange: PropTypes.func.isRequired,
     onSelectRow: PropTypes.func,
     packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
       initialFilters: PropTypes.string, // default filters
@@ -78,8 +77,8 @@ class MetadataSources extends React.Component {
     searchString: '',
   }
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       filterPaneIsVisible: true,
@@ -88,8 +87,8 @@ class MetadataSources extends React.Component {
       storedSearchIndex: localStorage.getItem('fincConfigSourceSearchIndex') ? JSON.parse(localStorage.getItem('fincConfigSourceSearchIndex')) : defaultSearchIndex,
     };
 
-    this.cacheFilter = this.cacheFilter.bind(this);
-    this.resetAll = this.resetAll.bind(this);
+    // this.cacheFilter = this.cacheFilter.bind(this);
+    // this.resetAll = this.resetAll.bind(this);
   }
 
   resultsFormatter = {
@@ -131,7 +130,6 @@ class MetadataSources extends React.Component {
   rowURL = (id) => {
     return `${urls.sourceView(id)}${this.props.searchString}`;
     // NEED FILTER: "status.active,status.technical implementation,status.wish,status.negotiation"
-    // return `${urls.sourceView(id)}${this.state.storedSearchString}`;
   }
 
   // fade in/out of filter-pane
@@ -356,7 +354,6 @@ class MetadataSources extends React.Component {
                           // disabled={disableReset()}
                           id="clickable-reset-all"
                           // onClick={resetAll}
-
                           onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers(), resetAll)}
                           // to={`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`}
                         >
