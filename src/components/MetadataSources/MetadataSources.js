@@ -86,9 +86,6 @@ class MetadataSources extends React.Component {
       storedSearchString: localStorage.getItem('fincConfigSourceSearchString') ? JSON.parse(localStorage.getItem('fincConfigSourceSearchString')) : defaultSearchString,
       storedSearchIndex: localStorage.getItem('fincConfigSourceSearchIndex') ? JSON.parse(localStorage.getItem('fincConfigSourceSearchIndex')) : defaultSearchIndex,
     };
-
-    // this.cacheFilter = this.cacheFilter.bind(this);
-    // this.resetAll = this.resetAll.bind(this);
   }
 
   resultsFormatter = {
@@ -246,7 +243,7 @@ class MetadataSources extends React.Component {
       qindex: '',
     });
 
-    // TODO: url still contains old qindex?!
+    return onSubmitSearch;
   }
 
   onChangeIndex(index, getSearchHandlers, searchValue) {
@@ -279,13 +276,8 @@ class MetadataSources extends React.Component {
     return (
       <div data-test-sources>
         <SearchAndSortQuery
-          // initialFilterState={defaultFilter}
           // NEED FILTER: {"status":["active","technical implementation","wish"]}
           initialFilterState={this.state.storedFilter.state}
-          // initialSearchState={{ query: '' }}
-          // initialSearchState={this.state.storedSearchString}
-          // TODO: initialSearchState has to look like:
-          // initialSearchState={{ 'query': 'music', 'qindex': 'label' }}
           initialSearchState={this.getCombinedSearch()}
           initialSortState={{ sort: 'label' }}
           queryGetter={queryGetter}
@@ -299,10 +291,10 @@ class MetadataSources extends React.Component {
               getSearchHandlers,
               onSort,
               onSubmitSearch,
-              resetAll,
               searchChanged,
               searchValue,
             }) => {
+              // TODO: get disabled working
               // const disableReset = () => (!filterChanged && !searchChanged);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
@@ -327,19 +319,17 @@ class MetadataSources extends React.Component {
                             inputRef={this.searchField}
                             name="query"
                             onChange={getSearchHandlers().query}
-                            // onClear={getSearchHandlers().reset}
                             onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
                             value={searchValue.query}
                             // add values for search-selectbox
-                            // onChangeIndex={onChangeIndex}
                             onChangeIndex={(e) => { this.onChangeIndex(e.target.value, getSearchHandlers(), searchValue); }}
                             searchableIndexes={searchableIndexes}
                             searchableIndexesPlaceholder={null}
-                            // selectedIndex={_.get(this.props.contentData, 'qindex')}
                             selectedIndex={this.state.storedSearchIndex}
                           />
                           <Button
                             buttonStyle="primary"
+                            // TODO: get disabled working
                             // disabled={!searchValue.query || searchValue.query === ''}
                             fullWidth
                             id="sourceSubmitSearch"
@@ -350,12 +340,10 @@ class MetadataSources extends React.Component {
                         </div>
                         <Button
                           buttonStyle="none"
-                          // TODO: get disabled working?!
+                          // TODO: get disabled working
                           // disabled={disableReset()}
                           id="clickable-reset-all"
-                          // onClick={resetAll}
-                          onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers(), resetAll)}
-                          // to={`${urls.sources()}?filters=status.active%2Cstatus.technical%20implementation&query=`}
+                          onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers())}
                         >
                           <Icon icon="times-circle-solid">
                             <FormattedMessage id="stripes-smart-components.resetAll" />
@@ -396,7 +384,6 @@ class MetadataSources extends React.Component {
                       onHeaderClick={onSort}
                       onRowClick={onSelectRow}
                       rowFormatter={this.rowFormatter}
-                      // selectedRow={this.state.selectedItem}
                       totalCount={count}
                       virtualize
                       visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}

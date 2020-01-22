@@ -236,7 +236,7 @@ class MetadataCollections extends React.Component {
       query: '',
     });
 
-    // TODO: url still contains old qindex?!
+    return onSubmitSearch;
   }
 
   render() {
@@ -246,9 +246,7 @@ class MetadataCollections extends React.Component {
     return (
       <div data-test-collections>
         <SearchAndSortQuery
-          // initialFilterState={{ metadataAvailable: ['yes'] }}
           initialFilterState={this.state.storedFilter.state}
-          // initialSearchState={{ query: '' }}
           initialSearchState={this.state.storedSearchString}
           initialSortState={{ sort: 'label' }}
           queryGetter={queryGetter}
@@ -266,6 +264,7 @@ class MetadataCollections extends React.Component {
               searchChanged,
               searchValue,
             }) => {
+              // TODO: get disabled working
               // const disableReset = () => (!filterChanged && !searchChanged);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
@@ -290,12 +289,12 @@ class MetadataCollections extends React.Component {
                             inputRef={this.searchField}
                             name="query"
                             onChange={getSearchHandlers().query}
-                            // onClear={getSearchHandlers().reset}
                             onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
                             value={searchValue.query}
                           />
                           <Button
                             buttonStyle="primary"
+                            // TODO: get disabled working
                             // disabled={!searchValue.query || searchValue.query === ''}
                             fullWidth
                             id="collectionSubmitSearch"
@@ -306,9 +305,9 @@ class MetadataCollections extends React.Component {
                         </div>
                         <Button
                           buttonStyle="none"
+                          // TODO: get disabled working
                           // disabled={disableReset()}
                           id="clickable-reset-all"
-                          // onClick={resetAll}
                           onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers(), resetAll)}
                         >
                           <Icon icon="times-circle-solid">
@@ -351,7 +350,6 @@ class MetadataCollections extends React.Component {
                       onHeaderClick={onSort}
                       onRowClick={onSelectRow}
                       rowFormatter={this.rowFormatter}
-                      // selectedRow={this.state.selectedItem}
                       totalCount={count}
                       virtualize
                       visibleColumns={['label', 'mdSource', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent']}
