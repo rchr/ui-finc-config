@@ -83,9 +83,9 @@ class MetadataSources extends React.Component {
 
     this.state = {
       filterPaneIsVisible: true,
-      storedFilter: localStorage.getItem('sourceFilter') ? JSON.parse(localStorage.getItem('sourceFilter')) : defaultFilter,
-      storedSearchString: localStorage.getItem('sourceSearchString') ? JSON.parse(localStorage.getItem('sourceSearchString')) : defaultSearchString,
-      storedSearchIndex: localStorage.getItem('sourceSearchIndex') ? JSON.parse(localStorage.getItem('sourceSearchIndex')) : defaultSearchIndex,
+      storedFilter: localStorage.getItem('fincConfigSourceFilters') ? JSON.parse(localStorage.getItem('fincConfigSourceFilters')) : defaultFilter,
+      storedSearchString: localStorage.getItem('fincConfigSourceSearchString') ? JSON.parse(localStorage.getItem('fincConfigSourceSearchString')) : defaultSearchString,
+      storedSearchIndex: localStorage.getItem('fincConfigSourceSearchIndex') ? JSON.parse(localStorage.getItem('fincConfigSourceSearchIndex')) : defaultSearchIndex,
     };
 
     this.cacheFilter = this.cacheFilter.bind(this);
@@ -211,14 +211,14 @@ class MetadataSources extends React.Component {
   );
 
   cacheFilter(activeFilters, searchValue) {
-    localStorage.setItem('sourceFilter', JSON.stringify(activeFilters));
-    localStorage.setItem('sourceSearchString', JSON.stringify(searchValue));
+    localStorage.setItem('fincConfigSourceFilters', JSON.stringify(activeFilters));
+    localStorage.setItem('fincConfigSourceSearchString', JSON.stringify(searchValue));
   }
 
   resetAll(getFilterHandlers, getSearchHandlers) {
-    localStorage.removeItem('sourceFilter');
-    localStorage.removeItem('sourceSearchString');
-    localStorage.removeItem('sourceSearchIndex');
+    localStorage.removeItem('fincConfigSourceFilters');
+    localStorage.removeItem('fincConfigSourceSearchString');
+    localStorage.removeItem('fincConfigSourceSearchIndex');
 
     // reset the filter state to default filters
     getFilterHandlers.state(defaultFilter.state);
@@ -236,8 +236,8 @@ class MetadataSources extends React.Component {
   }
 
   handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue) {
-    localStorage.removeItem('sourceSearchString');
-    localStorage.removeItem('sourceSearchIndex');
+    localStorage.removeItem('fincConfigSourceSearchString');
+    localStorage.removeItem('fincConfigSourceSearchIndex');
 
     this.setState({ storedSearchIndex: defaultSearchIndex });
 
@@ -252,7 +252,7 @@ class MetadataSources extends React.Component {
   }
 
   onChangeIndex(index, getSearchHandlers, searchValue) {
-    localStorage.setItem('sourceSearchIndex', JSON.stringify(index));
+    localStorage.setItem('fincConfigSourceSearchIndex', JSON.stringify(index));
     this.setState({ storedSearchIndex: index });
     // call function in SourcesRoute.js:
     this.props.onChangeIndex(index);
