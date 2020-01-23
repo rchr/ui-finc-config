@@ -295,7 +295,7 @@ class MetadataSources extends React.Component {
               searchValue,
             }) => {
               // TODO: get disabled working
-              // const disableReset = () => (!filterChanged && !searchChanged);
+              const disableReset = () => (!filterChanged && !searchChanged);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
               }
@@ -330,7 +330,7 @@ class MetadataSources extends React.Component {
                           <Button
                             buttonStyle="primary"
                             // TODO: get disabled working
-                            // disabled={!searchValue.query || searchValue.query === ''}
+                            disabled={!searchValue.query || searchValue.query === ''}
                             fullWidth
                             id="sourceSubmitSearch"
                             type="submit"
@@ -341,7 +341,7 @@ class MetadataSources extends React.Component {
                         <Button
                           buttonStyle="none"
                           // TODO: get disabled working
-                          // disabled={disableReset()}
+                          disabled={disableReset()}
                           id="clickable-reset-all"
                           onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers())}
                         >

@@ -226,6 +226,7 @@ class MetadataCollections extends React.Component {
     return (this.props.history.push(`${urls.collections()}?filters=${defaultFilter.string}`));
   }
 
+  // function is handling click on delete Search-buttton
   handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue) {
     localStorage.removeItem('fincConfigCollectionSearchString');
     localStorage.removeItem('fincConfigCollectionSearchIndex');
@@ -237,6 +238,14 @@ class MetadataCollections extends React.Component {
     });
 
     return onSubmitSearch;
+  }
+
+  getdisableReset(activeFilters, searchValue) {
+    if (_.isEqual(activeFilters.state, defaultFilter.state) && searchValue.query === defaultSearchString.query) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render() {
@@ -260,12 +269,11 @@ class MetadataCollections extends React.Component {
               getSearchHandlers,
               onSort,
               onSubmitSearch,
-              resetAll,
               searchChanged,
               searchValue,
             }) => {
-              // TODO: get disabled working
-              // const disableReset = () => (!filterChanged && !searchChanged);
+              const disableReset = this.getdisableReset(activeFilters, searchValue);
+              const disableSearch = () => (searchValue.query === defaultSearchString.query);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
               }
@@ -294,8 +302,7 @@ class MetadataCollections extends React.Component {
                           />
                           <Button
                             buttonStyle="primary"
-                            // TODO: get disabled working
-                            // disabled={!searchValue.query || searchValue.query === ''}
+                            disabled={disableSearch()}
                             fullWidth
                             id="collectionSubmitSearch"
                             type="submit"
@@ -305,10 +312,9 @@ class MetadataCollections extends React.Component {
                         </div>
                         <Button
                           buttonStyle="none"
-                          // TODO: get disabled working
-                          // disabled={disableReset()}
+                          disabled={disableReset}
                           id="clickable-reset-all"
-                          onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers(), resetAll)}
+                          onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers())}
                         >
                           <Icon icon="times-circle-solid">
                             <FormattedMessage id="stripes-smart-components.resetAll" />
