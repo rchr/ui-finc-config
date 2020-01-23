@@ -1,7 +1,9 @@
-import _ from 'lodash';
 import React from 'react';
+import {
+  withRouter,
+  Link,
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom/Link';
 import {
   FormattedMessage,
   injectIntl,
@@ -36,11 +38,18 @@ const searchableIndexes = [
   { label: 'Source ID', value: 'sourceId', makeQuery: term => `(sourceId="${term}*")` }
 ];
 
+const defaultFilter = { state: { status: ['active', 'technical implementation'] }, string: 'status.active,status.technical implementation' };
+const defaultSearchString = { query: '' };
+const defaultSearchIndex = '';
+
 class MetadataSources extends React.Component {
   static propTypes = {
     children: PropTypes.object,
     contentData: PropTypes.arrayOf(PropTypes.object),
     disableRecordCreation: PropTypes.bool,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
     intl: intlShape.isRequired,
     onSelectRow: PropTypes.func,
     packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
@@ -49,6 +58,7 @@ class MetadataSources extends React.Component {
       stripes: PropTypes.shape({
         route: PropTypes.string, // base route; used to construct URLs
       }).isRequired,
+      router: PropTypes.object,
     }),
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
@@ -58,6 +68,8 @@ class MetadataSources extends React.Component {
     onChangeIndex: PropTypes.func,
     selectedIndex: PropTypes.object,
     selectedRecordId: PropTypes.string,
+    filterHandlers: PropTypes.object,
+    activeFilters: PropTypes.object,
   };
 
   static defaultProps = {
@@ -70,6 +82,9 @@ class MetadataSources extends React.Component {
 
     this.state = {
       filterPaneIsVisible: true,
+      storedFilter: localStorage.getItem('fincConfigSourceFilters') ? JSON.parse(localStorage.getItem('fincConfigSourceFilters')) : defaultFilter,
+      storedSearchString: localStorage.getItem('fincConfigSourceSearchString') ? JSON.parse(localStorage.getItem('fincConfigSourceSearchString')) : defaultSearchString,
+      storedSearchIndex: localStorage.getItem('fincConfigSourceSearchIndex') ? JSON.parse(localStorage.getItem('fincConfigSourceSearchIndex')) : defaultSearchIndex,
     };
   }
 
@@ -111,6 +126,7 @@ class MetadataSources extends React.Component {
   // generate url for record-details
   rowURL = (id) => {
     return `${urls.sourceView(id)}${this.props.searchString}`;
+    // NEED FILTER: "status.active,status.technical implementation,status.wish,status.negotiation"
   }
 
   // fade in/out of filter-pane
@@ -189,15 +205,80 @@ class MetadataSources extends React.Component {
     />
   );
 
+  cacheFilter(activeFilters, searchValue) {
+    localStorage.setItem('fincConfigSourceFilters', JSON.stringify(activeFilters));
+    localStorage.setItem('fincConfigSourceSearchString', JSON.stringify(searchValue));
+  }
+
+  resetAll(getFilterHandlers, getSearchHandlers) {
+    localStorage.removeItem('fincConfigSourceFilters');
+    localStorage.removeItem('fincConfigSourceSearchString');
+    localStorage.removeItem('fincConfigSourceSearchIndex');
+
+    // reset the filter state to default filters
+    getFilterHandlers.state(defaultFilter.state);
+
+    // reset the search query
+    getSearchHandlers.state(defaultSearchString);
+
+    this.setState({
+      storedFilter: defaultFilter,
+      storedSearchString: defaultSearchString,
+      storedSearchIndex: defaultSearchIndex,
+    });
+
+    return (this.props.history.push(`${urls.sources()}?filters=${defaultFilter.string}`));
+  }
+
+  handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue) {
+    localStorage.removeItem('fincConfigSourceSearchString');
+    localStorage.removeItem('fincConfigSourceSearchIndex');
+
+    this.setState({ storedSearchIndex: defaultSearchIndex });
+
+    searchValue.query = '';
+
+    getSearchHandlers.state({
+      query: '',
+      qindex: '',
+    });
+
+    return onSubmitSearch;
+  }
+
+  onChangeIndex(index, getSearchHandlers, searchValue) {
+    localStorage.setItem('fincConfigSourceSearchIndex', JSON.stringify(index));
+    this.setState({ storedSearchIndex: index });
+    // call function in SourcesRoute.js:
+    this.props.onChangeIndex(index);
+    getSearchHandlers.state({
+      query: searchValue.query,
+      qindex: index,
+    });
+  }
+
+  getCombinedSearch = () => {
+    if (this.state.storedSearchIndex.qindex !== '') {
+      const combined = {
+        query: this.state.storedSearchString.query,
+        qindex: this.state.storedSearchIndex,
+      };
+      return combined;
+    } else {
+      return this.state.storedSearchString;
+    }
+  }
+
   render() {
-    const { intl, queryGetter, querySetter, onChangeIndex, onSelectRow, selectedRecordId, source } = this.props;
+    const { intl, queryGetter, querySetter, onSelectRow, selectedRecordId, source } = this.props;
     const count = source ? source.totalCount() : 0;
 
     return (
       <div data-test-sources>
         <SearchAndSortQuery
-          initialFilterState={{ status: ['active', 'technical implementation'] }}
-          initialSearchState={{ query: '' }}
+          // NEED FILTER: {"status":["active","technical implementation","wish"]}
+          initialFilterState={this.state.storedFilter.state}
+          initialSearchState={this.getCombinedSearch()}
           initialSortState={{ sort: 'label' }}
           queryGetter={queryGetter}
           querySetter={querySetter}
@@ -210,11 +291,14 @@ class MetadataSources extends React.Component {
               getSearchHandlers,
               onSort,
               onSubmitSearch,
-              resetAll,
               searchChanged,
               searchValue,
             }) => {
+              // TODO: get disabled working
               const disableReset = () => (!filterChanged && !searchChanged);
+              if (filterChanged || searchChanged) {
+                this.cacheFilter(activeFilters, searchValue);
+              }
 
               return (
                 <Paneset>
@@ -235,16 +319,17 @@ class MetadataSources extends React.Component {
                             inputRef={this.searchField}
                             name="query"
                             onChange={getSearchHandlers().query}
-                            onClear={getSearchHandlers().reset}
+                            onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
                             value={searchValue.query}
                             // add values for search-selectbox
-                            onChangeIndex={onChangeIndex}
+                            onChangeIndex={(e) => { this.onChangeIndex(e.target.value, getSearchHandlers(), searchValue); }}
                             searchableIndexes={searchableIndexes}
                             searchableIndexesPlaceholder={null}
-                            selectedIndex={_.get(this.props.contentData, 'qindex')}
+                            selectedIndex={this.state.storedSearchIndex}
                           />
                           <Button
                             buttonStyle="primary"
+                            // TODO: get disabled working
                             disabled={!searchValue.query || searchValue.query === ''}
                             fullWidth
                             id="sourceSubmitSearch"
@@ -255,9 +340,10 @@ class MetadataSources extends React.Component {
                         </div>
                         <Button
                           buttonStyle="none"
+                          // TODO: get disabled working
                           disabled={disableReset()}
                           id="clickable-reset-all"
-                          onClick={resetAll}
+                          onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers())}
                         >
                           <Icon icon="times-circle-solid">
                             <FormattedMessage id="stripes-smart-components.resetAll" />
@@ -298,7 +384,6 @@ class MetadataSources extends React.Component {
                       onHeaderClick={onSort}
                       onRowClick={onSelectRow}
                       rowFormatter={this.rowFormatter}
-                      // selectedRow={this.state.selectedItem}
                       totalCount={count}
                       virtualize
                       visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
@@ -315,4 +400,4 @@ class MetadataSources extends React.Component {
   }
 }
 
-export default injectIntl(MetadataSources);
+export default withRouter(injectIntl(MetadataSources));
