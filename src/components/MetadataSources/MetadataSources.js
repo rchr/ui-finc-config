@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import {
   withRouter,
@@ -269,6 +270,14 @@ class MetadataSources extends React.Component {
     }
   }
 
+  getDisableReset(activeFilters, searchValue) {
+    if (_.isEqual(activeFilters.state, defaultFilter.state) && searchValue.query === defaultSearchString.query) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     const { intl, queryGetter, querySetter, onSelectRow, selectedRecordId, source } = this.props;
     const count = source ? source.totalCount() : 0;
@@ -294,8 +303,8 @@ class MetadataSources extends React.Component {
               searchChanged,
               searchValue,
             }) => {
-              // TODO: get disabled working
-              const disableReset = () => (!filterChanged && !searchChanged);
+              const disableReset = this.getDisableReset(activeFilters, searchValue);
+              const disableSearch = () => (searchValue.query === defaultSearchString.query);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
               }
@@ -329,8 +338,7 @@ class MetadataSources extends React.Component {
                           />
                           <Button
                             buttonStyle="primary"
-                            // TODO: get disabled working
-                            disabled={!searchValue.query || searchValue.query === ''}
+                            disabled={disableSearch()}
                             fullWidth
                             id="sourceSubmitSearch"
                             type="submit"
@@ -340,8 +348,7 @@ class MetadataSources extends React.Component {
                         </div>
                         <Button
                           buttonStyle="none"
-                          // TODO: get disabled working
-                          disabled={disableReset()}
+                          disabled={disableReset}
                           id="clickable-reset-all"
                           onClick={() => this.resetAll(getFilterHandlers(), getSearchHandlers())}
                         >
