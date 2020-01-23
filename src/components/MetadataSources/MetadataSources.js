@@ -270,7 +270,7 @@ class MetadataSources extends React.Component {
     }
   }
 
-  getdisableReset(activeFilters, searchValue) {
+  getDisableReset(activeFilters, searchValue) {
     if (_.isEqual(activeFilters.state, defaultFilter.state) && searchValue.query === defaultSearchString.query) {
       return true;
     } else {
@@ -303,7 +303,7 @@ class MetadataSources extends React.Component {
               searchChanged,
               searchValue,
             }) => {
-              const disableReset = this.getdisableReset(activeFilters, searchValue);
+              const disableReset = this.getDisableReset(activeFilters, searchValue);
               const disableSearch = () => (searchValue.query === defaultSearchString.query);
               if (filterChanged || searchChanged) {
                 this.cacheFilter(activeFilters, searchValue);
