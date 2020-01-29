@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { stripesConnect } from '@folio/stripes/core';
-
 import MetadataCollectionForm from '../components/MetadataCollections/MetadataCollectionForm';
 import urls from '../components/DisplayUtils/urls';
 
@@ -17,8 +16,14 @@ class CollectionEditRoute extends React.Component {
     sources: {
       type: 'okapi',
       records: 'fincConfigMetadataSources',
+      // TODO: show all sources
+      perRequest: 1000,
       path: 'finc-config/metadata-sources',
-      resourceShouldRefresh: true
+      params: {
+        query: 'cql.allRecords=1 sortby label',
+        // TODO: show all sources
+        // limit: '1000',
+      },
     },
   });
 
@@ -90,6 +95,8 @@ class CollectionEditRoute extends React.Component {
 
   render() {
     const { handlers, resources } = this.props;
+
+    // console.log(_.get(this.props.resources, 'sources.records', []));
 
     if (this.fetchIsPending()) return 'loading';
 

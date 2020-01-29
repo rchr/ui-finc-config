@@ -89,7 +89,7 @@ class MetadataCollections extends React.Component {
 
   resultsFormatter = {
     label: collection => collection.label,
-    mdSource: collection => _.get(collection, 'mdSource.name', '-'),
+    mdSource: collection => collection.mdSource.name,
     metadataAvailable: collection => collection.metadataAvailable,
     usageRestricted: collection => collection.usageRestricted,
     permittedFor: collection => this.getArrayElementsCommaSeparated(collection.permittedFor),

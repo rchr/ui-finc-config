@@ -18,6 +18,8 @@ class CollectionCreateRoute extends React.Component {
     sources: {
       type: 'okapi',
       records: 'fincConfigMetadataSources',
+      // TODO: show all sources
+      perRequest: 1000,
       path: 'finc-config/metadata-sources',
       resourceShouldRefresh: true
     },

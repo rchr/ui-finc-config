@@ -120,15 +120,14 @@ class MetadataCollectionView extends React.Component {
     const { record, isLoading } = this.props;
     const label = _.get(record, 'label', '-');
 
-    if (isLoading) return this.renderLoadingPane();
-
-    // const sourceLink = this.getAllInfosForSource();
     // get all available sources
     const sourceData = this.getData('source');
     // get the source-ID, which is saved in the collection
     const sourceId = _.get(record, 'mdSource.id', '-');
     // get the one source and all its information (which has the source ID saved in the collection)
     const sourceElement = this.getSourceElement(sourceId, sourceData);
+
+    if (isLoading) return this.renderLoadingPane();
 
     return (
       <React.Fragment>
