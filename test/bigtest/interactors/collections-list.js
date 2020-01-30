@@ -20,6 +20,7 @@ export default @interactor class CollectionsList {
   instances = collection('[role=group] div a');
   instance = scoped('#pane-collectiondetails');
   navigation = new NavigationInteractor();
+  mdSourceFilterIsPresent = isPresent('section[id="filter-accordion-mdSource"]');
   metadataAvailableFilterIsPresent = isPresent('section[id="filter-accordion-metadataAvailable"]');
   usageRestrictedFilterIsPresent = isPresent('section[id="filter-accordion-usageRestricted"]');
   freeContentFilterIsPresent = isPresent('section[id="filter-accordion-freeContent"]');

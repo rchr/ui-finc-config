@@ -4,5 +4,6 @@
 export default function defaultScenario(server) {
   server.create('finc-config-metadata-source');
   server.create('finc-config-metadata-collection');
+  server.create('tiny-metadata-source');
   server.create('isil');
 }
