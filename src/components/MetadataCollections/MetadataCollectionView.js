@@ -12,11 +12,9 @@ import {
   Layout,
   Pane,
   PaneMenu,
-  Row
+  Row,
 } from '@folio/stripes/components';
-import {
-  IfPermission,
-} from '@folio/stripes/core';
+import { IfPermission } from '@folio/stripes/core';
 
 import CollectionInfoView from './CollectionInfo/CollectionInfoView';
 import CollectionManagementView from './CollectionManagement/CollectionManagementView';
@@ -31,7 +29,6 @@ class MetadataCollectionView extends React.Component {
     isLoading: PropTypes.bool,
     record: PropTypes.object,
     stripes: PropTypes.object,
-    sources: PropTypes.arrayOf(PropTypes.object),
   };
 
   constructor(props) {
@@ -102,30 +99,9 @@ class MetadataCollectionView extends React.Component {
     );
   }
 
-  getData() {
-    const { sources } = this.props;
-
-    if (!sources || sources.length === 0) return null;
-    return sources;
-  }
-
-  getSourceElement = (id, data) => {
-    if (!data || data.length === 0 || !id) return null;
-    return data.find((element) => {
-      return element.id === id;
-    });
-  }
-
   render() {
     const { record, isLoading } = this.props;
     const label = _.get(record, 'label', '-');
-
-    // get all available sources
-    const sourceData = this.getData('source');
-    // get the source-ID, which is saved in the collection
-    const sourceId = _.get(record, 'mdSource.id', '-');
-    // get the one source and all its information (which has the source ID saved in the collection)
-    const sourceElement = this.getSourceElement(sourceId, sourceData);
 
     if (isLoading) return this.renderLoadingPane();
 
@@ -140,12 +116,10 @@ class MetadataCollectionView extends React.Component {
           onClose={this.props.handlers.onClose}
           paneTitle={<span data-test-collection-header-title>{label}</span>}
         >
-          {/* <TitleManager record={label} /> */}
           <CollectionInfoView
             id="collectionInfo"
             metadataCollection={record}
             stripes={this.props.stripes}
-            sourceElement={sourceElement}
           />
           <Row end="xs">
             <Col xs>
