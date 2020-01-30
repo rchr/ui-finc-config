@@ -46,6 +46,13 @@ class CollectionsRoute extends React.Component {
       path: 'finc-config/metadata-sources',
       resourceShouldRefresh: true
     },
+    // get for the filter all sources but just the tiny with name and id
+    mdSources: {
+      type: 'okapi',
+      records: 'tinyMetadataSources',
+      path: 'finc-config/tiny-metadata-sources',
+      resourceShouldRefresh: true
+    },
     query: { initialValue: {} },
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
   });
@@ -131,6 +138,9 @@ class CollectionsRoute extends React.Component {
     return (
       <MetadataCollections
         contentData={_.get(this.props.resources, 'collections.records', [])}
+        filterData={{
+          mdSources: _.get(this.props.resources, 'mdSources.records', []),
+        }}
         mdSources={_.get(this.props.resources, 'sources.records', [])}
         onNeedMoreData={this.handleNeedMoreData}
         queryGetter={this.queryGetter}
