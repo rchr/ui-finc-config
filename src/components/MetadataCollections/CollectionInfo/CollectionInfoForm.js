@@ -9,10 +9,10 @@ import {
   Col,
   Row,
   TextField,
-  Select,
 } from '@folio/stripes/components';
 
 import { Required } from '../../DisplayUtils/Validate';
+import SelectSource from './SelectSource';
 
 class CollectionInfoForm extends React.Component {
   static propTypes = {
@@ -24,11 +24,6 @@ class CollectionInfoForm extends React.Component {
   formatSourceData(sources) {
     if (!sources || sources.length === 0) return null;
     const newArr = [];
-
-    // add an empty object
-    // let preObj = {};
-    // preObj = { label: '-- Select a Source --', value: '' };
-    // newArr.push(preObj);
 
     // Loop through records
     Object.keys(sources).map((key) => {
@@ -91,12 +86,12 @@ class CollectionInfoForm extends React.Component {
         <Row>
           <Col xs={4}>
             <Field
-              component={Select}
+              component={SelectSource}
               dataOptions={sourceDataFormatted}
               fullWidth
               id="addcollection_source"
               label="Source*"
-              name="mdSource.id"
+              name="mdSource"
               placeholder="Select a source for the metadata collection"
               validate={[Required]}
             />

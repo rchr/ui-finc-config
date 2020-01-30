@@ -6,7 +6,7 @@ import Link from 'react-router-dom/Link';
 
 import {
   KeyValue,
-  Row
+  Row,
 } from '@folio/stripes/components';
 
 import urls from '../../DisplayUtils/urls';
@@ -15,25 +15,23 @@ class CollectionInfoView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     metadataCollection: PropTypes.object,
-    sourceElement: PropTypes.object,
+    // sourceElement: PropTypes.object,
   };
 
   render() {
-    const { metadataCollection, id, sourceElement } = this.props;
+    const { metadataCollection, id } = this.props;
 
-    // // get the one source and all its information (which has the source ID saved in the collection)
-    // const sourceElement = this.getSourceElement(sourceId, sourceData);
-    const sourceId = _.get(sourceElement, 'id', '-');
-    // // get the name of the source
-    const sourceName = _.get(sourceElement, 'label', '-');
-    // // get the status of the source for setting filter in url
-    const sourceStatus = _.get(sourceElement, 'status', '-');
-    // // set the complete source link with name and status
+    // get id and name of the source out of the fields, saved in the current collection
+    const sourceId = _.get(metadataCollection, 'mdSource.id', '-');
+    const sourceName = _.get(metadataCollection, 'mdSource.name', '-');
+    // get the status of the source for setting filter in url out of the associated source
+    // const sourceStatus = _.get(this.props.sourceElement, 'mdSource.status', '-');
+    // set the complete source link with name and status
     const sourceLink = (
       <React.Fragment>
         <Link to={{
           pathname: `${urls.sourceView(sourceId)}`,
-          search: `?filters=status.${sourceStatus}`
+          // search: `?filters=status.${_.get(sourceElement, 'status')}`
         }}
         >
           {sourceName}

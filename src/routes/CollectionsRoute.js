@@ -38,9 +38,11 @@ class CollectionsRoute extends React.Component {
         staticFallback: { params: {} },
       },
     },
-    source: {
+    sources: {
       type: 'okapi',
       records: 'fincConfigMetadataSources',
+      // TODO: show all sources
+      perRequest: 1000,
       path: 'finc-config/metadata-sources',
       resourceShouldRefresh: true
     },
@@ -129,6 +131,7 @@ class CollectionsRoute extends React.Component {
     return (
       <MetadataCollections
         contentData={_.get(this.props.resources, 'collections.records', [])}
+        mdSources={_.get(this.props.resources, 'sources.records', [])}
         onNeedMoreData={this.handleNeedMoreData}
         queryGetter={this.queryGetter}
         querySetter={this.querySetter}
