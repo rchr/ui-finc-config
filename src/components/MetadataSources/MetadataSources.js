@@ -248,6 +248,29 @@ class MetadataSources extends React.Component {
     return onSubmitSearch;
   }
 
+  handleChangeSearch(e, getSearchHandlers, onSubmitSearch, searchValue) {
+    if (e === '') {
+      localStorage.removeItem('fincConfigSourceSearchString');
+      localStorage.removeItem('fincConfigSourceSearchIndex');
+
+      this.setState({ storedSearchIndex: defaultSearchIndex });
+
+      searchValue.query = '';
+
+      getSearchHandlers.state({
+        query: '',
+        qindex: '',
+      });
+
+      return onSubmitSearch;
+    } else {
+      getSearchHandlers.state({
+        query: e,
+      });
+      return onSubmitSearch;
+    }
+  }
+
   onChangeIndex(index, getSearchHandlers, searchValue) {
     localStorage.setItem('fincConfigSourceSearchIndex', JSON.stringify(index));
     this.setState({ storedSearchIndex: index });
@@ -328,7 +351,7 @@ class MetadataSources extends React.Component {
                             id="sourceSearchField"
                             inputRef={this.searchField}
                             name="query"
-                            onChange={getSearchHandlers().query}
+                            onChange={(e) => this.handleChangeSearch(e.target.value, getSearchHandlers(), onSubmitSearch(), searchValue)}
                             onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
                             value={searchValue.query}
                             // add values for search-selectbox

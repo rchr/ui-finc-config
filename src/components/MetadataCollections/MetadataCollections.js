@@ -234,7 +234,6 @@ class MetadataCollections extends React.Component {
   // function is handling click on delete Search-buttton
   handleClearSearch(getSearchHandlers, onSubmitSearch, searchValue) {
     localStorage.removeItem('fincConfigCollectionSearchString');
-    localStorage.removeItem('fincConfigCollectionSearchIndex');
 
     searchValue.query = '';
 
@@ -243,6 +242,25 @@ class MetadataCollections extends React.Component {
     });
 
     return onSubmitSearch;
+  }
+
+  handleChangeSearch(e, getSearchHandlers, onSubmitSearch, searchValue) {
+    if (e === '') {
+      localStorage.removeItem('fincConfigCollectionSearchString');
+
+      searchValue.query = '';
+
+      getSearchHandlers.state({
+        query: '',
+      });
+
+      return onSubmitSearch;
+    } else {
+      getSearchHandlers.state({
+        query: e,
+      });
+      return onSubmitSearch;
+    }
   }
 
   getDisableReset(activeFilters, searchValue) {
@@ -301,7 +319,7 @@ class MetadataCollections extends React.Component {
                             id="collectionSearchField"
                             inputRef={this.searchField}
                             name="query"
-                            onChange={getSearchHandlers().query}
+                            onChange={(e) => this.handleChangeSearch(e.target.value, getSearchHandlers(), onSubmitSearch(), searchValue)}
                             onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
                             value={searchValue.query}
                           />
