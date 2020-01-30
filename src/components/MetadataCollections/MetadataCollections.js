@@ -246,7 +246,7 @@ class MetadataCollections extends React.Component {
 
   handleChangeSearch(e, getSearchHandlers, onSubmitSearch, searchValue) {
     if (e === '') {
-      localStorage.removeItem('fincConfigSourceSearchString');
+      localStorage.removeItem('fincConfigCollectionSearchString');
 
       searchValue.query = '';
 
