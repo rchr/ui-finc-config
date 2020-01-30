@@ -112,4 +112,7 @@ export default function config() {
   this.put('/finc-config/metadata-collections/:id', (schema, request) => {
     return schema.fincConfigMetadataCollections.find(request.params.id).attrs;
   });
+  this.get('/finc-config/tiny-metadata-sources', ({ tinyMetadataSources }) => {
+    return tinyMetadataSources.all();
+  });
 }

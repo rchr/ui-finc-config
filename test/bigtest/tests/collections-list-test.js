@@ -9,6 +9,7 @@ import setupApplication from '../helpers/setup-application';
 import CollectionsList from '../interactors/collections-list';
 
 const COLLECTION_COUNT = 25;
+const TINY_SOURCE_COUNT = 5;
 
 describe('Collections List', () => {
   setupApplication();
@@ -16,6 +17,7 @@ describe('Collections List', () => {
   const collectionsList = new CollectionsList();
 
   beforeEach(async function () {
+    this.server.createList('tiny-metadata-source', TINY_SOURCE_COUNT);
     this.server.createList('finc-config-metadata-collection', COLLECTION_COUNT);
     this.visit('/finc-config/metadata-collections?filters=metadataAvailable.Yes');
     await collectionsList.whenLoaded();
@@ -30,6 +32,10 @@ describe('Collections List', () => {
   });
 
   describe('check the collection filter elements', function () {
+    it('mdSource filter should be present', () => {
+      expect(collectionsList.mdSourceFilterIsPresent).to.be.true;
+    });
+
     it('metadataAvailable filter should be present', () => {
       expect(collectionsList.metadataAvailableFilterIsPresent).to.be.true;
     });
