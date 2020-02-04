@@ -72,7 +72,7 @@ class SourceManagementForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={2}>
+          <Col xs={4}>
             <Headline
               className={BasicCss.styleForHeadline}
               size="medium"
@@ -80,7 +80,7 @@ class SourceManagementForm extends React.Component {
               <FormattedMessage id="ui-finc-config.contact.name" />
             </Headline>
           </Col>
-          <Col xs={2}>
+          <Col xs={4}>
             <Headline
               className={BasicCss.styleForHeadline}
               size="medium"
@@ -90,7 +90,7 @@ class SourceManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               component={DisplayContact}
               id="display_contact_internal"
@@ -111,7 +111,7 @@ class SourceManagementForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={2}>
+          <Col xs={4}>
             <Headline
               className={BasicCss.styleForHeadline}
               size="medium"
@@ -119,7 +119,7 @@ class SourceManagementForm extends React.Component {
               <FormattedMessage id="ui-finc-config.contact.name" />
             </Headline>
           </Col>
-          <Col xs={2}>
+          <Col xs={4}>
             <Headline
               className={BasicCss.styleForHeadline}
               size="medium"
@@ -129,7 +129,7 @@ class SourceManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               component={DisplayContact}
               id="display_contact_external"
@@ -141,7 +141,7 @@ class SourceManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -165,7 +165,7 @@ class SourceManagementForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               component={RepeatableField}
               id="display_contract"
@@ -177,7 +177,7 @@ class SourceManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth

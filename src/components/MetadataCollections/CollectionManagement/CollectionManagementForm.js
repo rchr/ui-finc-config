@@ -54,7 +54,7 @@ class CollectionManagementForm extends React.Component {
         open={expanded}
       >
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsMetadataAvailable}
@@ -71,7 +71,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsUsageRestricted}
@@ -98,7 +98,7 @@ class CollectionManagementForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               component={RepeatableField}
               id="display_permittedFor"
@@ -110,7 +110,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsFreeContent}
@@ -127,7 +127,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsLodPublication}
@@ -144,7 +144,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -159,7 +159,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth

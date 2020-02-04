@@ -21,6 +21,7 @@ import stripesForm from '@folio/stripes/form';
 import SourceInfoForm from './SourceInfo/SourceInfoForm';
 import SourceManagementForm from './SourceManagement/SourceManagementForm';
 import SourceTechnicalForm from './SourceTechnical/SourceTechnicalForm';
+import BasicStyle from '../BasicStyle.css';
 
 class MetadataSourceForm extends React.Component {
   static propTypes = {
@@ -146,51 +147,57 @@ class MetadataSourceForm extends React.Component {
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
     return (
-      <form id="form-source" data-test-source-form-page>
-        <Paneset style={{ position: 'relative' }}>
+      <form
+        className={BasicStyle.styleForFormRoot}
+        data-test-source-form-page
+        id="form-source"
+      >
+        <Paneset>
           <Pane
             defaultWidth="100%"
             firstMenu={this.getAddFirstMenu()}
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
-            <Row end="xs">
-              <Col xs>
-                <ExpandAllButton
-                  accordionStatus={sections}
-                  id="clickable-expand-all"
-                  onToggle={this.handleExpandAll}
-                />
-              </Col>
-            </Row>
-            <SourceInfoForm
-              accordionId="editSourceInfo"
-              expanded={sections.editSourceInfo}
-              onToggle={this.handleSectionToggle}
-              {...this.props}
-            />
-            <SourceManagementForm
-              accordionId="editSourceManagement"
-              expanded={sections.editSourceManagement}
-              id="sourceManagement"
-              metadataSource={initialValues}
-              onToggle={this.handleSectionToggle}
-              {...this.props}
-            />
-            <SourceTechnicalForm
-              accordionId="editSourceTechnical"
-              expanded={sections.editSourceTechnical}
-              onToggle={this.handleSectionToggle}
-              {...this.props}
-            />
-            <ConfirmationModal
-              heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
-              id="delete-source-confirmation"
-              message={`Do you really want to delete ${initialValues.label}?`}
-              onCancel={() => { this.confirmDelete(false); }}
-              onConfirm={onDelete}
-              open={confirmDelete}
-            />
+            <div className={BasicStyle.styleForFormContent}>
+              <Row end="xs">
+                <Col xs>
+                  <ExpandAllButton
+                    accordionStatus={sections}
+                    id="clickable-expand-all"
+                    onToggle={this.handleExpandAll}
+                  />
+                </Col>
+              </Row>
+              <SourceInfoForm
+                accordionId="editSourceInfo"
+                expanded={sections.editSourceInfo}
+                onToggle={this.handleSectionToggle}
+                {...this.props}
+              />
+              <SourceManagementForm
+                accordionId="editSourceManagement"
+                expanded={sections.editSourceManagement}
+                id="sourceManagement"
+                metadataSource={initialValues}
+                onToggle={this.handleSectionToggle}
+                {...this.props}
+              />
+              <SourceTechnicalForm
+                accordionId="editSourceTechnical"
+                expanded={sections.editSourceTechnical}
+                onToggle={this.handleSectionToggle}
+                {...this.props}
+              />
+              <ConfirmationModal
+                heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
+                id="delete-source-confirmation"
+                message={`Do you really want to delete ${initialValues.label}?`}
+                onCancel={() => { this.confirmDelete(false); }}
+                onConfirm={onDelete}
+                open={confirmDelete}
+              />
+            </div>
           </Pane>
         </Paneset>
       </form>

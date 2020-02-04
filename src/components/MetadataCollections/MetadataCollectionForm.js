@@ -21,6 +21,7 @@ import stripesForm from '@folio/stripes/form';
 import CollectionInfoForm from './CollectionInfo/CollectionInfoForm';
 import CollectionManagementForm from './CollectionManagement/CollectionManagementForm';
 import CollectionTechnicalForm from './CollectionTechnical/CollectionTechnicalForm';
+import BasicStyle from '../BasicStyle.css';
 
 class MetadataCollectionForm extends React.Component {
   static propTypes = {
@@ -149,7 +150,11 @@ class MetadataCollectionForm extends React.Component {
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
     return (
-      <form id="form-collection" data-test-collection-form-page>
+      <form
+        className={BasicStyle.styleForFormRoot}
+        data-test-collection-form-page
+        id="form-collection"
+      >
         <Paneset style={{ position: 'relative' }}>
           <Pane
             defaultWidth="100%"
@@ -157,45 +162,47 @@ class MetadataCollectionForm extends React.Component {
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
-            <Row end="xs">
-              <Col xs>
-                <ExpandAllButton
-                  accordionStatus={sections}
-                  id="clickable-expand-all"
-                  onToggle={this.handleExpandAll}
-                />
-              </Col>
-            </Row>
-            <CollectionInfoForm
-              accordionId="editCollectionInfo"
-              expanded={sections.editCollectionInfo}
-              // initialValues={initialValues}
-              onToggle={this.handleSectionToggle}
-              sourceData={this.props.sources}
-              {...this.props}
-            />
-            <CollectionManagementForm
-              accordionId="editCollectionManagement"
-              expanded={sections.editCollectionManagement}
-              id="collectionManagement"
-              metadataCollection={initialValues}
-              onToggle={this.handleSectionToggle}
-              {...this.props}
-            />
-            <CollectionTechnicalForm
-              accordionId="editCollectionTechnical"
-              expanded={sections.editCollectionTechnical}
-              onToggle={this.handleSectionToggle}
-              {...this.props}
-            />
-            <ConfirmationModal
-              heading={<FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />}
-              id="delete-collection-confirmation"
-              message={`Do you really want to delete ${initialValues.label}?`}
-              onCancel={() => { this.confirmDelete(false); }}
-              onConfirm={onDelete}
-              open={confirmDelete}
-            />
+            <div className={BasicStyle.styleForFormContent}>
+              <Row end="xs">
+                <Col xs>
+                  <ExpandAllButton
+                    accordionStatus={sections}
+                    id="clickable-expand-all"
+                    onToggle={this.handleExpandAll}
+                  />
+                </Col>
+              </Row>
+              <CollectionInfoForm
+                accordionId="editCollectionInfo"
+                expanded={sections.editCollectionInfo}
+                // initialValues={initialValues}
+                onToggle={this.handleSectionToggle}
+                sourceData={this.props.sources}
+                {...this.props}
+              />
+              <CollectionManagementForm
+                accordionId="editCollectionManagement"
+                expanded={sections.editCollectionManagement}
+                id="collectionManagement"
+                metadataCollection={initialValues}
+                onToggle={this.handleSectionToggle}
+                {...this.props}
+              />
+              <CollectionTechnicalForm
+                accordionId="editCollectionTechnical"
+                expanded={sections.editCollectionTechnical}
+                onToggle={this.handleSectionToggle}
+                {...this.props}
+              />
+              <ConfirmationModal
+                heading={<FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />}
+                id="delete-collection-confirmation"
+                message={`Do you really want to delete ${initialValues.label}?`}
+                onCancel={() => { this.confirmDelete(false); }}
+                onConfirm={onDelete}
+                open={confirmDelete}
+              />
+            </div>
           </Pane>
         </Paneset>
       </form>

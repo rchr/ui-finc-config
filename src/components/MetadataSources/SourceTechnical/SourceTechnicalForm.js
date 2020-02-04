@@ -38,7 +38,7 @@ class SourceTechnicalForm extends React.Component {
         open={expanded}
       >
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -62,7 +62,7 @@ class SourceTechnicalForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               component={RepeatableField}
               id="display_tickets"
@@ -74,7 +74,7 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -89,7 +89,7 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -105,7 +105,7 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsSolrShard}
@@ -131,7 +131,7 @@ class SourceTechnicalForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               component={RepeatableField}
               id="display_delivery_methods"
@@ -152,7 +152,7 @@ class SourceTechnicalForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               component={RepeatableField}
               id="display_formats"
@@ -164,7 +164,7 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -188,7 +188,7 @@ class SourceTechnicalForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               component={RepeatableField}
               id="display_inferior_to"

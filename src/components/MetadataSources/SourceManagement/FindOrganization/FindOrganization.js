@@ -114,10 +114,10 @@ class FindOrganization extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={2}>
+          <Col xs={4}>
             { pluggable }
           </Col>
-          <Col xs={2}>
+          <Col xs={4}>
             { vendorName }
           </Col>
         </Row>

@@ -32,7 +32,7 @@ class CollectionTechnicalForm extends React.Component {
         open={expanded}
       >
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -47,7 +47,7 @@ class CollectionTechnicalForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -62,7 +62,7 @@ class CollectionTechnicalForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -86,7 +86,7 @@ class CollectionTechnicalForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               component={RepeatableField}
               id="display_tickets"
@@ -107,7 +107,7 @@ class CollectionTechnicalForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={8}>
             <FieldArray
               component={RepeatableField}
               id="display_contentFiles"
@@ -130,7 +130,7 @@ class CollectionTechnicalForm extends React.Component {
           </Headline>
         </Row>
         <Row>
-          <Col xs={6}>
+          <Col xs={12}>
             <FieldArray
               // get component, which is rendering the validation-error
               component={RequiredRepeatableField}

@@ -34,7 +34,7 @@ class SourceInfoForm extends React.Component {
         onToggle={onToggle}
       >
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -50,7 +50,7 @@ class SourceInfoForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -65,7 +65,7 @@ class SourceInfoForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsStatus}
