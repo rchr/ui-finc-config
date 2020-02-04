@@ -305,6 +305,8 @@ class MetadataSources extends React.Component {
   render() {
     const { intl, queryGetter, querySetter, onNeedMoreData, onSelectRow, selectedRecordId, source } = this.props;
     const count = source ? source.totalCount() : 0;
+    const query = queryGetter() || {};
+    const sortOrder = query.sort || '';
 
     return (
       <div data-test-sources>
@@ -416,6 +418,10 @@ class MetadataSources extends React.Component {
                       onNeedMoreData={onNeedMoreData}
                       onRowClick={onSelectRow}
                       rowFormatter={this.rowFormatter}
+                      sortDirection={
+                        sortOrder.startsWith('-') ? 'descending' : 'ascending'
+                      }
+                      sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
                       totalCount={count}
                       virtualize
                       visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}

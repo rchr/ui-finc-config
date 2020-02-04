@@ -274,6 +274,8 @@ class MetadataCollections extends React.Component {
   render() {
     const { intl, queryGetter, querySetter, onNeedMoreData, onSelectRow, selectedRecordId, collection, filterData } = this.props;
     const count = collection ? collection.totalCount() : 0;
+    const query = queryGetter() || {};
+    const sortOrder = query.sort || '';
 
     return (
       <div data-test-collections>
@@ -381,6 +383,10 @@ class MetadataCollections extends React.Component {
                       onNeedMoreData={onNeedMoreData}
                       onRowClick={onSelectRow}
                       rowFormatter={this.rowFormatter}
+                      sortDirection={
+                        sortOrder.startsWith('-') ? 'descending' : 'ascending'
+                      }
+                      sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
                       totalCount={count}
                       virtualize
                       visibleColumns={['label', 'mdSource', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent']}
