@@ -1,5 +1,15 @@
+.addMarginBottom {
+  margin-bottom: 2em;
+}
+
+.addMarginBottomAndTop {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
 .styleForHeadline {
   margin-bottom: 0.2em;
+  margin-left: 0.1em;
   color: #676767;
 }
 

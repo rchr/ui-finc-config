@@ -11,9 +11,10 @@ import {
   Icon,
   IconButton,
   Pane,
+  PaneFooter,
   PaneMenu,
   Paneset,
-  Row
+  Row,
 } from '@folio/stripes/components';
 import { IfPermission } from '@folio/stripes/core';
 import stripesForm from '@folio/stripes/form';
@@ -30,6 +31,7 @@ class MetadataSourceForm extends React.Component {
     }),
     handleSubmit: PropTypes.func.isRequired,
     initialValues: PropTypes.object,
+    invalid: PropTypes.bool,
     isLoading: PropTypes.bool,
     onCancel: PropTypes.func,
     onDelete: PropTypes.func,
@@ -69,7 +71,7 @@ class MetadataSourceForm extends React.Component {
     }
   }
 
-  getAddFirstMenu() {
+  getFirstMenu() {
     return (
       <PaneMenu>
         <FormattedMessage id="ui-finc-config.source.form.close">
@@ -86,15 +88,14 @@ class MetadataSourceForm extends React.Component {
     );
   }
 
-  getLastMenu(id, label) {
-    const { pristine, submitting, initialValues, handleSubmit } = this.props;
+  getLastMenu() {
+    const { initialValues } = this.props;
     const { confirmDelete } = this.state;
     const isEditing = initialValues && initialValues.id;
 
     return (
-      // set button to save changes
       <PaneMenu>
-        {isEditing &&
+        {isEditing && (
           <IfPermission perm="finc-config.metadata-sources.item.delete">
             <Button
               buttonStyle="danger"
@@ -107,20 +108,49 @@ class MetadataSourceForm extends React.Component {
               <FormattedMessage id="ui-finc-config.source.form.deleteSource" />
             </Button>
           </IfPermission>
-        }
-        <Button
-          buttonStyle="primary paneHeaderNewButton"
-          disabled={pristine || submitting}
-          id={id}
-          marginBottom0
-          onClick={handleSubmit}
-          title={label}
-          type="submit"
-        >
-          {label}
-        </Button>
+        )}
       </PaneMenu>
     );
+  }
+
+  getPaneFooter() {
+    const {
+      handlers: { onClose },
+      handleSubmit,
+      invalid,
+      pristine,
+      submitting
+    } = this.props;
+
+    const disabled = pristine || submitting || invalid;
+
+    const startButton = (
+      <Button
+        data-test-source-form-cancel-button
+        marginBottom0
+        id="clickable-close-source-form"
+        buttonStyle="default mega"
+        onClick={onClose}
+      >
+        <FormattedMessage id="ui-finc-config.source.form.cancel" />
+      </Button>
+    );
+
+    const endButton = (
+      <Button
+        data-test-source-form-submit-button
+        marginBottom0
+        id="clickable-createnewsource"
+        buttonStyle="primary mega"
+        type="submit"
+        onClick={handleSubmit}
+        disabled={disabled}
+      >
+        <FormattedMessage id="ui-finc-config.source.form.saveAndClose" />
+      </Button>
+    );
+
+    return <PaneFooter renderStart={startButton} renderEnd={endButton} />;
   }
 
   handleExpandAll(sections) {
@@ -140,9 +170,10 @@ class MetadataSourceForm extends React.Component {
     const { initialValues, isLoading, onDelete } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.source.form.createSource" />;
-    const lastMenu = initialValues.id ?
-      this.getLastMenu('clickable-updatesource', <FormattedMessage id="ui-finc-config.source.form.updateSource" />) :
-      this.getLastMenu('clickable-createsource', <FormattedMessage id="ui-finc-config.source.form.createSource" />);
+
+    const firstMenu = this.getFirstMenu();
+    const lastMenu = this.getLastMenu();
+    const footer = this.getPaneFooter();
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
@@ -155,7 +186,8 @@ class MetadataSourceForm extends React.Component {
         <Paneset>
           <Pane
             defaultWidth="100%"
-            firstMenu={this.getAddFirstMenu()}
+            firstMenu={firstMenu}
+            footer={footer}
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >

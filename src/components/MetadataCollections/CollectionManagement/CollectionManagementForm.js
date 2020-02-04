@@ -89,26 +89,28 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         {/* PERMITTED FOR is repeatable */}
-        <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.collection.permittedFor" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <FieldArray
-              component={RepeatableField}
-              id="display_permittedFor"
-              label="Displaypermittedfor"
-              // add name to the array-field, which should be changed
-              name="permittedFor"
-              {...this.props}
-            />
-          </Col>
-        </Row>
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Headline
+              className={BasicCss.styleForHeadline}
+              size="medium"
+            >
+              <FormattedMessage id="ui-finc-config.collection.permittedFor" />
+            </Headline>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={RepeatableField}
+                id="display_permittedFor"
+                label="Displaypermittedfor"
+                // add name to the array-field, which should be changed
+                name="permittedFor"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         <Row>
           <Col xs={8}>
             <Field

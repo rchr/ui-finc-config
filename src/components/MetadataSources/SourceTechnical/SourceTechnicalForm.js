@@ -53,26 +53,28 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         {/* TICKETS (is repeatable) ... */}
-        <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.source.tickets" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <FieldArray
-              component={RepeatableField}
-              id="display_tickets"
-              label="Displaytickets"
-              // add name to the array-field, which should be changed
-              name="tickets"
-              {...this.props}
-            />
-          </Col>
-        </Row>
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Headline
+              className={BasicCss.styleForHeadline}
+              size="medium"
+            >
+              <FormattedMessage id="ui-finc-config.source.tickets" />
+            </Headline>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={RepeatableField}
+                id="display_tickets"
+                label="Displaytickets"
+                // add name to the array-field, which should be changed
+                name="tickets"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         <Row>
           <Col xs={8}>
             <Field
@@ -122,47 +124,51 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         {/* TODO: deliveryMethods (is repeatable; is value list ???) ... */}
-        <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.source.deliveryMethods" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <FieldArray
-              component={RepeatableField}
-              id="display_delivery_methods"
-              label="Displaydeliverymethods"
-              // add name to the array-field, which should be changed
-              name="deliveryMethods"
-              {...this.props}
-            />
-          </Col>
-        </Row>
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Headline
+              className={BasicCss.styleForHeadline}
+              size="medium"
+            >
+              <FormattedMessage id="ui-finc-config.source.deliveryMethods" />
+            </Headline>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={RepeatableField}
+                id="display_delivery_methods"
+                label="Displaydeliverymethods"
+                // add name to the array-field, which should be changed
+                name="deliveryMethods"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         {/* formats (is repeatable) ... */}
-        <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.source.formats" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <FieldArray
-              component={RepeatableField}
-              id="display_formats"
-              label="Displayformats"
-              // add name to the array-field, which should be changed
-              name="formats"
-              {...this.props}
-            />
-          </Col>
-        </Row>
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Headline
+              className={BasicCss.styleForHeadline}
+              size="medium"
+            >
+              <FormattedMessage id="ui-finc-config.source.formats" />
+            </Headline>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={RepeatableField}
+                id="display_formats"
+                label="Displayformats"
+                // add name to the array-field, which should be changed
+                name="formats"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         <Row>
           <Col xs={8}>
             <Field
@@ -179,26 +185,28 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         {/* inferiorTo (is repeatable) ... */}
-        <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.source.inferiorTo" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <FieldArray
-              component={RepeatableField}
-              id="display_inferior_to"
-              label="Displayinferiorto"
-              // add name to the array-field, which should be changed
-              name="inferiorTo"
-              {...this.props}
-            />
-          </Col>
-        </Row>
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Headline
+              className={BasicCss.styleForHeadline}
+              size="medium"
+            >
+              <FormattedMessage id="ui-finc-config.source.inferiorTo" />
+            </Headline>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={RepeatableField}
+                id="display_inferior_to"
+                label="Displayinferiorto"
+                // add name to the array-field, which should be changed
+                name="inferiorTo"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
       </Accordion>
     );
   }
