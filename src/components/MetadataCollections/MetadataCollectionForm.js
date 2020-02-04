@@ -143,7 +143,7 @@ class MetadataCollectionForm extends React.Component {
       <Button
         data-test-collection-form-submit-button
         marginBottom0
-        id="clickable-createnewcollection"
+        id="clickable-savecollection"
         buttonStyle="primary mega"
         type="submit"
         onClick={handleSubmit}

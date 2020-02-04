@@ -72,7 +72,7 @@ describe('Edit Source', () => {
     beforeEach(async function () {
       await editSourcePage.sourceName.fill(TEST_NAME);
       await editSourcePage.implementationStatusSelect.select('Wish');
-      await editSourcePage.updateSourceBtn.click();
+      await editSourcePage.saveSourceBtn.click();
     });
 
     it('source form is still presented, since validation errors', () => {

@@ -28,8 +28,7 @@ export default @interactor class EditSourcePage {
   clickDeleteSource = clickable('#clickable-delete-source');
   closePaneBtn = new ButtonInteractor('[icon=times]');
   closeWithoutSaving = new ButtonInteractor('#clickable-cancel-editing-confirmation-cancel');
-  updateSourceBtn = new ButtonInteractor('#clickable-updatesource');
-  createSourceBtn = new ButtonInteractor('#clickable-createsource');
+  saveSourceBtn = new ButtonInteractor('#clickable-savesource');
   closeEditPaneBtn = new ButtonInteractor('#clickable-closesourcedialog');
   sourceName = new Interactor('input[name=label]');
   sourceID = new Interactor('input[name=sourceId]');

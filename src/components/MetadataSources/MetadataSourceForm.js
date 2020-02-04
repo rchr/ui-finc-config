@@ -140,7 +140,7 @@ class MetadataSourceForm extends React.Component {
       <Button
         data-test-source-form-submit-button
         marginBottom0
-        id="clickable-createnewsource"
+        id="clickable-savesource"
         buttonStyle="primary mega"
         type="submit"
         onClick={handleSubmit}

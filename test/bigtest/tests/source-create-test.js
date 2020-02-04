@@ -35,7 +35,7 @@ describe('Create Source', () => {
     beforeEach(async function () {
       await editSourcePage.sourceName.fill(TEST_NAME);
       await editSourcePage.implementationStatusSelect.select(TEST_STATUS);
-      await editSourcePage.createSourceBtn.click();
+      await editSourcePage.saveSourceBtn.click();
 
       it('source form is still presented, since validation errors', () => {
         expect(editSourcePage.isPresent).to.be.true;
@@ -43,7 +43,7 @@ describe('Create Source', () => {
         describe('fill all required fields and save', () => {
           beforeEach(async function () {
             await editSourcePage.sourceID.fill(TEST_SOURCEID);
-            await editSourcePage.createSourceBtn.click();
+            await editSourcePage.saveSourceBtn.click();
           });
 
           it('source edit form should be closed and source details should be open', () => {

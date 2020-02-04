@@ -57,7 +57,7 @@ describe('Edit Collection', () => {
   describe('change and save collection edit form', () => {
     beforeEach(async function () {
       await editCollectionPage.usageRestrictedSelect.select('Yes');
-      await editCollectionPage.updateCollectionBtn.click();
+      await editCollectionPage.saveCollectionBtn.click();
     });
 
     it('collection form is still presented, since validation errors', () => {
