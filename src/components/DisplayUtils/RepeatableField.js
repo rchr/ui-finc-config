@@ -5,6 +5,7 @@ import { Field } from 'redux-form';
 import {
   Button,
   Col,
+  IconButton,
   Row,
   TextField,
 } from '@folio/stripes/components';
@@ -31,13 +32,11 @@ class RepeatableField extends React.Component {
             fullWidth
           />
         </Col>
-        <Col
-          xs={2}
-          style={{ textAlign: 'right' }}
-        >
-          <Button onClick={() => fields.remove(index)} buttonStyle="danger">
-            Remove
-          </Button>
+        <Col xs={1}>
+          <IconButton
+            icon="trash"
+            onClick={() => fields.remove(index)}
+          />
         </Col>
       </Row>
     );

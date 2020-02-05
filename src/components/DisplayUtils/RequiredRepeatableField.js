@@ -5,9 +5,12 @@ import { Field } from 'redux-form';
 import {
   Button,
   Col,
+  IconButton,
   Row,
   TextField,
 } from '@folio/stripes/components';
+
+import { Required } from './Validate';
 
 class RequiredRepeatableField extends React.Component {
   static propTypes = {
@@ -33,15 +36,14 @@ class RequiredRepeatableField extends React.Component {
             fullWidth
             id={elem}
             name={elem}
+            validate={[Required]}
           />
         </Col>
-        <Col
-          xs={2}
-          style={{ textAlign: 'right' }}
-        >
-          <Button onClick={() => fields.remove(index)} buttonStyle="danger">
-            Remove
-          </Button>
+        <Col xs={1}>
+          <IconButton
+            icon="trash"
+            onClick={() => fields.remove(index)}
+          />
         </Col>
       </Row>
     );
