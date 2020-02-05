@@ -6,7 +6,7 @@ import {
   Button,
   Col,
   Row,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 
 class RequiredRepeatableField extends React.Component {
@@ -56,10 +56,7 @@ class RequiredRepeatableField extends React.Component {
         <Col xs={12}>
           {fields.map(this.renderSubContract)}
         </Col>
-        <Col
-          xs={12}
-          style={{ paddingTop: '10px' }}
-        >
+        <Col xs={4}>
           <Button onClick={() => fields.push('')}>+ Add</Button>
         </Col>
         {/* render ERROR, if validation is not successful */}

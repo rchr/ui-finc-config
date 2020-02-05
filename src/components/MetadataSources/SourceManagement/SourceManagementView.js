@@ -80,7 +80,7 @@ class SourceManagementView extends React.Component {
           <Row className={css.addMarginForContacts}>
             <Col xs={6}>
               <Headline
-                className={BasicCss.styleForHeadline}
+                className={BasicCss.styleForViewHeadline}
                 size="medium"
               >
                 <FormattedMessage id="ui-finc-config.source.contacts.internal" />
@@ -89,7 +89,7 @@ class SourceManagementView extends React.Component {
             </Col>
             <Col xs={6}>
               <Headline
-                className={BasicCss.styleForHeadline}
+                className={BasicCss.styleForViewHeadline}
                 size="medium"
               >
                 <FormattedMessage id="ui-finc-config.source.contacts.external" />
@@ -105,7 +105,7 @@ class SourceManagementView extends React.Component {
           </Row>
           <Row>
             <Headline
-              className={BasicCss.styleForHeadline}
+              className={BasicCss.styleForViewHeadline}
               size="medium"
             >
               <FormattedMessage id="ui-finc-config.source.contracts" />

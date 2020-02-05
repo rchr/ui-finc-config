@@ -6,7 +6,7 @@ import {
   Button,
   Col,
   Row,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 
 import { Required } from './Validate';
@@ -71,10 +71,7 @@ class DisplayContact extends React.Component {
         <Col xs={12}>
           {fields.map(this.renderSubContact)}
         </Col>
-        <Col
-          style={{ paddingTop: '10px' }}
-          xs={12}
-        >
+        <Col xs={4}>
           <Button onClick={() => fields.push('')}>+ Add Contact</Button>
         </Col>
       </Row>

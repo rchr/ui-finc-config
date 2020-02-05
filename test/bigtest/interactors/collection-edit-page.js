@@ -34,8 +34,7 @@ export default @interactor class EditCollectionPage {
   clickDeleteCollection = clickable('#clickable-delete-collection');
   closePaneBtn = new ButtonInteractor('[icon=times]');
   closeWithoutSaving = new ButtonInteractor('#clickable-cancel-editing-confirmation-cancel');
-  createCollectionBtn = new ButtonInteractor('#clickable-createcollection');
-  updateCollectionBtn = new ButtonInteractor('#clickable-updatecollection');
+  saveCollectionBtn = new ButtonInteractor('#clickable-savecollection');
   closeEditPaneBtn = new ButtonInteractor('#clickable-closecollectiondialog');
   keepEditingBtn = new ButtonInteractor('#clickable-cancel-editing-confirmation-confirm');
   collectionName = new Interactor('input[name=label]');

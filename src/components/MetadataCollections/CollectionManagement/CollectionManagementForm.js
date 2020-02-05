@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Field,
-  FieldArray
+  FieldArray,
 } from 'redux-form';
 import { FormattedMessage } from 'react-intl';
 
 import {
   Accordion,
   Col,
-  Headline,
+  Label,
   Row,
   Select,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 
 import { Required } from '../../DisplayUtils/Validate';
@@ -54,7 +54,7 @@ class CollectionManagementForm extends React.Component {
         open={expanded}
       >
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsMetadataAvailable}
@@ -71,7 +71,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsUsageRestricted}
@@ -89,28 +89,27 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         {/* PERMITTED FOR is repeatable */}
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Label className={BasicCss.styleForFormLabel}>
+              <FormattedMessage id="ui-finc-config.collection.permittedFor" />
+            </Label>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={RepeatableField}
+                id="display_permittedFor"
+                label="Displaypermittedfor"
+                // add name to the array-field, which should be changed
+                name="permittedFor"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.collection.permittedFor" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <FieldArray
-              component={RepeatableField}
-              id="display_permittedFor"
-              label="Displaypermittedfor"
-              // add name to the array-field, which should be changed
-              name="permittedFor"
-              {...this.props}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsFreeContent}
@@ -127,7 +126,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={Select}
               dataOptions={dataOptionsLodPublication}
@@ -144,7 +143,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -159,7 +158,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth

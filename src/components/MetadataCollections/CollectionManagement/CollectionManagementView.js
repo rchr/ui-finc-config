@@ -57,7 +57,7 @@ class CollectionManagementView extends React.Component {
           </Row>
           <Row>
             <Headline
-              className={BasicCss.styleForHeadline}
+              className={BasicCss.styleForViewHeadline}
               size="medium"
             >
               <FormattedMessage id="ui-finc-config.collection.permittedFor" />

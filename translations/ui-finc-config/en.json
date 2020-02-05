@@ -27,9 +27,10 @@
   "source.managementAccordion": "Management",
   "source.technicalAccordion": "Technical",
 
+  "source.form.saveAndClose": "Save & close",
   "source.form.createSource": "Create source",
-  "source.form.updateSource": "Update source",
   "source.form.deleteSource": "Delete source",
+  "source.form.cancel": "Cancel",
 
   "collection.collectionId": "Collection ID",
   "collection.contentFiles": "Content files",
@@ -52,9 +53,10 @@
   "collection.managementAccordion": "Management",
   "collection.technicalAccordion": "Technical",
 
+  "collection.form.saveAndClose": "Save & close",
   "collection.form.createCollection": "Create collection",
-  "collection.form.updateCollection": "Update collection",
   "collection.form.deleteCollection": "Delete collection",
+  "collection.form.cancel": "Cancel",
 
   "settings.isils.label": "Isils",
   "settings.isils.labelSingular": "Isil",

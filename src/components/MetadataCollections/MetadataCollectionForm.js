@@ -11,9 +11,10 @@ import {
   Icon,
   IconButton,
   Pane,
+  PaneFooter,
   PaneMenu,
   Paneset,
-  Row
+  Row,
 } from '@folio/stripes/components';
 import { IfPermission } from '@folio/stripes/core';
 import stripesForm from '@folio/stripes/form';
@@ -21,6 +22,7 @@ import stripesForm from '@folio/stripes/form';
 import CollectionInfoForm from './CollectionInfo/CollectionInfoForm';
 import CollectionManagementForm from './CollectionManagement/CollectionManagementForm';
 import CollectionTechnicalForm from './CollectionTechnical/CollectionTechnicalForm';
+import BasicStyle from '../BasicStyle.css';
 
 class MetadataCollectionForm extends React.Component {
   static propTypes = {
@@ -29,6 +31,7 @@ class MetadataCollectionForm extends React.Component {
     }),
     handleSubmit: PropTypes.func.isRequired,
     initialValues: PropTypes.object,
+    invalid: PropTypes.bool,
     isLoading: PropTypes.bool,
     onCancel: PropTypes.func,
     onDelete: PropTypes.func,
@@ -71,7 +74,7 @@ class MetadataCollectionForm extends React.Component {
     }
   }
 
-  getAddFirstMenu() {
+  getFirstMenu() {
     return (
       <PaneMenu>
         <FormattedMessage id="ui-finc-config.collection.form.close">
@@ -88,15 +91,14 @@ class MetadataCollectionForm extends React.Component {
     );
   }
 
-  getLastMenu(id, label) {
-    const { pristine, submitting, initialValues, handleSubmit } = this.props;
+  getLastMenu() {
+    const { initialValues } = this.props;
     const { confirmDelete } = this.state;
     const isEditing = initialValues && initialValues.id;
 
     return (
-      // set button to save changes
       <PaneMenu>
-        {isEditing &&
+        {isEditing && (
           <IfPermission perm="finc-config.metadata-collections.item.delete">
             <Button
               buttonStyle="danger"
@@ -109,20 +111,49 @@ class MetadataCollectionForm extends React.Component {
               <FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />
             </Button>
           </IfPermission>
-        }
-        <Button
-          buttonStyle="primary paneHeaderNewButton"
-          disabled={pristine || submitting}
-          id={id}
-          marginBottom0
-          onClick={handleSubmit}
-          title={label}
-          type="submit"
-        >
-          {label}
-        </Button>
+        )}
       </PaneMenu>
     );
+  }
+
+  getPaneFooter() {
+    const {
+      handlers: { onClose },
+      handleSubmit,
+      invalid,
+      pristine,
+      submitting
+    } = this.props;
+
+    const disabled = pristine || submitting || invalid;
+
+    const startButton = (
+      <Button
+        data-test-collection-form-cancel-button
+        marginBottom0
+        id="clickable-close-collection-form"
+        buttonStyle="default mega"
+        onClick={onClose}
+      >
+        <FormattedMessage id="ui-finc-config.collection.form.cancel" />
+      </Button>
+    );
+
+    const endButton = (
+      <Button
+        data-test-collection-form-submit-button
+        marginBottom0
+        id="clickable-savecollection"
+        buttonStyle="primary mega"
+        type="submit"
+        onClick={handleSubmit}
+        disabled={disabled}
+      >
+        <FormattedMessage id="ui-finc-config.collection.form.saveAndClose" />
+      </Button>
+    );
+
+    return <PaneFooter renderStart={startButton} renderEnd={endButton} />;
   }
 
   handleExpandAll(sections) {
@@ -142,60 +173,68 @@ class MetadataCollectionForm extends React.Component {
     const { initialValues, isLoading, onDelete } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.collection.form.createCollection" />;
-    const lastMenu = initialValues.id ?
-      this.getLastMenu('clickable-updatecollection', <FormattedMessage id="ui-finc-config.collection.form.updateCollection" />) :
-      this.getLastMenu('clickable-createcollection', <FormattedMessage id="ui-finc-config.collection.form.createCollection" />);
+
+    const firstMenu = this.getFirstMenu();
+    const lastMenu = this.getLastMenu();
+    const footer = this.getPaneFooter();
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
     return (
-      <form id="form-collection" data-test-collection-form-page>
-        <Paneset style={{ position: 'relative' }}>
+      <form
+        className={BasicStyle.styleForFormRoot}
+        data-test-collection-form-page
+        id="form-collection"
+      >
+        <Paneset isRoot>
           <Pane
             defaultWidth="100%"
-            firstMenu={this.getAddFirstMenu()}
+            firstMenu={firstMenu}
+            footer={footer}
             lastMenu={lastMenu}
             paneTitle={paneTitle}
           >
-            <Row end="xs">
-              <Col xs>
-                <ExpandAllButton
-                  accordionStatus={sections}
-                  id="clickable-expand-all"
-                  onToggle={this.handleExpandAll}
-                />
-              </Col>
-            </Row>
-            <CollectionInfoForm
-              accordionId="editCollectionInfo"
-              expanded={sections.editCollectionInfo}
-              // initialValues={initialValues}
-              onToggle={this.handleSectionToggle}
-              sourceData={this.props.sources}
-              {...this.props}
-            />
-            <CollectionManagementForm
-              accordionId="editCollectionManagement"
-              expanded={sections.editCollectionManagement}
-              id="collectionManagement"
-              metadataCollection={initialValues}
-              onToggle={this.handleSectionToggle}
-              {...this.props}
-            />
-            <CollectionTechnicalForm
-              accordionId="editCollectionTechnical"
-              expanded={sections.editCollectionTechnical}
-              onToggle={this.handleSectionToggle}
-              {...this.props}
-            />
-            <ConfirmationModal
-              heading={<FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />}
-              id="delete-collection-confirmation"
-              message={`Do you really want to delete ${initialValues.label}?`}
-              onCancel={() => { this.confirmDelete(false); }}
-              onConfirm={onDelete}
-              open={confirmDelete}
-            />
+            <div className={BasicStyle.styleForFormContent}>
+              <Row end="xs">
+                <Col xs>
+                  <ExpandAllButton
+                    accordionStatus={sections}
+                    id="clickable-expand-all"
+                    onToggle={this.handleExpandAll}
+                  />
+                </Col>
+              </Row>
+              <CollectionInfoForm
+                accordionId="editCollectionInfo"
+                expanded={sections.editCollectionInfo}
+                // initialValues={initialValues}
+                onToggle={this.handleSectionToggle}
+                sourceData={this.props.sources}
+                {...this.props}
+              />
+              <CollectionManagementForm
+                accordionId="editCollectionManagement"
+                expanded={sections.editCollectionManagement}
+                id="collectionManagement"
+                metadataCollection={initialValues}
+                onToggle={this.handleSectionToggle}
+                {...this.props}
+              />
+              <CollectionTechnicalForm
+                accordionId="editCollectionTechnical"
+                expanded={sections.editCollectionTechnical}
+                onToggle={this.handleSectionToggle}
+                {...this.props}
+              />
+              <ConfirmationModal
+                heading={<FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />}
+                id="delete-collection-confirmation"
+                message={`Do you really want to delete ${initialValues.label}?`}
+                onCancel={() => { this.confirmDelete(false); }}
+                onConfirm={onDelete}
+                open={confirmDelete}
+              />
+            </div>
           </Pane>
         </Paneset>
       </form>

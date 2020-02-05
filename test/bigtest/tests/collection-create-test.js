@@ -38,7 +38,7 @@ describe('Create Collection', () => {
       await editCollectionPage.collectionInfoAccordion.isLoaded;
       await editCollectionPage.collectionName.fill(TEST_NAME);
       await editCollectionPage.usageRestrictedSelect.select(TEST_USAGE_RESTRICTED);
-      await editCollectionPage.createCollectionBtn.click();
+      await editCollectionPage.saveCollectionBtn.click();
     });
 
     it('collection form is still presented, since validation errors', () => {

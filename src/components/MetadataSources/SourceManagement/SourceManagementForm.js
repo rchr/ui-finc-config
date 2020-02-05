@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Field,
-  FieldArray
+  FieldArray,
 } from 'redux-form';
 import { FormattedMessage } from 'react-intl';
 
 import {
   Accordion,
   Col,
-  Headline,
+  Label,
   Row,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 
 import RepeatableField from '../../DisplayUtils/RepeatableField';
@@ -55,7 +55,7 @@ class SourceManagementForm extends React.Component {
         open={expanded}
       >
         {/* add link to organization app */}
-        <div>
+        <div className={BasicCss.addMarginBottom}>
           <FindOrganization
             change={this.props.change}
             intialVendor={this.state.organization}
@@ -63,85 +63,71 @@ class SourceManagementForm extends React.Component {
           />
         </div>
         {/* CONTACTS INTERNAL is repeatable */}
-        <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.source.contacts.internal" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={2}>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
-              <FormattedMessage id="ui-finc-config.contact.name" />
-            </Headline>
-          </Col>
-          <Col xs={2}>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
-              <FormattedMessage id="ui-finc-config.contact.role" />
-            </Headline>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <FieldArray
-              component={DisplayContact}
-              id="display_contact_internal"
-              label="Displaycontactinternal"
-              // add name to the array-field, which should be changed
-              name="contacts.internal"
-              {...this.props}
-            />
-          </Col>
-        </Row>
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Label className={BasicCss.styleForFormLabel}>
+              <FormattedMessage id="ui-finc-config.source.contacts.internal" />
+            </Label>
+          </Row>
+          <Row>
+            <Col xs={4}>
+              <Label className={BasicCss.styleForFormLabel}>
+                <FormattedMessage id="ui-finc-config.contact.name" />
+              </Label>
+            </Col>
+            <Col xs={4}>
+              <Label className={BasicCss.styleForFormLabel}>
+                <FormattedMessage id="ui-finc-config.contact.role" />
+              </Label>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={DisplayContact}
+                id="display_contact_internal"
+                label="Displaycontactinternal"
+                // add name to the array-field, which should be changed
+                name="contacts.internal"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         {/* CONTACTS EXTERNAL is repeatable */}
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Label className={BasicCss.styleForFormLabel}>
+              <FormattedMessage id="ui-finc-config.source.contacts.external" />
+            </Label>
+          </Row>
+          <Row>
+            <Col xs={4}>
+              <Label className={BasicCss.styleForFormLabel}>
+                <FormattedMessage id="ui-finc-config.contact.name" />
+              </Label>
+            </Col>
+            <Col xs={4}>
+              <Label className={BasicCss.styleForFormLabel}>
+                <FormattedMessage id="ui-finc-config.contact.role" />
+              </Label>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={DisplayContact}
+                id="display_contact_external"
+                label="Displaycontactexternal"
+                // add name to the array-field, which should be changed
+                name="contacts.external"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.source.contacts.external" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={2}>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
-              <FormattedMessage id="ui-finc-config.contact.name" />
-            </Headline>
-          </Col>
-          <Col xs={2}>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
-              <FormattedMessage id="ui-finc-config.contact.role" />
-            </Headline>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <FieldArray
-              component={DisplayContact}
-              id="display_contact_external"
-              label="Displaycontactexternal"
-              // add name to the array-field, which should be changed
-              name="contacts.external"
-              {...this.props}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -156,28 +142,27 @@ class SourceManagementForm extends React.Component {
           </Col>
         </Row>
         {/* CONTRACTS is repeatable */}
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Label className={BasicCss.styleForFormLabel}>
+              <FormattedMessage id="ui-finc-config.source.contracts" />
+            </Label>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={RepeatableField}
+                id="display_contract"
+                label="Displaycontract"
+                // add name to the array-field, which should be changed
+                name="contracts"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.source.contracts" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <FieldArray
-              component={RepeatableField}
-              id="display_contract"
-              label="Displaycontract"
-              // add name to the array-field, which should be changed
-              name="contracts"
-              {...this.props}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth

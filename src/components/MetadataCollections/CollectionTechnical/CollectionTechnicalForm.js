@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Field,
-  FieldArray
+  FieldArray,
 } from 'redux-form';
 import { FormattedMessage } from 'react-intl';
 
 import {
   Accordion,
   Col,
-  Headline,
+  Label,
   Row,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 
 import { ArrayRequired } from '../../DisplayUtils/Validate';
@@ -32,7 +32,7 @@ class CollectionTechnicalForm extends React.Component {
         open={expanded}
       >
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -47,7 +47,7 @@ class CollectionTechnicalForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -62,7 +62,7 @@ class CollectionTechnicalForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col xs={4}>
+          <Col xs={8}>
             <Field
               component={TextField}
               fullWidth
@@ -77,72 +77,69 @@ class CollectionTechnicalForm extends React.Component {
           </Col>
         </Row>
         {/* TICKETS (is repeatable) ... */}
-        <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.collection.tickets" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <FieldArray
-              component={RepeatableField}
-              id="display_tickets"
-              label="Displaytickets"
-              // add name to the array-field, which should be changed
-              name="tickets"
-              {...this.props}
-            />
-          </Col>
-        </Row>
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Label className={BasicCss.styleForFormLabel}>
+              <FormattedMessage id="ui-finc-config.collection.tickets" />
+            </Label>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                component={RepeatableField}
+                id="display_tickets"
+                label="Displaytickets"
+                // add name to the array-field, which should be changed
+                name="tickets"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         {/* CONTENT FILES (is repeatable) ... */}
-        <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.collection.contentFiles" />
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <FieldArray
-              component={RepeatableField}
-              id="display_contentFiles"
-              label="DisplaycontentFiles"
-              // add name to the array-field, which should be changed
-              name="contentFiles"
-              {...this.props}
-            />
-          </Col>
-        </Row>
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Label className={BasicCss.styleForFormLabel}>
+              <FormattedMessage id="ui-finc-config.collection.contentFiles" />
+            </Label>
+          </Row>
+          <Row>
+            <Col xs={8}>
+              <FieldArray
+                component={RepeatableField}
+                id="display_contentFiles"
+                label="DisplaycontentFiles"
+                // add name to the array-field, which should be changed
+                name="contentFiles"
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
         {/* SOLR MEGA COLLECTION (is repeatable and required) ... */}
-        <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
-            <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
-              {(msg) => msg + ' *'}
-            </FormattedMessage>
-          </Headline>
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <FieldArray
-              // get component, which is rendering the validation-error
-              component={RequiredRepeatableField}
-              id="display_solrMegaCollections"
-              label="DisplaysolrMegaCollections"
-              // add name to the array-field, which should be changed
-              name="solrMegaCollections"
-              validate={ArrayRequired}
-              {...this.props}
-            />
-          </Col>
-        </Row>
+        <section className={BasicCss.addMarginBottomAndTop}>
+          <Row>
+            <Label className={BasicCss.styleForFormLabel}>
+              <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
+                {(msg) => msg + ' *'}
+              </FormattedMessage>
+            </Label>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FieldArray
+                // get component, which is rendering the validation-error
+                component={RequiredRepeatableField}
+                id="display_solrMegaCollections"
+                label="DisplaysolrMegaCollections"
+                // add name to the array-field, which should be changed
+                name="solrMegaCollections"
+                validate={ArrayRequired}
+                {...this.props}
+              />
+            </Col>
+          </Row>
+        </section>
       </Accordion>
     );
   }
