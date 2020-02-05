@@ -104,7 +104,7 @@ class CollectionTechnicalForm extends React.Component {
             </Label>
           </Row>
           <Row>
-            <Col xs={8}>
+            <Col xs={12}>
               <FieldArray
                 component={RepeatableField}
                 id="display_contentFiles"

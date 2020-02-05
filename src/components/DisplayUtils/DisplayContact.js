@@ -5,6 +5,7 @@ import { Field } from 'redux-form';
 import {
   Button,
   Col,
+  IconButton,
   Row,
   TextField,
 } from '@folio/stripes/components';
@@ -48,16 +49,11 @@ class DisplayContact extends React.Component {
             validate={[Required]}
           />
         </Col>
-        <Col
-          style={{ textAlign: 'right' }}
-          xs={2}
-        >
-          <Button
-            buttonStyle="danger"
+        <Col xs={1}>
+          <IconButton
+            icon="trash"
             onClick={() => fields.remove(index)}
-          >
-            Remove
-          </Button>
+          />
         </Col>
       </Row>
     );
