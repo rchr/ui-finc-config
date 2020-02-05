@@ -183,7 +183,7 @@ class MetadataSourceForm extends React.Component {
         data-test-source-form-page
         id="form-source"
       >
-        <Paneset>
+        <Paneset isRoot>
           <Pane
             defaultWidth="100%"
             firstMenu={firstMenu}

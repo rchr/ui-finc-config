@@ -186,7 +186,7 @@ class MetadataCollectionForm extends React.Component {
         data-test-collection-form-page
         id="form-collection"
       >
-        <Paneset style={{ position: 'relative' }}>
+        <Paneset isRoot>
           <Pane
             defaultWidth="100%"
             firstMenu={firstMenu}
