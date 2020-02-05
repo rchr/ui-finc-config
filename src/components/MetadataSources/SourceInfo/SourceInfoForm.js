@@ -8,7 +8,7 @@ import {
   Col,
   Row,
   Select,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 
 import { Required } from '../../DisplayUtils/Validate';

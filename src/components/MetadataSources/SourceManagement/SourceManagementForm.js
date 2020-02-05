@@ -9,9 +9,9 @@ import { FormattedMessage } from 'react-intl';
 import {
   Accordion,
   Col,
-  Headline,
+  Label,
   Row,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 
 import RepeatableField from '../../DisplayUtils/RepeatableField';
@@ -65,29 +65,20 @@ class SourceManagementForm extends React.Component {
         {/* CONTACTS INTERNAL is repeatable */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.contacts.internal" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={4}>
-              <Headline
-                className={BasicCss.styleForHeadline}
-                size="medium"
-              >
+              <Label className={BasicCss.styleForFormLabel}>
                 <FormattedMessage id="ui-finc-config.contact.name" />
-              </Headline>
+              </Label>
             </Col>
             <Col xs={4}>
-              <Headline
-                className={BasicCss.styleForHeadline}
-                size="medium"
-              >
+              <Label className={BasicCss.styleForFormLabel}>
                 <FormattedMessage id="ui-finc-config.contact.role" />
-              </Headline>
+              </Label>
             </Col>
           </Row>
           <Row>
@@ -106,29 +97,20 @@ class SourceManagementForm extends React.Component {
         {/* CONTACTS EXTERNAL is repeatable */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.contacts.external" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={4}>
-              <Headline
-                className={BasicCss.styleForHeadline}
-                size="medium"
-              >
+              <Label className={BasicCss.styleForFormLabel}>
                 <FormattedMessage id="ui-finc-config.contact.name" />
-              </Headline>
+              </Label>
             </Col>
             <Col xs={4}>
-              <Headline
-                className={BasicCss.styleForHeadline}
-                size="medium"
-              >
+              <Label className={BasicCss.styleForFormLabel}>
                 <FormattedMessage id="ui-finc-config.contact.role" />
-              </Headline>
+              </Label>
             </Col>
           </Row>
           <Row>
@@ -162,12 +144,9 @@ class SourceManagementForm extends React.Component {
         {/* CONTRACTS is repeatable */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.contracts" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={12}>

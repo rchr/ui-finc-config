@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Field,
-  FieldArray
+  FieldArray,
 } from 'redux-form';
 import { FormattedMessage } from 'react-intl';
 
 import {
   Accordion,
   Col,
-  Headline,
+  Label,
   Row,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 
 import { ArrayRequired } from '../../DisplayUtils/Validate';
@@ -79,12 +79,9 @@ class CollectionTechnicalForm extends React.Component {
         {/* TICKETS (is repeatable) ... */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.collection.tickets" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={12}>
@@ -102,12 +99,9 @@ class CollectionTechnicalForm extends React.Component {
         {/* CONTENT FILES (is repeatable) ... */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.collection.contentFiles" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={8}>
@@ -125,14 +119,11 @@ class CollectionTechnicalForm extends React.Component {
         {/* SOLR MEGA COLLECTION (is repeatable and required) ... */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
                 {(msg) => msg + ' *'}
               </FormattedMessage>
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={12}>

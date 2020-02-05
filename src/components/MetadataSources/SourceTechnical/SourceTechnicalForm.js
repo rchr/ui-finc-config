@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import {
   Accordion,
   Col,
-  Headline,
+  Label,
   Row,
   Select,
   TextField
@@ -55,12 +55,9 @@ class SourceTechnicalForm extends React.Component {
         {/* TICKETS (is repeatable) ... */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.tickets" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={12}>
@@ -126,12 +123,9 @@ class SourceTechnicalForm extends React.Component {
         {/* TODO: deliveryMethods (is repeatable; is value list ???) ... */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.deliveryMethods" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={12}>
@@ -149,12 +143,9 @@ class SourceTechnicalForm extends React.Component {
         {/* formats (is repeatable) ... */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.formats" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={12}>
@@ -187,12 +178,9 @@ class SourceTechnicalForm extends React.Component {
         {/* inferiorTo (is repeatable) ... */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.inferiorTo" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={12}>

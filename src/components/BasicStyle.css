@@ -7,10 +7,13 @@
   margin-top: 1em;
 }
 
-.styleForHeadline {
-  margin-bottom: 0.2em;
+.styleForViewHeadline {
+  margin-bottom: 0;
+  margin-left: 0.1em;
+}
+
+.styleForFormLabel {
   margin-left: 0.5em;
-  color: #676767;
 }
 
 .styleForFormRoot {

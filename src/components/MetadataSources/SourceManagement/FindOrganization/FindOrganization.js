@@ -5,8 +5,8 @@ import { FormattedMessage } from 'react-intl';
 
 import {
   Col,
+  Label,
   Row,
-  Headline
 } from '@folio/stripes/components';
 import { Pluggable } from '@folio/stripes/core';
 
@@ -106,12 +106,9 @@ class FindOrganization extends React.Component {
     return (
       <React.Fragment>
         <Row>
-          <Headline
-            className={BasicCss.styleForHeadline}
-            size="medium"
-          >
+          <Label className={BasicCss.styleForFormLabel}>
             <FormattedMessage id="ui-finc-config.source.organization" />
-          </Headline>
+          </Label>
         </Row>
         <Row>
           <Col xs={4}>

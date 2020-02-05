@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Field,
-  FieldArray
+  FieldArray,
 } from 'redux-form';
 import { FormattedMessage } from 'react-intl';
 
 import {
   Accordion,
   Col,
-  Headline,
+  Label,
   Row,
   Select,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 
 import { Required } from '../../DisplayUtils/Validate';
@@ -91,12 +91,9 @@ class CollectionManagementForm extends React.Component {
         {/* PERMITTED FOR is repeatable */}
         <section className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Headline
-              className={BasicCss.styleForHeadline}
-              size="medium"
-            >
+            <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.collection.permittedFor" />
-            </Headline>
+            </Label>
           </Row>
           <Row>
             <Col xs={12}>
