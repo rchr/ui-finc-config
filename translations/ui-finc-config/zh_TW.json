@@ -9,11 +9,9 @@
     "source.managementAccordion": "管理",
     "source.technicalAccordion": "技术",
     "source.form.createSource": "创建来源",
-    "source.form.updateSource": "更新来源",
     "contact.name": "名称",
     "contact.role": "角色",
     "collection.form.createCollection": "创建馆藏",
-    "collection.form.updateCollection": "更新馆藏",
     "collection.label": "集合名称",
     "collection.metadataAvailable": "元数据可用吗？",
     "collection.usageRestricted": "使用受限？",
@@ -51,5 +49,9 @@
     "source.generalNotes": "通用附注",
     "collection.generalNotes": "通用附注",
     "source.form.deleteSource": "删除来源",
-    "collection.form.deleteCollection": "删除集合"
+    "collection.form.deleteCollection": "删除集合",
+    "source.form.saveAndClose": "Save & close",
+    "source.form.cancel": "Cancel",
+    "collection.form.saveAndClose": "Save & close",
+    "collection.form.cancel": "Cancel"
 }

@@ -9,11 +9,9 @@
     "source.managementAccordion": "إدارة",
     "source.technicalAccordion": "تقني",
     "source.form.createSource": "إنشاء مصدر",
-    "source.form.updateSource": "تحديث المصدر",
     "contact.name": "الاسم",
     "contact.role": "الدور",
     "collection.form.createCollection": "إنشاء مجموعة",
-    "collection.form.updateCollection": "تحديث المجموعة",
     "collection.label": "مجموعة",
     "collection.metadataAvailable": "الميتاداتا متاحة؟",
     "collection.usageRestricted": "الاستخدام مقيد؟",
@@ -51,5 +49,9 @@
     "source.generalNotes": "ملاحظات عامة",
     "collection.generalNotes": "ملاحظات عامة",
     "source.form.deleteSource": "حذف المصدر",
-    "collection.form.deleteCollection": "حذف المجموعة"
+    "collection.form.deleteCollection": "حذف المجموعة",
+    "source.form.saveAndClose": "Save & close",
+    "source.form.cancel": "Cancel",
+    "collection.form.saveAndClose": "حفظ وإغلاق",
+    "collection.form.cancel": "إلغاء"
 }

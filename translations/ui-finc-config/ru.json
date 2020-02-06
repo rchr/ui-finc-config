@@ -9,11 +9,9 @@
     "source.managementAccordion": "Management",
     "source.technicalAccordion": "Технический",
     "source.form.createSource": "Создать источник",
-    "source.form.updateSource": "Обновить источник",
     "contact.name": "Имя",
     "contact.role": "Роль",
     "collection.form.createCollection": "Создать коллекцию",
-    "collection.form.updateCollection": "Обновить коллекцию",
     "collection.label": "Название коллекции",
     "collection.metadataAvailable": "Доступны ли метаданные?",
     "collection.usageRestricted": "Usage restricted",
@@ -51,5 +49,9 @@
     "source.generalNotes": "General notes",
     "collection.generalNotes": "Общие замечания",
     "source.form.deleteSource": "Удалить источник",
-    "collection.form.deleteCollection": "Удалить коллекцию"
+    "collection.form.deleteCollection": "Удалить коллекцию",
+    "source.form.saveAndClose": "Save & close",
+    "source.form.cancel": "Cancel",
+    "collection.form.saveAndClose": "Save & close",
+    "collection.form.cancel": "Cancel"
 }

@@ -9,11 +9,9 @@
     "source.managementAccordion": "Gestione",
     "source.technicalAccordion": "Tecnica",
     "source.form.createSource": "Crea fonte",
-    "source.form.updateSource": "Aggiorna fonte",
     "contact.name": "Nome",
     "contact.role": "Ruolo",
     "collection.form.createCollection": "Crea raccolta",
-    "collection.form.updateCollection": "Aggiorna raccolta",
     "collection.label": "Nome della raccolta",
     "collection.metadataAvailable": "Metadati disponibili",
     "collection.usageRestricted": "Utilizzo limitato",
@@ -49,7 +47,11 @@
     "collection.contentFiles": "File di contenuto",
     "collection.solrMegaCollections": "Solr mega collezioni",
     "source.generalNotes": "Note generali",
-    "collection.generalNotes": "General notes",
-    "source.form.deleteSource": "Delete source",
-    "collection.form.deleteCollection": "Delete collection"
+    "collection.generalNotes": "Note generali",
+    "source.form.deleteSource": "Elimina fonte",
+    "collection.form.deleteCollection": "Elimina raccolta",
+    "source.form.saveAndClose": "Salva e chiudi",
+    "source.form.cancel": "Annulla",
+    "collection.form.saveAndClose": "Salva e chiudi",
+    "collection.form.cancel": "Annulla"
 }

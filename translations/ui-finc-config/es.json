@@ -9,11 +9,9 @@
     "source.managementAccordion": "Management",
     "source.technicalAccordion": "Technical",
     "source.form.createSource": "Crear Fuente",
-    "source.form.updateSource": "Actualizar origen",
     "contact.name": "Name",
     "contact.role": "Role",
     "collection.form.createCollection": "Crear colección",
-    "collection.form.updateCollection": "Actualizar colección",
     "collection.label": "Nombre de la colección",
     "collection.metadataAvailable": "Metadatos disponibles?",
     "collection.usageRestricted": "Uso restringido",
@@ -51,5 +49,9 @@
     "source.generalNotes": "General notes",
     "collection.generalNotes": "General notes",
     "source.form.deleteSource": "Eliminar fuente",
-    "collection.form.deleteCollection": "Eliminar colección"
+    "collection.form.deleteCollection": "Eliminar colección",
+    "source.form.saveAndClose": "Save & close",
+    "source.form.cancel": "Cancel",
+    "collection.form.saveAndClose": "Save & close",
+    "collection.form.cancel": "Cancel"
 }
