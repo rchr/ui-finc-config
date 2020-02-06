@@ -1,5 +1,16 @@
 # Change history for ui-finc-config
 
+## [1.4.0](https://github.com/folio-org/ui-finc-config/tree/v1.4.0) (2020-02-06)
+* Default filter behaviour when switching between apps and/or tabs (UIFC-89)
+* Set filters if clicking several times on the same navigation-tab (UIFC-110)
+* Bugfix: Show more than 30 results (UIFC-112)
+* Bugfix: Incorrect view of mdSource name  (UIFC-113)
+* Add mdSource filter to collections of finc-config (UIFC-116)
+* Bugfix: Refresh results and url after deleting search string (UIFC-109)
+* Bugfix: Add arrow icon to header in list of results (UIFC-119)
+* Centering forms and add footer with save and cancel (UIFC-120)
+* Improve remove buttons (UFIC-121)
+
 ## [1.3.0](https://github.com/folio-org/ui-finc-config/tree/v1.3.0) (2020-01-14)
 * Sort column "Source ID" numerically (UIFC-105)
 * Bugfix: Horizontal scroll bar for contacts, incorrect display, changes (UIFC-107)
