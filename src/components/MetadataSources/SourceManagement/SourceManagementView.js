@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import {
+  Button,
   Col,
   Headline,
   KeyValue,
@@ -14,6 +15,7 @@ import {
 
 import BasicCss from '../../BasicStyle.css';
 import css from './SourceManagement.css';
+import urls from '../../DisplayUtils/urls';
 
 class SourceManagementView extends React.Component {
   static propTypes = {
@@ -67,10 +69,22 @@ class SourceManagementView extends React.Component {
 
   render() {
     const { metadataSource } = this.props;
+    const sourceId = _.get(metadataSource, 'id', '-');
 
     return (
       <React.Fragment>
         <div id="id">
+          <Row>
+            <Col xs={6}>
+              <Button
+                buttonStyle="primary"
+                id="showAllCollections"
+                to={urls.showAllCollections(sourceId)}
+              >
+                <FormattedMessage id="ui-finc-config.source.button.showAllCollections" />
+              </Button>
+            </Col>
+          </Row>
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.organization" />}

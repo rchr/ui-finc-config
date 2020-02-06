@@ -32,6 +32,8 @@
   "source.form.deleteSource": "Delete source",
   "source.form.cancel": "Cancel",
 
+  "source.button.showAllCollections": "Show all collections",
+
   "collection.collectionId": "Collection ID",
   "collection.contentFiles": "Content files",
   "collection.description": "Description",
