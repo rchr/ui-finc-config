@@ -8,6 +8,8 @@ const urls = {
   collectionView: id => `/finc-config/metadata-collections/${id}`,
   collectionEdit: id => `/finc-config/metadata-collections/${id}/edit`,
   collectionCreate: () => '/finc-config/metadata-collections/create',
+
+  showAllCollections: (sourceId) => `/finc-config/metadata-collections?filters=mdSource.${sourceId},metadataAvailable.yes,metadataAvailable.no,metadataAvailable.undetermined,usageRestricted.yes,usageRestricted.no,freeContent.yes,freeContent.no,freeContent.undetermined,&query=`,
 };
 
 export default urls;
