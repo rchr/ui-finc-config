@@ -53,5 +53,6 @@
     "source.form.saveAndClose": "Save & close",
     "source.form.cancel": "Cancel",
     "collection.form.saveAndClose": "Save & close",
-    "collection.form.cancel": "Cancel"
+    "collection.form.cancel": "Cancel",
+    "source.button.showAllCollections": "Show all collections"
 }

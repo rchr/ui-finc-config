@@ -53,5 +53,6 @@
     "source.form.saveAndClose": "Salva e chiudi",
     "source.form.cancel": "Annulla",
     "collection.form.saveAndClose": "Salva e chiudi",
-    "collection.form.cancel": "Annulla"
+    "collection.form.cancel": "Annulla",
+    "source.button.showAllCollections": "Show all collections"
 }
