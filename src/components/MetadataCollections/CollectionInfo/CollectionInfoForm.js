@@ -13,6 +13,7 @@ import {
 
 import { Required } from '../../DisplayUtils/Validate';
 import SelectSource from './SelectSource';
+import FindSource from './FindSource/FindSource';
 
 class CollectionInfoForm extends React.Component {
   static propTypes = {
@@ -96,6 +97,9 @@ class CollectionInfoForm extends React.Component {
               validate={[Required]}
             />
           </Col>
+        </Row>
+        <Row>
+          <FindSource />
         </Row>
       </Accordion>
     );
