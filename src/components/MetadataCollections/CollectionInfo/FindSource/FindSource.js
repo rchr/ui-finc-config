@@ -11,13 +11,77 @@ import {
 import { Pluggable } from '@folio/stripes/core';
 
 class FindSource extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const s = props.intialSource || {};
+
+    this.state = {
+      source: {
+        id: s.id,
+        label: s.label,
+      },
+    };
+    this.inputSourceId = s.id;
+    this.inputSourceName = s.label;
+  }
+
+  selectSource = (s) => {
+    this.props.change('source.label', s.label);
+    this.props.change('source.id', s.id);
+
+    this.setState(() => {
+      return { source: {
+        id: s.id,
+        label: s.label
+      } };
+    });
+  }
+
+  renderSourceName = (source) => {
+    if (_.isEmpty(source.id)) {
+      return null;
+    }
+
+    const label = _.isEmpty(source.label) ?
+      '-' :
+      <div>{source.label}</div>;
+
+    return (
+      <div
+        // className={`${css.section} ${css.active}`}
+        label="sourceName"
+      >
+        <div>{label}</div>
+      </div>);
+  }
+
   render() {
+    const disableRecordCreation = true;
+    const sourceName = this.renderSourceName(this.state.source);
+    const buttonProps = { 'marginBottom0': true };
     const pluggable =
       <Pluggable
         aria-haspopup="true"
+        buttonProps={buttonProps}
+        columnMapping={this.columnMapping}
+        dataKey="source"
+        disableRecordCreation={disableRecordCreation}
+        id="clickable-find-source"
+        marginTop0
+        onCloseModal={(modalProps) => {
+          modalProps.parentMutator.query.update({
+            query: '',
+            filters: '',
+            sort: 'label',
+          });
+        }}
         searchButtonStyle="default"
-        searchLabel="Metadata Source look-up xxx"
+        searchLabel="Add metadata source"
+        selectSource={this.selectSource}
         type="find-finc-metadata-source"
+        visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
+        {...this.props}
       >
         <div style={{ background: 'red' }}>Plugin not found</div>
       </Pluggable>;
@@ -29,12 +93,19 @@ class FindSource extends React.Component {
             { pluggable }
           </Col>
           <Col xs={4}>
-            {/* { sourceName } */}
+            { sourceName }
           </Col>
         </Row>
       </React.Fragment>
     );
   }
 }
+
+FindSource.propTypes = {
+  change: PropTypes.func,
+  intialSourceId: PropTypes.string,
+  intialSource: PropTypes.object,
+  stripes: PropTypes.object,
+};
 
 export default FindSource;

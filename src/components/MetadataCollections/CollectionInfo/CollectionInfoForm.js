@@ -22,6 +22,30 @@ class CollectionInfoForm extends React.Component {
     }),
   };
 
+  constructor(props) {
+    super(props);
+
+    this.columnMapping =
+    {
+      label: 'Label',
+      sourceId: 'SourceId',
+    };
+    this.selectSource = this.selectSource.bind(this);
+
+    const intialSource = props.initialValues.source || {};
+
+    console.log(intialSource);
+
+    this.state = {
+      source: intialSource,
+    };
+  }
+
+  selectSource(s) {
+    this.props.change('source', s);
+    this.setState({ source: s });
+  }
+
   formatSourceData(sources) {
     if (!sources || sources.length === 0) return null;
     const newArr = [];
@@ -99,7 +123,11 @@ class CollectionInfoForm extends React.Component {
           </Col>
         </Row>
         <Row>
-          <FindSource />
+          <FindSource
+            change={this.props.change}
+            intialSource={this.state.source}
+            stripes={this.props.stripes}
+          />
         </Row>
       </Accordion>
     );
@@ -108,8 +136,13 @@ class CollectionInfoForm extends React.Component {
 
 CollectionInfoForm.propTypes = {
   accordionId: PropTypes.string.isRequired,
+  change: PropTypes.func,
   expanded: PropTypes.bool,
+  initialValues: PropTypes.shape({
+    source: PropTypes.object
+  }),
   onToggle: PropTypes.func,
+  stripes: PropTypes.object,
 };
 
 export default CollectionInfoForm;
