@@ -26,6 +26,12 @@ class FindSource extends React.Component {
     this.inputSourceName = s.label;
   }
 
+  // componentDidMount() {
+  //   if (!_.get(this.props, 'input.value') && _.get(this.triggerButton, 'current')) {
+  //     this.triggerButton.current.focus();
+  //   }
+  // }
+
   selectSource = (s) => {
     this.props.change('source.label', s.label);
     this.props.change('source.id', s.id);
@@ -76,6 +82,7 @@ class FindSource extends React.Component {
             sort: 'label',
           });
         }}
+        // onSourceSelected={this.props.onSourceSelected}
         searchButtonStyle="default"
         searchLabel="Add metadata source"
         selectSource={this.selectSource}
@@ -93,7 +100,7 @@ class FindSource extends React.Component {
             { pluggable }
           </Col>
           <Col xs={4}>
-            { sourceName }
+            {/* { sourceName } */}
           </Col>
         </Row>
       </React.Fragment>
