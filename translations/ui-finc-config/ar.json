@@ -50,8 +50,9 @@
     "collection.generalNotes": "ملاحظات عامة",
     "source.form.deleteSource": "حذف المصدر",
     "collection.form.deleteCollection": "حذف المجموعة",
-    "source.form.saveAndClose": "Save & close",
-    "source.form.cancel": "Cancel",
+    "source.form.saveAndClose": "حفظ وإغلاق",
+    "source.form.cancel": "إلغاء",
     "collection.form.saveAndClose": "حفظ وإغلاق",
-    "collection.form.cancel": "إلغاء"
+    "collection.form.cancel": "إلغاء",
+    "source.button.showAllCollections": "عرض كل المجموعات"
 }
