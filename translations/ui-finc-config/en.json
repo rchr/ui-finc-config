@@ -31,6 +31,7 @@
   "source.form.createSource": "Create source",
   "source.form.deleteSource": "Delete source",
   "source.form.cancel": "Cancel",
+  "source.form.close": "Close metadata source dialog",
 
   "source.button.showAllCollections": "Show all collections",
 
@@ -43,7 +44,7 @@
   "collection.label": "Collection name",
   "collection.lod.note": "LOD note",
   "collection.lod.publication": "LOD publication",
-  "collection.mdSource": "Source name",
+  "collection.mdSource": "Metadata source",
   "collection.metadataAvailable": "Metadata available",
   "collection.permittedFor": "Permitted for",
   "collection.productIsil": "Product ISIL",
@@ -59,6 +60,7 @@
   "collection.form.createCollection": "Create collection",
   "collection.form.deleteCollection": "Delete collection",
   "collection.form.cancel": "Cancel",
+  "collection.form.close": "Close metadata collection dialog",
 
   "settings.isils.label": "Isils",
   "settings.isils.labelSingular": "Isil",

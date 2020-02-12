@@ -12,15 +12,15 @@ import {
 } from '@folio/stripes/components';
 
 import { Required } from '../../DisplayUtils/Validate';
-import SelectSource from './SelectSource';
+// import SelectSource from './SelectSource';
 import FindSource from './FindSource/FindSource';
 
 class CollectionInfoForm extends React.Component {
-  static propTypes = {
-    sourceData: PropTypes.arrayOf({
-      source: PropTypes.object,
-    }),
-  };
+  // static propTypes = {
+  //   sourceData: PropTypes.arrayOf({
+  //     source: PropTypes.object,
+  //   }),
+  // };
 
   constructor(props) {
     super(props);
@@ -34,6 +34,7 @@ class CollectionInfoForm extends React.Component {
 
     const intialSource = props.initialValues.source || {};
 
+    console.log('hier');
     console.log(intialSource);
 
     this.state = {
@@ -68,7 +69,7 @@ class CollectionInfoForm extends React.Component {
 
   render() {
     const { expanded, onToggle, accordionId } = this.props;
-    const sourceDataFormatted = this.formatSourceData(this.props.sourceData);
+    // const sourceDataFormatted = this.formatSourceData(this.props.sourceData);
 
     return (
       <Accordion
@@ -108,7 +109,7 @@ class CollectionInfoForm extends React.Component {
             />
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col xs={8}>
             <Field
               component={SelectSource}
@@ -121,14 +122,12 @@ class CollectionInfoForm extends React.Component {
               validate={[Required]}
             />
           </Col>
-        </Row>
-        <Row>
-          <FindSource
-            change={this.props.change}
-            intialSource={this.state.source}
-            stripes={this.props.stripes}
-          />
-        </Row>
+        </Row> */}
+        <FindSource
+          change={this.props.change}
+          intialSource={this.state.source}
+          stripes={this.props.stripes}
+        />
       </Accordion>
     );
   }

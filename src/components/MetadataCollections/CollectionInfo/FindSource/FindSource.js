@@ -10,6 +10,9 @@ import {
 } from '@folio/stripes/components';
 import { Pluggable } from '@folio/stripes/core';
 
+import css from './FindSource.css';
+import BasicCss from '../../../BasicStyle.css';
+
 class FindSource extends React.Component {
   constructor(props) {
     super(props);
@@ -55,7 +58,7 @@ class FindSource extends React.Component {
 
     return (
       <div
-        // className={`${css.section} ${css.active}`}
+        className={`${css.section} ${css.active}`}
         label="sourceName"
       >
         <div>{label}</div>
@@ -96,11 +99,16 @@ class FindSource extends React.Component {
     return (
       <React.Fragment>
         <Row>
+          <Label className={BasicCss.styleForFormLabel}>
+            <FormattedMessage id="ui-finc-config.collection.mdSource" />
+          </Label>
+        </Row>
+        <Row>
           <Col xs={4}>
             { pluggable }
           </Col>
           <Col xs={4}>
-            {/* { sourceName } */}
+            { sourceName }
           </Col>
         </Row>
       </React.Fragment>
