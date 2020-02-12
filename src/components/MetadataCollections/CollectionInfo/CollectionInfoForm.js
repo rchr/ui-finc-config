@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
@@ -12,16 +11,9 @@ import {
 } from '@folio/stripes/components';
 
 import { Required } from '../../DisplayUtils/Validate';
-// import SelectSource from './SelectSource';
 import FindSource from './FindSource/FindSource';
 
 class CollectionInfoForm extends React.Component {
-  // static propTypes = {
-  //   sourceData: PropTypes.arrayOf({
-  //     source: PropTypes.object,
-  //   }),
-  // };
-
   constructor(props) {
     super(props);
 
@@ -44,29 +36,8 @@ class CollectionInfoForm extends React.Component {
     this.setState({ source: s });
   }
 
-  formatSourceData(sources) {
-    if (!sources || sources.length === 0) return null;
-    const newArr = [];
-
-    // Loop through records
-    Object.keys(sources).map((key) => {
-      const obj = {
-        label: _.toString(sources[key].label),
-        value: _.toString(sources[key].id)
-      };
-
-      newArr.push(obj);
-      if (Number(key) === (sources.length - 1)) {
-        return newArr;
-      }
-      return newArr;
-    });
-    return newArr;
-  }
-
   render() {
     const { expanded, onToggle, accordionId } = this.props;
-    // const sourceDataFormatted = this.formatSourceData(this.props.sourceData);
 
     return (
       <Accordion
@@ -106,20 +77,6 @@ class CollectionInfoForm extends React.Component {
             />
           </Col>
         </Row>
-        {/* <Row>
-          <Col xs={8}>
-            <Field
-              component={SelectSource}
-              dataOptions={sourceDataFormatted}
-              fullWidth
-              id="addcollection_source"
-              label="Source*"
-              name="mdSource"
-              placeholder="Select a source for the metadata collection"
-              validate={[Required]}
-            />
-          </Col>
-        </Row> */}
         <FindSource
           change={this.props.change}
           intialSource={this.state.source}

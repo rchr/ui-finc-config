@@ -29,12 +29,6 @@ class FindSource extends React.Component {
     this.inputSourceName = s.name;
   }
 
-  // componentDidMount() {
-  //   if (!_.get(this.props, 'input.value') && _.get(this.triggerButton, 'current')) {
-  //     this.triggerButton.current.focus();
-  //   }
-  // }
-
   selectSource = (s) => {
     this.props.change('mdSource.name', s.label);
     this.props.change('mdSource.id', s.id);
