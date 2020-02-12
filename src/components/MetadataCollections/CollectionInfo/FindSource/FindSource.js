@@ -22,11 +22,11 @@ class FindSource extends React.Component {
     this.state = {
       source: {
         id: s.id,
-        label: s.label,
+        name: s.name,
       },
     };
     this.inputSourceId = s.id;
-    this.inputSourceName = s.label;
+    this.inputSourceName = s.name;
   }
 
   // componentDidMount() {
@@ -42,7 +42,7 @@ class FindSource extends React.Component {
     this.setState(() => {
       return { source: {
         id: s.id,
-        label: s.label
+        name: s.label
       } };
     });
   }
@@ -52,16 +52,16 @@ class FindSource extends React.Component {
       return null;
     }
 
-    const label = _.isEmpty(source.label) ?
+    const name = _.isEmpty(source.name) ?
       '-' :
-      <div>{source.label}</div>;
+      <div>{source.name}</div>;
 
     return (
       <div
         className={`${css.section} ${css.active}`}
-        label="sourceName"
+        name="sourceName"
       >
-        <div>{label}</div>
+        <div>{name}</div>
       </div>);
   }
 
@@ -82,10 +82,9 @@ class FindSource extends React.Component {
           modalProps.parentMutator.query.update({
             query: '',
             filters: '',
-            sort: 'label',
+            sort: 'name',
           });
         }}
-        // onSourceSelected={this.props.onSourceSelected}
         searchButtonStyle="default"
         searchLabel="Add metadata source"
         selectSource={this.selectSource}

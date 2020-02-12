@@ -27,15 +27,12 @@ class CollectionInfoForm extends React.Component {
 
     this.columnMapping =
     {
-      label: 'Label',
-      sourceId: 'SourceId',
+      name: 'Label',
+      id: 'SourceId',
     };
     this.selectSource = this.selectSource.bind(this);
 
-    const intialSource = props.initialValues.source || {};
-
-    console.log('hier');
-    console.log(intialSource);
+    const intialSource = props.initialValues.mdSource || {};
 
     this.state = {
       source: intialSource,
@@ -138,7 +135,7 @@ CollectionInfoForm.propTypes = {
   change: PropTypes.func,
   expanded: PropTypes.bool,
   initialValues: PropTypes.shape({
-    source: PropTypes.object
+    mdSource: PropTypes.object
   }),
   onToggle: PropTypes.func,
   stripes: PropTypes.object,
