@@ -23,6 +23,7 @@
     "@folio/stripes": "^2.12.0",
     "@folio/stripes-cli": "^1.14.0",
     "@folio/stripes-components": "^5.9.0",
+    "@folio/plugin-find-finc-metadata-source": "^1.0.0",
     "babel-eslint": "^9.0.0",
     "babel-polyfill": "^6.26.0",
     "chai": "^4.2.0",
