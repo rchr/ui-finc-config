@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Field,
-  FieldArray
-} from 'redux-form';
+import { Field } from 'react-final-form';
+import { FieldArray } from 'react-final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -99,7 +97,7 @@ class SourceTechnicalForm extends React.Component {
                 </FormattedMessage>}
               name="sourceId"
               placeholder="Enter a source id for the metadata source"
-              validate={[IntRequired]}
+              validate={IntRequired}
             />
           </Col>
         </Row>

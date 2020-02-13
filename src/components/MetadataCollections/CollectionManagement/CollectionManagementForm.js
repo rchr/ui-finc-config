@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Field,
-  FieldArray,
-} from 'redux-form';
+import { Field } from 'react-final-form';
+import { FieldArray } from 'react-final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -84,7 +82,7 @@ class CollectionManagementForm extends React.Component {
               }
               name="usageRestricted"
               placeholder="Select if usage is restricted for the metadata collection"
-              validate={[Required]}
+              validate={Required}
             />
           </Col>
         </Row>

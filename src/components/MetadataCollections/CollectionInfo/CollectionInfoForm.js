@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -58,7 +58,7 @@ class CollectionInfoForm extends React.Component {
                 </FormattedMessage>}
               name="label"
               placeholder="Enter a name to identify the metadata collection"
-              validate={[Required]}
+              validate={Required}
             />
           </Col>
         </Row>

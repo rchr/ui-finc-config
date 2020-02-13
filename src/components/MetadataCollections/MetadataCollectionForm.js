@@ -17,7 +17,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 import { IfPermission } from '@folio/stripes/core';
-import stripesForm from '@folio/stripes/form';
+import stripesFinalForm from '@folio/stripes/final-form';
 
 import CollectionInfoForm from './CollectionInfo/CollectionInfoForm';
 import CollectionManagementForm from './CollectionManagement/CollectionManagementForm';
@@ -242,10 +242,9 @@ class MetadataCollectionForm extends React.Component {
   }
 }
 
-export default stripesForm({
+export default stripesFinalForm({
   // the form will reinitialize every time the initialValues prop changes
   enableReinitialize: true,
-  form: 'form-metadataCollection',
   // set navigationCheck true for confirming changes
   navigationCheck: true,
 })(MetadataCollectionForm);
