@@ -37,7 +37,7 @@ class MetadataCollectionForm extends React.Component {
     onDelete: PropTypes.func,
     onSubmit: PropTypes.func,
     pristine: PropTypes.bool,
-    sources: PropTypes.arrayOf(PropTypes.object),
+    // sources: PropTypes.arrayOf(PropTypes.object),
     submitting: PropTypes.bool,
   };
 
@@ -207,9 +207,9 @@ class MetadataCollectionForm extends React.Component {
               <CollectionInfoForm
                 accordionId="editCollectionInfo"
                 expanded={sections.editCollectionInfo}
-                // initialValues={initialValues}
+                metadataCollection={initialValues}
                 onToggle={this.handleSectionToggle}
-                sourceData={this.props.sources}
+                // sourceData={this.props.sources}
                 {...this.props}
               />
               <CollectionManagementForm

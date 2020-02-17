@@ -13,18 +13,18 @@ class CollectionEditRoute extends React.Component {
       path: 'finc-config/metadata-collections/:{id}',
       shouldRefresh: () => false,
     },
-    sources: {
-      type: 'okapi',
-      records: 'fincConfigMetadataSources',
-      // TODO: show all sources
-      perRequest: 1000,
-      path: 'finc-config/metadata-sources',
-      params: {
-        query: 'cql.allRecords=1 sortby label',
-        // TODO: show all sources
-        // limit: '1000',
-      },
-    },
+    // sources: {
+    //   type: 'okapi',
+    //   records: 'fincConfigMetadataSources',
+    //   // TODO: show all sources
+    //   perRequest: 1000,
+    //   path: 'finc-config/metadata-sources',
+    //   params: {
+    //     query: 'cql.allRecords=1 sortby label',
+    //     // TODO: show all sources
+    //     // limit: '1000',
+    //   },
+    // },
   });
 
   static propTypes = {
@@ -46,7 +46,7 @@ class CollectionEditRoute extends React.Component {
     }).isRequired,
     resources: PropTypes.shape({
       collection: PropTypes.object,
-      sources: PropTypes.object,
+      // sources: PropTypes.object,
     }).isRequired,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func.isRequired,
@@ -111,7 +111,7 @@ class CollectionEditRoute extends React.Component {
         isLoading={this.fetchIsPending()}
         onDelete={this.deleteCollection}
         onSubmit={this.handleSubmit}
-        sources={_.get(this.props.resources, 'sources.records', [])}
+        // sources={_.get(this.props.resources, 'sources.records', [])}
       />
     );
   }
