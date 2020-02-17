@@ -37,7 +37,7 @@
     "source.updateRhythm": "Mettre à jour le rythme",
     "source.inferiorTo": "Inférieur à",
     "collection.description": "Description",
-    "collection.mdSource": "Nom de la source",
+    "collection.mdSource": "Source de métadonnées",
     "collection.lod.publication": "Publication LOD",
     "collection.lod.note": "Note LOD",
     "collection.collectionId": "ID de la collection",
@@ -54,5 +54,7 @@
     "source.form.cancel": "Annuler",
     "collection.form.saveAndClose": "Sauvegarder et fermer",
     "collection.form.cancel": "Annuler",
-    "source.button.showAllCollections": "Afficher toutes les collections"
+    "source.button.showAllCollections": "Afficher toutes les collections",
+    "source.form.close": "Close metadata source dialog",
+    "collection.form.close": "Close metadata collection dialog"
 }
