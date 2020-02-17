@@ -54,5 +54,7 @@
     "source.form.cancel": "إلغاء",
     "collection.form.saveAndClose": "حفظ وإغلاق",
     "collection.form.cancel": "إلغاء",
-    "source.button.showAllCollections": "عرض كل المجموعات"
+    "source.button.showAllCollections": "عرض كل المجموعات",
+    "source.form.close": "إغلاق مربع حوار مصدر الميتاداتا",
+    "collection.form.close": "إغلاق مربع حوار مجموعة الميتاداتا"
 }
