@@ -14,6 +14,12 @@ import css from './FindSource.css';
 import BasicCss from '../../../BasicStyle.css';
 
 class FindSource extends React.Component {
+  static propTypes = {
+    form: PropTypes.shape({
+      mutators: PropTypes.object.isRequired,
+    }).isRequired,
+  };
+
   constructor(props) {
     super(props);
 

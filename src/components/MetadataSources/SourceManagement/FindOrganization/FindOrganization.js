@@ -14,6 +14,12 @@ import BasicCss from '../../../BasicStyle.css';
 import css from './OrganizationView.css';
 
 class FindOrganization extends React.Component {
+  static propTypes = {
+    form: PropTypes.shape({
+      mutators: PropTypes.object.isRequired,
+    }).isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -30,8 +36,11 @@ class FindOrganization extends React.Component {
   }
 
   selectVendor = (o) => {
-    this.props.change('organization.name', o.name);
-    this.props.change('organization.id', o.id);
+    // this.props.change('organization.name', o.name);
+    // this.props.change('organization.id', o.id);
+
+    this.props.form.mutators.setOrganizationId('organization.id', o.id);
+    this.props.form.mutators.setOrganizationName('organization.name', o.name);
 
     this.setState(() => {
       return { vendor: {
@@ -39,20 +48,6 @@ class FindOrganization extends React.Component {
         name: o.name
       } };
     });
-  }
-
-  updateVendorId = () => {
-    this.props.change('organization.id', this.inputVendorId);
-    this.setState(() => {
-      return { vendor: {
-        id: this.inputVendorId,
-        name: null
-      } };
-    });
-  }
-
-  changeInputVendorId = (e) => {
-    this.inputVendorId = e.target.value;
   }
 
   renderVendorName = (vendor) => {
@@ -124,10 +119,15 @@ class FindOrganization extends React.Component {
 }
 
 FindOrganization.propTypes = {
-  change: PropTypes.func,
   intialVendorId: PropTypes.string,
   intialVendor: PropTypes.object,
   stripes: PropTypes.object,
+  form: PropTypes.shape({
+    mutators: PropTypes.shape({
+      setOrganizationId: PropTypes.func,
+      setOrganizationName: PropTypes.func,
+    }),
+  }),
 };
 
 export default FindOrganization;

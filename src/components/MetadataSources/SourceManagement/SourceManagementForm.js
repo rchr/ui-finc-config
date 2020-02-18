@@ -55,9 +55,9 @@ class SourceManagementForm extends React.Component {
         {/* add link to organization app */}
         <div className={BasicCss.addMarginBottom}>
           <FindOrganization
-            change={this.props.change}
             intialVendor={this.state.organization}
             stripes={this.props.stripes}
+            {...this.props}
           />
         </div>
         {/* CONTACTS INTERNAL is repeatable */}
