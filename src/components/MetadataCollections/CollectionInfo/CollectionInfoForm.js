@@ -22,7 +22,6 @@ class CollectionInfoForm extends React.Component {
       name: 'Label',
       id: 'SourceId',
     };
-    // this.selectSource = this.selectSource.bind(this);
 
     const intialSource = props.metadataCollection.mdSource || {};
 
@@ -30,11 +29,6 @@ class CollectionInfoForm extends React.Component {
       source: intialSource,
     };
   }
-
-  // selectSource(s) {
-  //   this.props.change('source', s);
-  //   this.setState({ source: s });
-  // }
 
   render() {
     const { expanded, onToggle, accordionId } = this.props;
@@ -78,7 +72,7 @@ class CollectionInfoForm extends React.Component {
           </Col>
         </Row>
         <FindSource
-          change={() => this.props.change}
+          // change={() => this.props.change}
           intialSource={this.state.source}
           stripes={this.props.stripes}
           {...this.props}
@@ -97,13 +91,6 @@ CollectionInfoForm.propTypes = {
   }),
   onToggle: PropTypes.func,
   stripes: PropTypes.object,
-  form: PropTypes.shape({
-    mutators: PropTypes.shape({
-      setSource: PropTypes.func,
-      setSourceId: PropTypes.func,
-      setSourceName: PropTypes.func,
-    }),
-  }),
 };
 
 export default CollectionInfoForm;

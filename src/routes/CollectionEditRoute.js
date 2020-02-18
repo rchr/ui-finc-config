@@ -13,46 +13,7 @@ class CollectionEditRoute extends React.Component {
       path: 'finc-config/metadata-collections/:{id}',
       shouldRefresh: () => false,
     },
-    // sources: {
-    //   type: 'okapi',
-    //   records: 'fincConfigMetadataSources',
-    //   // TODO: show all sources
-    //   perRequest: 1000,
-    //   path: 'finc-config/metadata-sources',
-    //   params: {
-    //     query: 'cql.allRecords=1 sortby label',
-    //     // TODO: show all sources
-    //     // limit: '1000',
-    //   },
-    // },
   });
-
-  static propTypes = {
-    handlers: PropTypes.object,
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-    }).isRequired,
-    location: PropTypes.shape({
-      search: PropTypes.string.isRequired,
-    }).isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
-    mutator: PropTypes.shape({
-      collections: PropTypes.shape({
-      }).isRequired,
-    }).isRequired,
-    resources: PropTypes.shape({
-      collection: PropTypes.object,
-      // sources: PropTypes.object,
-    }).isRequired,
-    stripes: PropTypes.shape({
-      hasPerm: PropTypes.func.isRequired,
-      okapi: PropTypes.object.isRequired,
-    }).isRequired,
-  }
 
   static defaultProps = {
     handlers: {},
@@ -96,8 +57,6 @@ class CollectionEditRoute extends React.Component {
   render() {
     const { handlers, resources } = this.props;
 
-    // console.log(_.get(this.props.resources, 'sources.records', []));
-
     if (this.fetchIsPending()) return 'loading';
 
     return (
@@ -111,10 +70,35 @@ class CollectionEditRoute extends React.Component {
         isLoading={this.fetchIsPending()}
         onDelete={this.deleteCollection}
         onSubmit={this.handleSubmit}
-        // sources={_.get(this.props.resources, 'sources.records', [])}
       />
     );
   }
 }
+
+CollectionEditRoute.propTypes = {
+  handlers: PropTypes.object,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string.isRequired,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  mutator: PropTypes.shape({
+    collections: PropTypes.shape({
+    }).isRequired,
+  }).isRequired,
+  resources: PropTypes.shape({
+    collection: PropTypes.object,
+  }).isRequired,
+  stripes: PropTypes.shape({
+    hasPerm: PropTypes.func.isRequired,
+    okapi: PropTypes.object.isRequired,
+  }).isRequired,
+};
 
 export default stripesConnect(CollectionEditRoute);
