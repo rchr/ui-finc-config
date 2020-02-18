@@ -39,6 +39,9 @@ class MetadataCollectionForm extends React.Component {
     pristine: PropTypes.bool,
     // sources: PropTypes.arrayOf(PropTypes.object),
     submitting: PropTypes.bool,
+    form: PropTypes.shape({
+      mutators: PropTypes.object.isRequired,
+    }).isRequired,
   };
 
   static defaultProps = {
@@ -170,7 +173,7 @@ class MetadataCollectionForm extends React.Component {
   }
 
   render() {
-    const { initialValues, isLoading, onDelete } = this.props;
+    const { initialValues, isLoading, onDelete, form: { mutators } } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.collection.form.createCollection" />;
 
@@ -210,6 +213,7 @@ class MetadataCollectionForm extends React.Component {
                 metadataCollection={initialValues}
                 onToggle={this.handleSectionToggle}
                 // sourceData={this.props.sources}
+                mutators={mutators}
                 {...this.props}
               />
               <CollectionManagementForm
@@ -247,4 +251,17 @@ export default stripesFinalForm({
   enableReinitialize: true,
   // set navigationCheck true for confirming changes
   navigationCheck: true,
+  mutators: {
+    setSource: (args, state, tools) => {
+      // tools.changeValue(state, 'mdSource', () => args[0]);
+      // tools.changeValue(state, 'mdSource.name', () => args[0].name);
+      tools.changeValue(state, args[0], () => args[1]);
+    },
+    setSourceId: (args, state, tools) => {
+      tools.changeValue(state, args[0], () => args[1]);
+    },
+    setSourceName: (args, state, tools) => {
+      tools.changeValue(state, args[0], () => args[1]);
+    }
+  },
 })(MetadataCollectionForm);

@@ -81,6 +81,7 @@ class CollectionInfoForm extends React.Component {
           change={() => this.props.change}
           intialSource={this.state.source}
           stripes={this.props.stripes}
+          {...this.props}
         />
       </Accordion>
     );
@@ -96,6 +97,13 @@ CollectionInfoForm.propTypes = {
   }),
   onToggle: PropTypes.func,
   stripes: PropTypes.object,
+  form: PropTypes.shape({
+    mutators: PropTypes.shape({
+      setSource: PropTypes.func,
+      setSourceId: PropTypes.func,
+      setSourceName: PropTypes.func,
+    }),
+  }),
 };
 
 export default CollectionInfoForm;
