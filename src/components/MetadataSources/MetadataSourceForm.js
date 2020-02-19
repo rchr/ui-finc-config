@@ -243,6 +243,9 @@ export default stripesFinalForm({
   // set navigationCheck true for confirming changes
   navigationCheck: true,
   mutators: {
+    setOrganization: (args, state, tools) => {
+      tools.changeValue(state, 'organization', () => args[0]);
+    },
     setOrganizationId: (args, state, tools) => {
       tools.changeValue(state, args[0], () => args[1]);
     },

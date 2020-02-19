@@ -54,7 +54,15 @@ class SourceManagementForm extends React.Component {
       >
         {/* add link to organization app */}
         <div className={BasicCss.addMarginBottom}>
-          <FindOrganization
+          {/* <FindOrganization
+            intialVendor={this.state.organization}
+            stripes={this.props.stripes}
+            {...this.props}
+          /> */}
+          {/* Plugin has to be inside of Field, otherwise pristine is not working */}
+          <Field
+            component={FindOrganization}
+            name="organization"
             intialVendor={this.state.organization}
             stripes={this.props.stripes}
             {...this.props}

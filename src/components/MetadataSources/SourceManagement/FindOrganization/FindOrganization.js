@@ -36,11 +36,13 @@ class FindOrganization extends React.Component {
   }
 
   selectVendor = (o) => {
-    // this.props.change('organization.name', o.name);
-    // this.props.change('organization.id', o.id);
+    // this.props.form.mutators.setOrganizationId('organization.id', o.id);
+    // this.props.form.mutators.setOrganizationName('organization.name', o.name);
 
-    this.props.form.mutators.setOrganizationId('organization.id', o.id);
-    this.props.form.mutators.setOrganizationName('organization.name', o.name);
+    this.props.form.mutators.setOrganization({
+      id: o.id,
+      name: o.name,
+    });
 
     this.setState(() => {
       return { vendor: {
@@ -126,6 +128,7 @@ FindOrganization.propTypes = {
     mutators: PropTypes.shape({
       setOrganizationId: PropTypes.func,
       setOrganizationName: PropTypes.func,
+      setOrganization: PropTypes.func,
     }),
   }),
 };
