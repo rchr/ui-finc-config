@@ -1,6 +1,5 @@
 import React from 'react';
-// import _ from 'lodash';
-import { cloneDeep, get, isEqual } from 'lodash';
+import { cloneDeep } from 'lodash';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -251,11 +250,5 @@ export default stripesFinalForm({
     setSource: (args, state, tools) => {
       tools.changeValue(state, 'mdSource', () => args[0]);
     },
-    // setSourceId: (args, state, tools) => {
-    //   tools.changeValue(state, args[0], () => args[1]);
-    // },
-    // setSourceName: (args, state, tools) => {
-    //   tools.changeValue(state, args[0], () => args[1]);
-    // }
   },
 })(MetadataCollectionForm);

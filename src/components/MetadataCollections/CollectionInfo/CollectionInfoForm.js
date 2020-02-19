@@ -71,14 +71,16 @@ class CollectionInfoForm extends React.Component {
             />
           </Col>
         </Row>
-        {/* Plugin has to be inside of Field, otherwise pristine is not working */}
-        <Field
-          component={FindSource}
-          name="mdSource"
-          intialSource={this.state.source}
-          stripes={this.props.stripes}
-          {...this.props}
-        />
+        <div>
+          {/* Plugin has to be inside of Field, otherwise pristine is not working */}
+          <Field
+            component={FindSource}
+            name="mdSource"
+            intialSource={this.state.source}
+            stripes={this.props.stripes}
+            {...this.props}
+          />
+        </div>
       </Accordion>
     );
   }

@@ -14,12 +14,6 @@ import BasicCss from '../../../BasicStyle.css';
 import css from './OrganizationView.css';
 
 class FindOrganization extends React.Component {
-  static propTypes = {
-    form: PropTypes.shape({
-      mutators: PropTypes.object.isRequired,
-    }).isRequired,
-  };
-
   constructor(props) {
     super(props);
 
@@ -36,9 +30,6 @@ class FindOrganization extends React.Component {
   }
 
   selectVendor = (o) => {
-    // this.props.form.mutators.setOrganizationId('organization.id', o.id);
-    // this.props.form.mutators.setOrganizationName('organization.name', o.name);
-
     this.props.form.mutators.setOrganization({
       id: o.id,
       name: o.name,
@@ -126,8 +117,6 @@ FindOrganization.propTypes = {
   stripes: PropTypes.object,
   form: PropTypes.shape({
     mutators: PropTypes.shape({
-      setOrganizationId: PropTypes.func,
-      setOrganizationName: PropTypes.func,
       setOrganization: PropTypes.func,
     }),
   }),

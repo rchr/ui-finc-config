@@ -14,12 +14,6 @@ import css from './FindSource.css';
 import BasicCss from '../../../BasicStyle.css';
 
 class FindSource extends React.Component {
-  static propTypes = {
-    form: PropTypes.shape({
-      mutators: PropTypes.object.isRequired,
-    }).isRequired,
-  };
-
   constructor(props) {
     super(props);
 
@@ -36,9 +30,6 @@ class FindSource extends React.Component {
   }
 
   selectSource = (s) => {
-    // this.props.form.mutators.setSourceId('mdSource.id', s.id);
-    // this.props.form.mutators.setSourceName('mdSource.name', s.label);
-
     this.props.form.mutators.setSource({
       id: s.id,
       name: s.label,
@@ -127,8 +118,6 @@ FindSource.propTypes = {
   form: PropTypes.shape({
     mutators: PropTypes.shape({
       setSource: PropTypes.func,
-      // setSourceId: PropTypes.func,
-      // setSourceName: PropTypes.func,
     }),
   }),
 };

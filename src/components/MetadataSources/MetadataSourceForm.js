@@ -246,11 +246,5 @@ export default stripesFinalForm({
     setOrganization: (args, state, tools) => {
       tools.changeValue(state, 'organization', () => args[0]);
     },
-    setOrganizationId: (args, state, tools) => {
-      tools.changeValue(state, args[0], () => args[1]);
-    },
-    setOrganizationName: (args, state, tools) => {
-      tools.changeValue(state, args[0], () => args[1]);
-    }
   },
 })(MetadataSourceForm);
