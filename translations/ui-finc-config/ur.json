@@ -37,7 +37,7 @@
     "source.updateRhythm": "Update rhythm",
     "source.inferiorTo": "Inferior to",
     "collection.description": "Description",
-    "collection.mdSource": "Source name",
+    "collection.mdSource": "میٹا ڈیٹا ماخذ",
     "collection.lod.publication": "LOD publication",
     "collection.lod.note": "LOD note",
     "collection.collectionId": "Collection ID",
@@ -54,5 +54,7 @@
     "source.form.cancel": "Cancel",
     "collection.form.saveAndClose": "Save & close",
     "collection.form.cancel": "Cancel",
-    "source.button.showAllCollections": "Show all collections"
+    "source.button.showAllCollections": "Show all collections",
+    "source.form.close": "Close metadata source dialog",
+    "collection.form.close": "Close metadata collection dialog"
 }

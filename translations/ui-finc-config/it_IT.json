@@ -54,5 +54,7 @@
     "source.form.cancel": "Annulla",
     "collection.form.saveAndClose": "Salva e chiudi",
     "collection.form.cancel": "Annulla",
-    "source.button.showAllCollections": "Show all collections"
+    "source.button.showAllCollections": "Show all collections",
+    "source.form.close": "Close metadata source dialog",
+    "collection.form.close": "Close metadata collection dialog"
 }
