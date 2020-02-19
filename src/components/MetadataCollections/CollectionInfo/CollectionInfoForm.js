@@ -88,7 +88,6 @@ class CollectionInfoForm extends React.Component {
 
 CollectionInfoForm.propTypes = {
   accordionId: PropTypes.string.isRequired,
-  change: PropTypes.func.isRequired,
   expanded: PropTypes.bool,
   metadataCollection: PropTypes.shape({
     mdSource: PropTypes.object
