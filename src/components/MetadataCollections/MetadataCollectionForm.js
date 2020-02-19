@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import { cloneDeep } from 'lodash';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -17,7 +17,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 import { IfPermission } from '@folio/stripes/core';
-import stripesForm from '@folio/stripes/form';
+import stripesFinalForm from '@folio/stripes/final-form';
 
 import CollectionInfoForm from './CollectionInfo/CollectionInfoForm';
 import CollectionManagementForm from './CollectionManagement/CollectionManagementForm';
@@ -37,7 +37,6 @@ class MetadataCollectionForm extends React.Component {
     onDelete: PropTypes.func,
     onSubmit: PropTypes.func,
     pristine: PropTypes.bool,
-    sources: PropTypes.arrayOf(PropTypes.object),
     submitting: PropTypes.bool,
   };
 
@@ -162,7 +161,7 @@ class MetadataCollectionForm extends React.Component {
 
   handleSectionToggle = ({ id }) => {
     this.setState((state) => {
-      const newState = _.cloneDeep(state);
+      const newState = cloneDeep(state);
 
       newState.sections[id] = !newState.sections[id];
       return newState;
@@ -170,7 +169,7 @@ class MetadataCollectionForm extends React.Component {
   }
 
   render() {
-    const { initialValues, isLoading, onDelete } = this.props;
+    const { initialValues, isLoading, onDelete, handleSubmit } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.collection.form.createCollection" />;
 
@@ -185,6 +184,7 @@ class MetadataCollectionForm extends React.Component {
         className={BasicStyle.styleForFormRoot}
         data-test-collection-form-page
         id="form-collection"
+        onSubmit={handleSubmit}
       >
         <Paneset isRoot>
           <Pane
@@ -207,9 +207,8 @@ class MetadataCollectionForm extends React.Component {
               <CollectionInfoForm
                 accordionId="editCollectionInfo"
                 expanded={sections.editCollectionInfo}
-                // initialValues={initialValues}
+                metadataCollection={initialValues}
                 onToggle={this.handleSectionToggle}
-                sourceData={this.props.sources}
                 {...this.props}
               />
               <CollectionManagementForm
@@ -242,10 +241,14 @@ class MetadataCollectionForm extends React.Component {
   }
 }
 
-export default stripesForm({
+export default stripesFinalForm({
   // the form will reinitialize every time the initialValues prop changes
   enableReinitialize: true,
-  form: 'form-metadataCollection',
   // set navigationCheck true for confirming changes
   navigationCheck: true,
+  mutators: {
+    setSource: (args, state, tools) => {
+      tools.changeValue(state, 'mdSource', () => args[0]);
+    },
+  },
 })(MetadataCollectionForm);

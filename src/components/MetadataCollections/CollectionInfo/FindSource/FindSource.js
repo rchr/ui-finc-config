@@ -30,8 +30,10 @@ class FindSource extends React.Component {
   }
 
   selectSource = (s) => {
-    this.props.change('mdSource.name', s.label);
-    this.props.change('mdSource.id', s.id);
+    this.props.form.mutators.setSource({
+      id: s.id,
+      name: s.label,
+    });
 
     this.setState(() => {
       return { source: {
@@ -110,10 +112,14 @@ class FindSource extends React.Component {
 }
 
 FindSource.propTypes = {
-  change: PropTypes.func,
   intialSourceId: PropTypes.string,
   intialSource: PropTypes.object,
   stripes: PropTypes.object,
+  form: PropTypes.shape({
+    mutators: PropTypes.shape({
+      setSource: PropTypes.func,
+    }),
+  }),
 };
 
 export default FindSource;

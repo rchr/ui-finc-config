@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Field,
-  FieldArray,
-} from 'redux-form';
+import { Field } from 'react-final-form';
+import { FieldArray } from 'react-final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -54,12 +52,14 @@ class SourceManagementForm extends React.Component {
         onToggle={onToggle}
         open={expanded}
       >
-        {/* add link to organization app */}
         <div className={BasicCss.addMarginBottom}>
-          <FindOrganization
-            change={this.props.change}
+          {/* Plugin has to be inside of Field, otherwise pristine is not working */}
+          <Field
+            component={FindOrganization}
+            name="organization"
             intialVendor={this.state.organization}
             stripes={this.props.stripes}
+            {...this.props}
           />
         </div>
         {/* CONTACTS INTERNAL is repeatable */}

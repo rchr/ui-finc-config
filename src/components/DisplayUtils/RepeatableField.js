@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 
 import {
   Button,
@@ -15,40 +15,30 @@ class RepeatableField extends React.Component {
     fields: PropTypes.object,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.renderSubContract = this.renderSubContract.bind(this);
-  }
-
-  renderSubContract = (elem, index, fields) => {
-    return (
-      <Row key={index}>
-        <Col xs={8}>
-          <Field
-            name={elem}
-            id={elem}
-            component={TextField}
-            fullWidth
-          />
-        </Col>
-        <Col xs={1}>
-          <IconButton
-            icon="trash"
-            onClick={() => fields.remove(index)}
-          />
-        </Col>
-      </Row>
-    );
-  }
-
   render() {
     const { fields } = this.props;
 
     return (
       <Row>
         <Col xs={12}>
-          {fields.map(this.renderSubContract)}
+          {fields.map((elem, index) => (
+            <Row key={index}>
+              <Col xs={8}>
+                <Field
+                  name={elem}
+                  id={elem}
+                  component={TextField}
+                  fullWidth
+                />
+              </Col>
+              <Col xs={1}>
+                <IconButton
+                  icon="trash"
+                  onClick={() => fields.remove(index)}
+                />
+              </Col>
+            </Row>
+          ))}
         </Col>
         <Col xs={4}>
           <Button onClick={() => fields.push('')}>+ Add</Button>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -22,18 +22,12 @@ class CollectionInfoForm extends React.Component {
       name: 'Label',
       id: 'SourceId',
     };
-    this.selectSource = this.selectSource.bind(this);
 
-    const intialSource = props.initialValues.mdSource || {};
+    const intialSource = props.metadataCollection.mdSource || {};
 
     this.state = {
       source: intialSource,
     };
-  }
-
-  selectSource(s) {
-    this.props.change('source', s);
-    this.setState({ source: s });
   }
 
   render() {
@@ -58,7 +52,7 @@ class CollectionInfoForm extends React.Component {
                 </FormattedMessage>}
               name="label"
               placeholder="Enter a name to identify the metadata collection"
-              validate={[Required]}
+              validate={Required}
             />
           </Col>
         </Row>
@@ -77,11 +71,16 @@ class CollectionInfoForm extends React.Component {
             />
           </Col>
         </Row>
-        <FindSource
-          change={this.props.change}
-          intialSource={this.state.source}
-          stripes={this.props.stripes}
-        />
+        <div>
+          {/* Plugin has to be inside of Field, otherwise pristine is not working */}
+          <Field
+            component={FindSource}
+            name="mdSource"
+            intialSource={this.state.source}
+            stripes={this.props.stripes}
+            {...this.props}
+          />
+        </div>
       </Accordion>
     );
   }
@@ -89,9 +88,9 @@ class CollectionInfoForm extends React.Component {
 
 CollectionInfoForm.propTypes = {
   accordionId: PropTypes.string.isRequired,
-  change: PropTypes.func,
+  change: PropTypes.func.isRequired,
   expanded: PropTypes.bool,
-  initialValues: PropTypes.shape({
+  metadataCollection: PropTypes.shape({
     mdSource: PropTypes.object
   }),
   onToggle: PropTypes.func,

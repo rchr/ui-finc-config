@@ -17,7 +17,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 import { IfPermission } from '@folio/stripes/core';
-import stripesForm from '@folio/stripes/form';
+import stripesFinalForm from '@folio/stripes/final-form';
 
 import SourceInfoForm from './SourceInfo/SourceInfoForm';
 import SourceManagementForm from './SourceManagement/SourceManagementForm';
@@ -237,10 +237,14 @@ class MetadataSourceForm extends React.Component {
   }
 }
 
-export default stripesForm({
+export default stripesFinalForm({
   // the form will reinitialize every time the initialValues prop changes
   enableReinitialize: true,
-  form: 'form-metadataSource',
   // set navigationCheck true for confirming changes
   navigationCheck: true,
+  mutators: {
+    setOrganization: (args, state, tools) => {
+      tools.changeValue(state, 'organization', () => args[0]);
+    },
+  },
 })(MetadataSourceForm);
