@@ -1,5 +1,6 @@
 import React from 'react';
-import _ from 'lodash';
+// import _ from 'lodash';
+import { cloneDeep, get, isEqual } from 'lodash';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -161,7 +162,7 @@ class MetadataCollectionForm extends React.Component {
 
   handleSectionToggle = ({ id }) => {
     this.setState((state) => {
-      const newState = _.cloneDeep(state);
+      const newState = cloneDeep(state);
 
       newState.sections[id] = !newState.sections[id];
       return newState;
@@ -169,7 +170,7 @@ class MetadataCollectionForm extends React.Component {
   }
 
   render() {
-    const { initialValues, isLoading, onDelete, handleSubmit } = this.props; // , form: { mutators }
+    const { initialValues, isLoading, onDelete, handleSubmit } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.collection.form.createCollection" />;
 
@@ -248,18 +249,13 @@ export default stripesFinalForm({
   navigationCheck: true,
   mutators: {
     setSource: (args, state, tools) => {
-      // tools.changeValue(state, 'mdSource', () => args[0]);
-      // tools.changeValue(state, 'mdSource.name', () => args[0].name);
-      tools.changeValue(state, args[0], () => args[1]);
+      tools.changeValue(state, 'mdSource', () => args[0]);
     },
-    setSourceId: (args, state, tools) => {
-      tools.changeValue(state, args[0], () => args[1]);
-    },
-    setSourceName: (args, state, tools) => {
-      tools.changeValue(state, args[0], () => args[1]);
-    }
-  },
-  subscription: {
-    values: true,
+    // setSourceId: (args, state, tools) => {
+    //   tools.changeValue(state, args[0], () => args[1]);
+    // },
+    // setSourceName: (args, state, tools) => {
+    //   tools.changeValue(state, args[0], () => args[1]);
+    // }
   },
 })(MetadataCollectionForm);

@@ -36,14 +36,13 @@ class FindSource extends React.Component {
   }
 
   selectSource = (s) => {
-    // this.props.form.mutators.setSource('mdSource.name', s.label);
-    this.props.form.mutators.setSourceId('mdSource.id', s.id);
-    this.props.form.mutators.setSourceName('mdSource.name', s.label);
+    // this.props.form.mutators.setSourceId('mdSource.id', s.id);
+    // this.props.form.mutators.setSourceName('mdSource.name', s.label);
 
-    // this.props.form.mutators.setSource({
-    //   id: s.id,
-    //   name: s.label,
-    // });
+    this.props.form.mutators.setSource({
+      id: s.id,
+      name: s.label,
+    });
 
     this.setState(() => {
       return { source: {
@@ -128,8 +127,8 @@ FindSource.propTypes = {
   form: PropTypes.shape({
     mutators: PropTypes.shape({
       setSource: PropTypes.func,
-      setSourceId: PropTypes.func,
-      setSourceName: PropTypes.func,
+      // setSourceId: PropTypes.func,
+      // setSourceName: PropTypes.func,
     }),
   }),
 };
