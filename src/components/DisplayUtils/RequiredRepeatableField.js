@@ -17,7 +17,7 @@ class RequiredRepeatableField extends React.Component {
     fields: PropTypes.object,
     // add META-ERROR to PropTypes
     meta: PropTypes.shape({
-      error: PropTypes.string,
+      error: PropTypes.node,
     }),
   };
 
