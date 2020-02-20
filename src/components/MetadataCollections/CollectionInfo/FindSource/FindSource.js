@@ -1,17 +1,18 @@
-import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { Field } from 'react-final-form';
 
 import {
   Col,
   Label,
   Row,
+  TextField,
 } from '@folio/stripes/components';
 import { Pluggable } from '@folio/stripes/core';
 
-import css from './FindSource.css';
 import BasicCss from '../../../BasicStyle.css';
+import { MdSourceRequired } from '../../../DisplayUtils/Validate';
 
 class FindSource extends React.Component {
   constructor(props) {
@@ -19,12 +20,6 @@ class FindSource extends React.Component {
 
     const s = props.intialSource || {};
 
-    this.state = {
-      source: {
-        id: s.id,
-        name: s.name,
-      },
-    };
     this.inputSourceId = s.id;
     this.inputSourceName = s.name;
   }
@@ -43,27 +38,8 @@ class FindSource extends React.Component {
     });
   }
 
-  renderSourceName = (source) => {
-    if (_.isEmpty(source.id)) {
-      return null;
-    }
-
-    const name = _.isEmpty(source.name) ?
-      '-' :
-      <div>{source.name}</div>;
-
-    return (
-      <div
-        className={`${css.section} ${css.active}`}
-        name="sourceName"
-      >
-        <div>{name}</div>
-      </div>);
-  }
-
   render() {
     const disableRecordCreation = true;
-    const sourceName = this.renderSourceName(this.state.source);
     const buttonProps = { 'marginBottom0': true };
     const pluggable =
       <Pluggable
@@ -95,7 +71,7 @@ class FindSource extends React.Component {
       <React.Fragment>
         <Row>
           <Label className={BasicCss.styleForFormLabel}>
-            <FormattedMessage id="ui-finc-config.collection.label">
+            <FormattedMessage id="ui-finc-config.collection.mdSource">
               {(msg) => msg + ' *'}
             </FormattedMessage>
           </Label>
@@ -105,7 +81,15 @@ class FindSource extends React.Component {
             { pluggable }
           </Col>
           <Col xs={4}>
-            { sourceName }
+            <Field
+              component={TextField}
+              fullWidth
+              id="addcollection_mdSource"
+              name="mdSource.name"
+              placeholder="Please add a metadata source"
+              readOnly
+              validate={MdSourceRequired}
+            />
           </Col>
         </Row>
       </React.Fragment>

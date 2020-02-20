@@ -23,30 +23,21 @@ class CollectionsRoute extends React.Component {
       recordsRequired: '%{resultCount}',
       perRequest: 30,
       path: 'finc-config/metadata-collections',
-      GET: {
-        params: {
-          query: makeQueryFunction(
-            'cql.allRecords=1',
-            '(label="%{query.query}*")',
-            {
-              'Collection Name': 'label'
-            },
-            filterConfig,
-            2,
-          ),
-        },
-        staticFallback: { params: {} },
+      // GET: {
+      params: {
+        query: makeQueryFunction(
+          'cql.allRecords=1',
+          '(label="%{query.query}*")',
+          {
+            'Collection Name': 'label'
+          },
+          filterConfig,
+          2,
+        ),
       },
+      staticFallback: { params: {} },
+      // },
     },
-    sources: {
-      type: 'okapi',
-      records: 'fincConfigMetadataSources',
-      // TODO: show all sources
-      perRequest: 1000,
-      path: 'finc-config/metadata-sources',
-      resourceShouldRefresh: true
-    },
-    // get for the filter all sources but just the tiny with name and id
     mdSources: {
       type: 'okapi',
       records: 'tinyMetadataSources',
@@ -141,7 +132,6 @@ class CollectionsRoute extends React.Component {
         filterData={{
           mdSources: _.get(this.props.resources, 'mdSources.records', []),
         }}
-        mdSources={_.get(this.props.resources, 'sources.records', [])}
         onNeedMoreData={this.handleNeedMoreData}
         queryGetter={this.queryGetter}
         querySetter={this.querySetter}

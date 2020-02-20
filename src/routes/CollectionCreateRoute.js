@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,14 +13,6 @@ class CollectionCreateRoute extends React.Component {
       path: 'finc-config/metadata-collections',
       fetch: false,
       shouldRefresh: () => false,
-    },
-    sources: {
-      type: 'okapi',
-      records: 'fincConfigMetadataSources',
-      // TODO: show all sources
-      perRequest: 1000,
-      path: 'finc-config/metadata-sources',
-      resourceShouldRefresh: true
     },
   });
 
@@ -39,7 +30,6 @@ class CollectionCreateRoute extends React.Component {
     }).isRequired,
     resources: PropTypes.shape({
       collection: PropTypes.object,
-      sources: PropTypes.object,
     }).isRequired,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func.isRequired,
@@ -77,7 +67,6 @@ class CollectionCreateRoute extends React.Component {
           ...handlers,
         }}
         onSubmit={this.handleSubmit}
-        sources={_.get(this.props.resources, 'sources.records', [])}
       />
     );
   }
