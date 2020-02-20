@@ -73,15 +73,6 @@ class SourceEditRoute extends React.Component {
     });
   }
 
-  // isLoading = () => {
-  //   const { match, resources } = this.props;
-
-  //   return (
-  //     match.params.id !== _.get(resources, 'source.records.id') &&
-  //     _.get(resources, 'source.isPending', true)
-  //   );
-  // }
-
   fetchIsPending = () => {
     return Object.values(this.props.resources)
       .filter(resource => resource)

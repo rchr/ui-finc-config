@@ -3,6 +3,11 @@ const Required = value => {
   return 'Required!';
 };
 
+const MdSourceRequired = value => {
+  if (value) return undefined;
+  return 'Metadata source required!';
+};
+
 const IntRequired = value => {
   const valueInt = parseInt(value, 10);
 
@@ -18,4 +23,4 @@ const ArrayRequired = value => {
   return undefined;
 };
 
-export { IntRequired, ArrayRequired, Required };
+export { IntRequired, ArrayRequired, Required, MdSourceRequired };
