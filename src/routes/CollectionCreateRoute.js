@@ -57,6 +57,7 @@ class CollectionCreateRoute extends React.Component {
   }
 
   getInitialValues = () => {
+    // add first field for required repeatable field
     const solrMegaCollections = [''];
 
     return {

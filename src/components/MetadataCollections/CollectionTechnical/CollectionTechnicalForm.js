@@ -12,7 +12,6 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-import { ArrayRequired } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
 import RequiredRepeatableField from '../../DisplayUtils/RequiredRepeatableField';
 
@@ -132,8 +131,6 @@ class CollectionTechnicalForm extends React.Component {
                 label="DisplaysolrMegaCollections"
                 // add name to the array-field, which should be changed
                 name="solrMegaCollections"
-                validate={ArrayRequired}
-                {...this.props}
               />
             </Col>
           </Row>

@@ -15,15 +15,10 @@ import { Required } from './Validate';
 class RequiredRepeatableField extends React.Component {
   static propTypes = {
     fields: PropTypes.object,
-    // add META-ERROR to PropTypes
-    meta: PropTypes.shape({
-      error: PropTypes.node,
-    }),
   };
 
   render() {
-    // add META-ERROR to props
-    const { fields, meta: { error } } = this.props;
+    const { fields } = this.props;
 
     return (
       <Row>
@@ -36,14 +31,17 @@ class RequiredRepeatableField extends React.Component {
                   id={elem}
                   component={TextField}
                   fullWidth
-                  validate={Required}
+                  // first field is required
+                  validate={index === 0 ? Required : undefined}
                 />
               </Col>
               <Col xs={1}>
-                <IconButton
-                  icon="trash"
-                  onClick={index !== 0 ? () => fields.remove(index) : undefined}
-                />
+                {/* no trash icon for first required field */}
+                {index !== 0 ?
+                  <IconButton
+                    icon="trash"
+                    onClick={index !== 0 ? () => fields.remove(index) : undefined}
+                  /> : ''}
               </Col>
             </Row>
           ))}
@@ -51,8 +49,6 @@ class RequiredRepeatableField extends React.Component {
         <Col xs={4}>
           <Button onClick={() => fields.push('')}>+ Add</Button>
         </Col>
-        {/* render ERROR, if validation is not successful */}
-        <div style={{ color:'#900' }}>{error}</div>
       </Row>
     );
   }
