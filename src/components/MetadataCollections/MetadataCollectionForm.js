@@ -1,5 +1,5 @@
 import React from 'react';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isEqual } from 'lodash';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -242,6 +242,7 @@ class MetadataCollectionForm extends React.Component {
 }
 
 export default stripesFinalForm({
+  initialValuesEqual: (a, b) => isEqual(a, b),
   // the form will reinitialize every time the initialValues prop changes
   enableReinitialize: true,
   // set navigationCheck true for confirming changes

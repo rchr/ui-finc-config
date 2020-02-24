@@ -15,12 +15,4 @@ const IntRequired = value => {
   return 'Integer Required!';
 };
 
-const ArrayRequired = value => {
-  if (!value || !value.length) {
-    return 'Required!';
-  }
-
-  return undefined;
-};
-
-export { IntRequired, ArrayRequired, Required, MdSourceRequired };
+export { IntRequired, Required, MdSourceRequired };
