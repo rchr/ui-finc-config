@@ -316,15 +316,20 @@ class MetadataCollections extends React.Component {
                       <form onSubmit={onSubmitSearch}>
                         {this.renderNavigation('collection')}
                         <div>
-                          <SearchField
-                            autoFocus
-                            id="collectionSearchField"
-                            inputRef={this.searchField}
-                            name="query"
-                            onChange={(e) => this.handleChangeSearch(e.target.value, getSearchHandlers(), onSubmitSearch(), searchValue)}
-                            onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
-                            value={searchValue.query}
-                          />
+                          <FormattedMessage id="ui-finc-config.collection.searchInputLabel">
+                            {ariaLabel => (
+                              <SearchField
+                                ariaLabel={ariaLabel}
+                                autoFocus
+                                id="collectionSearchField"
+                                inputRef={this.searchField}
+                                name="query"
+                                onChange={(e) => this.handleChangeSearch(e.target.value, getSearchHandlers(), onSubmitSearch(), searchValue)}
+                                onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
+                                value={searchValue.query}
+                              />
+                            )}
+                          </FormattedMessage>
                           <Button
                             buttonStyle="primary"
                             disabled={disableSearch()}

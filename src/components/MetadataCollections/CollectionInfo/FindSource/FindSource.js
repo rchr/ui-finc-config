@@ -82,6 +82,7 @@ class FindSource extends React.Component {
           </Col>
           <Col xs={4}>
             <Field
+              ariaLabel="Add metadata source"
               component={TextField}
               fullWidth
               id="addcollection_mdSource"

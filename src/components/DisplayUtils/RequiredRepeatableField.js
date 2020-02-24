@@ -27,6 +27,7 @@ class RequiredRepeatableField extends React.Component {
             <Row key={index}>
               <Col xs={8}>
                 <Field
+                  ariaLabel={elem}
                   name={elem}
                   id={elem}
                   component={TextField}

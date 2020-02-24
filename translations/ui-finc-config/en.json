@@ -1,6 +1,7 @@
 {
   "meta.title": "Finc config",
 
+  "source.searchInputLabel": "Search collection",
   "source.accessUrl": "Access url",
   "source.contacts.external": "Contacts external",
   "source.contacts.internal": "Contacts internal",
@@ -35,6 +36,7 @@
 
   "source.button.showAllCollections": "Show all collections",
 
+  "collection.searchInputLabel": "Search collection",
   "collection.collectionId": "Collection ID",
   "collection.contentFiles": "Content files",
   "collection.description": "Description",
