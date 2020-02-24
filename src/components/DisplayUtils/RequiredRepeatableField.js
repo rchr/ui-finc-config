@@ -42,7 +42,7 @@ class RequiredRepeatableField extends React.Component {
               <Col xs={1}>
                 <IconButton
                   icon="trash"
-                  onClick={() => fields.remove(index)}
+                  onClick={index !== 0 ? () => fields.remove(index) : undefined}
                 />
               </Col>
             </Row>

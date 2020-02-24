@@ -56,6 +56,14 @@ class CollectionCreateRoute extends React.Component {
       });
   }
 
+  getInitialValues = () => {
+    const solrMegaCollections = [''];
+
+    return {
+      solrMegaCollections,
+    };
+  }
+
   render() {
     const { handlers, resources } = this.props;
 
@@ -67,6 +75,7 @@ class CollectionCreateRoute extends React.Component {
           ...handlers,
         }}
         onSubmit={this.handleSubmit}
+        initialValues={this.getInitialValues()}
       />
     );
   }
