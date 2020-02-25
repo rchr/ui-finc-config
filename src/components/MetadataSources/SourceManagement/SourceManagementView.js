@@ -19,6 +19,7 @@ import urls from '../../DisplayUtils/urls';
 
 class SourceManagementView extends React.Component {
   static propTypes = {
+    id: PropTypes.string,
     metadataSource: PropTypes.object,
   };
 
@@ -68,12 +69,12 @@ class SourceManagementView extends React.Component {
   }
 
   render() {
-    const { metadataSource } = this.props;
+    const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
 
     return (
       <React.Fragment>
-        <div id="id">
+        <div id={id}>
           <Row>
             <Col xs={6}>
               <Button
