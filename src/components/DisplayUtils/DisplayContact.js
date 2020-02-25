@@ -34,7 +34,7 @@ class DisplayContact extends React.Component {
                   ariaLabel={`${ariaLabel} name #${parseInt(index + 1, 10)}`}
                   component={TextField}
                   fullWidth
-                  id={elem}
+                  id={`${elem}.name`}
                   name={`${elem}.name`}
                   placeholder="Enter a name for the contact"
                   validate={Required}
@@ -45,7 +45,7 @@ class DisplayContact extends React.Component {
                   ariaLabel={`${ariaLabel} role #${parseInt(index + 1, 10)}`}
                   component={TextField}
                   fullWidth
-                  id={elem}
+                  id={`${elem}.role`}
                   name={`${elem}.role`}
                   placeholder="Enter a role for the contact"
                   validate={Required}
