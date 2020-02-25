@@ -14,6 +14,7 @@ import BasicCss from '../../BasicStyle.css';
 
 class SourceTechnicalView extends React.Component {
   static propTypes = {
+    id: PropTypes.string,
     metadataSource: PropTypes.object,
   };
 
@@ -38,11 +39,11 @@ class SourceTechnicalView extends React.Component {
   }
 
   render() {
-    const { metadataSource } = this.props;
+    const { metadataSource, id } = this.props;
 
     return (
       <React.Fragment>
-        <div id="id">
+        <div id={id}>
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.lastProcessed" />}

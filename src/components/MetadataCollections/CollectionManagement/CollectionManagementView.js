@@ -14,6 +14,7 @@ import BasicCss from '../../BasicStyle.css';
 
 class CollectionManagementView extends React.Component {
   static propTypes = {
+    id: PropTypes.string,
     metadataCollection: PropTypes.object,
   };
 
@@ -38,11 +39,11 @@ class CollectionManagementView extends React.Component {
   }
 
   render() {
-    const { metadataCollection } = this.props;
+    const { metadataCollection, id } = this.props;
 
     return (
       <React.Fragment>
-        <div id="id">
+        <div id={id}>
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.collection.metadataAvailable" />}
