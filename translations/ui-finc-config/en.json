@@ -1,7 +1,7 @@
 {
   "meta.title": "Finc config",
 
-  "source.searchInputLabel": "Search collection",
+  "source.searchInputLabel": "Search source",
   "source.accessUrl": "Access url",
   "source.contacts.external": "Contacts external",
   "source.contacts.internal": "Contacts internal",

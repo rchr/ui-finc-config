@@ -58,7 +58,7 @@ class FindSource extends React.Component {
           });
         }}
         searchButtonStyle="default"
-        searchLabel="Add metadata source"
+        searchLabel="Metadata source"
         selectSource={this.selectSource}
         type="find-finc-metadata-source"
         visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}

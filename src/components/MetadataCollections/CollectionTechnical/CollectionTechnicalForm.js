@@ -82,14 +82,18 @@ class CollectionTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={RepeatableField}
-                id="display_tickets"
-                label="Displaytickets"
-                // add name to the array-field, which should be changed
-                name="tickets"
-                {...this.props}
-              />
+              <FormattedMessage id="ui-finc-config.collection.tickets">
+                {ariaLabel => (
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={RepeatableField}
+                    id="display_tickets"
+                    // add name to the array-field, which should be changed
+                    name="tickets"
+                    {...this.props}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>
@@ -102,14 +106,18 @@ class CollectionTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={RepeatableField}
-                id="display_contentFiles"
-                label="DisplaycontentFiles"
-                // add name to the array-field, which should be changed
-                name="contentFiles"
-                {...this.props}
-              />
+              <FormattedMessage id="ui-finc-config.collection.contentFiles">
+                {ariaLabel => (
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={RepeatableField}
+                    id="display_contentFiles"
+                    // add name to the array-field, which should be changed
+                    name="contentFiles"
+                    {...this.props}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>
@@ -124,14 +132,18 @@ class CollectionTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                // get component, which is rendering the validation-error
-                component={RequiredRepeatableField}
-                id="display_solrMegaCollections"
-                label="DisplaysolrMegaCollections"
-                // add name to the array-field, which should be changed
-                name="solrMegaCollections"
-              />
+              <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
+                {ariaLabel => (
+                  <FieldArray
+                    // get component, which is rendering the validation-error
+                    component={RequiredRepeatableField}
+                    id="display_solrMegaCollections"
+                    ariaLabel={ariaLabel}
+                    // add name to the array-field, which should be changed
+                    name="solrMegaCollections"
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>

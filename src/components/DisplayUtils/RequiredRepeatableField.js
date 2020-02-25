@@ -15,10 +15,11 @@ import { Required } from './Validate';
 class RequiredRepeatableField extends React.Component {
   static propTypes = {
     fields: PropTypes.object,
+    ariaLabel: PropTypes.string,
   };
 
   render() {
-    const { fields } = this.props;
+    const { fields, ariaLabel } = this.props;
 
     return (
       <Row>
@@ -27,7 +28,7 @@ class RequiredRepeatableField extends React.Component {
             <Row key={index}>
               <Col xs={8}>
                 <Field
-                  ariaLabel={elem}
+                  ariaLabel={`${ariaLabel} #${parseInt(index + 1, 10)}`}
                   name={elem}
                   id={elem}
                   component={TextField}

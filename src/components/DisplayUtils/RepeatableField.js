@@ -13,10 +13,11 @@ import {
 class RepeatableField extends React.Component {
   static propTypes = {
     fields: PropTypes.object,
+    ariaLabel: PropTypes.string,
   };
 
   render() {
-    const { fields } = this.props;
+    const { fields, ariaLabel } = this.props;
 
     return (
       <Row>
@@ -25,6 +26,7 @@ class RepeatableField extends React.Component {
             <Row key={index}>
               <Col xs={8}>
                 <Field
+                  ariaLabel={`${ariaLabel} #${parseInt(index + 1, 10)}`}
                   name={elem}
                   id={elem}
                   component={TextField}
