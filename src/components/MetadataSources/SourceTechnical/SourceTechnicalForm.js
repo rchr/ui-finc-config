@@ -59,14 +59,18 @@ class SourceTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={RepeatableField}
-                id="display_tickets"
-                label="Displaytickets"
-                // add name to the array-field, which should be changed
-                name="tickets"
-                {...this.props}
-              />
+              {ariaLabel => (
+                <FormattedMessage id="ui-finc-config.source.tickets">
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={RepeatableField}
+                    id="display_tickets"
+                    // add name to the array-field, which should be changed
+                    name="tickets"
+                    {...this.props}
+                  />
+                </FormattedMessage>
+              )}
             </Col>
           </Row>
         </section>
@@ -127,14 +131,18 @@ class SourceTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={RepeatableField}
-                id="display_delivery_methods"
-                label="Displaydeliverymethods"
-                // add name to the array-field, which should be changed
-                name="deliveryMethods"
-                {...this.props}
-              />
+              <FormattedMessage id="ui-finc-config.source.deliveryMethods">
+                {ariaLabel => (
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={RepeatableField}
+                    id="display_delivery_methods"
+                    // add name to the array-field, which should be changed
+                    name="deliveryMethods"
+                    {...this.props}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>
@@ -147,14 +155,18 @@ class SourceTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={RepeatableField}
-                id="display_formats"
-                label="Displayformats"
-                // add name to the array-field, which should be changed
-                name="formats"
-                {...this.props}
-              />
+              <FormattedMessage id="ui-finc-config.source.formats">
+                {ariaLabel => (
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={RepeatableField}
+                    id="display_formats"
+                    // add name to the array-field, which should be changed
+                    name="formats"
+                    {...this.props}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>
@@ -182,14 +194,19 @@ class SourceTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={RepeatableField}
-                id="display_inferior_to"
-                label="Displayinferiorto"
-                // add name to the array-field, which should be changed
-                name="inferiorTo"
-                {...this.props}
-              />
+              <FormattedMessage id="ui-finc-config.source.inferiorTo">
+                {ariaLabel => (
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={RepeatableField}
+                    id="display_inferior_to"
+                    label="Displayinferiorto"
+                    // add name to the array-field, which should be changed
+                    name="inferiorTo"
+                    {...this.props}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>

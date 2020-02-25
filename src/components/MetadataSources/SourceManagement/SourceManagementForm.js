@@ -83,14 +83,18 @@ class SourceManagementForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={DisplayContact}
-                id="display_contact_internal"
-                label="Displaycontactinternal"
-                // add name to the array-field, which should be changed
-                name="contacts.internal"
-                {...this.props}
-              />
+              <FormattedMessage id="ui-finc-config.source.contacts.internal">
+                {ariaLabel => (
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={DisplayContact}
+                    id="display_contact_internal"
+                    // add name to the array-field, which should be changed
+                    name="contacts.internal"
+                    {...this.props}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>
@@ -115,14 +119,18 @@ class SourceManagementForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={DisplayContact}
-                id="display_contact_external"
-                label="Displaycontactexternal"
-                // add name to the array-field, which should be changed
-                name="contacts.external"
-                {...this.props}
-              />
+              <FormattedMessage id="ui-finc-config.source.contacts.external">
+                {ariaLabel => (
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={DisplayContact}
+                    id="display_contact_external"
+                    // add name to the array-field, which should be changed
+                    name="contacts.external"
+                    {...this.props}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>
@@ -150,14 +158,18 @@ class SourceManagementForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={RepeatableField}
-                id="display_contract"
-                label="Displaycontract"
-                // add name to the array-field, which should be changed
-                name="contracts"
-                {...this.props}
-              />
+              {ariaLabel => (
+                <FormattedMessage id="ui-finc-config.source.contracts">
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={RepeatableField}
+                    id="display_contract"
+                    // add name to the array-field, which should be changed
+                    name="contracts"
+                    {...this.props}
+                  />
+                </FormattedMessage>
+              )}
             </Col>
           </Row>
         </section>

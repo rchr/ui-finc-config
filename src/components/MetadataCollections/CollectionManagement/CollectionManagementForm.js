@@ -95,14 +95,18 @@ class CollectionManagementForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FieldArray
-                component={RepeatableField}
-                id="display_permittedFor"
-                label="Displaypermittedfor"
-                // add name to the array-field, which should be changed
-                name="permittedFor"
-                {...this.props}
-              />
+              <FormattedMessage id="ui-finc-config.collection.permittedFor">
+                {ariaLabel => (
+                  <FieldArray
+                    ariaLabel={ariaLabel}
+                    component={RepeatableField}
+                    id="display_permittedFor"
+                    // add name to the array-field, which should be changed
+                    name="permittedFor"
+                    {...this.props}
+                  />
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>

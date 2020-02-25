@@ -15,46 +15,14 @@ import { Required } from './Validate';
 class DisplayContact extends React.Component {
   static propTypes = {
     fields: PropTypes.object,
+    ariaLabel: PropTypes.string,
     stripes: PropTypes.shape({
       store: PropTypes.object
     }),
   };
 
-  renderSubContact = (elem, index, fields) => {
-    return (
-      <Row key={index}>
-        <Col xs={4}>
-          <Field
-            component={TextField}
-            fullWidth
-            id={elem}
-            name={`${elem}.name`}
-            placeholder="Enter a name for the contact"
-            validate={Required}
-          />
-        </Col>
-        <Col xs={4}>
-          <Field
-            component={TextField}
-            fullWidth
-            id={elem}
-            name={`${elem}.role`}
-            placeholder="Enter a role for the contact"
-            validate={Required}
-          />
-        </Col>
-        <Col xs={1}>
-          <IconButton
-            icon="trash"
-            onClick={() => fields.remove(index)}
-          />
-        </Col>
-      </Row>
-    );
-  }
-
   render() {
-    const { fields } = this.props;
+    const { fields, ariaLabel } = this.props;
 
     return (
       <Row>
@@ -63,6 +31,7 @@ class DisplayContact extends React.Component {
             <Row key={index}>
               <Col xs={4}>
                 <Field
+                  ariaLabel={`${ariaLabel} name #${parseInt(index + 1, 10)}`}
                   component={TextField}
                   fullWidth
                   id={elem}
@@ -73,6 +42,7 @@ class DisplayContact extends React.Component {
               </Col>
               <Col xs={4}>
                 <Field
+                  ariaLabel={`${ariaLabel} role #${parseInt(index + 1, 10)}`}
                   component={TextField}
                   fullWidth
                   id={elem}
