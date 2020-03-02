@@ -55,6 +55,8 @@
     "collection.form.saveAndClose": "Sauvegarder et fermer",
     "collection.form.cancel": "Annuler",
     "source.button.showAllCollections": "Afficher toutes les collections",
-    "source.form.close": "Close metadata source dialog",
-    "collection.form.close": "Close metadata collection dialog"
+    "source.form.close": "Fermer la boîte de dialogue source de métadonnées",
+    "collection.form.close": "Fermer la boîte de dialogue de collecte de métadonnées",
+    "source.searchInputLabel": "Search source",
+    "collection.searchInputLabel": "Search collection"
 }
