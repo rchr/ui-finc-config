@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import {
+  AccordionSet,
   Button,
   Col,
   ConfirmationModal,
@@ -195,36 +196,38 @@ class MetadataCollectionForm extends React.Component {
             paneTitle={paneTitle}
           >
             <div className={BasicStyle.styleForFormContent}>
-              <Row end="xs">
-                <Col xs>
-                  <ExpandAllButton
-                    accordionStatus={sections}
-                    id="clickable-expand-all"
-                    onToggle={this.handleExpandAll}
-                  />
-                </Col>
-              </Row>
-              <CollectionInfoForm
-                accordionId="editCollectionInfo"
-                expanded={sections.editCollectionInfo}
-                metadataCollection={initialValues}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <CollectionManagementForm
-                accordionId="editCollectionManagement"
-                expanded={sections.editCollectionManagement}
-                id="collectionManagement"
-                metadataCollection={initialValues}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <CollectionTechnicalForm
-                accordionId="editCollectionTechnical"
-                expanded={sections.editCollectionTechnical}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
+              <AccordionSet>
+                <Row end="xs">
+                  <Col xs>
+                    <ExpandAllButton
+                      accordionStatus={sections}
+                      id="clickable-expand-all"
+                      onToggle={this.handleExpandAll}
+                    />
+                  </Col>
+                </Row>
+                <CollectionInfoForm
+                  accordionId="editCollectionInfo"
+                  expanded={sections.editCollectionInfo}
+                  metadataCollection={initialValues}
+                  onToggle={this.handleSectionToggle}
+                  {...this.props}
+                />
+                <CollectionManagementForm
+                  accordionId="editCollectionManagement"
+                  expanded={sections.editCollectionManagement}
+                  id="collectionManagement"
+                  metadataCollection={initialValues}
+                  onToggle={this.handleSectionToggle}
+                  {...this.props}
+                />
+                <CollectionTechnicalForm
+                  accordionId="editCollectionTechnical"
+                  expanded={sections.editCollectionTechnical}
+                  onToggle={this.handleSectionToggle}
+                  {...this.props}
+                />
+              </AccordionSet>
               <ConfirmationModal
                 heading={<FormattedMessage id="ui-finc-config.collection.form.deleteCollection" />}
                 id="delete-collection-confirmation"

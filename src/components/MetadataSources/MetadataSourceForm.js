@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import {
+  AccordionSet,
   Button,
   Col,
   ConfirmationModal,
@@ -192,35 +193,37 @@ class MetadataSourceForm extends React.Component {
             paneTitle={paneTitle}
           >
             <div className={BasicStyle.styleForFormContent}>
-              <Row end="xs">
-                <Col xs>
-                  <ExpandAllButton
-                    accordionStatus={sections}
-                    id="clickable-expand-all"
-                    onToggle={this.handleExpandAll}
-                  />
-                </Col>
-              </Row>
-              <SourceInfoForm
-                accordionId="editSourceInfo"
-                expanded={sections.editSourceInfo}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <SourceManagementForm
-                accordionId="editSourceManagement"
-                expanded={sections.editSourceManagement}
-                id="sourceManagement"
-                metadataSource={initialValues}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
-              <SourceTechnicalForm
-                accordionId="editSourceTechnical"
-                expanded={sections.editSourceTechnical}
-                onToggle={this.handleSectionToggle}
-                {...this.props}
-              />
+              <AccordionSet>
+                <Row end="xs">
+                  <Col xs>
+                    <ExpandAllButton
+                      accordionStatus={sections}
+                      id="clickable-expand-all"
+                      onToggle={this.handleExpandAll}
+                    />
+                  </Col>
+                </Row>
+                <SourceInfoForm
+                  accordionId="editSourceInfo"
+                  expanded={sections.editSourceInfo}
+                  onToggle={this.handleSectionToggle}
+                  {...this.props}
+                />
+                <SourceManagementForm
+                  accordionId="editSourceManagement"
+                  expanded={sections.editSourceManagement}
+                  id="sourceManagement"
+                  metadataSource={initialValues}
+                  onToggle={this.handleSectionToggle}
+                  {...this.props}
+                />
+                <SourceTechnicalForm
+                  accordionId="editSourceTechnical"
+                  expanded={sections.editSourceTechnical}
+                  onToggle={this.handleSectionToggle}
+                  {...this.props}
+                />
+              </AccordionSet>
               <ConfirmationModal
                 heading={<FormattedMessage id="ui-finc-config.source.form.deleteSource" />}
                 id="delete-source-confirmation"
