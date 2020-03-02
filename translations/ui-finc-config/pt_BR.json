@@ -37,7 +37,7 @@
     "source.updateRhythm": "Atualizar ritmo",
     "source.inferiorTo": "Inferior a",
     "collection.description": "Descrição",
-    "collection.mdSource": "Nome da fonte",
+    "collection.mdSource": "Fonte de metadados",
     "collection.lod.publication": "Publicação LOD",
     "collection.lod.note": "Nota LOD",
     "collection.collectionId": "ID da coleção",
@@ -56,5 +56,7 @@
     "collection.form.cancel": "Cancelar",
     "source.button.showAllCollections": "Mostrar todas as coleções",
     "source.form.close": "Fechar a caixa de diálogo de fonte de metadados",
-    "collection.form.close": "Fechar a caixa de diálogo de coleções de metadados"
+    "collection.form.close": "Fechar a caixa de diálogo de coleções de metadados",
+    "source.searchInputLabel": "Fonte de pesquisa",
+    "collection.searchInputLabel": "Coleção de pesquisa"
 }

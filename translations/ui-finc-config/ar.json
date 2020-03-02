@@ -56,5 +56,7 @@
     "collection.form.cancel": "إلغاء",
     "source.button.showAllCollections": "عرض كل المجموعات",
     "source.form.close": "إغلاق مربع حوار مصدر الميتاداتا",
-    "collection.form.close": "إغلاق مربع حوار مجموعة الميتاداتا"
+    "collection.form.close": "إغلاق مربع حوار مجموعة الميتاداتا",
+    "source.searchInputLabel": "مصدر البحث",
+    "collection.searchInputLabel": "بحث المجموعة"
 }
