@@ -203,6 +203,7 @@ class MetadataCollectionForm extends React.Component {
                       accordionStatus={sections}
                       id="clickable-expand-all"
                       onToggle={this.handleExpandAll}
+                      setStatus={null}
                     />
                   </Col>
                 </Row>
