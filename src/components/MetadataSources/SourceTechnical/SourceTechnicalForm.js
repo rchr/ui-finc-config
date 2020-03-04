@@ -51,7 +51,7 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         {/* TICKETS (is repeatable) ... */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.tickets" />
@@ -73,7 +73,7 @@ class SourceTechnicalForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
         <Row>
           <Col xs={8}>
             <Field
@@ -123,7 +123,7 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         {/* TODO: deliveryMethods (is repeatable; is value list ???) ... */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.deliveryMethods" />
@@ -145,9 +145,9 @@ class SourceTechnicalForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
         {/* formats (is repeatable) ... */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.formats" />
@@ -169,7 +169,7 @@ class SourceTechnicalForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
         <Row>
           <Col xs={8}>
             <Field
@@ -186,7 +186,7 @@ class SourceTechnicalForm extends React.Component {
           </Col>
         </Row>
         {/* inferiorTo (is repeatable) ... */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.inferiorTo" />
@@ -209,7 +209,7 @@ class SourceTechnicalForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
       </Accordion>
     );
   }

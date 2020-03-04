@@ -63,7 +63,7 @@ class SourceManagementForm extends React.Component {
           />
         </div>
         {/* CONTACTS INTERNAL is repeatable */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.contacts.internal" />
@@ -97,9 +97,9 @@ class SourceManagementForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
         {/* CONTACTS EXTERNAL is repeatable */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.contacts.external" />
@@ -133,7 +133,7 @@ class SourceManagementForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
         <Row>
           <Col xs={8}>
             <Field
@@ -150,7 +150,7 @@ class SourceManagementForm extends React.Component {
           </Col>
         </Row>
         {/* CONTRACTS is repeatable */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.source.contracts" />
@@ -172,7 +172,7 @@ class SourceManagementForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
         <Row>
           <Col xs={8}>
             <Field

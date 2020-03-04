@@ -87,7 +87,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         {/* PERMITTED FOR is repeatable */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.collection.permittedFor" />
@@ -109,7 +109,7 @@ class CollectionManagementForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
         <Row>
           <Col xs={8}>
             <Field

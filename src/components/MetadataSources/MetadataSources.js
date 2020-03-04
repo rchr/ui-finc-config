@@ -391,7 +391,7 @@ class MetadataSources extends React.Component {
                     id="pane-sourceresults"
                     lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
-                    paneTitle="Finc Config"
+                    paneTitle={<FormattedMessage id="ui-finc-config.sources.title" />}
                     paneSub={this.renderResultsPaneSubtitle(source)}
                   >
                     <MultiColumnList
