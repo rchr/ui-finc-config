@@ -158,8 +158,8 @@ class SourceManagementForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              {ariaLabel => (
-                <FormattedMessage id="ui-finc-config.source.contracts">
+              <FormattedMessage id="ui-finc-config.source.contracts">
+                {ariaLabel => (
                   <FieldArray
                     ariaLabel={ariaLabel}
                     component={RepeatableField}
@@ -168,8 +168,8 @@ class SourceManagementForm extends React.Component {
                     name="contracts"
                     {...this.props}
                   />
-                </FormattedMessage>
-              )}
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>
