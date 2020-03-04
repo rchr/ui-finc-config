@@ -59,8 +59,8 @@ class SourceTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              {ariaLabel => (
-                <FormattedMessage id="ui-finc-config.source.tickets">
+              <FormattedMessage id="ui-finc-config.source.tickets">
+                {ariaLabel => (
                   <FieldArray
                     ariaLabel={ariaLabel}
                     component={RepeatableField}
@@ -69,8 +69,8 @@ class SourceTechnicalForm extends React.Component {
                     name="tickets"
                     {...this.props}
                   />
-                </FormattedMessage>
-              )}
+                )}
+              </FormattedMessage>
             </Col>
           </Row>
         </section>
