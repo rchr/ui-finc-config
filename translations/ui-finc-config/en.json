@@ -1,6 +1,7 @@
 {
   "meta.title": "Finc config",
 
+  "sources.title": "Metadata sources",
   "source.searchInputLabel": "Search source",
   "source.accessUrl": "Access url",
   "source.contacts.external": "Contacts external",
@@ -24,18 +25,19 @@
   "contact.name": "Name",
   "contact.role": "Role",
 
-  "source.generalAccordion": "Metadata source general",
+  "source.generalAccordion": "General",
   "source.managementAccordion": "Management",
   "source.technicalAccordion": "Technical",
 
   "source.form.saveAndClose": "Save & close",
-  "source.form.createSource": "Create source",
-  "source.form.deleteSource": "Delete source",
+  "source.form.createSource": "Create metadata source",
+  "source.form.deleteSource": "Delete metadata source",
   "source.form.cancel": "Cancel",
   "source.form.close": "Close metadata source dialog",
 
   "source.button.showAllCollections": "Show all collections",
 
+  "collections.title": "Metadata collections",
   "collection.searchInputLabel": "Search collection",
   "collection.collectionId": "Collection ID",
   "collection.contentFiles": "Content files",
@@ -54,13 +56,13 @@
   "collection.tickets": "Tickets",
   "collection.usageRestricted": "Usage restricted",
 
-  "collection.generalAccordion": "Metadata collection general",
+  "collection.generalAccordion": "General",
   "collection.managementAccordion": "Management",
   "collection.technicalAccordion": "Technical",
 
   "collection.form.saveAndClose": "Save & close",
-  "collection.form.createCollection": "Create collection",
-  "collection.form.deleteCollection": "Delete collection",
+  "collection.form.createCollection": "Create metadata collection",
+  "collection.form.deleteCollection": "Delete metadata collection",
   "collection.form.cancel": "Cancel",
   "collection.form.close": "Close metadata collection dialog",
 

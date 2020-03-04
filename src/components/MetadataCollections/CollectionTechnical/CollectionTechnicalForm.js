@@ -74,7 +74,7 @@ class CollectionTechnicalForm extends React.Component {
           </Col>
         </Row>
         {/* TICKETS (is repeatable) ... */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.collection.tickets" />
@@ -96,9 +96,9 @@ class CollectionTechnicalForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
         {/* CONTENT FILES (is repeatable) ... */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.collection.contentFiles" />
@@ -120,9 +120,9 @@ class CollectionTechnicalForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
         {/* SOLR MEGA COLLECTION (is repeatable and required) ... */}
-        <section className={BasicCss.addMarginBottomAndTop}>
+        <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
               <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
@@ -146,7 +146,7 @@ class CollectionTechnicalForm extends React.Component {
               </FormattedMessage>
             </Col>
           </Row>
-        </section>
+        </div>
       </Accordion>
     );
   }

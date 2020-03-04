@@ -359,7 +359,7 @@ class MetadataCollections extends React.Component {
                     id="pane-collectionresults"
                     lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
-                    paneTitle="Finc Config"
+                    paneTitle={<FormattedMessage id="ui-finc-config.collections.title" />}
                     paneSub={this.renderResultsPaneSubtitle(collection)}
                   >
                     <MultiColumnList
