@@ -58,5 +58,7 @@
     "source.form.close": "关闭元数据源对话框",
     "collection.form.close": "关闭元数据集合对话框",
     "source.searchInputLabel": "搜索源",
-    "collection.searchInputLabel": "搜索集合"
+    "collection.searchInputLabel": "搜索集合",
+    "sources.title": "Metadata sources",
+    "collections.title": "Metadata collections"
 }
