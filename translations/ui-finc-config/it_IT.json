@@ -58,5 +58,7 @@
     "source.form.close": "Close metadata source dialog",
     "collection.form.close": "Close metadata collection dialog",
     "source.searchInputLabel": "Search source",
-    "collection.searchInputLabel": "Search collection"
+    "collection.searchInputLabel": "Search collection",
+    "sources.title": "Metadata sources",
+    "collections.title": "Metadata collections"
 }

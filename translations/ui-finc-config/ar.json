@@ -58,5 +58,7 @@
     "source.form.close": "إغلاق مربع حوار مصدر الميتاداتا",
     "collection.form.close": "إغلاق مربع حوار مجموعة الميتاداتا",
     "source.searchInputLabel": "مصدر البحث",
-    "collection.searchInputLabel": "بحث المجموعة"
+    "collection.searchInputLabel": "بحث المجموعة",
+    "sources.title": "مصادر الميتاداتا",
+    "collections.title": "مجموعات الميتاداتا"
 }
