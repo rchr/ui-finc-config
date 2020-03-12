@@ -15,6 +15,7 @@ import {
 
 import { IntRequired } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
+import RepeatableFieldValidUrl from '../../DisplayUtils/RepeatableFieldValidUrl';
 
 import BasicCss from '../../BasicStyle.css';
 
@@ -63,7 +64,7 @@ class SourceTechnicalForm extends React.Component {
                 {ariaLabel => (
                   <FieldArray
                     ariaLabel={ariaLabel}
-                    component={RepeatableField}
+                    component={RepeatableFieldValidUrl}
                     id="display_tickets"
                     // add name to the array-field, which should be changed
                     name="tickets"
