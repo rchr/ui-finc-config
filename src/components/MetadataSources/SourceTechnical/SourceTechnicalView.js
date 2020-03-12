@@ -38,6 +38,26 @@ class SourceTechnicalView extends React.Component {
     }
   }
 
+  renderTicketList = (values) => {
+    const { metadataSource } = this.props;
+
+    if (!metadataSource) {
+      return 'no values';
+    } else {
+      const valueItems = metadataSource[values];
+      const valueFormatter = (valueItem) => (<li key={valueItem}><a href={valueItem} target="_blank" rel="noopener noreferrer">{valueItem}</a></li>);
+      const isEmptyMessage = 'No items to show';
+
+      return (
+        <List
+          items={valueItems}
+          itemFormatter={valueFormatter}
+          isEmptyMessage={isEmptyMessage}
+        />
+      );
+    }
+  }
+
   render() {
     const { metadataSource, id } = this.props;
 
@@ -60,7 +80,7 @@ class SourceTechnicalView extends React.Component {
             </Headline>
           </Row>
           <Row>
-            { this.renderList('tickets') }
+            { this.renderTicketList('tickets') }
           </Row>
           <Row>
             <KeyValue

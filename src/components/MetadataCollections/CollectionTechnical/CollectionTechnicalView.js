@@ -38,6 +38,26 @@ class CollectionTechnicalView extends React.Component {
     }
   }
 
+  renderTicketList = (values) => {
+    const { metadataCollection } = this.props;
+
+    if (!metadataCollection) {
+      return 'no values';
+    } else {
+      const valueItems = metadataCollection[values];
+      const valueFormatter = (valueItem) => (<li key={valueItem}><a href={valueItem} target="_blank" rel="noopener noreferrer">{valueItem}</a></li>);
+      const isEmptyMessage = 'No items to show';
+
+      return (
+        <List
+          items={valueItems}
+          itemFormatter={valueFormatter}
+          isEmptyMessage={isEmptyMessage}
+        />
+      );
+    }
+  }
+
   render() {
     const { metadataCollection, id } = this.props;
 
@@ -71,7 +91,7 @@ class CollectionTechnicalView extends React.Component {
             </Headline>
           </Row>
           <Row>
-            { this.renderList('tickets') }
+            { this.renderTicketList('tickets') }
           </Row>
           <Row>
             <Headline
