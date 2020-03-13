@@ -1,5 +1,15 @@
 # Change history for ui-finc-config
 
+## [1.5.0](https://github.com/folio-org/ui-finc-config/tree/v1.5.0) (2020-03-13)
+* Add button "show all collections" for finc-config (UIFC-122)
+* Select associated metadata source of a collection via plugin (UIFC-124)
+* Migrate to final-form / react-final-form (UIFC-118)
+* Improve required field solrMegaCollections (UIFC-131)
+* Fix several accessibility issues (UIFC-132)
+* Upgrade to Stripes v3 (UIFC-146)
+* Bugfix: Fetch more when scrolling down
+* Ticket field of metadata sources is validated and displayed as a link (UIFC-142)
+
 ## [1.4.0](https://github.com/folio-org/ui-finc-config/tree/v1.4.0) (2020-02-06)
 * Default filter behaviour when switching between apps and/or tabs (UIFC-89)
 * Set filters if clicking several times on the same navigation-tab (UIFC-110)
