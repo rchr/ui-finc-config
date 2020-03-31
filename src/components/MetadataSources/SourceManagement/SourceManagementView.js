@@ -12,6 +12,7 @@ import {
   MultiColumnList,
   Row,
 } from '@folio/stripes/components';
+import Link from 'react-router-dom/Link';
 
 import BasicCss from '../../BasicStyle.css';
 import css from './SourceManagement.css';
@@ -68,9 +69,33 @@ class SourceManagementView extends React.Component {
     }
   }
 
+  resolveLink(organization) {
+    if (organization === '-') {
+      return organization;
+    } else {
+      console.log(organization);
+      const id = organization.id;
+      const organizationLink = (
+        <React.Fragment>
+          <Link to={{
+            pathname: `${urls.organizationView(organization.id)}`,
+            // search: `?filters=status.${_.get(sourceElement, 'status')}`
+          }}
+          >
+            {organization.name}
+          </Link>
+        </React.Fragment>
+      );
+      return organizationLink;
+    }
+  }
+
   render() {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
+    const organization = _.get(metadataSource, 'organization', '-');
+    // console.log(organization);
+    const organizationValue = this.resolveLink(organization);
 
     return (
       <React.Fragment>
@@ -89,7 +114,8 @@ class SourceManagementView extends React.Component {
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.organization" />}
-              value={_.get(metadataSource, 'organization.name', '-')}
+              // value={_.get(metadataSource, 'organization.name', '-')}
+              value={organizationValue}
             />
           </Row>
           <Row className={css.addMarginForContacts}>
