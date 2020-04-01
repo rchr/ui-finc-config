@@ -22,6 +22,7 @@ class SourceManagementView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     metadataSource: PropTypes.object,
+    stripes: PropTypes.object,
   };
 
   renderContacts = (type) => {
@@ -69,24 +70,37 @@ class SourceManagementView extends React.Component {
     }
   }
 
-  resolveLink(organization) {
+  async resolveLink(organization) {
+    this.okapiUrl = this.props.stripes.okapi.url;
+    // organization is empty
     if (organization === '-') {
       return organization;
     } else {
-      console.log(organization);
-      const id = organization.id;
-      const organizationLink = (
-        <React.Fragment>
-          <Link to={{
-            pathname: `${urls.organizationView(organization.id)}`,
-            // search: `?filters=status.${_.get(sourceElement, 'status')}`
-          }}
-          >
-            {organization.name}
-          </Link>
-        </React.Fragment>
-      );
-      return organizationLink;
+      // console.log(`${this.okapiUrl}${urls.organizationView(organization.id)}`);
+      let organizationValue = '';
+      await fetch(`${this.okapiUrl}${urls.organizationView(organization.id)}`)
+        .then(response => {
+          if (response.status >= 300) {
+            // error resolving http request
+            // show organization name
+            organizationValue = organization.name;
+          } else if (response.status < 300 && response.status >= 200) {
+            // success resolving http request
+            // show organization name with link
+            const organizationLink = (
+              <React.Fragment>
+                <Link to={{
+                  pathname: `${this.okapiUrl}${urls.organizationView(organization.id)}`,
+                }}
+                >
+                  {organization.name}
+                </Link>
+              </React.Fragment>
+            );
+            organizationValue = organizationLink;
+          }
+        });
+      return organizationValue;
     }
   }
 
@@ -94,8 +108,9 @@ class SourceManagementView extends React.Component {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
     const organization = _.get(metadataSource, 'organization', '-');
-    // console.log(organization);
-    const organizationValue = this.resolveLink(organization);
+    const organizationValue = () => this.resolveLink(organization);
+    // console.log('return value:');
+    // console.log(organizationValue);
 
     return (
       <React.Fragment>
