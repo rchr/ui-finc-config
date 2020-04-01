@@ -25,6 +25,58 @@ class SourceManagementView extends React.Component {
     stripes: PropTypes.object,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      organizationValue: '',
+    };
+  }
+
+  componentDidMount() {
+    const organization = _.get(this.props.metadataSource, 'organization', '-');
+    this.okapiUrl = this.props.stripes.okapi.url;
+    // organization is empty
+    if (organization === '-') {
+      this.setState(
+        {
+          organizationValue: organization
+        }
+      );
+    } else {
+      fetch(`${this.okapiUrl}${urls.organizationView(organization.id)}`)
+        .then(response => {
+          if (response.status >= 300) {
+            // error http request
+            // show organization name
+            this.setState(
+              {
+                organizationValue: organization.name
+              }
+            );
+          } else if (response.status < 300 && response.status >= 200) {
+            // success http request
+            // show organization name with link
+            const organizationLink = (
+              <React.Fragment>
+                <Link to={{
+                  pathname: `${this.okapiUrl}${urls.organizationView(organization.id)}`,
+                }}
+                >
+                  {organization.name}
+                </Link>
+              </React.Fragment>
+            );
+            this.setState(
+              {
+                organizationValue: organizationLink
+              }
+            );
+          }
+        });
+    }
+  }
+
   renderContacts = (type) => {
     const { metadataSource } = this.props;
 
@@ -70,47 +122,11 @@ class SourceManagementView extends React.Component {
     }
   }
 
-  async resolveLink(organization) {
-    this.okapiUrl = this.props.stripes.okapi.url;
-    // organization is empty
-    if (organization === '-') {
-      return organization;
-    } else {
-      // console.log(`${this.okapiUrl}${urls.organizationView(organization.id)}`);
-      let organizationValue = '';
-      await fetch(`${this.okapiUrl}${urls.organizationView(organization.id)}`)
-        .then(response => {
-          if (response.status >= 300) {
-            // error resolving http request
-            // show organization name
-            organizationValue = organization.name;
-          } else if (response.status < 300 && response.status >= 200) {
-            // success resolving http request
-            // show organization name with link
-            const organizationLink = (
-              <React.Fragment>
-                <Link to={{
-                  pathname: `${this.okapiUrl}${urls.organizationView(organization.id)}`,
-                }}
-                >
-                  {organization.name}
-                </Link>
-              </React.Fragment>
-            );
-            organizationValue = organizationLink;
-          }
-        });
-      return organizationValue;
-    }
-  }
-
   render() {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
-    const organization = _.get(metadataSource, 'organization', '-');
-    const organizationValue = () => this.resolveLink(organization);
-    // console.log('return value:');
-    // console.log(organizationValue);
+    // console.log('render value:');
+    // console.log(this.state.organizationValue);
 
     return (
       <React.Fragment>
@@ -129,8 +145,7 @@ class SourceManagementView extends React.Component {
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.organization" />}
-              // value={_.get(metadataSource, 'organization.name', '-')}
-              value={organizationValue}
+              value={this.state.organizationValue}
             />
           </Row>
           <Row className={css.addMarginForContacts}>
