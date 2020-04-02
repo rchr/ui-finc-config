@@ -22,11 +22,16 @@ class SourceManagementView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     metadataSource: PropTypes.object,
-    // stripes: PropTypes.object,
+    stripes: PropTypes.object,
   };
 
   constructor(props) {
     super(props);
+
+    this.okapiUrl = props.stripes.okapi.url;
+    this.httpHeaders = Object.assign({}, {
+      'Accept': 'text/html'
+    });
 
     this.state = {
       organizationValue: '',
@@ -35,7 +40,6 @@ class SourceManagementView extends React.Component {
 
   componentDidMount() {
     const organization = _.get(this.props.metadataSource, 'organization', '-');
-    // this.okapiUrl = this.props.stripes.okapi.url;
 
     // organization is empty
     if (organization === '-') {
@@ -45,7 +49,7 @@ class SourceManagementView extends React.Component {
         }
       );
     } else {
-      fetch(`${urls.organizationView(organization.id)}`)
+      fetch(`${urls.organizationView(organization.id)}`, { headers: this.httpHeaders })
         .then(response => {
           if (response.ok) {
             // success http request
@@ -126,8 +130,6 @@ class SourceManagementView extends React.Component {
   render() {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
-    // console.log('render value:');
-    // console.log(this.state.organizationValue);
 
     return (
       <React.Fragment>
