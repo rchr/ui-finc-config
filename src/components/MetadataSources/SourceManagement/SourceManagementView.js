@@ -22,7 +22,7 @@ class SourceManagementView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     metadataSource: PropTypes.object,
-    stripes: PropTypes.object,
+    // stripes: PropTypes.object,
   };
 
   constructor(props) {
@@ -35,7 +35,8 @@ class SourceManagementView extends React.Component {
 
   componentDidMount() {
     const organization = _.get(this.props.metadataSource, 'organization', '-');
-    this.okapiUrl = this.props.stripes.okapi.url;
+    // this.okapiUrl = this.props.stripes.okapi.url;
+
     // organization is empty
     if (organization === '-') {
       this.setState(
@@ -44,23 +45,15 @@ class SourceManagementView extends React.Component {
         }
       );
     } else {
-      fetch(`${this.okapiUrl}${urls.organizationView(organization.id)}`)
+      fetch(`${urls.organizationView(organization.id)}`)
         .then(response => {
-          if (response.status >= 300) {
-            // error http request
-            // show organization name
-            this.setState(
-              {
-                organizationValue: organization.name
-              }
-            );
-          } else if (response.status < 300 && response.status >= 200) {
+          if (response.ok) {
             // success http request
             // show organization name with link
             const organizationLink = (
               <React.Fragment>
                 <Link to={{
-                  pathname: `${this.okapiUrl}${urls.organizationView(organization.id)}`,
+                  pathname: `${urls.organizationView(organization.id)}`,
                 }}
                 >
                   {organization.name}
@@ -70,6 +63,14 @@ class SourceManagementView extends React.Component {
             this.setState(
               {
                 organizationValue: organizationLink
+              }
+            );
+          } else {
+            // error http request
+            // show organization name
+            this.setState(
+              {
+                organizationValue: organization.name
               }
             );
           }
