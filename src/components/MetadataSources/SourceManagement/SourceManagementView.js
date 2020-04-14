@@ -32,24 +32,25 @@ class SourceManagementView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     metadataSource: PropTypes.object,
-    stripes: PropTypes.object,
+    // stripes: PropTypes.object,
     resources: PropTypes.shape({
       org: PropTypes.object,
     }).isRequired,
+    organizationId: PropTypes.string,
   };
 
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.okapiUrl = props.stripes.okapi.url;
-    this.httpHeaders = Object.assign({}, {
-      'Accept': 'text/html'
-    });
+  //   this.okapiUrl = props.stripes.okapi.url;
+  //   this.httpHeaders = Object.assign({}, {
+  //     'Accept': 'text/html'
+  //   });
 
     // this.state = {
     //   organizationValue: '',
     // };
-  }
+  // }
 
   // componentDidMount() {
   //   // organnization of my own record
@@ -145,11 +146,12 @@ class SourceManagementView extends React.Component {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
 
-    const organizationId = _.get(metadataSource, 'organization.id', '-');
-    // console.log(organizationId);
-    // const org = _.get(this.props.resources, 'org', '-');
-    // console.log('org');
-    // console.log(org);
+    console.log('prop organizationId');
+    console.log(this.props.organizationId);
+
+    const orgtest = _.get(this.props.resources, 'org', '-');
+    console.log('manifest org');
+    console.log(orgtest);
 
     return (
       <React.Fragment>

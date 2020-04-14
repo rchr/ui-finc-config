@@ -16,7 +16,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 import {
-  IfPermission, stripesConnect
+  IfPermission,
 } from '@folio/stripes/core';
 
 import SourceInfoView from './SourceInfo/SourceInfoView';
@@ -29,7 +29,7 @@ class MetadataSourceView extends React.Component {
     //   type: 'okapi',
     //   path: 'organizations-storage/organizations/!{organizationId}',
     // },
-    query: {},
+    // query: {},
   });
 
   static propTypes = {
@@ -40,10 +40,9 @@ class MetadataSourceView extends React.Component {
     isLoading: PropTypes.bool,
     record: PropTypes.object,
     stripes: PropTypes.object,
-    // resources: PropTypes.shape({
-    //   org: PropTypes.object,
-    // }).isRequired,
-    org: PropTypes.object,
+    resources: PropTypes.shape({
+      org: PropTypes.object,
+    }).isRequired,
   };
 
   constructor(props) {
@@ -117,15 +116,10 @@ class MetadataSourceView extends React.Component {
   render() {
     const { record, isLoading } = this.props;
     const label = _.get(record, 'label', '-');
+    const organizationId = _.get(record, 'organization.id', '-');
 
-    if (isLoading) return this.renderLoadingPane();
-    console.log('dvdsvsdvdsfv');
-    console.log(this.props.org);
-    // const organizationId = _.get(record, 'organization.id', '-');
-    // console.log(organizationId);
-    // const org = _.get(this.props.resources, 'org', '-');
-    // console.log('org');
-    // console.log(org);
+    if (isLoading || organizationId === '-') return this.renderLoadingPane();
+
 
     return (
       <React.Fragment>
@@ -164,6 +158,7 @@ class MetadataSourceView extends React.Component {
                 id="sourceManagement"
                 metadataSource={record}
                 stripes={this.props.stripes}
+                organizationId={organizationId}
               />
             </Accordion>
             <Accordion
@@ -186,4 +181,4 @@ class MetadataSourceView extends React.Component {
 }
 
 
-export default stripesConnect(MetadataSourceView);
+export default MetadataSourceView;
