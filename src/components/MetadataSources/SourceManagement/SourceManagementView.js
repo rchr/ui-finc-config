@@ -32,81 +32,81 @@ class SourceManagementView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     metadataSource: PropTypes.object,
-    // stripes: PropTypes.object,
+    stripes: PropTypes.object,
     resources: PropTypes.shape({
       org: PropTypes.object,
     }).isRequired,
     organizationId: PropTypes.string,
   };
 
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props);
 
-  //   this.okapiUrl = props.stripes.okapi.url;
-  //   this.httpHeaders = Object.assign({}, {
-  //     'Accept': 'text/html'
-  //   });
+    this.okapiUrl = props.stripes.okapi.url;
+    this.httpHeaders = Object.assign({}, {
+      'Accept': 'text/html'
+    });
 
-  // this.state = {
-  //   organizationValue: '',
-  // };
-  // }
-
-
-  componentDidMount() {
-    console.log('prop organizationId');
-    console.log(this.props.organizationId);
-
-    const orgtest = _.get(this.props.resources, 'org', '-');
-    console.log('manifest org');
-    console.log(orgtest);
+    this.state = {
+      organizationValue: '',
+    };
   }
 
 
   // componentDidMount() {
-  //   // organnization of my own record
-  //   const organization = _.get(this.props.metadataSource, 'organization', '-');
+  //   console.log('prop organizationId');
+  //   console.log(this.props.organizationId);
 
-  //   // organization is empty
-  //   if (organization === '-') {
-  //     this.setState(
-  //       {
-  //         organizationValue: organization
-  //       }
-  //     );
-  //   } else {
-  //     fetch(`${urls.organizationView(organization.id)}`, { headers: this.httpHeaders })
-  //       .then(response => {
-  //         if (response.ok) {
-  //           // success http request
-  //           // show organization name with link
-  //           const organizationLink = (
-  //             <React.Fragment>
-  //               <Link to={{
-  //                 pathname: `${urls.organizationView(organization.id)}`,
-  //               }}
-  //               >
-  //                 {organization.name}
-  //               </Link>
-  //             </React.Fragment>
-  //           );
-  //           this.setState(
-  //             {
-  //               organizationValue: organizationLink
-  //             }
-  //           );
-  //         } else {
-  //           // error http request
-  //           // show organization name
-  //           this.setState(
-  //             {
-  //               organizationValue: organization.name
-  //             }
-  //           );
-  //         }
-  //       });
-  //   }
+  //   const orgtest = _.get(this.props.resources, 'org', '-');
+  //   console.log('manifest org');
+  //   console.log(orgtest);
   // }
+
+
+  componentDidMount() {
+    // organnization of my own record
+    const organization = _.get(this.props.metadataSource, 'organization', '-');
+
+    // organization is empty
+    if (organization === '-') {
+      this.setState(
+        {
+          organizationValue: organization
+        }
+      );
+    } else {
+      fetch(`organizations-storage/organizations/${this.props.organizationId}`, { headers: this.httpHeaders })
+        .then(response => {
+          if (response.status < 300 && response.status >= 200) {
+            // success http request
+            // show organization name with link
+            const organizationLink = (
+              <React.Fragment>
+                <Link to={{
+                  pathname: `${urls.organizationView(organization.id)}`,
+                }}
+                >
+                  {organization.name}
+                </Link>
+              </React.Fragment>
+            );
+            this.setState(
+              {
+                organizationValue: organizationLink
+              }
+            );
+          } else {
+            // error http request
+            // show organization name
+            this.setState(
+              {
+                organizationValue: organization.name
+              }
+            );
+          }
+        });
+    }
+  }
 
   renderContacts = (type) => {
     const { metadataSource } = this.props;
@@ -174,8 +174,8 @@ class SourceManagementView extends React.Component {
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.organization" />}
-              // value={this.state.organizationValue}
-              value={_.get(metadataSource, 'organization.name', '-')}
+              value={this.state.organizationValue}
+              // value={_.get(metadataSource, 'organization.name', '-')}
             />
           </Row>
           <Row className={css.addMarginForContacts}>
