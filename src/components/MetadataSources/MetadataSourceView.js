@@ -16,7 +16,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 import {
-  IfPermission
+  IfPermission, stripesConnect
 } from '@folio/stripes/core';
 
 import SourceInfoView from './SourceInfo/SourceInfoView';
@@ -24,6 +24,14 @@ import SourceManagementView from './SourceManagement/SourceManagementView';
 import SourceTechnicalView from './SourceTechnical/SourceTechnicalView';
 
 class MetadataSourceView extends React.Component {
+  static manifest = Object.freeze({
+    // org: {
+    //   type: 'okapi',
+    //   path: 'organizations-storage/organizations/!{organizationId}',
+    // },
+    query: {},
+  });
+
   static propTypes = {
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
@@ -32,6 +40,10 @@ class MetadataSourceView extends React.Component {
     isLoading: PropTypes.bool,
     record: PropTypes.object,
     stripes: PropTypes.object,
+    // resources: PropTypes.shape({
+    //   org: PropTypes.object,
+    // }).isRequired,
+    org: PropTypes.object,
   };
 
   constructor(props) {
@@ -107,6 +119,13 @@ class MetadataSourceView extends React.Component {
     const label = _.get(record, 'label', '-');
 
     if (isLoading) return this.renderLoadingPane();
+    console.log('dvdsvsdvdsfv');
+    console.log(this.props.org);
+    // const organizationId = _.get(record, 'organization.id', '-');
+    // console.log(organizationId);
+    // const org = _.get(this.props.resources, 'org', '-');
+    // console.log('org');
+    // console.log(org);
 
     return (
       <React.Fragment>
@@ -167,4 +186,4 @@ class MetadataSourceView extends React.Component {
 }
 
 
-export default MetadataSourceView;
+export default stripesConnect(MetadataSourceView);

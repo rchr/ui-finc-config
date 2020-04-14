@@ -14,6 +14,10 @@ class SourceViewRoute extends React.Component {
       type: 'okapi',
       path: 'finc-config/metadata-sources/:{id}',
     },
+    org: {
+      type: 'okapi',
+      path: 'organizations-storage/organizations/!{organizationId}',
+    },
     query: {},
   });
 
@@ -28,6 +32,7 @@ class SourceViewRoute extends React.Component {
     }).isRequired,
     resources: PropTypes.shape({
       source: PropTypes.object,
+      org: PropTypes.object,
     }).isRequired,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func.isRequired,
@@ -54,6 +59,12 @@ class SourceViewRoute extends React.Component {
     const { handlers } = this.props;
     // const selectedRecord = this.getRecord(this.props.match.params.id);
 
+    const organizationId = _.get(this.props.resources, 'source', '-');
+    console.log(organizationId);
+    const org = _.get(this.props.resources, 'org', '-');
+    console.log('org');
+    console.log(org);
+
     return (
       <MetadataSourceView
         handlers={{
@@ -61,9 +72,11 @@ class SourceViewRoute extends React.Component {
           onClose: this.handleClose,
           onEdit: this.handleEdit,
         }}
-        isLoading={_.get(this.props.resources, 'source.isPending', true)}
+        isLoading={_.get(this.props.resources, 'org.isPending', true)}
         record={_.get(this.props.resources, 'source.records', []).find(i => i.id === this.props.match.params.id)}
         stripes={this.props.stripes}
+        organizationId={_.get(this.props.resources, 'source.records.organization.id')}
+        org={org}
       />
     );
   }

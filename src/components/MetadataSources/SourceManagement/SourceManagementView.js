@@ -13,16 +13,29 @@ import {
   Row,
 } from '@folio/stripes/components';
 import Link from 'react-router-dom/Link';
+import { stripesConnect } from '@folio/stripes/core';
+
 
 import BasicCss from '../../BasicStyle.css';
 import css from './SourceManagement.css';
 import urls from '../../DisplayUtils/urls';
 
 class SourceManagementView extends React.Component {
+  static manifest = Object.freeze({
+    org: {
+      type: 'okapi',
+      path: 'organizations-storage/organizations/!{organizationId}',
+    },
+    query: {},
+  });
+
   static propTypes = {
     id: PropTypes.string,
     metadataSource: PropTypes.object,
     stripes: PropTypes.object,
+    resources: PropTypes.shape({
+      org: PropTypes.object,
+    }).isRequired,
   };
 
   constructor(props) {
@@ -33,54 +46,55 @@ class SourceManagementView extends React.Component {
       'Accept': 'text/html'
     });
 
-    this.state = {
-      organizationValue: '',
-    };
+    // this.state = {
+    //   organizationValue: '',
+    // };
   }
 
-  componentDidMount() {
-    const organization = _.get(this.props.metadataSource, 'organization', '-');
+  // componentDidMount() {
+  //   // organnization of my own record
+  //   const organization = _.get(this.props.metadataSource, 'organization', '-');
 
-    // organization is empty
-    if (organization === '-') {
-      this.setState(
-        {
-          organizationValue: organization
-        }
-      );
-    } else {
-      fetch(`${urls.organizationView(organization.id)}`, { headers: this.httpHeaders })
-        .then(response => {
-          if (response.ok) {
-            // success http request
-            // show organization name with link
-            const organizationLink = (
-              <React.Fragment>
-                <Link to={{
-                  pathname: `${urls.organizationView(organization.id)}`,
-                }}
-                >
-                  {organization.name}
-                </Link>
-              </React.Fragment>
-            );
-            this.setState(
-              {
-                organizationValue: organizationLink
-              }
-            );
-          } else {
-            // error http request
-            // show organization name
-            this.setState(
-              {
-                organizationValue: organization.name
-              }
-            );
-          }
-        });
-    }
-  }
+  //   // organization is empty
+  //   if (organization === '-') {
+  //     this.setState(
+  //       {
+  //         organizationValue: organization
+  //       }
+  //     );
+  //   } else {
+  //     fetch(`${urls.organizationView(organization.id)}`, { headers: this.httpHeaders })
+  //       .then(response => {
+  //         if (response.ok) {
+  //           // success http request
+  //           // show organization name with link
+  //           const organizationLink = (
+  //             <React.Fragment>
+  //               <Link to={{
+  //                 pathname: `${urls.organizationView(organization.id)}`,
+  //               }}
+  //               >
+  //                 {organization.name}
+  //               </Link>
+  //             </React.Fragment>
+  //           );
+  //           this.setState(
+  //             {
+  //               organizationValue: organizationLink
+  //             }
+  //           );
+  //         } else {
+  //           // error http request
+  //           // show organization name
+  //           this.setState(
+  //             {
+  //               organizationValue: organization.name
+  //             }
+  //           );
+  //         }
+  //       });
+  //   }
+  // }
 
   renderContacts = (type) => {
     const { metadataSource } = this.props;
@@ -131,6 +145,12 @@ class SourceManagementView extends React.Component {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
 
+    const organizationId = _.get(metadataSource, 'organization.id', '-');
+    // console.log(organizationId);
+    // const org = _.get(this.props.resources, 'org', '-');
+    // console.log('org');
+    // console.log(org);
+
     return (
       <React.Fragment>
         <div id={id}>
@@ -148,7 +168,8 @@ class SourceManagementView extends React.Component {
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.organization" />}
-              value={this.state.organizationValue}
+              // value={this.state.organizationValue}
+              value={_.get(metadataSource, 'organization.name', '-')}
             />
           </Row>
           <Row className={css.addMarginForContacts}>
@@ -200,4 +221,4 @@ class SourceManagementView extends React.Component {
   }
 }
 
-export default SourceManagementView;
+export default stripesConnect(SourceManagementView);
