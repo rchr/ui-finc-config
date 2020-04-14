@@ -25,6 +25,8 @@ class SourceManagementView extends React.Component {
     org: {
       type: 'okapi',
       path: 'organizations-storage/organizations/!{organizationId}',
+      // path: 'organizations-storage/organizations/',
+      throwErrors: false
     },
     query: {},
   });
@@ -35,8 +37,9 @@ class SourceManagementView extends React.Component {
     stripes: PropTypes.object,
     resources: PropTypes.shape({
       org: PropTypes.object,
+      failed: PropTypes.object,
     }).isRequired,
-    organizationId: PropTypes.string,
+    // organizationId: PropTypes.string,
   };
 
   constructor(props) {
@@ -47,9 +50,9 @@ class SourceManagementView extends React.Component {
       'Accept': 'text/html'
     });
 
-    this.state = {
-      organizationValue: '',
-    };
+    // this.state = {
+    //   organizationValue: '',
+    // };
   }
 
 
@@ -59,54 +62,56 @@ class SourceManagementView extends React.Component {
 
   //   const orgtest = _.get(this.props.resources, 'org', '-');
   //   console.log('manifest org');
-  //   console.log(orgtest);
+  //   console.log(SourceManagementView.manifest);
+  //   console.log(this.props.resources);
   // }
 
 
-  componentDidMount() {
-    // organnization of my own record
-    const organization = _.get(this.props.metadataSource, 'organization', '-');
+  // componentDidMount() {
+  //   // organnization of my own record
+  //   const organization = _.get(this.props.metadataSource, 'organization', '-');
 
-    // organization is empty
-    if (organization === '-') {
-      this.setState(
-        {
-          organizationValue: organization
-        }
-      );
-    } else {
-      fetch(`organizations-storage/organizations/${this.props.organizationId}`, { headers: this.httpHeaders })
-        .then(response => {
-          if (response.status < 300 && response.status >= 200) {
-            // success http request
-            // show organization name with link
-            const organizationLink = (
-              <React.Fragment>
-                <Link to={{
-                  pathname: `${urls.organizationView(organization.id)}`,
-                }}
-                >
-                  {organization.name}
-                </Link>
-              </React.Fragment>
-            );
-            this.setState(
-              {
-                organizationValue: organizationLink
-              }
-            );
-          } else {
-            // error http request
-            // show organization name
-            this.setState(
-              {
-                organizationValue: organization.name
-              }
-            );
-          }
-        });
-    }
-  }
+  //   // organization is empty
+  //   if (organization === '-') {
+  //     this.setState(
+  //       {
+  //         organizationValue: organization
+  //       }
+  //     );
+  //   } else {
+  //     fetch(`organizations-storage/organizations/${this.props.organizationId}`, { headers: this.httpHeaders })
+  //       .then(response => {
+  //         console.log(response);
+  //         if (response.status < 300 && response.status >= 200) {
+  //           // success http request
+  //           // show organization name with link
+  //           const organizationLink = (
+  //             <React.Fragment>
+  //               <Link to={{
+  //                 pathname: `${urls.organizationView(organization.id)}`,
+  //               }}
+  //               >
+  //                 {organization.name}
+  //               </Link>
+  //             </React.Fragment>
+  //           );
+  //           this.setState(
+  //             {
+  //               organizationValue: organizationLink
+  //             }
+  //           );
+  //         } else {
+  //           // error http request
+  //           // show organization name
+  //           this.setState(
+  //             {
+  //               organizationValue: organization.name
+  //             }
+  //           );
+  //         }
+  //       });
+  //   }
+  // }
 
   renderContacts = (type) => {
     const { metadataSource } = this.props;
@@ -157,6 +162,19 @@ class SourceManagementView extends React.Component {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
 
+    // console.log('prop organizationId');
+    // console.log(this.props.organizationId);
+
+    // const orgtest = _.get(this.props.resources, 'org', '-');
+    // console.log('manifest org');
+    // console.log(SourceManagementView.manifest);
+    // console.log(this.props.resources);
+    let orgName;
+    if (this.props.resources.org && this.props.resources.org.failed) {
+      orgName = _.get(metadataSource, 'organization.name', '-');
+    } else {
+      orgName = 'lala';
+    }
     return (
       <React.Fragment>
         <div id={id}>
@@ -174,8 +192,7 @@ class SourceManagementView extends React.Component {
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.organization" />}
-              value={this.state.organizationValue}
-              // value={_.get(metadataSource, 'organization.name', '-')}
+              value={orgName}
             />
           </Row>
           <Row className={css.addMarginForContacts}>
