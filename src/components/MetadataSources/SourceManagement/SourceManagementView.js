@@ -47,10 +47,21 @@ class SourceManagementView extends React.Component {
   //     'Accept': 'text/html'
   //   });
 
-    // this.state = {
-    //   organizationValue: '',
-    // };
+  // this.state = {
+  //   organizationValue: '',
+  // };
   // }
+
+
+  componentDidMount() {
+    console.log('prop organizationId');
+    console.log(this.props.organizationId);
+
+    const orgtest = _.get(this.props.resources, 'org', '-');
+    console.log('manifest org');
+    console.log(orgtest);
+  }
+
 
   // componentDidMount() {
   //   // organnization of my own record
@@ -145,13 +156,6 @@ class SourceManagementView extends React.Component {
   render() {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
-
-    console.log('prop organizationId');
-    console.log(this.props.organizationId);
-
-    const orgtest = _.get(this.props.resources, 'org', '-');
-    console.log('manifest org');
-    console.log(orgtest);
 
     return (
       <React.Fragment>
