@@ -1,5 +1,5 @@
 {
-    "meta.title": "Finc config",
+    "meta.title": "Finc設定",
     "source.label": "Source name",
     "source.id": "Source ID",
     "source.status": "Impl. status",
@@ -23,7 +23,7 @@
     "settings.isils.label": "Isils",
     "settings.isils.labelSingular": "Isil",
     "settings.isils.library": "Library",
-    "settings.isils.tenant": "Tenant",
+    "settings.isils.tenant": "テナント",
     "source.description": "Description",
     "source.organization": "Organization",
     "source.contacts.external": "Contacts external",
