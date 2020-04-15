@@ -24,14 +24,6 @@ import SourceManagementView from './SourceManagement/SourceManagementView';
 import SourceTechnicalView from './SourceTechnical/SourceTechnicalView';
 
 class MetadataSourceView extends React.Component {
-  static manifest = Object.freeze({
-    // org: {
-    //   type: 'okapi',
-    //   path: 'organizations-storage/organizations/!{organizationId}',
-    // },
-    // query: {},
-  });
-
   static propTypes = {
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
@@ -40,9 +32,6 @@ class MetadataSourceView extends React.Component {
     isLoading: PropTypes.bool,
     record: PropTypes.object,
     stripes: PropTypes.object,
-    resources: PropTypes.shape({
-      org: PropTypes.object,
-    }).isRequired,
   };
 
   constructor(props) {
