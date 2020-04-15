@@ -52,7 +52,6 @@ class SourceViewRoute extends React.Component {
 
   render() {
     const { handlers } = this.props;
-    // const selectedRecord = this.getRecord(this.props.match.params.id);
 
     return (
       <MetadataSourceView
@@ -63,6 +62,8 @@ class SourceViewRoute extends React.Component {
         }}
         isLoading={_.get(this.props.resources, 'source.isPending', true)}
         record={_.get(this.props.resources, 'source.records', []).find(i => i.id === this.props.match.params.id)}
+        stripes={this.props.stripes}
+        organizationId={_.get(this.props.resources, 'source.records.organization.id')}
       />
     );
   }

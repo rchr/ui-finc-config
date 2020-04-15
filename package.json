@@ -69,7 +69,8 @@
     "queryResource": "query",
     "okapiInterfaces": {
       "finc-config/metadata-sources": "1.0",
-      "finc-config/metadata-collections": "1.0"
+      "finc-config/metadata-collections": "1.0",
+      "organizations-storage.organizations": "3.0"
     },
     "permissionSets": [
       {
@@ -91,7 +92,9 @@
         "description": "Can view metadatasources and metadatacollections",
         "subPermissions": [
           "module.finc-config.enabled",
-          "fincConfig.view"
+          "fincConfig.view",
+          "organizations-storage.organizations.collection.get",
+          "organizations-storage.organizations.item.get"
         ],
         "visible": true
       }

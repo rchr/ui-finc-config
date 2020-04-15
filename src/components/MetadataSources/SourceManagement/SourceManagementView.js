@@ -12,15 +12,31 @@ import {
   MultiColumnList,
   Row,
 } from '@folio/stripes/components';
+import Link from 'react-router-dom/Link';
+import { stripesConnect } from '@folio/stripes/core';
+
 
 import BasicCss from '../../BasicStyle.css';
 import css from './SourceManagement.css';
 import urls from '../../DisplayUtils/urls';
 
 class SourceManagementView extends React.Component {
+  static manifest = Object.freeze({
+    org: {
+      type: 'okapi',
+      path: 'organizations-storage/organizations/!{organizationId}',
+      throwErrors: false
+    },
+    query: {},
+  });
+
   static propTypes = {
     id: PropTypes.string,
     metadataSource: PropTypes.object,
+    resources: PropTypes.shape({
+      org: PropTypes.object,
+      failed: PropTypes.object,
+    }).isRequired,
   };
 
   renderContacts = (type) => {
@@ -71,6 +87,23 @@ class SourceManagementView extends React.Component {
   render() {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
+    const organization = _.get(this.props.metadataSource, 'organization', '-');
+
+    let orgValue;
+    if (this.props.resources.org && this.props.resources.org.failed) {
+      orgValue = organization.name;
+    } else {
+      orgValue = (
+        <React.Fragment>
+          <Link to={{
+            pathname: `${urls.organizationView(organization.id)}`,
+          }}
+          >
+            {organization.name}
+          </Link>
+        </React.Fragment>
+      );
+    }
 
     return (
       <React.Fragment>
@@ -89,7 +122,7 @@ class SourceManagementView extends React.Component {
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.organization" />}
-              value={_.get(metadataSource, 'organization.name', '-')}
+              value={orgValue}
             />
           </Row>
           <Row className={css.addMarginForContacts}>
@@ -141,4 +174,4 @@ class SourceManagementView extends React.Component {
   }
 }
 
-export default SourceManagementView;
+export default stripesConnect(SourceManagementView);
