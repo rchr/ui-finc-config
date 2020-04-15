@@ -25,7 +25,6 @@ class SourceManagementView extends React.Component {
     org: {
       type: 'okapi',
       path: 'organizations-storage/organizations/!{organizationId}',
-      // path: 'organizations-storage/organizations/',
       throwErrors: false
     },
     query: {},
@@ -34,84 +33,11 @@ class SourceManagementView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     metadataSource: PropTypes.object,
-    stripes: PropTypes.object,
     resources: PropTypes.shape({
       org: PropTypes.object,
       failed: PropTypes.object,
     }).isRequired,
-    // organizationId: PropTypes.string,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.okapiUrl = props.stripes.okapi.url;
-    this.httpHeaders = Object.assign({}, {
-      'Accept': 'text/html'
-    });
-
-    // this.state = {
-    //   organizationValue: '',
-    // };
-  }
-
-
-  // componentDidMount() {
-  //   console.log('prop organizationId');
-  //   console.log(this.props.organizationId);
-
-  //   const orgtest = _.get(this.props.resources, 'org', '-');
-  //   console.log('manifest org');
-  //   console.log(SourceManagementView.manifest);
-  //   console.log(this.props.resources);
-  // }
-
-
-  // componentDidMount() {
-  //   // organnization of my own record
-  //   const organization = _.get(this.props.metadataSource, 'organization', '-');
-
-  //   // organization is empty
-  //   if (organization === '-') {
-  //     this.setState(
-  //       {
-  //         organizationValue: organization
-  //       }
-  //     );
-  //   } else {
-  //     fetch(`organizations-storage/organizations/${this.props.organizationId}`, { headers: this.httpHeaders })
-  //       .then(response => {
-  //         console.log(response);
-  //         if (response.status < 300 && response.status >= 200) {
-  //           // success http request
-  //           // show organization name with link
-  //           const organizationLink = (
-  //             <React.Fragment>
-  //               <Link to={{
-  //                 pathname: `${urls.organizationView(organization.id)}`,
-  //               }}
-  //               >
-  //                 {organization.name}
-  //               </Link>
-  //             </React.Fragment>
-  //           );
-  //           this.setState(
-  //             {
-  //               organizationValue: organizationLink
-  //             }
-  //           );
-  //         } else {
-  //           // error http request
-  //           // show organization name
-  //           this.setState(
-  //             {
-  //               organizationValue: organization.name
-  //             }
-  //           );
-  //         }
-  //       });
-  //   }
-  // }
 
   renderContacts = (type) => {
     const { metadataSource } = this.props;
@@ -161,20 +87,24 @@ class SourceManagementView extends React.Component {
   render() {
     const { metadataSource, id } = this.props;
     const sourceId = _.get(metadataSource, 'id', '-');
+    const organization = _.get(this.props.metadataSource, 'organization', '-');
 
-    // console.log('prop organizationId');
-    // console.log(this.props.organizationId);
-
-    // const orgtest = _.get(this.props.resources, 'org', '-');
-    // console.log('manifest org');
-    // console.log(SourceManagementView.manifest);
-    // console.log(this.props.resources);
-    let orgName;
+    let orgValue;
     if (this.props.resources.org && this.props.resources.org.failed) {
-      orgName = _.get(metadataSource, 'organization.name', '-');
+      orgValue = organization.name;
     } else {
-      orgName = 'lala';
+      orgValue = (
+        <React.Fragment>
+          <Link to={{
+            pathname: `${urls.organizationView(organization.id)}`,
+          }}
+          >
+            {organization.name}
+          </Link>
+        </React.Fragment>
+      );
     }
+
     return (
       <React.Fragment>
         <div id={id}>
@@ -192,7 +122,7 @@ class SourceManagementView extends React.Component {
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.organization" />}
-              value={orgName}
+              value={orgValue}
             />
           </Row>
           <Row className={css.addMarginForContacts}>
