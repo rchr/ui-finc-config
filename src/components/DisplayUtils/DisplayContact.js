@@ -32,7 +32,6 @@ class DisplayContact extends React.Component {
               <Col xs={4}>
                 <Field
                   ariaLabel={`${ariaLabel} name #${parseInt(index + 1, 10)}`}
-                  autoFocus
                   component={TextField}
                   fullWidth
                   id={`${elem}.name`}
