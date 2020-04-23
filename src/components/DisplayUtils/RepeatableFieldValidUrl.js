@@ -29,7 +29,6 @@ class RepeatableFieldValidUrl extends React.Component {
               <Col xs={8}>
                 <Field
                   ariaLabel={`${ariaLabel} #${parseInt(index + 1, 10)}`}
-                  autoFocus
                   name={elem}
                   id={elem}
                   component={TextField}
