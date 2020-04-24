@@ -57,7 +57,7 @@
     "source.button.showAllCollections": "Show all collections",
     "source.form.close": "Close metadata source dialog",
     "collection.form.close": "Close metadata collection dialog",
-    "source.searchInputLabel": "Search source",
+    "source.searchInputLabel": "查詢來源",
     "collection.searchInputLabel": "Search collection",
     "sources.title": "Metadata sources",
     "collections.title": "Metadata collections"
