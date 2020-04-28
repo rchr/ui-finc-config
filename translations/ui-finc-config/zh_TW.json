@@ -1,6 +1,6 @@
 {
     "meta.title": "Finc配置",
-    "source.label": "来源名称",
+    "source.label": "來源名稱",
     "source.id": "来源ID",
     "source.status": "实施状态",
     "source.solrShard": "solr",
@@ -9,7 +9,7 @@
     "source.managementAccordion": "管理",
     "source.technicalAccordion": "技术",
     "source.form.createSource": "创建来源",
-    "contact.name": "名称",
+    "contact.name": "名稱",
     "contact.role": "角色",
     "collection.form.createCollection": "创建馆藏",
     "collection.label": "集合名称",
