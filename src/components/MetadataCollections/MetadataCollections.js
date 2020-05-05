@@ -80,23 +80,12 @@ class MetadataCollections extends React.Component {
     };
   }
 
-  getArrayElementsCommaSeparated = (array) => {
-    let formatted = '';
-
-    if (array && array.length) {
-      for (let i = 0; i < array.length; i += 1) {
-        formatted += (i > 0 ? '; ' : '') + array[i];
-      }
-    }
-    return formatted;
-  }
-
   resultsFormatter = {
     label: collection => collection.label,
     mdSource: collection => collection.mdSource.name,
     metadataAvailable: collection => collection.metadataAvailable,
     usageRestricted: collection => collection.usageRestricted,
-    permittedFor: collection => this.getArrayElementsCommaSeparated(collection.permittedFor),
+    permittedFor: collection => collection.permittedFor.join('; '),
     freeContent: collection => collection.freeContent,
   };
 
