@@ -22,24 +22,11 @@ class SourceManagementForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.columnMapping =
-    {
-      code: 'Code',
-      description: 'description',
-      name: 'Name',
-    };
-    this.selectVendor = this.selectVendor.bind(this);
-
     const intialVendor = props.initialValues.organization || {};
 
     this.state = {
       organization: intialVendor,
     };
-  }
-
-  selectVendor(o) {
-    this.props.change('organization', o);
-    this.setState({ organization: o });
   }
 
   render() {
