@@ -17,9 +17,7 @@ import {
   Paneset,
   Row,
 } from '@folio/stripes/components';
-import {
-  ViewMetaData
-} from '@folio/stripes/smart-components';
+import { ViewMetaData } from '@folio/stripes/smart-components';
 import { IfPermission } from '@folio/stripes/core';
 import stripesFinalForm from '@folio/stripes/final-form';
 
@@ -62,7 +60,6 @@ class MetadataCollectionForm extends React.Component {
     };
 
     this.handleExpandAll = this.handleExpandAll.bind(this);
-    this.connectedViewMetaData = this.props.stripes.connect(ViewMetaData);
   }
 
   beginDelete = () => {

@@ -15,9 +15,7 @@ import {
   PaneMenu,
   Row,
 } from '@folio/stripes/components';
-import {
-  ViewMetaData
-} from '@folio/stripes/smart-components';
+import { ViewMetaData } from '@folio/stripes/smart-components';
 import { IfPermission } from '@folio/stripes/core';
 
 import CollectionInfoView from './CollectionInfo/CollectionInfoView';
