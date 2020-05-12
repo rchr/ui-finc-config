@@ -51,7 +51,7 @@ class CollectionViewRoute extends React.Component {
   }
 
   render() {
-    const { handlers } = this.props;
+    const { handlers, stripes } = this.props;
 
     return (
       <MetadataCollectionView
@@ -62,6 +62,7 @@ class CollectionViewRoute extends React.Component {
         }}
         isLoading={_.get(this.props.resources, 'collection.isPending', true)}
         record={_.get(this.props.resources, 'collection.records', []).find(i => i.id === this.props.match.params.id)}
+        stripes={stripes}
       />
     );
   }

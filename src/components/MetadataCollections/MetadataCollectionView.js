@@ -15,6 +15,7 @@ import {
   PaneMenu,
   Row,
 } from '@folio/stripes/components';
+import { ViewMetaData } from '@folio/stripes/smart-components';
 import { IfPermission } from '@folio/stripes/core';
 
 import CollectionInfoView from './CollectionInfo/CollectionInfoView';
@@ -41,6 +42,8 @@ class MetadataCollectionView extends React.Component {
         technicalAccordion: false
       },
     };
+
+    this.connectedViewMetaData = this.props.stripes.connect(ViewMetaData);
   }
 
   handleExpandAll = (obj) => {
@@ -118,6 +121,10 @@ class MetadataCollectionView extends React.Component {
           paneTitle={<span data-test-collection-header-title>{label}</span>}
         >
           <AccordionSet>
+            <this.connectedViewMetaData
+              metadata={_.get(record, 'metadata', {})}
+              stripes={this.props.stripes}
+            />
             <CollectionInfoView
               id="collectionInfo"
               metadataCollection={record}

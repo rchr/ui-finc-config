@@ -66,7 +66,7 @@ class CollectionCreateRoute extends React.Component {
   }
 
   render() {
-    const { handlers, resources } = this.props;
+    const { handlers, resources, stripes } = this.props;
 
     return (
       <MetadataCollectionForm
@@ -77,6 +77,7 @@ class CollectionCreateRoute extends React.Component {
         }}
         onSubmit={this.handleSubmit}
         initialValues={this.getInitialValues()}
+        stripes={stripes}
       />
     );
   }

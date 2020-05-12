@@ -55,7 +55,7 @@ class CollectionEditRoute extends React.Component {
   }
 
   render() {
-    const { handlers, resources } = this.props;
+    const { handlers, resources, stripes } = this.props;
 
     if (this.fetchIsPending()) return 'loading';
 
@@ -70,6 +70,7 @@ class CollectionEditRoute extends React.Component {
         isLoading={this.fetchIsPending()}
         onDelete={this.deleteCollection}
         onSubmit={this.handleSubmit}
+        stripes={stripes}
       />
     );
   }
