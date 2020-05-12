@@ -6,9 +6,10 @@ const filterConfig = [
     values: [
       { name: 'Active', cql: 'active' },
       { name: 'Wish', cql: 'wish' },
+      { name: 'Impossible', cql: 'impossible' },
       { name: 'Negotiation', cql: 'negotiation' },
       { name: 'Technical implementation', cql: 'technical implementation' },
-      { name: 'Deactivated', cql: 'deactivated' },
+      { name: 'Trial', cql: 'trial' },
       { name: 'Terminated', cql: 'terminated' }
     ],
   },
@@ -19,7 +20,8 @@ const filterConfig = [
     values: [
       { name: 'UBL main', cql: 'UBL main' },
       { name: 'UBL ai', cql: 'UBL ai' },
-      { name: 'SLUB main', cql: 'SLUB main' },
+      { name: 'UBL DNB', cql: 'UBL DNB' },
+      { name: 'SLUB dswarm', cql: 'SLUB dswarm' },
       { name: 'SLUB DBoD', cql: 'SLUB DBoD' }
     ],
   }
