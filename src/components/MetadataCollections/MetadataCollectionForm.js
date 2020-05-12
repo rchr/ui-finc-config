@@ -17,6 +17,7 @@ import {
   Paneset,
   Row,
 } from '@folio/stripes/components';
+import { ViewMetaData } from '@folio/stripes/smart-components';
 import { IfPermission } from '@folio/stripes/core';
 import stripesFinalForm from '@folio/stripes/final-form';
 
@@ -39,6 +40,7 @@ class MetadataCollectionForm extends React.Component {
     onSubmit: PropTypes.func,
     pristine: PropTypes.bool,
     submitting: PropTypes.bool,
+    stripes: PropTypes.object,
   };
 
   static defaultProps = {
@@ -207,6 +209,10 @@ class MetadataCollectionForm extends React.Component {
                     />
                   </Col>
                 </Row>
+                {initialValues.metadata &&
+                  initialValues.metadata.createdDate && (
+                    <ViewMetaData metadata={initialValues.metadata} />
+                )}
                 <CollectionInfoForm
                   accordionId="editCollectionInfo"
                   expanded={sections.editCollectionInfo}

@@ -15,9 +15,8 @@ import {
   PaneMenu,
   Row,
 } from '@folio/stripes/components';
-import {
-  IfPermission,
-} from '@folio/stripes/core';
+import { ViewMetaData } from '@folio/stripes/smart-components';
+import { IfPermission } from '@folio/stripes/core';
 
 import SourceInfoView from './SourceInfo/SourceInfoView';
 import SourceManagementView from './SourceManagement/SourceManagementView';
@@ -42,6 +41,8 @@ class MetadataSourceView extends React.Component {
         technicalAccordion: false
       },
     };
+
+    this.connectedViewMetaData = this.props.stripes.connect(ViewMetaData);
   }
 
   handleExpandAll = (obj) => {
@@ -119,6 +120,10 @@ class MetadataSourceView extends React.Component {
         >
           {/* <TitleManager record={label} /> */}
           <AccordionSet>
+            <this.connectedViewMetaData
+              metadata={_.get(record, 'metadata', {})}
+              stripes={this.props.stripes}
+            />
             <SourceInfoView
               id="sourceInfo"
               metadataSource={record}
