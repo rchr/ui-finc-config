@@ -28,7 +28,6 @@ class MetadataSourceView extends React.Component {
       onClose: PropTypes.func.isRequired,
       onEdit: PropTypes.func,
     }).isRequired,
-    isLoading: PropTypes.bool,
     record: PropTypes.object,
     stripes: PropTypes.object,
   };
@@ -104,12 +103,9 @@ class MetadataSourceView extends React.Component {
   }
 
   render() {
-    const { record, isLoading } = this.props;
+    const { record } = this.props;
     const label = _.get(record, 'label', '-');
     const organizationId = _.get(record, 'organization.id', '-');
-
-    if (isLoading || organizationId === '-') return this.renderLoadingPane();
-
 
     return (
       <React.Fragment>
