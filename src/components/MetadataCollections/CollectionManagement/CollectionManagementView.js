@@ -91,6 +91,17 @@ class CollectionManagementView extends React.Component {
               value={_.get(metadataCollection, 'generalNotes', '-')}
             />
           </Row>
+          <Row>
+            <Headline
+              className={BasicCss.styleForViewHeadline}
+              size="medium"
+            >
+              <FormattedMessage id="ui-finc-config.collection.selectedBy" />
+            </Headline>
+          </Row>
+          <Row>
+            { this.renderList('selectedBy') }
+          </Row>
         </div>
       </React.Fragment>
     );
