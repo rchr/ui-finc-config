@@ -19,6 +19,7 @@ export default @interactor class SourcesList {
   clickActiveSOURCEsCheckbox = clickable('#clickable-filter-status-active');
   instances = collection('[role="rowgroup"] div[role="row"]');
   instance = scoped('#pane-sourcedetails');
+
   navigation = new NavigationInteractor();
   statusFilterIsPresent = isPresent('section[id="filter-accordion-status"]');
   solrShardFilterIsPresent = isPresent('section[id="filter-accordion-solrShard"]');
