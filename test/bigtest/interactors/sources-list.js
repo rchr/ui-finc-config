@@ -17,8 +17,9 @@ export default @interactor class SourcesList {
   static defaultScope = '[data-test-sources]';
 
   clickActiveSOURCEsCheckbox = clickable('#clickable-filter-status-active');
-  instances = collection('[role=group] div a');
+  instances = collection('[role="rowgroup"] div[role="row"]');
   instance = scoped('#pane-sourcedetails');
+
   navigation = new NavigationInteractor();
   statusFilterIsPresent = isPresent('section[id="filter-accordion-status"]');
   solrShardFilterIsPresent = isPresent('section[id="filter-accordion-solrShard"]');

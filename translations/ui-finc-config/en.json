@@ -55,6 +55,7 @@
   "collection.solrMegaCollections": "Solr mega collections",
   "collection.tickets": "Tickets",
   "collection.usageRestricted": "Usage restricted",
+  "collection.selectedBy": "Selected by",
 
   "collection.generalAccordion": "General",
   "collection.managementAccordion": "Management",
