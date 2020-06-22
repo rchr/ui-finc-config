@@ -17,7 +17,7 @@ export default @interactor class CollectionsList {
   static defaultScope = '[data-test-collections]';
 
   clickMetadataAvailableCOLLECTIONsCheckbox = clickable('#clickable-filter-metadata-available-yes');
-  instances = collection('[role=group] div a');
+  instances = collection('[role="rowgroup"] div[role="row"]');
   instance = scoped('#pane-collectiondetails');
   navigation = new NavigationInteractor();
   mdSourceFilterIsPresent = isPresent('section[id="filter-accordion-mdSource"]');
