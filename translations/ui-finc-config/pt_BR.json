@@ -60,5 +60,6 @@
     "source.searchInputLabel": "Fonte de pesquisa",
     "collection.searchInputLabel": "Coleção de pesquisa",
     "sources.title": "Fontes de metadados",
-    "collections.title": "Coleções de metadados"
+    "collections.title": "Coleções de metadados",
+    "collection.selectedBy": "Selecionado por"
 }

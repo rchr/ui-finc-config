@@ -60,5 +60,6 @@
     "source.searchInputLabel": "Search source",
     "collection.searchInputLabel": "Search collection",
     "sources.title": "Metadata sources",
-    "collections.title": "Metadata collections"
+    "collections.title": "Metadata collections",
+    "collection.selectedBy": "Selected by"
 }

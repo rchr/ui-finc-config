@@ -60,5 +60,6 @@
     "source.searchInputLabel": "مصدر البحث",
     "collection.searchInputLabel": "بحث المجموعة",
     "sources.title": "مصادر الميتاداتا",
-    "collections.title": "مجموعات الميتاداتا"
+    "collections.title": "مجموعات الميتاداتا",
+    "collection.selectedBy": "محدد بواسطة"
 }
