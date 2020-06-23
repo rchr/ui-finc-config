@@ -60,5 +60,6 @@
     "source.searchInputLabel": "查詢來源",
     "collection.searchInputLabel": "Search collection",
     "sources.title": "Metadata sources",
-    "collections.title": "Metadata collections"
+    "collections.title": "Metadata collections",
+    "collection.selectedBy": "Selected by"
 }
