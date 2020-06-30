@@ -6,10 +6,10 @@ import { FormattedMessage } from 'react-intl';
 import {
   Accordion,
   AccordionSet,
+  Button,
   Col,
   ExpandAllButton,
   Icon,
-  IconButton,
   Layout,
   Pane,
   PaneMenu,
@@ -42,6 +42,8 @@ class MetadataSourceView extends React.Component {
       },
     };
 
+    this.editButton = React.createRef();
+
     this.connectedViewMetaData = this.props.stripes.connect(ViewMetaData);
   }
 
@@ -65,22 +67,21 @@ class MetadataSourceView extends React.Component {
   }
 
   renderEditPaneMenu = () => {
-    const { record, handlers } = this.props;
+    const { handlers } = this.props;
 
     return (
       <IfPermission perm="finc-config.metadata-sources.item.put">
         <PaneMenu>
-          <IconButton
-            icon="edit"
+          <Button
             id="clickable-edit-source"
+            buttonStyle="primary"
             onClick={handlers.onEdit}
-            style={{
-              visibility: !record
-                ? 'hidden'
-                : 'visible'
-            }}
-            title="Edit Metadata Source"
-          />
+            aria-label="Edit Source"
+            buttonRef={this.editButton}
+            marginBottom0
+          >
+            <FormattedMessage id="ui-finc-config.source.edit" />
+          </Button>
         </PaneMenu>
       </IfPermission>
     );

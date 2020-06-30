@@ -6,10 +6,10 @@ import { FormattedMessage } from 'react-intl';
 import {
   Accordion,
   AccordionSet,
+  Button,
   Col,
   ExpandAllButton,
   Icon,
-  IconButton,
   Layout,
   Pane,
   PaneMenu,
@@ -43,6 +43,8 @@ class MetadataCollectionView extends React.Component {
       },
     };
 
+    this.editButton = React.createRef();
+
     this.connectedViewMetaData = this.props.stripes.connect(ViewMetaData);
   }
 
@@ -66,22 +68,21 @@ class MetadataCollectionView extends React.Component {
   }
 
   renderEditPaneMenu = () => {
-    const { record, handlers } = this.props;
+    const { handlers } = this.props;
 
     return (
       <IfPermission perm="finc-config.metadata-collections.item.put">
         <PaneMenu>
-          <IconButton
-            icon="edit"
+          <Button
             id="clickable-edit-collection"
+            buttonStyle="primary"
             onClick={handlers.onEdit}
-            style={{
-              visibility: !record
-                ? 'hidden'
-                : 'visible'
-            }}
-            title="Edit Metadata Collection"
-          />
+            aria-label="Edit Collection"
+            buttonRef={this.editButton}
+            marginBottom0
+          >
+            <FormattedMessage id="ui-finc-config.collection.edit" />
+          </Button>
         </PaneMenu>
       </IfPermission>
     );
