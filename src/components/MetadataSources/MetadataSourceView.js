@@ -72,17 +72,6 @@ class MetadataSourceView extends React.Component {
     return (
       <IfPermission perm="finc-config.metadata-sources.item.put">
         <PaneMenu>
-          {/* <IconButton
-            icon="edit"
-            id="clickable-edit-source"
-            onClick={handlers.onEdit}
-            style={{
-              visibility: !record
-                ? 'hidden'
-                : 'visible'
-            }}
-            title="Edit Metadata Source"
-          /> */}
           <Button
             id="clickable-edit-source"
             buttonStyle="primary"
