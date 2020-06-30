@@ -29,6 +29,7 @@
   "source.managementAccordion": "Management",
   "source.technicalAccordion": "Technical",
 
+  "source.edit": "Edit",
   "source.form.saveAndClose": "Save & close",
   "source.form.createSource": "Create metadata source",
   "source.form.deleteSource": "Delete metadata source",
@@ -61,6 +62,7 @@
   "collection.managementAccordion": "Management",
   "collection.technicalAccordion": "Technical",
 
+  "collection.edit": "Edit",
   "collection.form.saveAndClose": "Save & close",
   "collection.form.createCollection": "Create metadata collection",
   "collection.form.deleteCollection": "Delete metadata collection",
