@@ -61,5 +61,7 @@
     "collection.searchInputLabel": "Coleção de pesquisa",
     "sources.title": "Fontes de metadados",
     "collections.title": "Coleções de metadados",
-    "collection.selectedBy": "Selecionado por"
+    "collection.selectedBy": "Selecionado por",
+    "source.edit": "Editar",
+    "collection.edit": "Editar"
 }

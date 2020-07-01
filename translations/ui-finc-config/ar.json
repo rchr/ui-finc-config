@@ -61,5 +61,7 @@
     "collection.searchInputLabel": "بحث المجموعة",
     "sources.title": "مصادر الميتاداتا",
     "collections.title": "مجموعات الميتاداتا",
-    "collection.selectedBy": "محدد بواسطة"
+    "collection.selectedBy": "محدد بواسطة",
+    "source.edit": "تحرير",
+    "collection.edit": "تحرير"
 }

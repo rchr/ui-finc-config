@@ -61,5 +61,7 @@
     "collection.searchInputLabel": "搜索集合",
     "sources.title": "元数据来源",
     "collections.title": "元数据集合",
-    "collection.selectedBy": "Selected by"
+    "collection.selectedBy": "Selected by",
+    "source.edit": "Edit",
+    "collection.edit": "Edit"
 }
