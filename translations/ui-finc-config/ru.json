@@ -61,5 +61,7 @@
     "collection.searchInputLabel": "Search collection",
     "sources.title": "Metadata sources",
     "collections.title": "Metadata collections",
-    "collection.selectedBy": "Выбран"
+    "collection.selectedBy": "Выбран",
+    "source.edit": "Редактировать",
+    "collection.edit": "Редактировать"
 }
