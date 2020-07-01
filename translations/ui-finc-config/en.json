@@ -16,7 +16,7 @@
   "source.label": "Source name",
   "source.lastProcessed": "Last processed",
   "source.organization": "Organization",
-  "source.status": "Impl. status",
+  "source.status": "Implementation status",
   "source.solrShard": "Solar shard",
   "source.tickets": "Tickets",
   "source.updateRhythm": "Update rhythm",
