@@ -37,21 +37,6 @@ class SourceTechnicalForm extends React.Component {
         onToggle={onToggle}
         open={expanded}
       >
-        <Row>
-          <Col xs={8}>
-            <Field
-              component={TextField}
-              fullWidth
-              id="addsource_lastProcessed"
-              label={
-                <FormattedMessage id="ui-finc-config.source.lastProcessed">
-                  {(msg) => msg}
-                </FormattedMessage>}
-              name="lastProcessed"
-              placeholder="Enter date and time for the metadata source"
-            />
-          </Col>
-        </Row>
         {/* TICKETS (is repeatable) ... */}
         <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
