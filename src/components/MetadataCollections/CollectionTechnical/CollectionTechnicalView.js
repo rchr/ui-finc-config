@@ -38,7 +38,7 @@ class CollectionTechnicalView extends React.Component {
     }
   }
 
-  renderTicketList = (values) => {
+  renderUrlList = (values) => {
     const { metadataCollection } = this.props;
 
     if (!metadataCollection) {
@@ -91,7 +91,7 @@ class CollectionTechnicalView extends React.Component {
             </Headline>
           </Row>
           <Row>
-            { this.renderTicketList('tickets') }
+            { this.renderUrlList('tickets') }
           </Row>
           <Row>
             <Headline
@@ -102,7 +102,7 @@ class CollectionTechnicalView extends React.Component {
             </Headline>
           </Row>
           <Row>
-            { this.renderList('contentFiles') }
+            { this.renderUrlList('contentFiles') }
           </Row>
           <Row>
             <Headline

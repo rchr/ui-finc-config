@@ -12,7 +12,6 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-import RepeatableField from '../../DisplayUtils/RepeatableField';
 import RequiredRepeatableField from '../../DisplayUtils/RequiredRepeatableField';
 import RepeatableFieldValidUrl from '../../DisplayUtils/RepeatableFieldValidUrl';
 
@@ -111,7 +110,7 @@ class CollectionTechnicalForm extends React.Component {
                 {ariaLabel => (
                   <FieldArray
                     ariaLabel={ariaLabel}
-                    component={RepeatableField}
+                    component={RepeatableFieldValidUrl}
                     id="display_contentFiles"
                     // add name to the array-field, which should be changed
                     name="contentFiles"
