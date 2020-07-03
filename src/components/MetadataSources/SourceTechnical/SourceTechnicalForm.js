@@ -13,7 +13,10 @@ import {
   TextField
 } from '@folio/stripes/components';
 
-import { IntRequired } from '../../DisplayUtils/Validate';
+import {
+  IntRequired,
+  ValidateUrl
+} from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
 import RepeatableFieldValidUrl from '../../DisplayUtils/RepeatableFieldValidUrl';
 
@@ -73,6 +76,7 @@ class SourceTechnicalForm extends React.Component {
                 </FormattedMessage>}
               name="accessUrl"
               placeholder="Enter an access url for the metadata source"
+              validate={ValidateUrl}
             />
           </Col>
         </Row>

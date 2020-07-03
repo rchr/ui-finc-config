@@ -38,7 +38,7 @@ class SourceTechnicalView extends React.Component {
     }
   }
 
-  renderTicketList = (values) => {
+  renderUrlList = (values) => {
     const { metadataSource } = this.props;
 
     if (!metadataSource) {
@@ -60,6 +60,8 @@ class SourceTechnicalView extends React.Component {
 
   render() {
     const { metadataSource, id } = this.props;
+    const accessUrlValue = _.get(metadataSource, 'accessUrl', '-');
+    const accessUrlValueFormatter = <a href={accessUrlValue} target="_blank" rel="noopener noreferrer">{accessUrlValue}</a>;
 
     return (
       <React.Fragment>
@@ -80,12 +82,12 @@ class SourceTechnicalView extends React.Component {
             </Headline>
           </Row>
           <Row>
-            { this.renderTicketList('tickets') }
+            { this.renderUrlList('tickets') }
           </Row>
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.accessUrl" />}
-              value={_.get(metadataSource, 'accessUrl', '-')}
+              value={accessUrlValueFormatter}
             />
           </Row>
           <Row>
