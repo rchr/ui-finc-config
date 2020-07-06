@@ -12,7 +12,6 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-import RepeatableField from '../../DisplayUtils/RepeatableField';
 import DisplayContact from '../../DisplayUtils/DisplayContact';
 import FindOrganization from './FindOrganization/FindOrganization';
 
@@ -136,30 +135,6 @@ class SourceManagementForm extends React.Component {
             />
           </Col>
         </Row>
-        {/* CONTRACTS is repeatable */}
-        <div className={BasicCss.addMarginBottomAndTop}>
-          <Row>
-            <Label className={BasicCss.styleForFormLabel}>
-              <FormattedMessage id="ui-finc-config.source.contracts" />
-            </Label>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <FormattedMessage id="ui-finc-config.source.contracts">
-                {ariaLabel => (
-                  <FieldArray
-                    ariaLabel={ariaLabel}
-                    component={RepeatableField}
-                    id="display_contract"
-                    // add name to the array-field, which should be changed
-                    name="contracts"
-                    {...this.props}
-                  />
-                )}
-              </FormattedMessage>
-            </Col>
-          </Row>
-        </div>
         <Row>
           <Col xs={8}>
             <Field
