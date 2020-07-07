@@ -262,4 +262,7 @@ export default stripesFinalForm({
       tools.changeValue(state, 'mdSource', () => args[0]);
     },
   },
+  subscription: {
+    values: true
+  },
 })(MetadataCollectionForm);
