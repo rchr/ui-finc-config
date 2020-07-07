@@ -8,7 +8,6 @@ import {
   Col,
   Headline,
   KeyValue,
-  List,
   MultiColumnList,
   Row,
 } from '@folio/stripes/components';
@@ -59,26 +58,6 @@ class SourceManagementView extends React.Component {
           interactive={false}
           isEmptyMessage={`no ${type} contact`}
           visibleColumns={['name', 'role']}
-        />
-      );
-    }
-  }
-
-  renderContracts = () => {
-    const { metadataSource } = this.props;
-
-    if (!metadataSource) {
-      return 'no values';
-    } else {
-      const contractsItems = metadataSource.contracts;
-      const contractsFormatter = (contractsItem) => (<li key={contractsItem}>{contractsItem}</li>);
-      const isEmptyMessage = 'No items to show';
-
-      return (
-        <List
-          items={contractsItems}
-          itemFormatter={contractsFormatter}
-          isEmptyMessage={isEmptyMessage}
         />
       );
     }
@@ -154,17 +133,6 @@ class SourceManagementView extends React.Component {
               label={<FormattedMessage id="ui-finc-config.source.indexingLevel" />}
               value={_.get(metadataSource, 'indexingLevel', '-')}
             />
-          </Row>
-          <Row>
-            <Headline
-              className={BasicCss.styleForViewHeadline}
-              size="medium"
-            >
-              <FormattedMessage id="ui-finc-config.source.contracts" />
-            </Headline>
-          </Row>
-          <Row>
-            { this.renderContracts() }
           </Row>
           <Row>
             <KeyValue
