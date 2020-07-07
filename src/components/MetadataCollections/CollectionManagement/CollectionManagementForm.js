@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
@@ -15,10 +16,49 @@ import {
 
 import { Required } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
+import PermittedForField from '../../DisplayUtils/RequiredRepeatableField';
 
 import BasicCss from '../../BasicStyle.css';
 
+// const required = value => {
+//   if (value) return undefined;
+//   return <FormattedMessage id="ui-erm-usage.errors.required" />;
+// };
+
+// const notRequired = () => undefined;
+let permittedIsRequired;
+
 class CollectionManagementForm extends React.Component {
+  static propTypes = {
+    aggregators: PropTypes.arrayOf(PropTypes.shape()),
+    disabled: PropTypes.bool,
+  };
+
+  constructor(props) {
+    super(props);
+  //   const usageRestricted = _.get(this.props.values, 'usageRestricted', '');
+  //   if (usageRestricted === 'yes') {
+  //     permittedIsRequired = true;
+  //   } else {
+  //     permittedIsRequired = false;
+  //   }
+  }
+
+  componentDidUpdate(prevProps) {
+    // if (this.props.disabled !== prevProps.disabled) {
+    //   this.isRequired = this.props.disabled ? undefined : 'required';
+    // }
+    // _.get(this.props.metadataCollection, 'usageRestricted', '');
+    const usageRestricted = _.get(this.props.values, 'usageRestricted', '');
+    // console.log(this.props.values, 'usageRestricted', '');
+
+    // if (usageRestricted === 'yes') {
+    //   permittedIsRequired = true;
+    // } else {
+    //   permittedIsRequired = false;
+    // }
+  }
+
   render() {
     const { expanded, onToggle, accordionId } = this.props;
     const dataOptionsMetadataAvailable = [
@@ -43,6 +83,14 @@ class CollectionManagementForm extends React.Component {
       { value: 'prohibited (explicit)', label: 'Prohibited (explicit)' },
       { value: 'silent', label: 'Silent' }
     ];
+
+    const usageRestricted = _.get(this.props.values, 'usageRestricted', '');
+    let componentPermittedFor;
+    if (usageRestricted === 'yes') {
+      permittedIsRequired = true;
+    } else {
+      permittedIsRequired = false;
+    }
 
     return (
       <Accordion
@@ -99,10 +147,12 @@ class CollectionManagementForm extends React.Component {
                 {ariaLabel => (
                   <FieldArray
                     ariaLabel={ariaLabel}
-                    component={RepeatableField}
+                    // component={RepeatableField}
+                    component={PermittedForField}
                     id="display_permittedFor"
                     // add name to the array-field, which should be changed
                     name="permittedFor"
+                    disable={!permittedIsRequired}
                     {...this.props}
                   />
                 )}
@@ -183,6 +233,8 @@ CollectionManagementForm.propTypes = {
   accordionId: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
   onToggle: PropTypes.func,
+  values: PropTypes.shape(),
+  metadataCollection: PropTypes.object,
 };
 
 export default CollectionManagementForm;
