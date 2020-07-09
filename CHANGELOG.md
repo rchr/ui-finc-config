@@ -1,5 +1,10 @@
 # Change history for ui-finc-config
 
+## 2.0.0 (IN PROGRESS)
+
+* Increment `@folio/stripes` to `v5.0` and `react-router` to `v5.2` (and, bugfix, move it to peer)
+* Replace deprecated `babel-polyfill` with `core-js` and `regenerator-runtime`
+
 ## [1.5.0](https://github.com/folio-org/ui-finc-config/tree/v1.5.0) (2020-03-13)
 * Add button "show all collections" for finc-config (UIFC-122)
 * Select associated metadata source of a collection via plugin (UIFC-124)
