@@ -2,7 +2,7 @@
     "meta.title": "Finc config",
     "source.label": "Название источника ",
     "source.id": "ID источника",
-    "source.status": "Impl. status",
+    "source.status": "Implementation status",
     "source.solrShard": "Solar shard",
     "source.lastProcessed": "Last processed",
     "source.generalAccordion": "Общий источник метаданных",
