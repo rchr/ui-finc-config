@@ -16,7 +16,7 @@ import {
 
 import { Required } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
-import PermittedForField from '../../DisplayUtils/RequiredRepeatableField';
+import PermittedForField from '../../DisplayUtils/PermittedForField';
 
 import BasicCss from '../../BasicStyle.css';
 
@@ -49,8 +49,10 @@ class CollectionManagementForm extends React.Component {
     //   this.isRequired = this.props.disabled ? undefined : 'required';
     // }
     // _.get(this.props.metadataCollection, 'usageRestricted', '');
+
     const usageRestricted = _.get(this.props.values, 'usageRestricted', '');
-    // console.log(this.props.values, 'usageRestricted', '');
+    // console.log('update');
+    // console.log(usageRestricted);
 
     // if (usageRestricted === 'yes') {
     //   permittedIsRequired = true;
@@ -86,6 +88,8 @@ class CollectionManagementForm extends React.Component {
 
     const usageRestricted = _.get(this.props.values, 'usageRestricted', '');
     let componentPermittedFor;
+    // console.log('render');
+    // console.log(usageRestricted);
     if (usageRestricted === 'yes') {
       permittedIsRequired = true;
     } else {

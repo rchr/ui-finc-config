@@ -24,18 +24,18 @@ class PermittedForField extends React.Component {
     super(props);
 
     xxx = this.props.disable;
-    console.log('xxx');
+    console.log('constructor disable: ');
     console.log(xxx);
   }
 
   render() {
     const { fields, ariaLabel, disable } = this.props;
 
-    // console.log('disable: ');
-    // console.log(disable);
+    console.log('permittedForField dgdg');
+    console.log('render disable: ');
+    console.log(disable);
     return (
       <Row>
-          ijoijiojoj
         <Col xs={12}>
           {fields.map((elem, index) => (
             <Row key={index}>
@@ -47,7 +47,7 @@ class PermittedForField extends React.Component {
                   component={TextField}
                   fullWidth
                   // first field is required
-                  validate={index === 0 && !xxx ? Required : undefined}
+                  validate={index === 0 && !disable ? Required : undefined}
                 />
               </Col>
               <Col xs={1}>
@@ -62,7 +62,7 @@ class PermittedForField extends React.Component {
           ))}
         </Col>
         <Col xs={4}>
-          <Button onClick={() => fields.push('')} disabled={xxx}>+ Add</Button>
+          <Button onClick={() => fields.push('')} disabled={disable}>+ Add</Button>
         </Col>
       </Row>
     );
