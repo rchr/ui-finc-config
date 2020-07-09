@@ -2,7 +2,7 @@
     "meta.title": "Finc設定",
     "source.label": "ソース名称",
     "source.id": "ソースID",
-    "source.status": "Impl. status",
+    "source.status": "Implementation status",
     "source.solrShard": "Solar shard",
     "source.lastProcessed": "Last processed",
     "source.generalAccordion": "General",
