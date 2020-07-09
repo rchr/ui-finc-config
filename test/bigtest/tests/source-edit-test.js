@@ -34,19 +34,19 @@ describe('Edit Source', () => {
     expect(editSourcePage.implementationStatusSelect.value).to.be.equal('active');
   });
 
-  describe('implementationStatus "Negotiation" can be selected', () => {
+  describe('implementationStatus "Impossible" can be selected', () => {
     beforeEach(async () => {
-      await editSourcePage.implementationStatusSelect.select('Negotiation');
+      await editSourcePage.implementationStatusSelect.select('Impossible');
     });
 
-    it('implementationStatus is changed to "Negotiation"', () => {
-      expect(editSourcePage.implementationStatusSelect.value).to.be.equal('negotiation');
+    it('implementationStatus is changed to "Impossible"', () => {
+      expect(editSourcePage.implementationStatusSelect.value).to.be.equal('impossible');
     });
   });
 
   describe('implementationStatus can be changed', () => {
     beforeEach(async () => {
-      await editSourcePage.implementationStatusSelect.select('Negotiation');
+      await editSourcePage.implementationStatusSelect.select('Impossible');
       await editSourcePage.implementationStatusSelect.select('Wish');
     });
 

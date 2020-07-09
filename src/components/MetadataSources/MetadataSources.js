@@ -38,7 +38,7 @@ const searchableIndexes = [
   { label: 'Source ID', value: 'sourceId', makeQuery: term => `(sourceId="${term}*")` }
 ];
 
-const defaultFilter = { state: { status: ['active', 'technical implementation'] }, string: 'status.active,status.technical implementation' };
+const defaultFilter = { state: { status: ['active', 'implementation'] }, string: 'status.active,status.implementation' };
 const defaultSearchString = { query: '' };
 const defaultSearchIndex = '';
 
@@ -293,7 +293,7 @@ class MetadataSources extends React.Component {
     return (
       <div data-test-sources>
         <SearchAndSortQuery
-          // NEED FILTER: {"status":["active","technical implementation","wish"]}
+          // NEED FILTER: {"status":["active","implementation","wish"]}
           initialFilterState={this.state.storedFilter.state}
           initialSearchState={this.getCombinedSearch()}
           initialSortState={{ sort: 'label' }}

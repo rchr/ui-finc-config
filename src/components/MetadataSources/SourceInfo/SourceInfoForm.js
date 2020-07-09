@@ -20,11 +20,9 @@ class SourceInfoForm extends React.Component {
     const dataOptionsStatus = [
       { value: 'active', label: 'Active' },
       { value: 'wish', label: 'Wish' },
-      { value: 'impossible', label: 'Impossible' },
-      { value: 'negotiation', label: 'Negotiation' },
-      { value: 'technical implementation', label: 'Technical Implementation' },
-      { value: 'trial', label: 'Trial' },
-      { value: 'terminated', label: 'Terminated' }
+      { value: 'implementation', label: 'Implementation' },
+      { value: 'closed', label: 'Closed' },
+      { value: 'impossible', label: 'Impossible' }
     ];
 
     return (
