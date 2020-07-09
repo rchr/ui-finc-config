@@ -12,7 +12,6 @@ import {
 
 import { Required } from './Validate';
 
-let xxx;
 class PermittedForField extends React.Component {
   static propTypes = {
     fields: PropTypes.object,
@@ -20,35 +19,28 @@ class PermittedForField extends React.Component {
     disable: PropTypes.bool,
   };
 
-  constructor(props) {
-    super(props);
-
-    xxx = this.props.disable;
-    console.log('constructor disable: ');
-    console.log(xxx);
-  }
-
   render() {
     const { fields, ariaLabel, disable } = this.props;
 
-    console.log('permittedForField dgdg');
-    console.log('render disable: ');
-    console.log(disable);
     return (
       <Row>
         <Col xs={12}>
           {fields.map((elem, index) => (
             <Row key={index}>
               <Col xs={8}>
-                <Field
-                  ariaLabel={`${ariaLabel} #${parseInt(index + 1, 10)}`}
-                  name={elem}
-                  id={elem}
-                  component={TextField}
-                  fullWidth
-                  // first field is required
-                  validate={index === 0 && !disable ? Required : undefined}
-                />
+                {disable ?
+                  <div>permitted for can just added if usage restriced is yes</div>
+                  :
+                  <Field
+                    ariaLabel={`${ariaLabel} #${parseInt(index + 1, 10)}`}
+                    name={elem}
+                    id={elem}
+                    component={TextField}
+                    fullWidth
+                    // first field is required
+                    validate={index === 0 ? Required : undefined}
+                  />
+                }
               </Col>
               <Col xs={1}>
                 {/* no trash icon for first required field */}
