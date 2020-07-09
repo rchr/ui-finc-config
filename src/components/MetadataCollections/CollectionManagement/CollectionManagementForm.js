@@ -15,17 +15,10 @@ import {
 } from '@folio/stripes/components';
 
 import { Required } from '../../DisplayUtils/Validate';
-import RepeatableField from '../../DisplayUtils/RepeatableField';
 import PermittedForField from '../../DisplayUtils/PermittedForField';
 
 import BasicCss from '../../BasicStyle.css';
 
-// const required = value => {
-//   if (value) return undefined;
-//   return <FormattedMessage id="ui-erm-usage.errors.required" />;
-// };
-
-// const notRequired = () => undefined;
 let permittedIsRequired;
 
 class CollectionManagementForm extends React.Component {
@@ -33,33 +26,6 @@ class CollectionManagementForm extends React.Component {
     aggregators: PropTypes.arrayOf(PropTypes.shape()),
     disabled: PropTypes.bool,
   };
-
-  constructor(props) {
-    super(props);
-  //   const usageRestricted = _.get(this.props.values, 'usageRestricted', '');
-  //   if (usageRestricted === 'yes') {
-  //     permittedIsRequired = true;
-  //   } else {
-  //     permittedIsRequired = false;
-  //   }
-  }
-
-  componentDidUpdate(prevProps) {
-    // if (this.props.disabled !== prevProps.disabled) {
-    //   this.isRequired = this.props.disabled ? undefined : 'required';
-    // }
-    // _.get(this.props.metadataCollection, 'usageRestricted', '');
-
-    const usageRestricted = _.get(this.props.values, 'usageRestricted', '');
-    // console.log('update');
-    // console.log(usageRestricted);
-
-    // if (usageRestricted === 'yes') {
-    //   permittedIsRequired = true;
-    // } else {
-    //   permittedIsRequired = false;
-    // }
-  }
 
   render() {
     const { expanded, onToggle, accordionId } = this.props;
@@ -87,9 +53,7 @@ class CollectionManagementForm extends React.Component {
     ];
 
     const usageRestricted = _.get(this.props.values, 'usageRestricted', '');
-    let componentPermittedFor;
-    // console.log('render');
-    // console.log(usageRestricted);
+
     if (usageRestricted === 'yes') {
       permittedIsRequired = true;
     } else {
@@ -151,7 +115,6 @@ class CollectionManagementForm extends React.Component {
                 {ariaLabel => (
                   <FieldArray
                     ariaLabel={ariaLabel}
-                    // component={RepeatableField}
                     component={PermittedForField}
                     id="display_permittedFor"
                     // add name to the array-field, which should be changed
