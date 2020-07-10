@@ -2,7 +2,7 @@
     "meta.title": "Configuração Finc",
     "source.label": "Nome da fonte",
     "source.id": "ID da fonte",
-    "source.status": "Status Impl.",
+    "source.status": "Status de implementação",
     "source.solrShard": "Solr Shard",
     "source.lastProcessed": "Último processado",
     "source.generalAccordion": "Geral",
