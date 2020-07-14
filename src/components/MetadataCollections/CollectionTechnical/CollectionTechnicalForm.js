@@ -12,6 +12,7 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
+import { Required } from '../../DisplayUtils/Validate';
 import RequiredRepeatableField from '../../DisplayUtils/RequiredRepeatableField';
 import RepeatableFieldValidUrl from '../../DisplayUtils/RepeatableFieldValidUrl';
 
@@ -36,10 +37,11 @@ class CollectionTechnicalForm extends React.Component {
               id="addcollection_collectionId"
               label={
                 <FormattedMessage id="ui-finc-config.collection.collectionId">
-                  {(msg) => msg}
+                  {(msg) => msg + ' *'}
                 </FormattedMessage>}
               name="collectionId"
               placeholder="Enter collection ID for the metadata collection"
+              validate={Required}
             />
           </Col>
         </Row>
