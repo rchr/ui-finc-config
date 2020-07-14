@@ -31,7 +31,8 @@ const filterConfig = [
   {
     label: 'Source',
     name: 'mdSource',
-    cql: 'mdSource',
+    cql: 'mdSource.id',
+    operator: '==',
     values: [],
   }
 ];
