@@ -2,7 +2,7 @@
     "meta.title": "Config Fin",
     "source.label": "Nom de la source",
     "source.id": "Identifiant de la source",
-    "source.status": "Statut d'impl",
+    "source.status": "Statut d'implémentation",
     "source.solrShard": "Solar shard",
     "source.lastProcessed": "Dernier enregistré",
     "source.generalAccordion": "Général",
@@ -61,6 +61,6 @@
     "sources.title": "Sources de métadonnées",
     "collections.title": "Collections de métadonnées",
     "collection.selectedBy": "Sélectionné par",
-    "source.edit": "Edit",
-    "collection.edit": "Edit"
+    "source.edit": "Modifier",
+    "collection.edit": "Modifier"
 }
