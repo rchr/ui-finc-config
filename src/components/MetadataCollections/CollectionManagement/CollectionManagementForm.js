@@ -8,6 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import {
   Accordion,
   Col,
+  ConfirmationModal,
   Label,
   Row,
   Select,
@@ -27,8 +28,58 @@ class CollectionManagementForm extends React.Component {
     disabled: PropTypes.bool,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      confirmClear: false,
+      selectedReportRelease: ''
+    };
+  }
+
+  changeSelectedCounterVersion = event => {
+    event.preventDefault();
+
+    const val = event.target.value;
+    const selectedReportRelease = _.get(
+      this.props.metadataCollection,
+      'usageRestricted',
+      ''
+    );
+    if (selectedReportRelease !== val) {
+      const requestedReports = _.get(
+        this.props.metadataCollection,
+        'permittedFor',
+        []
+      );
+      if (!_.isEmpty(requestedReports)) {
+        this.setState({ confirmClear: true, selectedReportRelease: val });
+      } else {
+        this.props.form.mutators.setReportRelease({}, val);
+      }
+    }
+  };
+
+  confirmClearReports = confirmation => {
+    if (confirmation) {
+      this.props.form.mutators.clearSelectedReports({}, this.props.values);
+      this.props.form.mutators.setReportRelease(
+        {},
+        this.state.selectedReportRelease
+      );
+      setTimeout(() => {
+        this.forceUpdate();
+      });
+    }
+    this.setState({ confirmClear: false });
+  };
+
   render() {
+    const { confirmClear } = this.state;
     const { expanded, onToggle, accordionId } = this.props;
+    const confirmationMessage = (
+      <FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.confirmClearMessage" />
+    );
     const dataOptionsMetadataAvailable = [
       { value: 'yes', label: 'Yes' },
       { value: 'no', label: 'No' },
@@ -97,6 +148,7 @@ class CollectionManagementForm extends React.Component {
                 </FormattedMessage>
               }
               name="usageRestricted"
+              onChange={this.changeSelectedCounterVersion}
               placeholder="Select if usage is restricted for the metadata collection"
               validate={Required}
             />
@@ -191,6 +243,23 @@ class CollectionManagementForm extends React.Component {
             />
           </Col>
         </Row>
+        <ConfirmationModal
+          id="clear-report-selection-confirmation"
+          open={confirmClear}
+          heading={
+            <FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.clearModalHeading" />
+          }
+          message={confirmationMessage}
+          onConfirm={() => {
+            this.confirmClearReports(true);
+          }}
+          onCancel={() => {
+            this.confirmClearReports(false);
+          }}
+          confirmLabel={
+            <FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.confirmClearLabel" />
+          }
+        />
       </Accordion>
     );
   }
@@ -202,6 +271,12 @@ CollectionManagementForm.propTypes = {
   onToggle: PropTypes.func,
   values: PropTypes.shape(),
   metadataCollection: PropTypes.object,
+  form: PropTypes.shape({
+    mutators: PropTypes.shape({
+      clearSelectedReports: PropTypes.func,
+      setReportRelease: PropTypes.func
+    })
+  }),
 };
 
 export default CollectionManagementForm;
