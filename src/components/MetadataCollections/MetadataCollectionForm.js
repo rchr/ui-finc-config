@@ -261,10 +261,10 @@ export default stripesFinalForm({
     setSource: (args, state, tools) => {
       tools.changeValue(state, 'mdSource', () => args[0]);
     },
-    clearSelectedReports: (_args, state, tools) => {
+    clearPermittedFor: (_args, state, tools) => {
       tools.changeValue(state, 'permittedFor', () => []);
     },
-    setReportRelease: (args, state, tools) => {
+    setUsageRestricted: (args, state, tools) => {
       tools.changeValue(state, 'usageRestricted', () => args[1]);
     }
   },

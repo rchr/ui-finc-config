@@ -24,7 +24,6 @@ let permittedIsRequired;
 
 class CollectionManagementForm extends React.Component {
   static propTypes = {
-    aggregators: PropTypes.arrayOf(PropTypes.shape()),
     disabled: PropTypes.bool,
   };
 
@@ -33,39 +32,39 @@ class CollectionManagementForm extends React.Component {
 
     this.state = {
       confirmClear: false,
-      selectedReportRelease: ''
+      selectedUsageRestricted: ''
     };
   }
 
-  changeSelectedCounterVersion = event => {
+  changeSelectedUsageRestricted = event => {
     event.preventDefault();
 
     const val = event.target.value;
-    const selectedReportRelease = _.get(
+    const selectedUsageRestricted = _.get(
       this.props.metadataCollection,
       'usageRestricted',
       ''
     );
-    if (selectedReportRelease !== val) {
-      const requestedReports = _.get(
+    if (selectedUsageRestricted !== val) {
+      const permittedFor = _.get(
         this.props.metadataCollection,
         'permittedFor',
         []
       );
-      if (!_.isEmpty(requestedReports)) {
-        this.setState({ confirmClear: true, selectedReportRelease: val });
+      if (!_.isEmpty(permittedFor)) {
+        this.setState({ confirmClear: true, selectedUsageRestricted: val });
       } else {
-        this.props.form.mutators.setReportRelease({}, val);
+        this.props.form.mutators.setUsageRestricted({}, val);
       }
     }
   };
 
-  confirmClearReports = confirmation => {
+  confirmClearPermittedFor = confirmation => {
     if (confirmation) {
-      this.props.form.mutators.clearSelectedReports({}, this.props.values);
-      this.props.form.mutators.setReportRelease(
+      this.props.form.mutators.clearPermittedFor({}, this.props.values);
+      this.props.form.mutators.setUsageRestricted(
         {},
-        this.state.selectedReportRelease
+        this.state.selectedUsageRestricted
       );
       setTimeout(() => {
         this.forceUpdate();
@@ -148,7 +147,7 @@ class CollectionManagementForm extends React.Component {
                 </FormattedMessage>
               }
               name="usageRestricted"
-              onChange={this.changeSelectedCounterVersion}
+              onChange={this.changeSelectedUsageRestricted}
               placeholder="Select if usage is restricted for the metadata collection"
               validate={Required}
             />
@@ -251,10 +250,10 @@ class CollectionManagementForm extends React.Component {
           }
           message={confirmationMessage}
           onConfirm={() => {
-            this.confirmClearReports(true);
+            this.confirmClearPermittedFor(true);
           }}
           onCancel={() => {
-            this.confirmClearReports(false);
+            this.confirmClearPermittedFor(false);
           }}
           confirmLabel={
             <FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.confirmClearLabel" />
@@ -273,8 +272,8 @@ CollectionManagementForm.propTypes = {
   metadataCollection: PropTypes.object,
   form: PropTypes.shape({
     mutators: PropTypes.shape({
-      clearSelectedReports: PropTypes.func,
-      setReportRelease: PropTypes.func
+      clearPermittedFor: PropTypes.func,
+      setUsageRestricted: PropTypes.func
     })
   }),
 };

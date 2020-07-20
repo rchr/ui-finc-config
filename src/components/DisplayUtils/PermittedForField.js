@@ -28,19 +28,15 @@ class PermittedForField extends React.Component {
           {fields.map((elem, index) => (
             <Row key={index}>
               <Col xs={8}>
-                {disable ?
-                  <div>permitted for can just added if usage restriced is yes</div>
-                  :
-                  <Field
-                    ariaLabel={`${ariaLabel} #${parseInt(index + 1, 10)}`}
-                    name={elem}
-                    id={elem}
-                    component={TextField}
-                    fullWidth
-                    // first field is required
-                    validate={index === 0 ? Required : undefined}
-                  />
-                }
+                <Field
+                  ariaLabel={`${ariaLabel} #${parseInt(index + 1, 10)}`}
+                  name={elem}
+                  id={elem}
+                  component={TextField}
+                  fullWidth
+                  // first field is required
+                  validate={index === 0 ? Required : undefined}
+                />
               </Col>
               <Col xs={1}>
                 {/* no trash icon for first required field */}
