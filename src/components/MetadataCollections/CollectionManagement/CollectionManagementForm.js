@@ -103,6 +103,8 @@ class CollectionManagementForm extends React.Component {
       permittedIsRequired = false;
     }
 
+    const permittedForLabel = (permittedIsRequired ? <FormattedMessage id="ui-finc-config.collection.permittedFor">{(msg) => msg + ' *'}</FormattedMessage> : <FormattedMessage id="ui-finc-config.collection.permittedFor" />);
+
     return (
       <Accordion
         id={accordionId}
@@ -150,7 +152,7 @@ class CollectionManagementForm extends React.Component {
         <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
             <Label className={BasicCss.styleForFormLabel}>
-              <FormattedMessage id="ui-finc-config.collection.permittedFor" />
+              {permittedForLabel}
             </Label>
           </Row>
           <Row>
