@@ -53,10 +53,12 @@ class CollectionManagementForm extends React.Component {
       );
       if (!_.isEmpty(permittedFor)) {
         this.setState({ confirmClear: true, selectedUsageRestricted: val });
-      } else {
-        this.props.form.mutators.setUsageRestricted({}, val);
       }
+      // else {
+      //   this.props.form.mutators.setUsageRestricted({}, val);
+      // }
     }
+    this.props.form.mutators.setUsageRestricted({}, val);
   };
 
   confirmClearPermittedFor = confirmation => {
@@ -243,7 +245,7 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <ConfirmationModal
-          id="clear-report-selection-confirmation"
+          id="clear-permitted-for-confirmation"
           open={confirmClear}
           heading={
             <FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.clearModalHeading" />
