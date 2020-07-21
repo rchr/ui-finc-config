@@ -21,6 +21,7 @@ class PermittedForField extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
+    // add first required permitted-for-field, if usageRestricted changed to 'yes'
     if (this.props.addPermittedForField !== prevProps.addPermittedForField) {
       if (this.props.addPermittedForField) {
         this.props.fields.push('');
