@@ -17,23 +17,19 @@ class PermittedForField extends React.Component {
     fields: PropTypes.object,
     ariaLabel: PropTypes.string,
     disable: PropTypes.bool,
+    addPermittedForField: PropTypes.bool,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      oneTimePush: true
-    };
+  componentDidUpdate(prevProps) {
+    if (this.props.addPermittedForField !== prevProps.addPermittedForField) {
+      if (this.props.addPermittedForField) {
+        this.props.fields.push('');
+      }
+    }
   }
 
   render() {
     const { fields, ariaLabel, disable } = this.props;
-
-    if (!disable && this.state.oneTimePush) {
-      fields.push('');
-      this.setState({ oneTimePush: false });
-    }
 
     return (
       <Row>

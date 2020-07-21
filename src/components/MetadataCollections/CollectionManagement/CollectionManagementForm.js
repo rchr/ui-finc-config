@@ -32,7 +32,8 @@ class CollectionManagementForm extends React.Component {
 
     this.state = {
       confirmClear: false,
-      selectedUsageRestricted: ''
+      selectedUsageRestricted: '',
+      addPermittedForField: '',
     };
   }
 
@@ -40,24 +41,14 @@ class CollectionManagementForm extends React.Component {
     event.preventDefault();
 
     const val = event.target.value;
-    const selectedUsageRestricted = _.get(
-      this.props.metadataCollection,
-      'usageRestricted',
-      ''
-    );
-    if (selectedUsageRestricted !== val) {
-      const permittedFor = _.get(
-        this.props.metadataCollection,
-        'permittedFor',
-        []
-      );
-      if (!_.isEmpty(permittedFor)) {
-        this.setState({ confirmClear: true, selectedUsageRestricted: val });
-      }
-      // else {
-      //   this.props.form.mutators.setUsageRestricted({}, val);
-      // }
+
+    if (val === 'yes') {
+      this.setState({ addPermittedForField: true });
+    } else {
+      this.setState({ addPermittedForField: false });
+      this.setState({ confirmClear: true, selectedUsageRestricted: val });
     }
+
     this.props.form.mutators.setUsageRestricted({}, val);
   };
 
@@ -174,6 +165,7 @@ class CollectionManagementForm extends React.Component {
                     name="permittedFor"
                     disable={!permittedIsRequired}
                     {...this.props}
+                    addPermittedForField={this.state.addPermittedForField}
                   />
                 )}
               </FormattedMessage>
