@@ -67,6 +67,9 @@
   "collection.form.deleteCollection": "Delete metadata collection",
   "collection.form.cancel": "Cancel",
   "collection.form.close": "Close metadata collection dialog",
+  "collection.form.selectedUsageRestricted.clearModalHeading": "Clear permitted for?",
+  "collection.form.selectedUsageRestricted.confirmClearLabel": "Clear permitted for",
+  "collection.form.selectedUsageRestricted.confirmClearMessage": "Do you want to clear permitted for when changing usage restricted?",
 
   "settings.isils.label": "Isils",
   "settings.isils.labelSingular": "Isil",
