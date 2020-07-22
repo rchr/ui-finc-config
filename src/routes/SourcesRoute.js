@@ -23,21 +23,22 @@ class SourcesRoute extends React.Component {
       recordsRequired: '%{resultCount}',
       perRequest: 30,
       path: 'finc-config/metadata-sources',
-      // GET: {
-      params: {
-        query: makeQueryFunction(
-          'cql.allRecords=1',
-          '(label="%{query.query}*" or sourceId="%{query.query}*")',
-          {
-            'label': 'label',
-            'sourceId': 'sourceId/number'
-          },
-          filterConfig,
-          2,
-        ),
+      GET: {
+        params: {
+          query: makeQueryFunction(
+            'cql.allRecords=1',
+            '(label="%{query.query}*" or description="%{query.query}*" or sourceId="%{query.query}*")',
+            {
+              'label': 'label',
+              'description': 'description',
+              'sourceId': 'sourceId/number',
+            },
+            filterConfig,
+            2,
+          ),
+        },
+        staticFallback: { params: {} },
       },
-      staticFallback: { params: {} },
-      // },
     },
     query: { initialValue: {} },
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
