@@ -261,5 +261,14 @@ export default stripesFinalForm({
     setSource: (args, state, tools) => {
       tools.changeValue(state, 'mdSource', () => args[0]);
     },
+    clearPermittedFor: (_args, state, tools) => {
+      tools.changeValue(state, 'permittedFor', () => []);
+    },
+    setUsageRestricted: (args, state, tools) => {
+      tools.changeValue(state, 'usageRestricted', () => args[1]);
+    }
+  },
+  subscription: {
+    values: true
   },
 })(MetadataCollectionForm);
