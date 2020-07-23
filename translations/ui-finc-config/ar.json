@@ -62,5 +62,8 @@
     "collections.title": "مجموعات الميتاداتا",
     "collection.selectedBy": "محدد بواسطة",
     "source.edit": "تحرير",
-    "collection.edit": "تحرير"
+    "collection.edit": "تحرير",
+    "collection.form.selectedUsageRestricted.clearModalHeading": "مسح مسموح لـ؟",
+    "collection.form.selectedUsageRestricted.confirmClearLabel": "مسح مسموح لـ",
+    "collection.form.selectedUsageRestricted.confirmClearMessage": "هل تريد مسح مسموح لـ عند تغيير الاستخدام المقيد؟"
 }

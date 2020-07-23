@@ -62,5 +62,8 @@
     "collections.title": "元数据集合",
     "collection.selectedBy": "选择者",
     "source.edit": "编辑",
-    "collection.edit": "编辑"
+    "collection.edit": "编辑",
+    "collection.form.selectedUsageRestricted.clearModalHeading": "Clear permitted for?",
+    "collection.form.selectedUsageRestricted.confirmClearLabel": "Clear permitted for",
+    "collection.form.selectedUsageRestricted.confirmClearMessage": "Do you want to clear permitted for when changing usage restricted?"
 }
