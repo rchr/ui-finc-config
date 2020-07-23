@@ -62,5 +62,8 @@
     "collections.title": "Coleções de metadados",
     "collection.selectedBy": "Selecionado por",
     "source.edit": "Editar",
-    "collection.edit": "Editar"
+    "collection.edit": "Editar",
+    "collection.form.selectedUsageRestricted.clearModalHeading": "Limpar o permitido para?",
+    "collection.form.selectedUsageRestricted.confirmClearLabel": "Limpar o permitido para",
+    "collection.form.selectedUsageRestricted.confirmClearMessage": "Você quer limpar o permitido para quando o uso é restrito?"
 }
