@@ -17,7 +17,6 @@ export default Factory.extend({
   },
   indexingLevel: '',
   generalNotes: '',
-  contracts: [],
   lastProcessed: '',
   tickets: [],
   accessUrl: '',
