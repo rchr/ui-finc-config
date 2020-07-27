@@ -50,21 +50,6 @@ class CollectionTechnicalForm extends React.Component {
             <Field
               component={TextField}
               fullWidth
-              id="addcollection_facetLabel"
-              label={
-                <FormattedMessage id="ui-finc-config.collection.facetLabel">
-                  {(msg) => msg}
-                </FormattedMessage>}
-              name="facetLabel"
-              placeholder="Enter facet label for the metadata collection"
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={8}>
-            <Field
-              component={TextField}
-              fullWidth
               id="addcollection_productIsil"
               label={
                 <FormattedMessage id="ui-finc-config.collection.productIsil">

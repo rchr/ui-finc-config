@@ -72,12 +72,6 @@ class CollectionTechnicalView extends React.Component {
           </Row>
           <Row>
             <KeyValue
-              label={<FormattedMessage id="ui-finc-config.collection.facetLabel" />}
-              value={_.get(metadataCollection, 'facetLabel', '-')}
-            />
-          </Row>
-          <Row>
-            <KeyValue
               label={<FormattedMessage id="ui-finc-config.collection.productIsil" />}
               value={_.get(metadataCollection, 'productIsil', '-')}
             />
