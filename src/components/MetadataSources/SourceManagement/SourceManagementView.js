@@ -11,7 +11,7 @@ import {
   MultiColumnList,
   Row,
 } from '@folio/stripes/components';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import { stripesConnect } from '@folio/stripes/core';
 
 
