@@ -5,10 +5,7 @@ import {
   Link,
   withRouter,
 } from 'react-router-dom';
-import {
-  FormattedMessage,
-  injectIntl,
-} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import {
   CollapseFilterPaneButton,
@@ -55,7 +52,6 @@ class MetadataCollections extends React.Component {
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
-    intl: PropTypes.object,
     onNeedMoreData: PropTypes.func,
     onSelectRow: PropTypes.func,
     packageInfo: PropTypes.shape({ // values pulled from the provider's package.json config object
@@ -283,7 +279,7 @@ class MetadataCollections extends React.Component {
   }
 
   render() {
-    const { intl, queryGetter, querySetter, onNeedMoreData, onSelectRow, selectedRecordId, collection, filterData } = this.props;
+    const { queryGetter, querySetter, onNeedMoreData, onSelectRow, selectedRecordId, collection, filterData } = this.props;
     const count = collection ? collection.totalCount() : 0;
     const query = queryGetter() || {};
     const sortOrder = query.sort || '';
@@ -400,12 +396,12 @@ class MetadataCollections extends React.Component {
                     <MultiColumnList
                       autosize
                       columnMapping={{
-                        label: intl.formatMessage({ id: 'ui-finc-config.collection.label' }),
-                        mdSource: intl.formatMessage({ id: 'ui-finc-config.collection.mdSource' }),
-                        metadataAvailable: intl.formatMessage({ id: 'ui-finc-config.collection.metadataAvailable' }),
-                        usageRestricted: intl.formatMessage({ id: 'ui-finc-config.collection.usageRestricted' }),
-                        permittedFor: intl.formatMessage({ id: 'ui-finc-config.collection.permittedFor' }),
-                        freeContent: intl.formatMessage({ id: 'ui-finc-config.collection.freeContent' })
+                        label: <FormattedMessage id="ui-finc-config.collection.label" />,
+                        mdSource: <FormattedMessage id="ui-finc-config.collection.mdSource" />,
+                        metadataAvailable: <FormattedMessage id="ui-finc-config.collection.metadataAvailable" />,
+                        usageRestricted: <FormattedMessage id="ui-finc-config.collection.usageRestricted" />,
+                        permittedFor: <FormattedMessage id="ui-finc-config.collection.permittedFor" />,
+                        freeContent: <FormattedMessage id="ui-finc-config.collection.freeContent" />,
                       }}
                       contentData={this.props.contentData}
                       formatter={this.resultsFormatter}
@@ -436,4 +432,4 @@ class MetadataCollections extends React.Component {
   }
 }
 
-export default withRouter(injectIntl(MetadataCollections));
+export default withRouter(MetadataCollections);
