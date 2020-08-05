@@ -104,7 +104,7 @@ class CollectionManagementForm extends React.Component {
       permittedIsRequired = false;
     }
 
-    const permittedForLabel = (permittedIsRequired ? <FormattedMessage id="ui-finc-config.collection.permittedFor">{(msg) => msg + ' *'}</FormattedMessage> : <FormattedMessage id="ui-finc-config.collection.permittedFor" />);
+    const permittedForLabel = (permittedIsRequired ? <Label className={BasicCss.styleForFormLabel} required><FormattedMessage id="ui-finc-config.collection.permittedFor" /></Label> : <Label className={BasicCss.styleForFormLabel}><FormattedMessage id="ui-finc-config.collection.permittedFor" /></Label>);
 
     return (
       <Accordion
@@ -120,11 +120,7 @@ class CollectionManagementForm extends React.Component {
               dataOptions={dataOptionsMetadataAvailable}
               fullWidth
               id="addcollection_metadataAvailable"
-              label={
-                <FormattedMessage id="ui-finc-config.collection.metadataAvailable">
-                  {(msg) => msg}
-                </FormattedMessage>
-              }
+              label={<FormattedMessage id="ui-finc-config.collection.metadataAvailable" />}
               name="metadataAvailable"
               placeholder="Select if metadata is available for the metadata collection"
             />
@@ -137,14 +133,11 @@ class CollectionManagementForm extends React.Component {
               dataOptions={dataOptionsUsageRestricted}
               fullWidth
               id="addcollection_usageRestricted"
-              label={
-                <FormattedMessage id="ui-finc-config.collection.usageRestricted">
-                  {(msg) => msg + ' *'}
-                </FormattedMessage>
-              }
+              label={<FormattedMessage id="ui-finc-config.collection.usageRestricted" />}
               name="usageRestricted"
               onChange={this.changeSelectedUsageRestricted}
               placeholder="Select if usage is restricted for the metadata collection"
+              required
               validate={Required}
             />
           </Col>
@@ -152,9 +145,7 @@ class CollectionManagementForm extends React.Component {
         {/* PERMITTED FOR is repeatable */}
         <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Label className={BasicCss.styleForFormLabel}>
-              {permittedForLabel}
-            </Label>
+            {permittedForLabel}
           </Row>
           <Row>
             <Col xs={12}>
@@ -182,11 +173,7 @@ class CollectionManagementForm extends React.Component {
               dataOptions={dataOptionsFreeContent}
               fullWidth
               id="addcollection_freeContent"
-              label={
-                <FormattedMessage id="ui-finc-config.collection.freeContent">
-                  {(msg) => msg}
-                </FormattedMessage>
-              }
+              label={<FormattedMessage id="ui-finc-config.collection.freeContent" />}
               name="freeContent"
               placeholder="Select if content is free for the metadata collection"
             />
@@ -199,11 +186,7 @@ class CollectionManagementForm extends React.Component {
               dataOptions={dataOptionsLodPublication}
               fullWidth
               id="addcollection_lodpublication"
-              label={
-                <FormattedMessage id="ui-finc-config.collection.lod.publication">
-                  {(msg) => msg}
-                </FormattedMessage>
-              }
+              label={<FormattedMessage id="ui-finc-config.collection.lod.publication" />}
               name="lod.publication"
               placeholder="Select the LOD publication for the metadata collection"
             />
@@ -215,10 +198,7 @@ class CollectionManagementForm extends React.Component {
               component={TextField}
               fullWidth
               id="addcollection_lodnote"
-              label={
-                <FormattedMessage id="ui-finc-config.collection.lod.note">
-                  {(msg) => msg}
-                </FormattedMessage>}
+              label={<FormattedMessage id="ui-finc-config.collection.lod.note" />}
               name="lod.note"
               placeholder="Enter a LOD note for the metadata collection"
             />
@@ -230,10 +210,7 @@ class CollectionManagementForm extends React.Component {
               component={TextField}
               fullWidth
               id="addcollection_generalNotes"
-              label={
-                <FormattedMessage id="ui-finc-config.collection.generalNotes">
-                  {(msg) => msg}
-                </FormattedMessage>}
+              label={<FormattedMessage id="ui-finc-config.collection.generalNotes" />}
               name="generalNotes"
               placeholder="Enter a general note for the metadata collection"
             />
@@ -242,9 +219,7 @@ class CollectionManagementForm extends React.Component {
         <ConfirmationModal
           id="clear-permitted-for-confirmation"
           open={confirmClear}
-          heading={
-            <FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.clearModalHeading" />
-          }
+          heading={<FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.clearModalHeading" />}
           message={confirmationMessage}
           onConfirm={() => {
             this.confirmClearPermittedFor(true);
@@ -252,9 +227,7 @@ class CollectionManagementForm extends React.Component {
           onCancel={() => {
             this.confirmClearPermittedFor(false);
           }}
-          confirmLabel={
-            <FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.confirmClearLabel" />
-          }
+          confirmLabel={<FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.confirmClearLabel" />}
         />
       </Accordion>
     );

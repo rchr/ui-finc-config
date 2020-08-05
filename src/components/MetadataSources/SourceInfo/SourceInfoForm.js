@@ -38,12 +38,10 @@ class SourceInfoForm extends React.Component {
               component={TextField}
               fullWidth
               id="addsource_label"
-              label={
-                <FormattedMessage id="ui-finc-config.source.label">
-                  {(msg) => msg + ' *'}
-                </FormattedMessage>}
+              label={<FormattedMessage id="ui-finc-config.source.label" />}
               name="label"
               placeholder="Enter a name to identify the metadata source"
+              required
               validate={Required}
             />
           </Col>
@@ -54,10 +52,7 @@ class SourceInfoForm extends React.Component {
               component={TextField}
               fullWidth
               id="addsource_description"
-              label={
-                <FormattedMessage id="ui-finc-config.source.description">
-                  {(msg) => msg}
-                </FormattedMessage>}
+              label={<FormattedMessage id="ui-finc-config.source.description" />}
               name="description"
               placeholder="Enter a description for the metadata source"
             />
@@ -70,13 +65,10 @@ class SourceInfoForm extends React.Component {
               dataOptions={dataOptionsStatus}
               fullWidth
               id="addsource_status"
-              label={
-                <FormattedMessage id="ui-finc-config.source.status">
-                  {(msg) => msg + ' *'}
-                </FormattedMessage>
-              }
+              label={<FormattedMessage id="ui-finc-config.source.status" />}
               name="status"
               placeholder="Select a status for the metadata source"
+              required
               validate={Required}
             />
           </Col>

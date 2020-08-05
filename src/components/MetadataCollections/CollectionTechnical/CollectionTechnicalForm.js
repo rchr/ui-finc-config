@@ -35,12 +35,10 @@ class CollectionTechnicalForm extends React.Component {
               component={TextField}
               fullWidth
               id="addcollection_collectionId"
-              label={
-                <FormattedMessage id="ui-finc-config.collection.id">
-                  {(msg) => msg + ' *'}
-                </FormattedMessage>}
+              label={<FormattedMessage id="ui-finc-config.collection.id" />}
               name="collectionId"
               placeholder="Enter collection ID for the metadata collection"
+              required
               validate={Required}
             />
           </Col>
@@ -51,10 +49,7 @@ class CollectionTechnicalForm extends React.Component {
               component={TextField}
               fullWidth
               id="addcollection_productIsil"
-              label={
-                <FormattedMessage id="ui-finc-config.collection.productIsil">
-                  {(msg) => msg}
-                </FormattedMessage>}
+              label={<FormattedMessage id="ui-finc-config.collection.productIsil" />}
               name="productIsil"
               placeholder="Enter product ISIL for the metadata collection"
             />
@@ -111,10 +106,8 @@ class CollectionTechnicalForm extends React.Component {
         {/* SOLR MEGA COLLECTION (is repeatable and required) ... */}
         <div className={BasicCss.addMarginBottomAndTop}>
           <Row>
-            <Label className={BasicCss.styleForFormLabel}>
-              <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
-                {(msg) => msg + ' *'}
-              </FormattedMessage>
+            <Label className={BasicCss.styleForFormLabel} required>
+              <FormattedMessage id="ui-finc-config.collection.solrMegaCollections" />
             </Label>
           </Row>
           <Row>
