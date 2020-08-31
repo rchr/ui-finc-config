@@ -23,7 +23,7 @@
   "source.contact": "Contact",
   "source.user": "User",
   "source.status": "Implementation status",
-  "source.solrShard": "Solar shard",
+  "source.solrShard": "Solr shard",
   "source.tickets": "Tickets",
   "source.updateRhythm": "Update rhythm",
   "source.contact.name": "Name",
