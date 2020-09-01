@@ -3,7 +3,7 @@
     "source.label": "Nome",
     "source.id": "ID",
     "source.status": "Status de implementação",
-    "source.solrShard": "Solr Shard",
+    "source.solrShard": "Solr shard",
     "source.lastProcessed": "Último processado",
     "source.generalAccordion": "Geral",
     "source.managementAccordion": "Gerenciamento",
@@ -22,8 +22,6 @@
     "settings.isils.tenant": "Tenant",
     "source.description": "Descrição",
     "source.organization": "Organização",
-    "source.contacts.external": "Contatos externos",
-    "source.contacts.internal": "Contatos internos",
     "source.indexingLevel": "Nível de indexação",
     "source.tickets": "Ingressos",
     "source.accessUrl": "URL de acesso",
@@ -57,5 +55,13 @@
     "form.close": "Fechar a caixa de diálogo de edição",
     "source.contact.name": "Nome",
     "source.contact.role": "Função",
-    "collection.id": "ID"
+    "collection.id": "ID",
+    "source.contact": "Contato",
+    "source.user": "Usuário",
+    "source.contact.type": "Tipo",
+    "source.contact.title": "Contatos",
+    "source.contact.title.singular": "Contato # {amount}",
+    "source.contact.add": "Adicionar contato",
+    "source.contact.remove": "Remover contato",
+    "source.contact.or": "ou"
 }

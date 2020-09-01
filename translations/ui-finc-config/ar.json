@@ -22,8 +22,6 @@
     "settings.isils.tenant": "المستأجر",
     "source.description": "الوصف",
     "source.organization": "المؤسسة",
-    "source.contacts.external": "جهات الاتصال الخارجية",
-    "source.contacts.internal": "جهات الاتصال الداخلية",
     "source.indexingLevel": "مستوى الفهرسة",
     "source.tickets": "تذاكر",
     "source.accessUrl": "عنوان Url للوصول",
@@ -57,5 +55,13 @@
     "form.close": "إغلاق مربع حوار التحرير",
     "source.contact.name": "الاسم",
     "source.contact.role": "الدور",
-    "collection.id": "المعرّف"
+    "collection.id": "المعرّف",
+    "source.contact": "جهة الاتصال",
+    "source.user": "المستخدم",
+    "source.contact.type": "النوع",
+    "source.contact.title": "جهات الاتصال",
+    "source.contact.title.singular": "جهة الاتصال #{amount}",
+    "source.contact.add": "إضافة جهة اتصال",
+    "source.contact.remove": "إزالة جهة الاتصال",
+    "source.contact.or": "أو"
 }

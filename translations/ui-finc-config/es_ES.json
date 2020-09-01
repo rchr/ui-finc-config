@@ -22,8 +22,6 @@
     "settings.isils.tenant": "Usuario",
     "source.description": "Descripción",
     "source.organization": "Organización",
-    "source.contacts.external": "Contactos Externos",
-    "source.contacts.internal": "Contactos internos",
     "source.indexingLevel": "Nivel de indexación",
     "source.tickets": "Tickets",
     "source.accessUrl": "Url de acceso",
@@ -57,5 +55,13 @@
     "form.close": "Close edit dialog",
     "source.contact.name": "Name",
     "source.contact.role": "Role",
-    "collection.id": "ID"
+    "collection.id": "ID",
+    "source.contact": "Contacto",
+    "source.user": "Usuario",
+    "source.contact.type": "Tipo",
+    "source.contact.title": "Contactos",
+    "source.contact.title.singular": "Contacto n.º {amount}",
+    "source.contact.add": "Agregar contacto",
+    "source.contact.remove": "Remover contacto",
+    "source.contact.or": "o"
 }
