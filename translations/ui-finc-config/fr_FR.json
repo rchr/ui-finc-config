@@ -3,7 +3,7 @@
     "source.label": "Nom",
     "source.id": "ID",
     "source.status": "Statut d'implémentation",
-    "source.solrShard": "Solar shard",
+    "source.solrShard": "Solr shard",
     "source.lastProcessed": "Dernier enregistré",
     "source.generalAccordion": "Général",
     "source.managementAccordion": "Management",
@@ -22,8 +22,6 @@
     "settings.isils.tenant": "Gestion/administration",
     "source.description": "Description",
     "source.organization": "Organisation",
-    "source.contacts.external": "Contacts externes",
-    "source.contacts.internal": "Contacts internes",
     "source.indexingLevel": "Niveau d'indexation",
     "source.tickets": "Tickets",
     "source.accessUrl": "URL d'accès",
@@ -57,5 +55,13 @@
     "form.close": "Fermer la boîte de dialogue d'édition",
     "source.contact.name": "Nom",
     "source.contact.role": "Role",
-    "collection.id": "ID"
+    "collection.id": "ID",
+    "source.contact": "Contact",
+    "source.user": "User",
+    "source.contact.type": "Type",
+    "source.contact.title": "Contacts",
+    "source.contact.title.singular": "Contact #{amount}",
+    "source.contact.add": "Add contact",
+    "source.contact.remove": "Remove contact",
+    "source.contact.or": "or"
 }

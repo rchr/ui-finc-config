@@ -22,8 +22,6 @@
     "settings.isils.tenant": "租户",
     "source.description": "描述",
     "source.organization": "组织",
-    "source.contacts.external": "联系外部",
-    "source.contacts.internal": "内部联系人",
     "source.indexingLevel": "索引级别",
     "source.tickets": "票",
     "source.accessUrl": "访问 URL",
@@ -57,5 +55,13 @@
     "form.close": "关闭编辑对话框",
     "source.contact.name": "名称",
     "source.contact.role": "角色",
-    "collection.id": "ID"
+    "collection.id": "ID",
+    "source.contact": "Contact",
+    "source.user": "User",
+    "source.contact.type": "Type",
+    "source.contact.title": "Contacts",
+    "source.contact.title.singular": "Contact #{amount}",
+    "source.contact.add": "Add contact",
+    "source.contact.remove": "Remove contact",
+    "source.contact.or": "or"
 }
