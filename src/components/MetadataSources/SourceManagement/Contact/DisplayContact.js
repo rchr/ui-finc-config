@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -6,11 +7,13 @@ import {
   Card,
   Col,
   KeyValue,
+  NoValue,
   Row,
 } from '@folio/stripes/components';
 
 import DisplayContactLinkContact from './DisplayContactLinkContact';
 import DisplayContactLinkUser from './DisplayContactLinkUser';
+import contactRoleOptions from '../../../DataOptions/contactRole';
 
 class DisplayContact extends React.Component {
   static propTypes = {
@@ -47,6 +50,11 @@ class DisplayContact extends React.Component {
 
   render() {
     const { contact, contactIndex, contactId } = this.props;
+    const contactRoleValue = _.get(contact, 'role', '');
+    const dataWithcontactRoleValue = contactRoleOptions.find(
+      (e) => e.value === contactRoleValue
+    );
+    const contactRoleLabel = _.get(dataWithcontactRoleValue, 'label', <NoValue />);
 
     return (
       <Card
@@ -60,14 +68,14 @@ class DisplayContact extends React.Component {
           <Col xs={3}>
             <KeyValue label={<FormattedMessage id="ui-finc-config.source.contact.type" />}>
               <span data-test-contact-type>
-                {contact.type}
+                {_.upperFirst(contact.type)}
               </span>
             </KeyValue>
           </Col>
           <Col xs={3}>
             <KeyValue label={<FormattedMessage id="ui-finc-config.source.contact.role" />}>
               <span data-test-contact-role>
-                {contact.role}
+                {contactRoleLabel}
               </span>
             </KeyValue>
           </Col>
