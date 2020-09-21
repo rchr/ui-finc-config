@@ -57,7 +57,7 @@
     "source.contact.role": "Role",
     "collection.id": "ID",
     "source.contact": "Contact",
-    "source.user": "User",
+    "source.user": "Utilisateur",
     "source.contact.type": "Type",
     "source.contact.title": "Contacts",
     "source.contact.title.singular": "Contact #{amount}",
