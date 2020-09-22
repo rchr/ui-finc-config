@@ -17,7 +17,6 @@ class CollectionCreateRoute extends React.Component {
   });
 
   static propTypes = {
-    handlers: PropTypes.object,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -35,10 +34,6 @@ class CollectionCreateRoute extends React.Component {
       hasPerm: PropTypes.func.isRequired,
       okapi: PropTypes.object.isRequired,
     }).isRequired,
-  }
-
-  static defaultProps = {
-    handlers: {},
   }
 
   handleClose = () => {
@@ -60,24 +55,15 @@ class CollectionCreateRoute extends React.Component {
     // add first field for required repeatable field
     const solrMegaCollections = [''];
 
-    return {
-      solrMegaCollections,
-    };
+    return { solrMegaCollections };
   }
 
   render() {
-    const { handlers, resources, stripes } = this.props;
-
     return (
       <MetadataCollectionForm
-        contentData={resources}
-        handlers={{
-          onClose: this.handleClose,
-          ...handlers,
-        }}
-        onSubmit={this.handleSubmit}
+        handlers={{ onClose: this.handleClose }}
         initialValues={this.getInitialValues()}
-        stripes={stripes}
+        onSubmit={this.handleSubmit}
       />
     );
   }

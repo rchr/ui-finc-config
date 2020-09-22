@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { stripesConnect } from '@folio/stripes/core';
+
 import MetadataCollectionForm from '../components/MetadataCollections/MetadataCollectionForm';
 import urls from '../components/DisplayUtils/urls';
 
@@ -14,10 +15,6 @@ class CollectionEditRoute extends React.Component {
       shouldRefresh: () => false,
     },
   });
-
-  static defaultProps = {
-    handlers: {},
-  }
 
   getInitialValues = () => {
     const initialValues = _.get(this.props.resources, 'collections.records', []).find(i => i.id === this.props.match.params.id);
@@ -55,29 +52,21 @@ class CollectionEditRoute extends React.Component {
   }
 
   render() {
-    const { handlers, resources, stripes } = this.props;
-
     if (this.fetchIsPending()) return 'loading';
 
     return (
       <MetadataCollectionForm
-        contentData={resources}
-        handlers={{
-          ...handlers,
-          onClose: this.handleClose,
-        }}
+        handlers={{ onClose: this.handleClose }}
         initialValues={this.getInitialValues()}
         isLoading={this.fetchIsPending()}
         onDelete={this.deleteCollection}
         onSubmit={this.handleSubmit}
-        stripes={stripes}
       />
     );
   }
 }
 
 CollectionEditRoute.propTypes = {
-  handlers: PropTypes.object,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
@@ -95,10 +84,6 @@ CollectionEditRoute.propTypes = {
   }).isRequired,
   resources: PropTypes.shape({
     collection: PropTypes.object,
-  }).isRequired,
-  stripes: PropTypes.shape({
-    hasPerm: PropTypes.func.isRequired,
-    okapi: PropTypes.object.isRequired,
   }).isRequired,
 };
 

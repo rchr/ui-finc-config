@@ -18,7 +18,6 @@ class SourceViewRoute extends React.Component {
   });
 
   static propTypes = {
-    handlers: PropTypes.object,
     history: ReactRouterPropTypes.history.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     match: PropTypes.shape({
@@ -51,12 +50,9 @@ class SourceViewRoute extends React.Component {
   }
 
   render() {
-    const { handlers } = this.props;
-
     return (
       <MetadataSourceView
         handlers={{
-          ...handlers,
           onClose: this.handleClose,
           onEdit: this.handleEdit,
         }}

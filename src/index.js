@@ -13,7 +13,6 @@ import CollectionsRoute from './routes/CollectionsRoute';
 import CollectionViewRoute from './routes/CollectionViewRoute';
 import CollectionCreateRoute from './routes/CollectionCreateRoute';
 import CollectionEditRoute from './routes/CollectionEditRoute';
-
 import Settings from './settings';
 
 class FincConfig extends React.Component {

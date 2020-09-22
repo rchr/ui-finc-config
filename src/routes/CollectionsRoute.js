@@ -56,7 +56,6 @@ class CollectionsRoute extends React.Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
     location: PropTypes.shape({
-      pathname: PropTypes.string,
       search: PropTypes.string,
     }).isRequired,
     match: PropTypes.shape({
@@ -67,7 +66,7 @@ class CollectionsRoute extends React.Component {
     mutator: PropTypes.object,
     resources: PropTypes.object,
     stripes: PropTypes.shape({
-      hasPerm: PropTypes.func.isRequired,
+      hasPerm: PropTypes.func,
       logger: PropTypes.object,
     }),
   }
@@ -136,15 +135,13 @@ class CollectionsRoute extends React.Component {
     return (
       <MetadataCollections
         contentData={_.get(this.props.resources, 'collections.records', [])}
-        filterData={{
-          mdSources: _.get(this.props.resources, 'mdSources.records', []),
-        }}
+        collection={this.collection}
+        filterData={{ mdSources: _.get(this.props.resources, 'mdSources.records', []) }}
         onNeedMoreData={this.handleNeedMoreData}
         queryGetter={this.queryGetter}
         querySetter={this.querySetter}
         searchString={location.search}
         selectedRecordId={match.params.id}
-        collection={this.collection}
         // add values for search-selectbox
         onChangeIndex={this.onChangeIndex}
       >

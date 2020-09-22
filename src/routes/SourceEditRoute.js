@@ -17,7 +17,6 @@ class SourceEditRoute extends React.Component {
   });
 
   static propTypes = {
-    handlers: PropTypes.object,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -38,10 +37,6 @@ class SourceEditRoute extends React.Component {
       hasPerm: PropTypes.func.isRequired,
       okapi: PropTypes.object.isRequired,
     }).isRequired,
-  }
-
-  static defaultProps = {
-    handlers: {},
   }
 
   getInitialValues = () => {
@@ -80,22 +75,15 @@ class SourceEditRoute extends React.Component {
   }
 
   render() {
-    const { handlers, resources, stripes } = this.props;
-
     if (this.fetchIsPending()) return 'loading';
 
     return (
       <MetadataSourceForm
-        contentData={resources}
-        handlers={{
-          ...handlers,
-          onClose: this.handleClose,
-        }}
+        handlers={{ onClose: this.handleClose }}
         initialValues={this.getInitialValues()}
         isLoading={this.fetchIsPending()}
         onDelete={this.deleteSource}
         onSubmit={this.handleSubmit}
-        stripes={stripes}
       />
     );
   }

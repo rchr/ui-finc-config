@@ -56,7 +56,6 @@ class SourcesRoute extends React.Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
     location: PropTypes.shape({
-      pathname: PropTypes.string,
       search: PropTypes.string,
     }).isRequired,
     match: PropTypes.shape({
@@ -138,9 +137,7 @@ class SourcesRoute extends React.Component {
     return (
       <MetadataSources
         contentData={_.get(this.props.resources, 'sources.records', [])}
-        filterData={{
-          contacts: _.get(this.props.resources, 'contacts.records', []),
-        }}
+        filterData={{ contacts: _.get(this.props.resources, 'contacts.records', []) }}
         onNeedMoreData={this.handleNeedMoreData}
         queryGetter={this.queryGetter}
         querySetter={this.querySetter}

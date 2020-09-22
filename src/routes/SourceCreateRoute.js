@@ -17,7 +17,6 @@ class SourceCreateRoute extends React.Component {
   });
 
   static propTypes = {
-    handlers: PropTypes.object,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -28,15 +27,10 @@ class SourceCreateRoute extends React.Component {
       sources: PropTypes.shape({
       }).isRequired,
     }).isRequired,
-    resources: PropTypes.object,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func.isRequired,
       okapi: PropTypes.object.isRequired,
     }).isRequired,
-  }
-
-  static defaultProps = {
-    handlers: {},
   }
 
   handleClose = () => {
@@ -55,17 +49,10 @@ class SourceCreateRoute extends React.Component {
   }
 
   render() {
-    const { handlers, resources, stripes } = this.props;
-
     return (
       <MetadataSourceForm
-        contentData={resources}
-        handlers={{
-          onClose: this.handleClose,
-          ...handlers,
-        }}
+        handlers={{ onClose: this.handleClose }}
         onSubmit={this.handleSubmit}
-        stripes={stripes}
       />
     );
   }
