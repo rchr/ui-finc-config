@@ -16,6 +16,14 @@ class CollectionEditRoute extends React.Component {
     },
   });
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasPerms: props.stripes.hasPerm('finc-config.metadata-collections.item.put')
+    };
+  }
+
   getInitialValues = () => {
     const initialValues = _.get(this.props.resources, 'collections.records', []).find(i => i.id === this.props.match.params.id);
 
@@ -52,6 +60,7 @@ class CollectionEditRoute extends React.Component {
   }
 
   render() {
+    if (!this.state.hasPerms) return <div>No permission</div>;
     if (this.fetchIsPending()) return 'loading';
 
     return (
@@ -84,6 +93,9 @@ CollectionEditRoute.propTypes = {
   }).isRequired,
   resources: PropTypes.shape({
     collection: PropTypes.object,
+  }).isRequired,
+  stripes: PropTypes.shape({
+    hasPerm: PropTypes.func.isRequired,
   }).isRequired,
 };
 

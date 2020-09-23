@@ -36,6 +36,14 @@ class CollectionCreateRoute extends React.Component {
     }).isRequired,
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasPerms: props.stripes.hasPerm('finc-config.metadata-collections.item.post'),
+    };
+  }
+
   handleClose = () => {
     const { location } = this.props;
     this.props.history.push(`${urls.collections()}${location.search}`);
@@ -59,6 +67,8 @@ class CollectionCreateRoute extends React.Component {
   }
 
   render() {
+    if (!this.state.hasPerms) return <div>No permission</div>;
+
     return (
       <MetadataCollectionForm
         handlers={{ onClose: this.handleClose }}

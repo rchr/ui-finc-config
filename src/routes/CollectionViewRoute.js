@@ -54,6 +54,7 @@ class CollectionViewRoute extends React.Component {
 
     return (
       <MetadataCollectionView
+        canEdit={stripes.hasPerm('finc-config.metadata-collections.item.put')}
         handlers={{
           onClose: this.handleClose,
           onEdit: this.handleEdit,

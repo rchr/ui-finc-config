@@ -1,5 +1,5 @@
-import React from 'react';
 import _ from 'lodash';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -16,7 +16,6 @@ import {
   Row,
 } from '@folio/stripes/components';
 import { ViewMetaData } from '@folio/stripes/smart-components';
-import { IfPermission } from '@folio/stripes/core';
 
 import CollectionInfoView from './CollectionInfo/CollectionInfoView';
 import CollectionManagementView from './CollectionManagement/CollectionManagementView';
@@ -24,6 +23,7 @@ import CollectionTechnicalView from './CollectionTechnical/CollectionTechnicalVi
 
 class MetadataCollectionView extends React.Component {
   static propTypes = {
+    canEdit: PropTypes.bool,
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
       onEdit: PropTypes.func,
@@ -68,11 +68,11 @@ class MetadataCollectionView extends React.Component {
   }
 
   renderEditPaneMenu = () => {
-    const { handlers } = this.props;
+    const { canEdit, handlers } = this.props;
 
     return (
-      <IfPermission perm="finc-config.metadata-collections.item.put">
-        <PaneMenu>
+      <PaneMenu>
+        {canEdit && (
           <Button
             id="clickable-edit-collection"
             buttonStyle="primary"
@@ -83,8 +83,8 @@ class MetadataCollectionView extends React.Component {
           >
             <FormattedMessage id="ui-finc-config.edit" />
           </Button>
-        </PaneMenu>
-      </IfPermission>
+        )}
+      </PaneMenu>
     );
   }
 
