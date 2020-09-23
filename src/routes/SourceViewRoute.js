@@ -50,8 +50,11 @@ class SourceViewRoute extends React.Component {
   }
 
   render() {
+    const { stripes } = this.props;
+
     return (
       <MetadataSourceView
+        canEdit={stripes.hasPerm('finc-config.metadata-sources.item.put')}
         handlers={{
           onClose: this.handleClose,
           onEdit: this.handleEdit,

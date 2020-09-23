@@ -39,6 +39,14 @@ class SourceEditRoute extends React.Component {
     }).isRequired,
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasPerms: props.stripes.hasPerm('finc-config.metadata-sources.item.put')
+    };
+  }
+
   getInitialValues = () => {
     const initialValues = _.get(this.props.resources, 'sources.records', []).find(i => i.id === this.props.match.params.id);
 
@@ -75,6 +83,7 @@ class SourceEditRoute extends React.Component {
   }
 
   render() {
+    if (!this.state.hasPerms) return <div>No permission</div>;
     if (this.fetchIsPending()) return 'loading';
 
     return (

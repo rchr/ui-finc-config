@@ -17,7 +17,6 @@ import {
   Row,
 } from '@folio/stripes/components';
 import { ViewMetaData } from '@folio/stripes/smart-components';
-import { IfPermission } from '@folio/stripes/core';
 
 import SourceInfoView from './SourceInfo/SourceInfoView';
 import SourceManagementView from './SourceManagement/SourceManagementView';
@@ -25,6 +24,7 @@ import SourceTechnicalView from './SourceTechnical/SourceTechnicalView';
 
 class MetadataSourceView extends React.Component {
   static propTypes = {
+    canEdit: PropTypes.bool,
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
       onEdit: PropTypes.func,
@@ -69,11 +69,11 @@ class MetadataSourceView extends React.Component {
   }
 
   renderEditPaneMenu = () => {
-    const { handlers } = this.props;
+    const { canEdit, handlers } = this.props;
 
     return (
-      <IfPermission perm="finc-config.metadata-sources.item.put">
-        <PaneMenu>
+      <PaneMenu>
+        {canEdit && (
           <Button
             id="clickable-edit-source"
             buttonStyle="primary"
@@ -84,8 +84,8 @@ class MetadataSourceView extends React.Component {
           >
             <FormattedMessage id="ui-finc-config.edit" />
           </Button>
-        </PaneMenu>
-      </IfPermission>
+        )}
+      </PaneMenu>
     );
   }
 

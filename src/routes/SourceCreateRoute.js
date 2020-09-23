@@ -33,6 +33,14 @@ class SourceCreateRoute extends React.Component {
     }).isRequired,
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasPerms: props.stripes.hasPerm('finc-config.metadata-sources.item.post'),
+    };
+  }
+
   handleClose = () => {
     const { location } = this.props;
     this.props.history.push(`${urls.sources()}${location.search}`);
@@ -49,6 +57,8 @@ class SourceCreateRoute extends React.Component {
   }
 
   render() {
+    if (!this.state.hasPerms) return <div>No permission</div>;
+
     return (
       <MetadataSourceForm
         handlers={{ onClose: this.handleClose }}
