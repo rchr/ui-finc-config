@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 import {
   Button,
@@ -24,7 +25,7 @@ class FincNavigation extends React.Component {
           id="metadata-sources"
           to={id === 'collection' ? urls.sources() : ''}
         >
-          Sources
+          <FormattedMessage id="ui-finc-config.navigation.sources" />
         </Button>
         <Button
           buttonStyle={id === 'collection' ? 'primary' : 'default'}
@@ -32,7 +33,7 @@ class FincNavigation extends React.Component {
           id="metadata-collections"
           to={id === 'source' ? urls.collections() : ''}
         >
-          Collections
+          <FormattedMessage id="ui-finc-config.navigation.collections" />
         </Button>
       </ButtonGroup>
     );

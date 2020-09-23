@@ -68,6 +68,9 @@
   "collection.form.selectedUsageRestricted.confirmClearLabel": "Clear permitted for",
   "collection.form.selectedUsageRestricted.confirmClearMessage": "Do you want to clear permitted for when changing usage restricted?",
 
+  "navigation.sources": "Sources",
+  "navigation.collections": "Collections",
+
   "settings.isils.label": "Isils",
   "settings.isils.labelSingular": "Isil",
   "settings.isils.library": "Library",

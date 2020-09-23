@@ -14,10 +14,10 @@ import { Required } from './Validate';
 
 class PermittedForField extends React.Component {
   static propTypes = {
-    fields: PropTypes.object,
+    addPermittedForField: PropTypes.bool,
     ariaLabel: PropTypes.string,
     disable: PropTypes.bool,
-    addPermittedForField: PropTypes.bool,
+    fields: PropTypes.object,
   };
 
   componentDidUpdate(prevProps) {
@@ -40,10 +40,10 @@ class PermittedForField extends React.Component {
               <Col xs={8}>
                 <Field
                   ariaLabel={`${ariaLabel} #${parseInt(index + 1, 10)}`}
-                  name={elem}
-                  id={elem}
                   component={TextField}
                   fullWidth
+                  id={elem}
+                  name={elem}
                   // first field is required
                   validate={index === 0 ? Required : undefined}
                 />

@@ -445,7 +445,6 @@ class MetadataCollections extends React.Component {
                       contentData={this.props.contentData}
                       formatter={this.resultsFormatter}
                       id="list-collections"
-                      // isEmptyMessage="no results"
                       isEmptyMessage={this.renderIsEmptyMessage(query, collection)}
                       isSelected={({ item }) => item.id === selectedRecordId}
                       onHeaderClick={onSort}

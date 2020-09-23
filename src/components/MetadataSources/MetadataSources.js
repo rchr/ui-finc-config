@@ -435,7 +435,6 @@ class MetadataSources extends React.Component {
                       contentData={this.props.contentData}
                       formatter={this.resultsFormatter}
                       id="list-sources"
-                      // isEmptyMessage="no results"
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
                       isSelected={({ item }) => item.id === selectedRecordId}
                       onHeaderClick={onSort}
