@@ -11,6 +11,7 @@ import {
   CollapseFilterPaneButton,
   ExpandFilterPaneButton,
   SearchAndSortQuery,
+  SearchAndSortNoResultsMessage as NoResultsMessage,
 } from '@folio/stripes/smart-components';
 import {
   Button,
@@ -220,6 +221,23 @@ class MetadataCollections extends React.Component {
     />
   );
 
+  renderIsEmptyMessage = (query, source) => {
+    if (!source) {
+      return 'no source yet';
+    }
+
+    return (
+      <div data-test-udps-no-results-message>
+        <NoResultsMessage
+          source={source}
+          searchTerm={query.query || ''}
+          filterPaneIsVisible
+          toggleFilterPane={_.noop}
+        />
+      </div>
+    );
+  };
+
   cacheFilter(activeFilters, searchValue) {
     localStorage.setItem('fincConfigCollectionFilters', JSON.stringify(activeFilters));
     localStorage.setItem('fincConfigCollectionSearchString', JSON.stringify(searchValue));
@@ -427,7 +445,8 @@ class MetadataCollections extends React.Component {
                       contentData={this.props.contentData}
                       formatter={this.resultsFormatter}
                       id="list-collections"
-                      isEmptyMessage="no results"
+                      // isEmptyMessage="no results"
+                      isEmptyMessage={this.renderIsEmptyMessage(query, collection)}
                       isSelected={({ item }) => item.id === selectedRecordId}
                       onHeaderClick={onSort}
                       onNeedMoreData={onNeedMoreData}
