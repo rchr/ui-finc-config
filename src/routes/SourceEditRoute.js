@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 import { stripesConnect } from '@folio/stripes/core';
 
@@ -83,7 +84,7 @@ class SourceEditRoute extends React.Component {
   }
 
   render() {
-    if (!this.state.hasPerms) return <div>No permission</div>;
+    if (!this.state.hasPerms) return <div><FormattedMessage id="ui-finc-config.noPermission" /></div>;
     if (this.fetchIsPending()) return 'loading';
 
     return (

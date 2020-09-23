@@ -7,6 +7,7 @@
   "form.delete": "Delete",
   "form.cancel": "Cancel",
   "form.close": "Close edit dialog",
+  "noPermission": "No permission",
 
   "sources.title": "Metadata sources",
   "source.accessUrl": "Access url",
