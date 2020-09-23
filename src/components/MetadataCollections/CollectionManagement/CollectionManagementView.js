@@ -8,7 +8,7 @@ import {
   KeyValue,
   List,
   NoValue,
-  Row
+  Row,
 } from '@folio/stripes/components';
 
 import metadataAvailableOptions from '../../DataOptions/metadataAvailable';
@@ -25,19 +25,19 @@ class CollectionManagementView extends React.Component {
 
   renderList = (values) => {
     const { metadataCollection } = this.props;
+    const isEmptyMessage = <FormattedMessage id="ui-finc-config.renderList.isEmpty" />;
 
     if (!metadataCollection) {
-      return 'no values';
+      return isEmptyMessage;
     } else {
       const valueItems = metadataCollection[values];
       const valueFormatter = (valueItem) => (<li key={valueItem}>{valueItem}</li>);
-      const isEmptyMessage = 'No items to show';
 
       return (
         <List
+          isEmptyMessage={isEmptyMessage}
           items={valueItems}
           itemFormatter={valueFormatter}
-          isEmptyMessage={isEmptyMessage}
         />
       );
     }

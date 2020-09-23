@@ -20,7 +20,6 @@ import {
 import RepeatableField from '../../DisplayUtils/RepeatableField';
 import RepeatableFieldValidUrl from '../../DisplayUtils/RepeatableFieldValidUrl';
 import solrShardOptions from '../../DataOptions/solrShard';
-
 import BasicCss from '../../BasicStyle.css';
 
 class SourceTechnicalForm extends React.Component {
@@ -49,7 +48,6 @@ class SourceTechnicalForm extends React.Component {
                     ariaLabel={ariaLabel}
                     component={RepeatableFieldValidUrl}
                     id="display_tickets"
-                    // add name to the array-field, which should be changed
                     name="tickets"
                     {...this.props}
                   />
@@ -113,7 +111,6 @@ class SourceTechnicalForm extends React.Component {
                     ariaLabel={ariaLabel}
                     component={RepeatableField}
                     id="display_delivery_methods"
-                    // add name to the array-field, which should be changed
                     name="deliveryMethods"
                     {...this.props}
                   />
@@ -137,7 +134,6 @@ class SourceTechnicalForm extends React.Component {
                     ariaLabel={ariaLabel}
                     component={RepeatableField}
                     id="display_formats"
-                    // add name to the array-field, which should be changed
                     name="formats"
                     {...this.props}
                   />
@@ -174,7 +170,6 @@ class SourceTechnicalForm extends React.Component {
                     component={RepeatableField}
                     id="display_inferior_to"
                     label="Displayinferiorto"
-                    // add name to the array-field, which should be changed
                     name="inferiorTo"
                     {...this.props}
                   />

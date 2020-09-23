@@ -124,12 +124,10 @@ class MetadataCollectionView extends React.Component {
           <AccordionSet>
             <this.connectedViewMetaData
               metadata={_.get(record, 'metadata', {})}
-              stripes={this.props.stripes}
             />
             <CollectionInfoView
               id="collectionInfo"
               metadataCollection={record}
-              stripes={this.props.stripes}
             />
             <Row end="xs">
               <Col xs>
@@ -149,7 +147,6 @@ class MetadataCollectionView extends React.Component {
               <CollectionManagementView
                 id="collectionManagement"
                 metadataCollection={record}
-                stripes={this.props.stripes}
               />
             </Accordion>
             <Accordion
@@ -161,7 +158,6 @@ class MetadataCollectionView extends React.Component {
               <CollectionTechnicalView
                 id="collectionTechnical"
                 metadataCollection={record}
-                stripes={this.props.stripes}
               />
             </Accordion>
           </AccordionSet>

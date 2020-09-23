@@ -72,7 +72,6 @@ class CollectionInfoForm extends React.Component {
             component={FindSource}
             name="mdSource"
             intialSource={this.state.source}
-            stripes={this.props.stripes}
             {...this.props}
           />
         </div>

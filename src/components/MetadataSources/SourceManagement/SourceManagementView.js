@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import {
   Button,
@@ -11,7 +12,6 @@ import {
   NoValue,
   Row,
 } from '@folio/stripes/components';
-import { Link } from 'react-router-dom';
 import { stripesConnect } from '@folio/stripes/core';
 
 
@@ -55,10 +55,7 @@ class SourceManagementView extends React.Component {
     } else {
       orgValue = (
         <React.Fragment>
-          <Link to={{
-            pathname: `${urls.organizationView(organization.id)}`,
-          }}
-          >
+          <Link to={{ pathname: `${urls.organizationView(organization.id)}` }}>
             {organization.name}
           </Link>
         </React.Fragment>

@@ -70,7 +70,6 @@ class CollectionTechnicalForm extends React.Component {
                     ariaLabel={ariaLabel}
                     component={RepeatableFieldValidUrl}
                     id="display_tickets"
-                    // add name to the array-field, which should be changed
                     name="tickets"
                     {...this.props}
                   />
@@ -94,7 +93,6 @@ class CollectionTechnicalForm extends React.Component {
                     ariaLabel={ariaLabel}
                     component={RepeatableFieldValidUrl}
                     id="display_contentFiles"
-                    // add name to the array-field, which should be changed
                     name="contentFiles"
                     {...this.props}
                   />
@@ -119,7 +117,6 @@ class CollectionTechnicalForm extends React.Component {
                     component={RequiredRepeatableField}
                     id="display_solrMegaCollections"
                     ariaLabel={ariaLabel}
-                    // add name to the array-field, which should be changed
                     name="solrMegaCollections"
                   />
                 )}

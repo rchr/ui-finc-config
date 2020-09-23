@@ -7,8 +7,8 @@ import { FormattedMessage } from 'react-intl';
 
 import {
   Accordion,
-  Col,
   ConfirmationModal,
+  Col,
   Label,
   Row,
   Select,
@@ -133,14 +133,13 @@ class CollectionManagementForm extends React.Component {
               <FormattedMessage id="ui-finc-config.collection.permittedFor">
                 {ariaLabel => (
                   <FieldArray
+                    addPermittedForField={this.state.addPermittedForField}
                     ariaLabel={ariaLabel}
                     component={PermittedForField}
-                    id="display_permittedFor"
-                    // add name to the array-field, which should be changed
-                    name="permittedFor"
                     disable={!permittedIsRequired}
+                    id="display_permittedFor"
+                    name="permittedFor"
                     {...this.props}
-                    addPermittedForField={this.state.addPermittedForField}
                   />
                 )}
               </FormattedMessage>
@@ -198,17 +197,13 @@ class CollectionManagementForm extends React.Component {
           </Col>
         </Row>
         <ConfirmationModal
-          id="clear-permitted-for-confirmation"
-          open={confirmClear}
-          heading={<FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.clearModalHeading" />}
-          message={confirmationMessage}
-          onConfirm={() => {
-            this.confirmClearPermittedFor(true);
-          }}
-          onCancel={() => {
-            this.confirmClearPermittedFor(false);
-          }}
           confirmLabel={<FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.confirmClearLabel" />}
+          heading={<FormattedMessage id="ui-finc-config.collection.form.selectedUsageRestricted.clearModalHeading" />}
+          id="clear-permitted-for-confirmation"
+          message={confirmationMessage}
+          onCancel={() => { this.confirmClearPermittedFor(false); }}
+          onConfirm={() => { this.confirmClearPermittedFor(true); }}
+          open={confirmClear}
         />
       </Accordion>
     );
@@ -218,15 +213,14 @@ class CollectionManagementForm extends React.Component {
 CollectionManagementForm.propTypes = {
   accordionId: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
-  onToggle: PropTypes.func,
-  values: PropTypes.shape(),
-  metadataCollection: PropTypes.object,
   form: PropTypes.shape({
     mutators: PropTypes.shape({
       clearPermittedFor: PropTypes.func,
       setUsageRestricted: PropTypes.func
     })
   }),
+  onToggle: PropTypes.func,
+  values: PropTypes.shape(),
 };
 
 export default CollectionManagementForm;

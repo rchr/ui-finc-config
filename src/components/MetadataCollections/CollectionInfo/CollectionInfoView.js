@@ -27,10 +27,7 @@ class CollectionInfoView extends React.Component {
     // set the complete source link with name and status
     const sourceLink = (
       <React.Fragment>
-        <Link to={{
-          pathname: `${urls.sourceView(sourceId)}`,
-        }}
-        >
+        <Link to={{ pathname: `${urls.sourceView(sourceId)}` }}>
           {sourceName}
         </Link>
       </React.Fragment>

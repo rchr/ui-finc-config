@@ -8,6 +8,7 @@
   "form.cancel": "Cancel",
   "form.close": "Close edit dialog",
   "noPermission": "No permission",
+  "renderList.isEmpty": "No items to show",
 
   "sources.title": "Metadata sources",
   "source.accessUrl": "Access url",

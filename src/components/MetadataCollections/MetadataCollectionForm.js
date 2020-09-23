@@ -219,8 +219,6 @@ class MetadataCollectionForm extends React.Component {
                 <CollectionManagementForm
                   accordionId="editCollectionManagement"
                   expanded={sections.editCollectionManagement}
-                  id="collectionManagement"
-                  metadataCollection={initialValues}
                   onToggle={this.handleSectionToggle}
                   {...this.props}
                 />
@@ -263,8 +261,5 @@ export default stripesFinalForm({
     setUsageRestricted: (args, state, tools) => {
       tools.changeValue(state, 'usageRestricted', () => args[1]);
     }
-  },
-  subscription: {
-    values: true
   },
 })(MetadataCollectionForm);

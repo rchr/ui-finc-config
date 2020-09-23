@@ -48,7 +48,6 @@ class SourceManagementForm extends React.Component {
         </div>
         <FieldArray
           component={ContactFieldArray}
-          // add name to the array-field, which should be changed
           name="contacts"
         />
         <Row>

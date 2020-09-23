@@ -97,14 +97,12 @@ class FindSource extends React.Component {
 }
 
 FindSource.propTypes = {
-  intialSourceId: PropTypes.string,
-  intialSource: PropTypes.object,
-  stripes: PropTypes.object,
   form: PropTypes.shape({
     mutators: PropTypes.shape({
       setSource: PropTypes.func,
     }),
   }),
+  intialSource: PropTypes.object,
 };
 
 export default FindSource;
