@@ -71,5 +71,7 @@
   "settings.isils.label": "Isils",
   "settings.isils.labelSingular": "Isil",
   "settings.isils.library": "Library",
-  "settings.isils.tenant": "Tenant"
+  "settings.isils.tenant": "Tenant",
+  "settings.isils.isilIsEmpty": "Please fill isil to continue",
+  "settings.isils.tenantIsEmpty": "Please fill tenant to continue"
 }

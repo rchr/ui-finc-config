@@ -60,7 +60,7 @@ class CollectionCreateRoute extends React.Component {
       });
   }
 
-  getInitialValues = () => {
+  getInitialSolrMegaCollection = () => {
     // add first field for required repeatable field
     const solrMegaCollections = [''];
 
@@ -73,7 +73,7 @@ class CollectionCreateRoute extends React.Component {
     return (
       <MetadataCollectionForm
         handlers={{ onClose: this.handleClose }}
-        initialValues={this.getInitialValues()}
+        initialValues={this.getInitialSolrMegaCollection()}
         onSubmit={this.handleSubmit}
       />
     );

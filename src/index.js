@@ -19,15 +19,14 @@ class FincConfig extends React.Component {
   static propTypes = {
     match: ReactRouterPropTypes.match.isRequired,
     showSettings: PropTypes.bool,
-    stripes: PropTypes.object.isRequired,
   }
 
   render() {
-    if (this.props.showSettings) {
+    const { showSettings, match: { path } } = this.props;
+
+    if (showSettings) {
       return <Settings {...this.props} />;
     }
-
-    const { match: { path } } = this.props;
 
     return (
       <Switch>
@@ -47,4 +46,3 @@ class FincConfig extends React.Component {
 }
 
 export default FincConfig;
-// export { default as MetadataSources } from './components/MetadataSources/MetadataSources';
