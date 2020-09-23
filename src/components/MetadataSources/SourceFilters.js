@@ -15,8 +15,8 @@ import filterConfig from './filterConfigData';
 class SourceFilters extends React.Component {
   static propTypes = {
     activeFilters: PropTypes.object,
-    filterHandlers: PropTypes.object,
     filterData: PropTypes.object,
+    filterHandlers: PropTypes.object,
   };
 
   static defaultProps = {

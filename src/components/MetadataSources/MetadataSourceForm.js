@@ -126,10 +126,10 @@ class MetadataSourceForm extends React.Component {
 
     const startButton = (
       <Button
-        data-test-source-form-cancel-button
-        marginBottom0
-        id="clickable-close-source-form"
         buttonStyle="default mega"
+        data-test-source-form-cancel-button
+        id="clickable-close-source-form"
+        marginBottom0
         onClick={onClose}
       >
         <FormattedMessage id="ui-finc-config.form.cancel" />
@@ -138,13 +138,13 @@ class MetadataSourceForm extends React.Component {
 
     const endButton = (
       <Button
-        data-test-source-form-submit-button
-        marginBottom0
-        id="clickable-savesource"
         buttonStyle="primary mega"
-        type="submit"
-        onClick={handleSubmit}
+        data-test-source-form-submit-button
         disabled={disabled}
+        id="clickable-savesource"
+        marginBottom0
+        onClick={handleSubmit}
+        type="submit"
       >
         <FormattedMessage id="ui-finc-config.form.saveAndClose" />
       </Button>

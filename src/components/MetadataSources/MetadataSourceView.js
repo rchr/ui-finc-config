@@ -75,12 +75,12 @@ class MetadataSourceView extends React.Component {
       <PaneMenu>
         {canEdit && (
           <Button
-            id="clickable-edit-source"
-            buttonStyle="primary"
-            onClick={handlers.onEdit}
             aria-label="Edit Source"
             buttonRef={this.editButton}
+            buttonStyle="primary"
+            id="clickable-edit-source"
             marginBottom0
+            onClick={handlers.onEdit}
           >
             <FormattedMessage id="ui-finc-config.edit" />
           </Button>
@@ -152,8 +152,8 @@ class MetadataSourceView extends React.Component {
               <SourceManagementView
                 id="sourceManagement"
                 metadataSource={record}
-                stripes={this.props.stripes}
                 organizationId={organizationId}
+                stripes={this.props.stripes}
               />
             </Accordion>
             <Accordion

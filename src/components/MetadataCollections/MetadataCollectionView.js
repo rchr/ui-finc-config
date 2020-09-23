@@ -74,12 +74,12 @@ class MetadataCollectionView extends React.Component {
       <PaneMenu>
         {canEdit && (
           <Button
-            id="clickable-edit-collection"
-            buttonStyle="primary"
-            onClick={handlers.onEdit}
             aria-label="Edit Collection"
             buttonRef={this.editButton}
+            buttonStyle="primary"
+            id="clickable-edit-collection"
             marginBottom0
+            onClick={handlers.onEdit}
           >
             <FormattedMessage id="ui-finc-config.edit" />
           </Button>
