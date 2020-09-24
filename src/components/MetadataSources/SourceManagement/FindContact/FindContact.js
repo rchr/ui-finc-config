@@ -32,12 +32,12 @@ class FindContact extends React.Component {
           });
         }}
         searchButtonStyle="default"
-        searchLabel="Add contact"
+        searchLabel={<FormattedMessage id="ui-finc-config.plugin.buttonLabel.contact" />}
         type="find-contact"
         visibleColumns={['name', 'code', 'description']}
         {...this.props}
       >
-        <div style={{ background: 'red' }}>Plugin not found</div>
+        <div style={{ background: 'red' }}><FormattedMessage id="ui-finc-config.plugin.notFound" /></div>
       </Pluggable>;
 
     return (

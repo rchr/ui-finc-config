@@ -9,6 +9,11 @@
   "form.close": "Close edit dialog",
   "noPermission": "No permission",
   "renderList.isEmpty": "No items to show",
+  "plugin.notFound": "Plugin not found",
+  "plugin.buttonLabel.contact": "Add contact",
+  "plugin.buttonLabel.user": "Add user",
+  "plugin.buttonLabel.organization": "Add organization",
+  "plugin.buttonLabel.source": "Add metadata source",
 
   "sources.title": "Metadata sources",
   "source.accessUrl": "Access url",

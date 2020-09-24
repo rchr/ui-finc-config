@@ -83,13 +83,13 @@ class FindOrganization extends React.Component {
           });
         }}
         searchButtonStyle="default"
-        searchLabel="Organization look-up"
+        searchLabel={<FormattedMessage id="ui-finc-config.plugin.buttonLabel.organization" />}
         selectVendor={this.selectVendor}
         type="find-organization"
         visibleColumns={['name', 'code', 'description']}
         {...this.props}
       >
-        <div style={{ background: 'red' }}>Plugin not found</div>
+        <div style={{ background: 'red' }}><FormattedMessage id="ui-finc-config.plugin.notFound" /></div>
       </Pluggable>;
 
     return (

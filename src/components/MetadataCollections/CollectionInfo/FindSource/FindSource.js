@@ -58,13 +58,13 @@ class FindSource extends React.Component {
           });
         }}
         searchButtonStyle="default"
-        searchLabel="Metadata source"
+        searchLabel={<FormattedMessage id="ui-finc-config.plugin.buttonLabel.source" />}
         selectSource={this.selectSource}
         type="find-finc-metadata-source"
         visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
         {...this.props}
       >
-        <div style={{ background: 'red' }}>Plugin not found</div>
+        <div style={{ background: 'red' }}><FormattedMessage id="ui-finc-config.plugin.notFound" /></div>
       </Pluggable>;
 
     return (
