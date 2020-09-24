@@ -262,4 +262,8 @@ export default stripesFinalForm({
       tools.changeValue(state, 'usageRestricted', () => args[1]);
     }
   },
+  // necessary for permittedFor logic
+  subscription: {
+    values: true
+  },
 })(MetadataCollectionForm);
