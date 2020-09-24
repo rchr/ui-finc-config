@@ -212,7 +212,6 @@ class MetadataCollectionForm extends React.Component {
                 <CollectionInfoForm
                   accordionId="editCollectionInfo"
                   expanded={sections.editCollectionInfo}
-                  metadataCollection={initialValues}
                   onToggle={this.handleSectionToggle}
                   {...this.props}
                 />
