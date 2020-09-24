@@ -69,7 +69,6 @@ export default class ContactField extends React.Component {
         <Row>
           <Col xs={12}>
             <Field
-              ariaLabel={<FormattedMessage id="ui-finc-config.plugin.buttonLabel.contact" />}
               component={TextField}
               fullWidth
               id={`contact-name-${index}`}

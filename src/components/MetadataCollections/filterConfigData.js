@@ -1,6 +1,5 @@
 const filterConfig = [
   {
-    label: 'Metadata Available?',
     name: 'metadataAvailable',
     cql: 'metadataAvailable',
     values: [
@@ -10,7 +9,6 @@ const filterConfig = [
     ],
   },
   {
-    label: 'Usage Restricted?',
     name: 'usageRestricted',
     cql: 'usageRestricted',
     values: [
@@ -19,7 +17,6 @@ const filterConfig = [
     ],
   },
   {
-    label: 'Free Content?',
     name: 'freeContent',
     cql: 'freeContent',
     values: [
@@ -29,7 +26,6 @@ const filterConfig = [
     ],
   },
   {
-    label: 'Source',
     name: 'mdSource',
     cql: 'mdSource.id',
     operator: '==',
