@@ -56,9 +56,9 @@ class FindUser extends React.Component {
 }
 
 FindUser.propTypes = {
-  stripes: PropTypes.object,
   index: PropTypes.number,
   selectContact: PropTypes.func,
+  stripes: PropTypes.object,
 };
 
 export default FindUser;

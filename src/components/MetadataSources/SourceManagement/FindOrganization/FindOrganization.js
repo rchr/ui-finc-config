@@ -113,14 +113,12 @@ class FindOrganization extends React.Component {
 }
 
 FindOrganization.propTypes = {
-  intialVendorId: PropTypes.string,
-  intialVendor: PropTypes.object,
-  stripes: PropTypes.object,
   form: PropTypes.shape({
     mutators: PropTypes.shape({
       setOrganization: PropTypes.func,
     }),
   }),
+  intialVendor: PropTypes.object,
 };
 
 export default FindOrganization;

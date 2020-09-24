@@ -17,12 +17,9 @@ import contactRoleOptions from '../../../DataOptions/contactRole';
 
 class DisplayContact extends React.Component {
   static propTypes = {
-    stripes: PropTypes.shape({
-      okapi: PropTypes.object
-    }),
     contact: PropTypes.object,
-    contactIndex: PropTypes.number,
     contactId: PropTypes.string,
+    contactIndex: PropTypes.number,
   };
 
   getContactLink(contact, contactId) {
@@ -59,10 +56,9 @@ class DisplayContact extends React.Component {
     return (
       <Card
         cardStyle="positive"
-        id={`contact #${parseInt(contactIndex + 1, 10)}`}
         headerStart={<span>{<FormattedMessage id="ui-finc-config.source.contact.title.singular" values={{ amount : contactIndex + 1 }} />}</span>}
+        id={`contact #${parseInt(contactIndex + 1, 10)}`}
         roundedBorder
-        key={`contact #${parseInt(contactIndex + 1, 10)}`}
       >
         <Row>
           <Col xs={3}>

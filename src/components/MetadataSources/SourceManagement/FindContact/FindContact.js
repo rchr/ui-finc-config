@@ -16,6 +16,7 @@ class FindContact extends React.Component {
     const buttonProps = { 'marginBottom0': true };
     const pluggable =
       <Pluggable
+        addContacts={this.props.selectContact}
         aria-haspopup="true"
         buttonProps={buttonProps}
         columnMapping={this.columnMapping}
@@ -32,7 +33,6 @@ class FindContact extends React.Component {
         }}
         searchButtonStyle="default"
         searchLabel="Add contact"
-        addContacts={this.props.selectContact}
         type="find-contact"
         visibleColumns={['name', 'code', 'description']}
         {...this.props}
@@ -56,9 +56,9 @@ class FindContact extends React.Component {
 }
 
 FindContact.propTypes = {
-  stripes: PropTypes.object,
   index: PropTypes.number,
   selectContact: PropTypes.func,
+  stripes: PropTypes.object,
 };
 
 export default FindContact;

@@ -8,9 +8,6 @@ import DisplayContact from './DisplayContact';
 class DisplayContactsArray extends React.Component {
   static propTypes = {
     metadataSource: PropTypes.object,
-    stripes: PropTypes.shape({
-      okapi: PropTypes.object
-    }),
   };
 
   render() {
@@ -28,9 +25,8 @@ class DisplayContactsArray extends React.Component {
           {fields.map((elem, index) => (
             <DisplayContact
               contact={elem}
-              contactIndex={index}
               contactId={elem.externalId}
-              key={index}
+              contactIndex={index}
             />
           ))}
         </React.Fragment>

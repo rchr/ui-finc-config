@@ -37,7 +37,6 @@ class SourceManagementView extends React.Component {
       org: PropTypes.object,
       failed: PropTypes.object,
     }).isRequired,
-    stripes: PropTypes.object,
   };
 
   render() {
@@ -93,7 +92,6 @@ class SourceManagementView extends React.Component {
           <Row className={css.addMarginForContacts}>
             <DisplayContactsArray
               metadataSource={metadataSource}
-              stripes={this.props.stripes}
             />
           </Row>
           <Row>

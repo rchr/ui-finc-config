@@ -42,7 +42,6 @@ class SourceManagementForm extends React.Component {
             component={FindOrganization}
             name="organization"
             intialVendor={this.state.organization}
-            stripes={this.props.stripes}
             {...this.props}
           />
         </div>
@@ -86,7 +85,6 @@ SourceManagementForm.propTypes = {
     organization: PropTypes.object
   }),
   onToggle: PropTypes.func,
-  stripes: PropTypes.object,
 };
 
 export default SourceManagementForm;
