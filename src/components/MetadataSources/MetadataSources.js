@@ -214,7 +214,7 @@ class MetadataSources extends React.Component {
 
   renderIsEmptyMessage = (query, source) => {
     if (!source) {
-      return 'no source yet';
+      return <FormattedMessage id="ui-finc-config.noSourceYet" />;
     }
 
     return (

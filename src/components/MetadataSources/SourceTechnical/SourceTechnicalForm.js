@@ -169,7 +169,6 @@ class SourceTechnicalForm extends React.Component {
                     ariaLabel={ariaLabel}
                     component={RepeatableField}
                     id="display_inferior_to"
-                    label="Displayinferiorto"
                     name="inferiorTo"
                     {...this.props}
                   />

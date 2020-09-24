@@ -113,10 +113,9 @@ class CollectionTechnicalForm extends React.Component {
               <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
                 {ariaLabel => (
                   <FieldArray
-                    // get component, which is rendering the validation-error
+                    ariaLabel={ariaLabel}
                     component={RequiredRepeatableField}
                     id="display_solrMegaCollections"
-                    ariaLabel={ariaLabel}
                     name="solrMegaCollections"
                   />
                 )}

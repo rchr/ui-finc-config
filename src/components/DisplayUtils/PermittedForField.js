@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 
 import {
   Button,
@@ -60,7 +61,7 @@ class PermittedForField extends React.Component {
           ))}
         </Col>
         <Col xs={4}>
-          <Button onClick={() => fields.push('')} disabled={disable}>+ Add</Button>
+          <Button onClick={() => fields.push('')} disabled={disable}><FormattedMessage id="ui-finc-config.form.button.add" /></Button>
         </Col>
       </Row>
     );

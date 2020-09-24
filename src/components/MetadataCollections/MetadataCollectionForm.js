@@ -175,6 +175,7 @@ class MetadataCollectionForm extends React.Component {
     const firstMenu = this.getFirstMenu();
     const lastMenu = this.getLastMenu();
     const footer = this.getPaneFooter();
+    const name = initialValues.label;
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
@@ -231,7 +232,10 @@ class MetadataCollectionForm extends React.Component {
               <ConfirmationModal
                 heading={<FormattedMessage id="ui-finc-config.form.delete" />}
                 id="delete-collection-confirmation"
-                message={`Do you really want to delete ${initialValues.label}?`}
+                message={<FormattedMessage
+                  id="ui-finc-config.form.delete.confirm.message"
+                  values={{ name }}
+                />}
                 onCancel={() => { this.confirmDelete(false); }}
                 onConfirm={() => onDelete()}
                 open={confirmDelete}

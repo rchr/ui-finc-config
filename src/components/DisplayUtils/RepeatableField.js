@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 
 import {
   Button,
@@ -43,7 +44,7 @@ class RepeatableField extends React.Component {
           ))}
         </Col>
         <Col xs={4}>
-          <Button onClick={() => fields.push('')}>+ Add</Button>
+          <Button onClick={() => fields.push('')}><FormattedMessage id="ui-finc-config.form.button.add" /></Button>
         </Col>
       </Row>
     );

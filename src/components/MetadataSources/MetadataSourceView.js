@@ -75,7 +75,7 @@ class MetadataSourceView extends React.Component {
       <PaneMenu>
         {canEdit && (
           <Button
-            aria-label="Edit Source"
+            aria-label={<FormattedMessage id="ui-finc-config.edit" />}
             buttonRef={this.editButton}
             buttonStyle="primary"
             id="clickable-edit-source"
@@ -123,7 +123,6 @@ class MetadataSourceView extends React.Component {
           onClose={this.props.handlers.onClose}
           paneTitle={<span data-test-source-header-title>{label}</span>}
         >
-          {/* <TitleManager record={label} /> */}
           <AccordionSet>
             <this.connectedViewMetaData
               metadata={_.get(record, 'metadata', {})}
