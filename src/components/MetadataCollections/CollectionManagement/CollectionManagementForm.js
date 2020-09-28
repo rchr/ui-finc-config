@@ -135,7 +135,6 @@ class CollectionManagementForm extends React.Component {
                     disable={!permittedIsRequired}
                     id="display_permittedFor"
                     name="permittedFor"
-                    // {...this.props}
                   />
                 )}
               </FormattedMessage>
