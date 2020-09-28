@@ -71,7 +71,6 @@ class CollectionTechnicalForm extends React.Component {
                     component={RepeatableFieldValidUrl}
                     id="display_tickets"
                     name="tickets"
-                    {...this.props}
                   />
                 )}
               </FormattedMessage>
@@ -94,7 +93,6 @@ class CollectionTechnicalForm extends React.Component {
                     component={RepeatableFieldValidUrl}
                     id="display_contentFiles"
                     name="contentFiles"
-                    {...this.props}
                   />
                 )}
               </FormattedMessage>

@@ -49,7 +49,6 @@ class SourceTechnicalForm extends React.Component {
                     component={RepeatableFieldValidUrl}
                     id="display_tickets"
                     name="tickets"
-                    {...this.props}
                   />
                 )}
               </FormattedMessage>
@@ -112,7 +111,6 @@ class SourceTechnicalForm extends React.Component {
                     component={RepeatableField}
                     id="display_delivery_methods"
                     name="deliveryMethods"
-                    {...this.props}
                   />
                 )}
               </FormattedMessage>
@@ -135,7 +133,6 @@ class SourceTechnicalForm extends React.Component {
                     component={RepeatableField}
                     id="display_formats"
                     name="formats"
-                    {...this.props}
                   />
                 )}
               </FormattedMessage>
@@ -170,7 +167,6 @@ class SourceTechnicalForm extends React.Component {
                     component={RepeatableField}
                     id="display_inferior_to"
                     name="inferiorTo"
-                    {...this.props}
                   />
                 )}
               </FormattedMessage>

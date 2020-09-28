@@ -26,10 +26,6 @@ import BasicCss from '../../BasicStyle.css';
 let permittedIsRequired;
 
 class CollectionManagementForm extends React.Component {
-  static propTypes = {
-    disabled: PropTypes.bool,
-  };
-
   constructor(props) {
     super(props);
 
@@ -139,7 +135,7 @@ class CollectionManagementForm extends React.Component {
                     disable={!permittedIsRequired}
                     id="display_permittedFor"
                     name="permittedFor"
-                    {...this.props}
+                    // {...this.props}
                   />
                 )}
               </FormattedMessage>
