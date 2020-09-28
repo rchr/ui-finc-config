@@ -31,13 +31,13 @@ class FindUser extends React.Component {
           });
         }}
         searchButtonStyle="default"
-        searchLabel="Add user"
+        searchLabel={<FormattedMessage id="ui-finc-config.plugin.buttonLabel.user" />}
         selectUser={this.props.selectContact}
         type="find-user"
         visibleColumns={['name', 'code', 'description']}
         {...this.props}
       >
-        <div style={{ background: 'red' }}>Plugin not found</div>
+        <div style={{ background: 'red' }}><FormattedMessage id="ui-finc-config.plugin.notFound" /></div>
       </Pluggable>;
 
     return (
@@ -56,9 +56,9 @@ class FindUser extends React.Component {
 }
 
 FindUser.propTypes = {
-  stripes: PropTypes.object,
   index: PropTypes.number,
   selectContact: PropTypes.func,
+  stripes: PropTypes.object,
 };
 
 export default FindUser;

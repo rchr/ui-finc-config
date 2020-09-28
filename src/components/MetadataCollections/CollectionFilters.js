@@ -15,8 +15,8 @@ import filterConfig from './filterConfigData';
 class CollectionFilters extends React.Component {
   static propTypes = {
     activeFilters: PropTypes.object,
-    filterHandlers: PropTypes.object,
     filterData: PropTypes.object,
+    filterHandlers: PropTypes.object,
   };
 
   static defaultProps = {
@@ -128,7 +128,7 @@ class CollectionFilters extends React.Component {
   render() {
     return (
       <AccordionSet>
-        {this.renderMetadataSourceFilter('mdSource')}
+        {this.renderMetadataSourceFilter()}
         {this.renderCheckboxFilter('metadataAvailable')}
         {this.renderCheckboxFilter('usageRestricted')}
         {this.renderCheckboxFilter('freeContent')}

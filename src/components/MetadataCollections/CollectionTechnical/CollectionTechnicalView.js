@@ -8,7 +8,7 @@ import {
   KeyValue,
   List,
   NoValue,
-  Row
+  Row,
 } from '@folio/stripes/components';
 
 import BasicCss from '../../BasicStyle.css';
@@ -21,19 +21,19 @@ class CollectionTechnicalView extends React.Component {
 
   renderList = (values) => {
     const { metadataCollection } = this.props;
+    const isEmptyMessage = <FormattedMessage id="ui-finc-config.renderList.isEmpty" />;
 
     if (!metadataCollection) {
-      return 'no values';
+      return isEmptyMessage;
     } else {
       const valueItems = metadataCollection[values];
       const valueFormatter = (valueItem) => (<li key={valueItem}>{valueItem}</li>);
-      const isEmptyMessage = 'No items to show';
 
       return (
         <List
+          isEmptyMessage={isEmptyMessage}
           items={valueItems}
           itemFormatter={valueFormatter}
-          isEmptyMessage={isEmptyMessage}
         />
       );
     }
@@ -41,19 +41,19 @@ class CollectionTechnicalView extends React.Component {
 
   renderUrlList = (values) => {
     const { metadataCollection } = this.props;
+    const isEmptyMessage = <FormattedMessage id="ui-finc-config.renderList.isEmpty" />;
 
     if (!metadataCollection) {
-      return 'no values';
+      return isEmptyMessage;
     } else {
       const valueItems = metadataCollection[values];
       const valueFormatter = (valueItem) => (<li key={valueItem}><a href={valueItem} target="_blank" rel="noopener noreferrer">{valueItem}</a></li>);
-      const isEmptyMessage = 'No items to show';
 
       return (
         <List
+          isEmptyMessage={isEmptyMessage}
           items={valueItems}
           itemFormatter={valueFormatter}
-          isEmptyMessage={isEmptyMessage}
         />
       );
     }

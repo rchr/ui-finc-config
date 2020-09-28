@@ -19,7 +19,7 @@ export default class FincConfigSettings extends React.Component {
       <Settings
         data-test-settings-finc-config
         pages={this.pages}
-        paneTitle="Finc config"
+        paneTitle={<FormattedMessage id="ui-finc-config.meta.title" />}
         {...this.props}
       />
     );

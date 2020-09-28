@@ -18,7 +18,6 @@ class CollectionViewRoute extends React.Component {
   });
 
   static propTypes = {
-    handlers: PropTypes.object,
     history: ReactRouterPropTypes.history.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     match: PropTypes.shape({
@@ -51,12 +50,12 @@ class CollectionViewRoute extends React.Component {
   }
 
   render() {
-    const { handlers, stripes } = this.props;
+    const { stripes } = this.props;
 
     return (
       <MetadataCollectionView
+        canEdit={stripes.hasPerm('finc-config.metadata-collections.item.put')}
         handlers={{
-          ...handlers,
           onClose: this.handleClose,
           onEdit: this.handleEdit,
         }}

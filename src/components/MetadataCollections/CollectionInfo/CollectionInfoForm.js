@@ -23,7 +23,7 @@ class CollectionInfoForm extends React.Component {
       id: 'SourceId',
     };
 
-    const intialSource = props.metadataCollection.mdSource || {};
+    const intialSource = props.initialValues.mdSource || {};
 
     this.state = {
       source: intialSource,
@@ -72,7 +72,6 @@ class CollectionInfoForm extends React.Component {
             component={FindSource}
             name="mdSource"
             intialSource={this.state.source}
-            stripes={this.props.stripes}
             {...this.props}
           />
         </div>
@@ -84,7 +83,7 @@ class CollectionInfoForm extends React.Component {
 CollectionInfoForm.propTypes = {
   accordionId: PropTypes.string.isRequired,
   expanded: PropTypes.bool,
-  metadataCollection: PropTypes.shape({
+  initialValues: PropTypes.shape({
     mdSource: PropTypes.object
   }),
   onToggle: PropTypes.func,

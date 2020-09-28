@@ -8,7 +8,7 @@ import {
   KeyValue,
   List,
   NoValue,
-  Row
+  Row,
 } from '@folio/stripes/components';
 
 import BasicCss from '../../BasicStyle.css';
@@ -22,19 +22,19 @@ class SourceTechnicalView extends React.Component {
 
   renderList = (values) => {
     const { metadataSource } = this.props;
+    const isEmptyMessage = <FormattedMessage id="ui-finc-config.renderList.isEmpty" />;
 
     if (!metadataSource) {
-      return 'no values';
+      return isEmptyMessage;
     } else {
       const valueItems = metadataSource[values];
       const valueFormatter = (valueItem) => (<li key={valueItem}>{valueItem}</li>);
-      const isEmptyMessage = 'No items to show';
 
       return (
         <List
+          isEmptyMessage={isEmptyMessage}
           items={valueItems}
           itemFormatter={valueFormatter}
-          isEmptyMessage={isEmptyMessage}
         />
       );
     }
@@ -42,13 +42,13 @@ class SourceTechnicalView extends React.Component {
 
   renderUrlList = (values) => {
     const { metadataSource } = this.props;
+    const isEmptyMessage = <FormattedMessage id="ui-finc-config.renderList.isEmpty" />;
 
     if (!metadataSource) {
-      return 'no values';
+      return isEmptyMessage;
     } else {
       const valueItems = metadataSource[values];
       const valueFormatter = (valueItem) => (<li key={valueItem}><a href={valueItem} target="_blank" rel="noopener noreferrer">{valueItem}</a></li>);
-      const isEmptyMessage = 'No items to show';
 
       return (
         <List
@@ -65,11 +65,8 @@ class SourceTechnicalView extends React.Component {
     const accessUrlValue = _.get(metadataSource, 'accessUrl', <NoValue />);
     const accessUrlValueFormatter = <a href={accessUrlValue} target="_blank" rel="noopener noreferrer">{accessUrlValue}</a>;
     const solrValue = _.get(metadataSource, 'solrShard', '');
-    const dataWithSolrValue = solrShardOptions.find(
-      (e) => e.value === solrValue
-    );
+    const dataWithSolrValue = solrShardOptions.find((e) => e.value === solrValue);
     const solrLabel = _.get(dataWithSolrValue, 'label', <NoValue />);
-
 
     return (
       <React.Fragment>

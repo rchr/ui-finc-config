@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import {
   Button,
@@ -11,7 +12,6 @@ import {
   NoValue,
   Row,
 } from '@folio/stripes/components';
-import { Link } from 'react-router-dom';
 import { stripesConnect } from '@folio/stripes/core';
 
 
@@ -37,7 +37,6 @@ class SourceManagementView extends React.Component {
       org: PropTypes.object,
       failed: PropTypes.object,
     }).isRequired,
-    stripes: PropTypes.object,
   };
 
   render() {
@@ -55,10 +54,7 @@ class SourceManagementView extends React.Component {
     } else {
       orgValue = (
         <React.Fragment>
-          <Link to={{
-            pathname: `${urls.organizationView(organization.id)}`,
-          }}
-          >
+          <Link to={{ pathname: `${urls.organizationView(organization.id)}` }}>
             {organization.name}
           </Link>
         </React.Fragment>
@@ -96,7 +92,6 @@ class SourceManagementView extends React.Component {
           <Row className={css.addMarginForContacts}>
             <DisplayContactsArray
               metadataSource={metadataSource}
-              stripes={this.props.stripes}
             />
           </Row>
           <Row>

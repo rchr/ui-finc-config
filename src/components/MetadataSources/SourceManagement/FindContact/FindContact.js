@@ -16,6 +16,7 @@ class FindContact extends React.Component {
     const buttonProps = { 'marginBottom0': true };
     const pluggable =
       <Pluggable
+        addContacts={this.props.selectContact}
         aria-haspopup="true"
         buttonProps={buttonProps}
         columnMapping={this.columnMapping}
@@ -31,13 +32,12 @@ class FindContact extends React.Component {
           });
         }}
         searchButtonStyle="default"
-        searchLabel="Add contact"
-        addContacts={this.props.selectContact}
+        searchLabel={<FormattedMessage id="ui-finc-config.plugin.buttonLabel.contact" />}
         type="find-contact"
         visibleColumns={['name', 'code', 'description']}
         {...this.props}
       >
-        <div style={{ background: 'red' }}>Plugin not found</div>
+        <div style={{ background: 'red' }}><FormattedMessage id="ui-finc-config.plugin.notFound" /></div>
       </Pluggable>;
 
     return (
@@ -56,9 +56,9 @@ class FindContact extends React.Component {
 }
 
 FindContact.propTypes = {
-  stripes: PropTypes.object,
   index: PropTypes.number,
   selectContact: PropTypes.func,
+  stripes: PropTypes.object,
 };
 
 export default FindContact;

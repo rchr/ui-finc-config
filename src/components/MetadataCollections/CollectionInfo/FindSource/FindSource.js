@@ -58,13 +58,13 @@ class FindSource extends React.Component {
           });
         }}
         searchButtonStyle="default"
-        searchLabel="Metadata source"
+        searchLabel={<FormattedMessage id="ui-finc-config.plugin.buttonLabel.source" />}
         selectSource={this.selectSource}
         type="find-finc-metadata-source"
         visibleColumns={['label', 'sourceId', 'status', 'solrShard', 'lastProcessed']}
         {...this.props}
       >
-        <div style={{ background: 'red' }}>Plugin not found</div>
+        <div style={{ background: 'red' }}><FormattedMessage id="ui-finc-config.plugin.notFound" /></div>
       </Pluggable>;
 
     return (
@@ -80,7 +80,7 @@ class FindSource extends React.Component {
           </Col>
           <Col xs={4}>
             <Field
-              ariaLabel="Add metadata source"
+              ariaLabel={<FormattedMessage id="ui-finc-config.plugin.buttonLabel.source" />}
               component={TextField}
               fullWidth
               id="addcollection_mdSource"
@@ -97,14 +97,12 @@ class FindSource extends React.Component {
 }
 
 FindSource.propTypes = {
-  intialSourceId: PropTypes.string,
-  intialSource: PropTypes.object,
-  stripes: PropTypes.object,
   form: PropTypes.shape({
     mutators: PropTypes.shape({
       setSource: PropTypes.func,
     }),
   }),
+  intialSource: PropTypes.object,
 };
 
 export default FindSource;

@@ -70,9 +70,7 @@ class CollectionTechnicalForm extends React.Component {
                     ariaLabel={ariaLabel}
                     component={RepeatableFieldValidUrl}
                     id="display_tickets"
-                    // add name to the array-field, which should be changed
                     name="tickets"
-                    {...this.props}
                   />
                 )}
               </FormattedMessage>
@@ -94,9 +92,7 @@ class CollectionTechnicalForm extends React.Component {
                     ariaLabel={ariaLabel}
                     component={RepeatableFieldValidUrl}
                     id="display_contentFiles"
-                    // add name to the array-field, which should be changed
                     name="contentFiles"
-                    {...this.props}
                   />
                 )}
               </FormattedMessage>
@@ -115,11 +111,9 @@ class CollectionTechnicalForm extends React.Component {
               <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
                 {ariaLabel => (
                   <FieldArray
-                    // get component, which is rendering the validation-error
+                    ariaLabel={ariaLabel}
                     component={RequiredRepeatableField}
                     id="display_solrMegaCollections"
-                    ariaLabel={ariaLabel}
-                    // add name to the array-field, which should be changed
                     name="solrMegaCollections"
                   />
                 )}

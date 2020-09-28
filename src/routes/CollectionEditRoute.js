@@ -1,8 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 import { stripesConnect } from '@folio/stripes/core';
+
 import MetadataCollectionForm from '../components/MetadataCollections/MetadataCollectionForm';
 import urls from '../components/DisplayUtils/urls';
 
@@ -15,8 +17,12 @@ class CollectionEditRoute extends React.Component {
     },
   });
 
-  static defaultProps = {
-    handlers: {},
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasPerms: props.stripes.hasPerm('finc-config.metadata-collections.item.put')
+    };
   }
 
   getInitialValues = () => {
@@ -55,29 +61,22 @@ class CollectionEditRoute extends React.Component {
   }
 
   render() {
-    const { handlers, resources, stripes } = this.props;
-
+    if (!this.state.hasPerms) return <div><FormattedMessage id="ui-finc-config.noPermission" /></div>;
     if (this.fetchIsPending()) return 'loading';
 
     return (
       <MetadataCollectionForm
-        contentData={resources}
-        handlers={{
-          ...handlers,
-          onClose: this.handleClose,
-        }}
+        handlers={{ onClose: this.handleClose }}
         initialValues={this.getInitialValues()}
         isLoading={this.fetchIsPending()}
         onDelete={this.deleteCollection}
         onSubmit={this.handleSubmit}
-        stripes={stripes}
       />
     );
   }
 }
 
 CollectionEditRoute.propTypes = {
-  handlers: PropTypes.object,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
@@ -98,7 +97,6 @@ CollectionEditRoute.propTypes = {
   }).isRequired,
   stripes: PropTypes.shape({
     hasPerm: PropTypes.func.isRequired,
-    okapi: PropTypes.object.isRequired,
   }).isRequired,
 };
 

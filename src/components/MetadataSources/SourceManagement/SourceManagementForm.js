@@ -42,13 +42,11 @@ class SourceManagementForm extends React.Component {
             component={FindOrganization}
             name="organization"
             intialVendor={this.state.organization}
-            stripes={this.props.stripes}
             {...this.props}
           />
         </div>
         <FieldArray
           component={ContactFieldArray}
-          // add name to the array-field, which should be changed
           name="contacts"
         />
         <Row>
@@ -87,7 +85,6 @@ SourceManagementForm.propTypes = {
     organization: PropTypes.object
   }),
   onToggle: PropTypes.func,
-  stripes: PropTypes.object,
 };
 
 export default SourceManagementForm;

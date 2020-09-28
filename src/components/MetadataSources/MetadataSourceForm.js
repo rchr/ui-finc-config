@@ -126,10 +126,10 @@ class MetadataSourceForm extends React.Component {
 
     const startButton = (
       <Button
-        data-test-source-form-cancel-button
-        marginBottom0
-        id="clickable-close-source-form"
         buttonStyle="default mega"
+        data-test-source-form-cancel-button
+        id="clickable-close-source-form"
+        marginBottom0
         onClick={onClose}
       >
         <FormattedMessage id="ui-finc-config.form.cancel" />
@@ -138,13 +138,13 @@ class MetadataSourceForm extends React.Component {
 
     const endButton = (
       <Button
-        data-test-source-form-submit-button
-        marginBottom0
-        id="clickable-savesource"
         buttonStyle="primary mega"
-        type="submit"
-        onClick={handleSubmit}
+        data-test-source-form-submit-button
         disabled={disabled}
+        id="clickable-savesource"
+        marginBottom0
+        onClick={handleSubmit}
+        type="submit"
       >
         <FormattedMessage id="ui-finc-config.form.saveAndClose" />
       </Button>
@@ -170,10 +170,10 @@ class MetadataSourceForm extends React.Component {
     const { initialValues, isLoading, onDelete } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.form.create" />;
-
     const firstMenu = this.getFirstMenu();
     const lastMenu = this.getLastMenu();
     const footer = this.getPaneFooter();
+    const name = initialValues.label;
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
@@ -216,8 +216,6 @@ class MetadataSourceForm extends React.Component {
                 <SourceManagementForm
                   accordionId="editSourceManagement"
                   expanded={sections.editSourceManagement}
-                  id="sourceManagement"
-                  metadataSource={initialValues}
                   onToggle={this.handleSectionToggle}
                   {...this.props}
                 />
@@ -231,7 +229,10 @@ class MetadataSourceForm extends React.Component {
               <ConfirmationModal
                 heading={<FormattedMessage id="ui-finc-config.form.delete" />}
                 id="delete-source-confirmation"
-                message={`Do you really want to delete ${initialValues.label}?`}
+                message={<FormattedMessage
+                  id="ui-finc-config.form.delete.confirm.message"
+                  values={{ name }}
+                />}
                 onCancel={() => { this.confirmDelete(false); }}
                 onConfirm={() => onDelete()}
                 open={confirmDelete}

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import { ControlledVocab } from '@folio/stripes/smart-components';
-import { IntlConsumer } from '@folio/stripes/core';
 
 class IsilSettings extends React.Component {
   static propTypes = {
@@ -22,40 +21,36 @@ class IsilSettings extends React.Component {
     const errors = {};
 
     if (!values.isil) {
-      errors.isil = 'Please fill Isil in to continue';
+      errors.isil = <FormattedMessage id="ui-finc-config.settings.isils.isilIsEmpty" />;
     }
     if (!values.tenant) {
-      errors.tenant = 'Please fill Tenant in to continue';
+      errors.tenant = <FormattedMessage id="ui-finc-config.settings.isils.tenantIsEmpty" />;
     }
     return errors;
   }
 
   render() {
     return (
-      <IntlConsumer>
-        {intl => (
-          <this.connectedControlledVocab
-            baseUrl="finc-config/isils"
-            columnMapping={{
-              library: intl.formatMessage({ id: 'ui-finc-config.settings.isils.library' }),
-              isil: intl.formatMessage({ id: 'ui-finc-config.settings.isils.labelSingular' }),
-              tenant: intl.formatMessage({ id: 'ui-finc-config.settings.isils.tenant' }),
-            }}
-            data-test-settings-finc-config-isils
-            hiddenFields={['description', 'numberOfObjects']}
-            id="isils"
-            label={<FormattedMessage id="ui-finc-config.settings.isils.label" />}
-            labelSingular={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
-            nameKey="name"
-            objectLabel={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
-            records="isils"
-            sortby="name"
-            validate={this.setRequiredValidation}
-            visibleFields={['library', 'isil', 'tenant']}
-            {...this.props}
-          />
-        )}
-      </IntlConsumer>
+      <this.connectedControlledVocab
+        baseUrl="finc-config/isils"
+        columnMapping={{
+          library: <FormattedMessage id="ui-finc-config.settings.isils.library" />,
+          isil: <FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />,
+          tenant: <FormattedMessage id="ui-finc-config.settings.isils.tenant" />,
+        }}
+        data-test-settings-finc-config-isils
+        hiddenFields={['description', 'numberOfObjects']}
+        id="isils"
+        label={<FormattedMessage id="ui-finc-config.settings.isils.label" />}
+        labelSingular={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
+        nameKey="name"
+        objectLabel={<FormattedMessage id="ui-finc-config.settings.isils.labelSingular" />}
+        records="isils"
+        sortby="name"
+        validate={this.setRequiredValidation}
+        visibleFields={['library', 'isil', 'tenant']}
+        {...this.props}
+      />
     );
   }
 }

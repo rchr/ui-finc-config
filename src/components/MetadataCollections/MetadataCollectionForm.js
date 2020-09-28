@@ -128,10 +128,10 @@ class MetadataCollectionForm extends React.Component {
 
     const startButton = (
       <Button
-        data-test-collection-form-cancel-button
-        marginBottom0
-        id="clickable-close-collection-form"
         buttonStyle="default mega"
+        data-test-collection-form-cancel-button
+        id="clickable-close-collection-form"
+        marginBottom0
         onClick={onClose}
       >
         <FormattedMessage id="ui-finc-config.form.cancel" />
@@ -140,13 +140,13 @@ class MetadataCollectionForm extends React.Component {
 
     const endButton = (
       <Button
-        data-test-collection-form-submit-button
-        marginBottom0
-        id="clickable-savecollection"
         buttonStyle="primary mega"
-        type="submit"
-        onClick={handleSubmit}
+        data-test-collection-form-submit-button
         disabled={disabled}
+        id="clickable-savecollection"
+        marginBottom0
+        onClick={handleSubmit}
+        type="submit"
       >
         <FormattedMessage id="ui-finc-config.form.saveAndClose" />
       </Button>
@@ -172,10 +172,10 @@ class MetadataCollectionForm extends React.Component {
     const { initialValues, isLoading, onDelete, handleSubmit } = this.props;
     const { confirmDelete, sections } = this.state;
     const paneTitle = initialValues.id ? initialValues.label : <FormattedMessage id="ui-finc-config.form.create" />;
-
     const firstMenu = this.getFirstMenu();
     const lastMenu = this.getLastMenu();
     const footer = this.getPaneFooter();
+    const name = initialValues.label;
 
     if (isLoading) return <Icon icon="spinner-ellipsis" width="10px" />;
 
@@ -213,15 +213,12 @@ class MetadataCollectionForm extends React.Component {
                 <CollectionInfoForm
                   accordionId="editCollectionInfo"
                   expanded={sections.editCollectionInfo}
-                  metadataCollection={initialValues}
                   onToggle={this.handleSectionToggle}
                   {...this.props}
                 />
                 <CollectionManagementForm
                   accordionId="editCollectionManagement"
                   expanded={sections.editCollectionManagement}
-                  id="collectionManagement"
-                  metadataCollection={initialValues}
                   onToggle={this.handleSectionToggle}
                   {...this.props}
                 />
@@ -235,7 +232,10 @@ class MetadataCollectionForm extends React.Component {
               <ConfirmationModal
                 heading={<FormattedMessage id="ui-finc-config.form.delete" />}
                 id="delete-collection-confirmation"
-                message={`Do you really want to delete ${initialValues.label}?`}
+                message={<FormattedMessage
+                  id="ui-finc-config.form.delete.confirm.message"
+                  values={{ name }}
+                />}
                 onCancel={() => { this.confirmDelete(false); }}
                 onConfirm={() => onDelete()}
                 open={confirmDelete}
@@ -265,6 +265,7 @@ export default stripesFinalForm({
       tools.changeValue(state, 'usageRestricted', () => args[1]);
     }
   },
+  // necessary for permittedFor logic
   subscription: {
     values: true
   },

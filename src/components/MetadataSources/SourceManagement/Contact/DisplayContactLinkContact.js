@@ -17,15 +17,12 @@ class DisplayContactLinkContact extends React.Component {
   });
 
   static propTypes = {
+    contact: PropTypes.object,
+    contactId: PropTypes.string,
     resources: PropTypes.shape({
       org: PropTypes.object,
       failed: PropTypes.object,
     }).isRequired,
-    stripes: PropTypes.shape({
-      okapi: PropTypes.object
-    }),
-    contact: PropTypes.object,
-    contactId: PropTypes.string,
   };
 
   getContactForContact = (contact, contactId) => {
@@ -34,10 +31,7 @@ class DisplayContactLinkContact extends React.Component {
     } else {
       return (
         <React.Fragment>
-          <Link to={{
-            pathname: `${urls.contactView(contactId)}`,
-          }}
-          >
+          <Link to={{ pathname: `${urls.contactView(contactId)}` }}>
             {contact.name}
           </Link>
         </React.Fragment>

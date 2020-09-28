@@ -69,7 +69,6 @@ export default class ContactField extends React.Component {
         <Row>
           <Col xs={12}>
             <Field
-              ariaLabel="Add contact"
               component={TextField}
               fullWidth
               id={`contact-name-${index}`}

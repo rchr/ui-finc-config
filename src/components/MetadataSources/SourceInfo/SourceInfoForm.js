@@ -21,9 +21,9 @@ class SourceInfoForm extends React.Component {
     return (
       <Accordion
         label={<FormattedMessage id="ui-finc-config.source.generalAccordion" />}
+        onToggle={onToggle}
         open={expanded}
         id={accordionId}
-        onToggle={onToggle}
       >
         <Row>
           <Col xs={8}>

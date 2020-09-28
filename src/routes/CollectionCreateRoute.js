@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 import { stripesConnect } from '@folio/stripes/core';
 
@@ -17,7 +18,6 @@ class CollectionCreateRoute extends React.Component {
   });
 
   static propTypes = {
-    handlers: PropTypes.object,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -37,8 +37,12 @@ class CollectionCreateRoute extends React.Component {
     }).isRequired,
   }
 
-  static defaultProps = {
-    handlers: {},
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasPerms: props.stripes.hasPerm('finc-config.metadata-collections.item.post'),
+    };
   }
 
   handleClose = () => {
@@ -56,28 +60,21 @@ class CollectionCreateRoute extends React.Component {
       });
   }
 
-  getInitialValues = () => {
+  getInitialSolrMegaCollection = () => {
     // add first field for required repeatable field
     const solrMegaCollections = [''];
 
-    return {
-      solrMegaCollections,
-    };
+    return { solrMegaCollections };
   }
 
   render() {
-    const { handlers, resources, stripes } = this.props;
+    if (!this.state.hasPerms) return <div><FormattedMessage id="ui-finc-config.noPermission" /></div>;
 
     return (
       <MetadataCollectionForm
-        contentData={resources}
-        handlers={{
-          onClose: this.handleClose,
-          ...handlers,
-        }}
+        handlers={{ onClose: this.handleClose }}
+        initialValues={this.getInitialSolrMegaCollection()}
         onSubmit={this.handleSubmit}
-        initialValues={this.getInitialValues()}
-        stripes={stripes}
       />
     );
   }

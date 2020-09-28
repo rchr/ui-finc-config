@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 import { stripesConnect } from '@folio/stripes/core';
 
@@ -17,7 +18,6 @@ class SourceEditRoute extends React.Component {
   });
 
   static propTypes = {
-    handlers: PropTypes.object,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -40,8 +40,12 @@ class SourceEditRoute extends React.Component {
     }).isRequired,
   }
 
-  static defaultProps = {
-    handlers: {},
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasPerms: props.stripes.hasPerm('finc-config.metadata-sources.item.put')
+    };
   }
 
   getInitialValues = () => {
@@ -80,22 +84,16 @@ class SourceEditRoute extends React.Component {
   }
 
   render() {
-    const { handlers, resources, stripes } = this.props;
-
+    if (!this.state.hasPerms) return <div><FormattedMessage id="ui-finc-config.noPermission" /></div>;
     if (this.fetchIsPending()) return 'loading';
 
     return (
       <MetadataSourceForm
-        contentData={resources}
-        handlers={{
-          ...handlers,
-          onClose: this.handleClose,
-        }}
+        handlers={{ onClose: this.handleClose }}
         initialValues={this.getInitialValues()}
         isLoading={this.fetchIsPending()}
         onDelete={this.deleteSource}
         onSubmit={this.handleSubmit}
-        stripes={stripes}
       />
     );
   }

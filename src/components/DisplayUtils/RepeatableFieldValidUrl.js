@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 
 import {
   Button,
@@ -14,8 +15,8 @@ import { ValidateUrl } from './Validate';
 
 class RepeatableFieldValidUrl extends React.Component {
   static propTypes = {
-    fields: PropTypes.object,
     ariaLabel: PropTypes.string,
+    fields: PropTypes.object,
   };
 
   render() {
@@ -29,10 +30,10 @@ class RepeatableFieldValidUrl extends React.Component {
               <Col xs={8}>
                 <Field
                   ariaLabel={`${ariaLabel} #${parseInt(index + 1, 10)}`}
-                  name={elem}
-                  id={elem}
                   component={TextField}
                   fullWidth
+                  id={elem}
+                  name={elem}
                   validate={ValidateUrl}
                 />
               </Col>
@@ -46,7 +47,7 @@ class RepeatableFieldValidUrl extends React.Component {
           ))}
         </Col>
         <Col xs={4}>
-          <Button onClick={() => fields.push('')}>+ Add</Button>
+          <Button onClick={() => fields.push('')}><FormattedMessage id="ui-finc-config.form.button.add" /></Button>
         </Col>
       </Row>
     );
