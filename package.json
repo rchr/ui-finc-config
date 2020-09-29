@@ -93,7 +93,15 @@
     "permissionSets": [
       {
         "permissionName": "module.finc-config.enabled",
-        "displayName": "UI: Finc Config module is enabled",
+        "displayName": "UI: finc-config module is enabled",
+        "visible": false
+      },
+      {
+        "permissionName": "ui-finc-config.module.enabled",
+        "displayName": "Finc config: module is enabled",
+        "subPermissions": [
+          "module.finc-config.enabled"
+        ],
         "visible": true
       },
       {
@@ -102,15 +110,78 @@
         "subPermissions": [
           "settings.enabled"
         ],
+        "visible": false
+      },
+      {
+        "permissionName": "ui-finc-config.settings.manage",
+        "displayName": "Settings (Finc config): Can view and edit settings",
+        "subPermissions": [
+          "finc-config.module.enabled",
+          "settings.enabled",
+          "settings.finc-config.enabled",
+          "finc-config.isils.collection.get",
+          "finc-config.isils.item.get",
+          "finc-config.isils.item.post",
+          "finc-config.isils.item.put",
+          "finc-config.isils.item.delete"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "finc-config.all",
+        "displayName": "Finc config: All permissions",
+        "description": "All permissions for finc config",
+        "subPermissions": [
+          "finc-config.metadata-collections.collection.get",
+          "finc-config.metadata-collections.item.get",
+          "finc-config.metadata-collections.item.post",
+          "finc-config.metadata-collections.item.put",
+          "finc-config.metadata-collections.item.delete",
+          "finc-config.metadata-sources.collection.get",
+          "finc-config.metadata-sources.item.get",
+          "finc-config.metadata-sources.item.post",
+          "finc-config.metadata-sources.item.put",
+          "finc-config.metadata-sources.item.delete",
+          "finc-config.isils.collection.get",
+          "finc-config.isils.item.get",
+          "finc-config.isils.item.post",
+          "finc-config.isils.item.put",
+          "finc-config.isils.item.delete",
+          "finc-config.filters.collection.get",
+          "finc-config.filters.item.get",
+          "finc-config.filters.item.put",
+          "finc-config.filters.item.delete",
+          "finc-config.filters.item.post",
+          "finc-config.files.item.get",
+          "finc-config.files.item.delete",
+          "finc-config.files.item.post",
+          "finc-config.ezb-credentials.collection.get",
+          "finc-config.ezb-credentials.item.get",
+          "finc-config.ezb-credentials.item.post",
+          "finc-config.ezb-credentials.item.put",
+          "finc-config.ezb-credentials.item.delete"
+        ],
+        "visible": false
+      },
+      {
+        "permissionName": "ui-finc-config.all",
+        "displayName": "Finc config: All permissions",
+        "description": "All permissions for finc config",
+        "subPermissions": [
+          "finc-config.all"
+        ],
         "visible": true
       },
       {
         "permissionName": "ui-finc-config.view",
-        "displayName": "fincConfig: Can view metadatasources and metadatacollections",
+        "displayName": "Finc config: Can view metadatasources and metadatacollections",
         "description": "Can view metadatasources and metadatacollections",
         "subPermissions": [
-          "module.finc-config.enabled",
-          "fincConfig.view",
+          "finc-config.module.enabled",
+          "finc-config.metadata-collections.collection.get",
+          "finc-config.metadata-collections.item.get",
+          "finc-config.metadata-sources.collection.get",
+          "finc-config.metadata-sources.item.get",
           "organizations-storage.organizations.collection.get",
           "organizations-storage.organizations.item.get",
           "organizations-storage.contacts.all"
