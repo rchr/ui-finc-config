@@ -81,5 +81,9 @@
     "navigation.sources": "Sources",
     "navigation.collections": "Collections",
     "settings.isils.isilIsEmpty": "Please fill isil to continue",
-    "settings.isils.tenantIsEmpty": "Please fill tenant to continue"
+    "settings.isils.tenantIsEmpty": "Please fill tenant to continue",
+    "permission.module.enabled": "Finc config: module is enabled",
+    "permission.settings.manage": "Settings (Finc config): Can view and edit settings",
+    "permission.all": "Finc config: All permissions",
+    "permission.view": "Finc config: Can view metadatasources and metadatacollections"
 }

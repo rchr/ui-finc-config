@@ -81,5 +81,9 @@
     "navigation.sources": "مصادر",
     "navigation.collections": "مجموعات",
     "settings.isils.isilIsEmpty": "يرجى ملء isil  للمتابعة",
-    "settings.isils.tenantIsEmpty": "يرجى ملء المستأجر للمتابعة"
+    "settings.isils.tenantIsEmpty": "يرجى ملء المستأجر للمتابعة",
+    "permission.module.enabled": "Finc config: module is enabled",
+    "permission.settings.manage": "Settings (Finc config): Can view and edit settings",
+    "permission.all": "Finc config: All permissions",
+    "permission.view": "Finc config: Can view metadatasources and metadatacollections"
 }

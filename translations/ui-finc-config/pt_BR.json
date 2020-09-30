@@ -81,5 +81,9 @@
     "navigation.sources": "Fontes",
     "navigation.collections": "Coleções",
     "settings.isils.isilIsEmpty": "Por favor, preencha o isil para continuar",
-    "settings.isils.tenantIsEmpty": "Preencha o tenant para continuar"
+    "settings.isils.tenantIsEmpty": "Preencha o tenant para continuar",
+    "permission.module.enabled": "Configuração Finc: O módulo está habilitado",
+    "permission.settings.manage": "Configurações (Configuração Finc): Pode visualizar e editar as configurações",
+    "permission.all": "Configuração Finc: Todas as permissões",
+    "permission.view": "Configuração Finc: Pode visualizar fontes de metadados e coleções de metadados"
 }
