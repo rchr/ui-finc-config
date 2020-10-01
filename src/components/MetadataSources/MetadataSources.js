@@ -5,7 +5,10 @@ import {
   Link,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import {
+  injectIntl,
+  FormattedMessage
+} from 'react-intl';
 
 import {
   CollapseFilterPaneButton,
@@ -34,12 +37,13 @@ import FincNavigation from '../Navigation/FincNavigation';
 import implementationStatusOptions from '../DataOptions/implementationStatus';
 import solrShardOptions from '../DataOptions/solrShard';
 
-const searchableIndexes = [
-  { label: 'All', value: '', makeQuery: term => `(label="${term}*" or description="${term}*" or sourceId="${term}*")` },
-  { label: 'Source Name', value: 'label', makeQuery: term => `(label="${term}*")` },
-  { label: 'Description', value: 'description', makeQuery: term => `(description="${term}*")` },
-  { label: 'Source ID', value: 'sourceId', makeQuery: term => `(sourceId="${term}*")` },
+const rawSearchableIndexes = [
+  { label: 'all', value: '', makeQuery: term => `(label="${term}*" or description="${term}*" or sourceId="${term}*")` },
+  { label: 'label', value: 'label', makeQuery: term => `(label="${term}*")` },
+  { label: 'description', value: 'description', makeQuery: term => `(description="${term}*")` },
+  { label: 'sourceId', value: 'sourceId', makeQuery: term => `(sourceId="${term}*")` },
 ];
+let searchableIndexes;
 
 const defaultFilter = { state: { status: ['active', 'implementation'] }, string: 'status.active,status.implementation' };
 const defaultSearchString = { query: '' };
@@ -56,6 +60,9 @@ class MetadataSources extends React.Component {
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
+    intl: PropTypes.shape({
+      formatMessage: PropTypes.func.isRequired,
+    }),
     onNeedMoreData: PropTypes.func,
     onSelectRow: PropTypes.func,
     queryGetter: PropTypes.func,
@@ -308,10 +315,16 @@ class MetadataSources extends React.Component {
   }
 
   render() {
-    const { queryGetter, querySetter, onNeedMoreData, onSelectRow, selectedRecordId, source, filterData } = this.props;
+    const { intl, queryGetter, querySetter, onNeedMoreData, onSelectRow, selectedRecordId, source, filterData } = this.props;
     const count = source ? source.totalCount() : 0;
     const query = queryGetter() || {};
     const sortOrder = query.sort || '';
+
+    if (!searchableIndexes) {
+      searchableIndexes = rawSearchableIndexes.map(index => (
+        { value: index.value, label: intl.formatMessage({ id: `ui-finc-config.source.search.${index.label}` }) }
+      ));
+    }
 
     return (
       <div data-test-sources>
@@ -461,4 +474,4 @@ class MetadataSources extends React.Component {
   }
 }
 
-export default withRouter(MetadataSources);
+export default injectIntl(withRouter(MetadataSources));
