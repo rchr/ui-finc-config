@@ -85,5 +85,13 @@
     "permission.module.enabled": "Configuração Finc: O módulo está habilitado",
     "permission.settings.manage": "Configurações (Configuração Finc): Pode visualizar e editar as configurações",
     "permission.all": "Configuração Finc: Todas as permissões",
-    "permission.view": "Configuração Finc: Pode visualizar fontes de metadados e coleções de metadados"
+    "permission.view": "Configuração Finc: Pode visualizar fontes de metadados e coleções de metadados",
+    "source.search.all": "Todos",
+    "source.search.label": "Nome",
+    "source.search.description": "Descrição",
+    "source.search.sourceId": "ID",
+    "collection.search.all": "Todos",
+    "collection.search.label": "Nome",
+    "collection.search.description": "Descrição",
+    "collection.search.collectionId": "ID"
 }
