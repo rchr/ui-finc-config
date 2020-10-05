@@ -82,8 +82,16 @@
     "navigation.collections": "مجموعات",
     "settings.isils.isilIsEmpty": "يرجى ملء isil  للمتابعة",
     "settings.isils.tenantIsEmpty": "يرجى ملء المستأجر للمتابعة",
-    "permission.module.enabled": "Finc config: module is enabled",
-    "permission.settings.manage": "Settings (Finc config): Can view and edit settings",
-    "permission.all": "Finc config: All permissions",
-    "permission.view": "Finc config: Can view metadatasources and metadatacollections"
+    "permission.module.enabled": "تهيئة Finc: تم تفعيل الوحدة",
+    "permission.settings.manage": "الإعدادات (تهيئة Finc): إمكانية عرض وتحرير الإعدادات",
+    "permission.all": "تهيئة Finc: كل الصلاحيات",
+    "permission.view": "تهيئة Finc: إمكانية عرض مصادر الميتاداتا ومجموعات الميتاداتا",
+    "source.search.all": "الكل",
+    "source.search.label": "الاسم",
+    "source.search.description": "الوصف",
+    "source.search.sourceId": "المعرّف",
+    "collection.search.all": "الكل",
+    "collection.search.label": "الاسم",
+    "collection.search.description": "الوصف",
+    "collection.search.collectionId": "المعرّف"
 }
