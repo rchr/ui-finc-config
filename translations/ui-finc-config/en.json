@@ -18,6 +18,19 @@
   "form.validate.sourceRequired": "Metadata source required!",
   "form.validate.intRequired": "Integer required!",
 
+  "filterValue.active": "Active",
+  "filterValue.request": "Request",
+  "filterValue.implementation": "Implementation",
+  "filterValue.closed": "Closed",
+  "filterValue.impossible": "Impossible",
+  "filterValue.yes": "Yes",
+  "filterValue.no": "No",
+  "filterValue.undetermined": "Undetermined",
+
+  "dataOption.yes": "Yes",
+  "dataOption.no": "No",
+  "dataOption.undetermined": "Undetermined",
+
   "plugin.notFound": "Plugin not found",
   "plugin.buttonLabel.contact": "Add contact",
   "plugin.buttonLabel.user": "Add user",
@@ -50,11 +63,6 @@
   "source.contact.add": "Add contact",
   "source.contact.remove": "Remove contact",
   "source.contact.or": "or",
-  "source.active": "Active",
-  "source.request": "Request",
-  "source.implementation": "Implementation",
-  "source.closed": "Closed",
-  "source.impossible": "Impossible",
 
   "source.generalAccordion": "General",
   "source.managementAccordion": "Management",
@@ -84,9 +92,6 @@
   "collection.tickets": "Tickets",
   "collection.usageRestricted": "Usage restricted",
   "collection.selectedBy": "Selected by",
-  "collection.yes": "Yes",
-  "collection.no": "No",
-  "collection.undetermined": "Undetermined",
 
   "collection.generalAccordion": "General",
   "collection.managementAccordion": "Management",
