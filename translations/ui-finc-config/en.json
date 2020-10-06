@@ -50,6 +50,11 @@
   "source.contact.add": "Add contact",
   "source.contact.remove": "Remove contact",
   "source.contact.or": "or",
+  "source.active": "Active",
+  "source.request": "Request",
+  "source.implementation": "Implementation",
+  "source.closed": "Closed",
+  "source.impossible": "Impossible",
 
   "source.generalAccordion": "General",
   "source.managementAccordion": "Management",
@@ -79,6 +84,9 @@
   "collection.tickets": "Tickets",
   "collection.usageRestricted": "Usage restricted",
   "collection.selectedBy": "Selected by",
+  "collection.yes": "Yes",
+  "collection.no": "No",
+  "collection.undetermined": "Undetermined",
 
   "collection.generalAccordion": "General",
   "collection.managementAccordion": "Management",
