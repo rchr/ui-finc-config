@@ -82,7 +82,7 @@ describe('Edit Source', () => {
 
   describe('change, close pane and cancel changes', () => {
     beforeEach(async function () {
-      await editSourcePage.implementationStatusSelect.select('Active');
+      await editSourcePage.implementationStatusSelect.select('Impossible');
       await editSourcePage.closePaneBtn.click();
       await editSourcePage.closeWithoutSaving.click();
     });
