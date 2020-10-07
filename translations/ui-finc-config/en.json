@@ -18,15 +18,6 @@
   "form.validate.sourceRequired": "Metadata source required!",
   "form.validate.intRequired": "Integer required!",
 
-  "filterValue.active": "Active",
-  "filterValue.request": "Request",
-  "filterValue.implementation": "Implementation",
-  "filterValue.closed": "Closed",
-  "filterValue.impossible": "Impossible",
-  "filterValue.yes": "Yes",
-  "filterValue.no": "No",
-  "filterValue.undetermined": "Undetermined",
-
   "dataOption.active": "Active",
   "dataOption.request": "Request",
   "dataOption.implementation": "Implementation",
