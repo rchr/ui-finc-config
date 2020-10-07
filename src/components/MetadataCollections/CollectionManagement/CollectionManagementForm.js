@@ -144,18 +144,13 @@ class CollectionManagementForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FormattedMessage id="ui-finc-config.collection.permittedFor">
-                {ariaLabel => (
-                  <FieldArray
-                    addPermittedForField={this.state.addPermittedForField}
-                    ariaLabel={ariaLabel}
-                    component={PermittedForField}
-                    disable={!permittedIsRequired}
-                    id="display_permittedFor"
-                    name="permittedFor"
-                  />
-                )}
-              </FormattedMessage>
+              <FieldArray
+                addPermittedForField={this.state.addPermittedForField}
+                component={PermittedForField}
+                disable={!permittedIsRequired}
+                id="display_permittedFor"
+                name="permittedFor"
+              />
             </Col>
           </Row>
         </div>

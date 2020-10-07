@@ -11,10 +11,6 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-import metadataAvailableOptions from '../../DataOptions/metadataAvailable';
-import usageRestrictedOptions from '../../DataOptions/usageRestricted';
-import freeContentOptions from '../../DataOptions/freeContent';
-import lodPublicationOptions from '../../DataOptions/lodPublication';
 import BasicCss from '../../BasicStyle.css';
 
 class CollectionManagementView extends React.Component {
@@ -43,32 +39,21 @@ class CollectionManagementView extends React.Component {
     }
   }
 
+  getDataLable(field) {
+    const fieldValue = _.get(this.props.metadataCollection, field, '');
+    if (fieldValue !== '') {
+      return <FormattedMessage id={`ui-finc-config.dataOption.${fieldValue}`} />;
+    } else {
+      return <NoValue />;
+    }
+  }
+
   render() {
     const { metadataCollection, id } = this.props;
-
-    const metadataAvailableValue = _.get(metadataCollection, 'metadataAvailable', '');
-    const dataWithMetadataAvailableValue = metadataAvailableOptions.find(
-      (e) => e.value === metadataAvailableValue
-    );
-    const metadataAvailableLabel = _.get(dataWithMetadataAvailableValue, 'label', <NoValue />);
-
-    const usageRestrictedValue = _.get(metadataCollection, 'usageRestricted', '');
-    const dataWithUsageRestrictedValue = usageRestrictedOptions.find(
-      (e) => e.value === usageRestrictedValue
-    );
-    const usageRestrictedLabel = _.get(dataWithUsageRestrictedValue, 'label', <NoValue />);
-
-    const freeContentValue = _.get(metadataCollection, 'freeContent', '');
-    const dataWithFreeContentValue = freeContentOptions.find(
-      (e) => e.value === freeContentValue
-    );
-    const freeContentLabel = _.get(dataWithFreeContentValue, 'label', <NoValue />);
-
-    const lodPublicationValue = _.get(metadataCollection, 'lod.publication', '');
-    const dataWithLodPublicationValue = lodPublicationOptions.find(
-      (e) => e.value === lodPublicationValue
-    );
-    const lodPublicationLabel = _.get(dataWithLodPublicationValue, 'label', <NoValue />);
+    const metadataAvailableLabel = this.getDataLable('metadataAvailable');
+    const usageRestrictedLabel = this.getDataLable('usageRestricted');
+    const freeContentLabel = this.getDataLable('freeContent');
+    const lodPublicationLabel = this.getDataLable('lod.publication');
 
     return (
       <React.Fragment>

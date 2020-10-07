@@ -382,31 +382,27 @@ class MetadataCollections extends React.Component {
                       <form onSubmit={onSubmitSearch}>
                         {this.renderNavigation('collection')}
                         <div>
-                          <FormattedMessage id="ui-finc-config.searchInputLabel">
-                            {ariaLabel => (
-                              <SearchField
-                                ariaLabel={ariaLabel}
-                                autoFocus
-                                id="collectionSearchField"
-                                inputRef={this.searchField}
-                                name="query"
-                                onChange={(e) => {
-                                  if (e.target.value) {
-                                    this.handleChangeSearch(e.target.value, getSearchHandlers());
-                                  } else {
-                                    this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue);
-                                  }
-                                }}
-                                onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
-                                value={searchValue.query}
-                                // add values for search-selectbox
-                                onChangeIndex={(e) => { this.onChangeIndex(e.target.value, getSearchHandlers(), searchValue); }}
-                                searchableIndexes={searchableIndexes}
-                                searchableIndexesPlaceholder={null}
-                                selectedIndex={this.state.storedSearchIndex}
-                              />
-                            )}
-                          </FormattedMessage>
+                          <SearchField
+                            ariaLabel={intl.formatMessage({ id: 'ui-finc-config.searchInputLabel' })}
+                            autoFocus
+                            id="collectionSearchField"
+                            inputRef={this.searchField}
+                            name="query"
+                            onChange={(e) => {
+                              if (e.target.value) {
+                                this.handleChangeSearch(e.target.value, getSearchHandlers());
+                              } else {
+                                this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue);
+                              }
+                            }}
+                            onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
+                            value={searchValue.query}
+                            // add values for search-selectbox
+                            onChangeIndex={(e) => { this.onChangeIndex(e.target.value, getSearchHandlers(), searchValue); }}
+                            searchableIndexes={searchableIndexes}
+                            searchableIndexesPlaceholder={null}
+                            selectedIndex={this.state.storedSearchIndex}
+                          />
                           <Button
                             buttonStyle="primary"
                             disabled={disableSearch()}

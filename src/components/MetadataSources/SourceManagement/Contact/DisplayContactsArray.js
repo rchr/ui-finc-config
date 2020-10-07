@@ -27,6 +27,7 @@ class DisplayContactsArray extends React.Component {
               contact={elem}
               contactId={elem.externalId}
               contactIndex={index}
+              key={index}
             />
           ))}
         </React.Fragment>
