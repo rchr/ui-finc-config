@@ -238,7 +238,6 @@ CollectionManagementForm.propTypes = {
       setUsageRestricted: PropTypes.func
     })
   }),
-  // intl: PropTypes.object,
   onToggle: PropTypes.func,
   values: PropTypes.shape(),
 };

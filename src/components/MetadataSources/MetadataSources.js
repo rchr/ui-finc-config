@@ -34,8 +34,6 @@ import {
 import urls from '../DisplayUtils/urls';
 import SourceFilters from './SourceFilters';
 import FincNavigation from '../Navigation/FincNavigation';
-import implementationStatusOptions from '../DataOptions/implementationStatus';
-import solrShardOptions from '../DataOptions/solrShard';
 
 const rawSearchableIndexes = [
   { label: 'all', value: '', makeQuery: term => `(label="${term}*" or description="${term}*" or sourceId="${term}*")` },
@@ -92,29 +90,19 @@ class MetadataSources extends React.Component {
     };
   }
 
-  getStatusLabel(statusValue) {
-    const dataWithStatusValue = implementationStatusOptions.find(
-      (e) => e.value === statusValue
-    );
-    const statusLabel = _.get(dataWithStatusValue, 'label', <NoValue />);
-
-    return statusLabel;
-  }
-
-  getSolrLabel(solrValue) {
-    const dataWithSolrValue = solrShardOptions.find(
-      (e) => e.value === solrValue
-    );
-    const solrLabel = _.get(dataWithSolrValue, 'label', <NoValue />);
-
-    return solrLabel;
+  getDataLable(fieldValue) {
+    if (fieldValue !== '') {
+      return <FormattedMessage id={`ui-finc-config.dataOption.${fieldValue}`} />;
+    } else {
+      return <NoValue />;
+    }
   }
 
   resultsFormatter = {
     label: source => source.label,
     sourceId: source => source.sourceId,
-    status: source => this.getStatusLabel(source.status),
-    solrShard: source => this.getSolrLabel(source.solrShard),
+    status: source => this.getDataLable(_.get(source, 'status', '')),
+    solrShard: source => source.solrShard,
     lastProcessed: source => source.lastProcessed,
   };
 

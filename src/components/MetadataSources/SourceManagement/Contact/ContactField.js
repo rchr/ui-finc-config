@@ -10,11 +10,12 @@ import {
   Select,
   TextField,
 } from '@folio/stripes/components';
+import { IntlConsumer } from '@folio/stripes/core';
 
 import FindContact from '../FindContact/FindContact';
 import FindUser from '../FindUser/FindUser';
 import { Required } from '../../../DisplayUtils/Validate';
-import contactRoleOptions from '../../../DataOptions/contactRole';
+import { contactRoleOptions } from '../../../DataOptions/dataOptions';
 
 export default class ContactField extends React.Component {
   static propTypes = {
@@ -36,6 +37,14 @@ export default class ContactField extends React.Component {
     if (!isEmpty(value) && !value.id && get(this.inputRef, 'current')) {
       this.inputRef.current.focus();
     }
+  }
+
+  getDataOptions(intl, field) {
+    return field.map((item) => ({
+      // label: intl.formatMessage({ id: `ui-finc-config.dataOption.${item.value}` }),
+      label: 'blub',
+      value: item.value,
+    }));
   }
 
   render = () => {
@@ -83,17 +92,21 @@ export default class ContactField extends React.Component {
         </Row>
         <Row>
           <Col xs={12}>
-            <Field
-              component={Select}
-              dataOptions={contactRoleOptions}
-              fullWidth
-              id={`contact-role-${index}`}
-              label={<FormattedMessage id="ui-finc-config.source.contact.role" />}
-              name={`${name}.role`}
-              placeholder="Select a role for the contact"
-              required
-              validate={Required}
-            />
+            <IntlConsumer>
+              {intl => (
+                <Field
+                  component={Select}
+                  dataOptions={this.getDataOptions(intl, contactRoleOptions)}
+                  fullWidth
+                  id={`contact-role-${index}`}
+                  label={<FormattedMessage id="ui-finc-config.source.contact.role" />}
+                  name={`${name}.role`}
+                  placeholder="Select a role for the contact"
+                  required
+                  validate={Required}
+                />
+              )}
+            </IntlConsumer>
           </Col>
         </Row>
       </div>

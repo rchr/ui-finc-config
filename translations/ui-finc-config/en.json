@@ -27,9 +27,18 @@
   "filterValue.no": "No",
   "filterValue.undetermined": "Undetermined",
 
+  "dataOption.active": "Active",
+  "dataOption.request": "Request",
+  "dataOption.implementation": "Implementation",
+  "dataOption.closed": "Closed",
+  "dataOption.impossible": "Impossible",
   "dataOption.yes": "Yes",
   "dataOption.no": "No",
   "dataOption.undetermined": "Undetermined",
+  "dataOption.subject specialist": "Subject specialist",
+  "dataOption.librarian": "Librarian",
+  "dataOption.technical": "Technical",
+  "dataOption.vendor": "Vendor",
 
   "plugin.notFound": "Plugin not found",
   "plugin.buttonLabel.contact": "Add contact",

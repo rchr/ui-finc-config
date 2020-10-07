@@ -19,10 +19,17 @@ import {
 } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
 import RepeatableFieldValidUrl from '../../DisplayUtils/RepeatableFieldValidUrl';
-import solrShardOptions from '../../DataOptions/solrShard';
+import { solrShardOptions } from '../../DataOptions/dataOptions';
 import BasicCss from '../../BasicStyle.css';
 
 class SourceTechnicalForm extends React.Component {
+  getDataOptions(field) {
+    return field.map((item) => ({
+      label: item.value,
+      value: item.value,
+    }));
+  }
+
   render() {
     const { accordionId, expanded, onToggle } = this.props;
 
@@ -81,7 +88,7 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={8}>
             <Field
               component={Select}
-              dataOptions={solrShardOptions}
+              dataOptions={this.getDataOptions(solrShardOptions)}
               fullWidth
               id="addsource_solrShard"
               label={<FormattedMessage id="ui-finc-config.source.solrShard" />}

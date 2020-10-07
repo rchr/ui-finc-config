@@ -13,7 +13,6 @@ import {
 
 import DisplayContactLinkContact from './DisplayContactLinkContact';
 import DisplayContactLinkUser from './DisplayContactLinkUser';
-import contactRoleOptions from '../../../DataOptions/contactRole';
 
 class DisplayContact extends React.Component {
   static propTypes = {
@@ -45,13 +44,18 @@ class DisplayContact extends React.Component {
     return null;
   }
 
+  getDataLable(field) {
+    const fieldValue = _.get(this.props.contact, field, '');
+    if (fieldValue !== '') {
+      return <FormattedMessage id={`ui-finc-config.dataOption.${fieldValue}`} />;
+    } else {
+      return <NoValue />;
+    }
+  }
+
   render() {
     const { contact, contactIndex, contactId } = this.props;
-    const contactRoleValue = _.get(contact, 'role', '');
-    const dataWithcontactRoleValue = contactRoleOptions.find(
-      (e) => e.value === contactRoleValue
-    );
-    const contactRoleLabel = _.get(dataWithcontactRoleValue, 'label', <NoValue />);
+    const contactRoleLabel = this.getDataLable('role');
 
     return (
       <Card

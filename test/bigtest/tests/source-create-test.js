@@ -17,7 +17,7 @@ describe('Create Source', () => {
   const editSourcePage = new EditSourcePage();
 
   beforeEach(async function () {
-    this.visit('/finc-config/metadata-sources?filters=status.Active');
+    this.visit('/finc-config/metadata-sources?filters=status.active');
     await sourcesList.whenLoaded();
     await sourcesList.addNewSourceBtn.click();
     await editSourcePage.whenLoaded();

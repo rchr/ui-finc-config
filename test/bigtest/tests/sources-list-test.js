@@ -19,7 +19,7 @@ describe('Sources List', () => {
   beforeEach(async function () {
     this.server.createList('contact', CONTACT_COUNT);
     this.server.createList('finc-config-metadata-source', SOURCE_COUNT);
-    this.visit('/finc-config/metadata-sources?filters=status.Active');
+    this.visit('/finc-config/metadata-sources?filters=status.active');
     await sourcesList.whenLoaded();
   });
 

@@ -9,21 +9,24 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-import implementationStatusOptions from '../../DataOptions/implementationStatus';
-
 class SourceInfoView extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     metadataSource: PropTypes.object,
   };
 
+  getDataLable(field) {
+    const fieldValue = _.get(this.props.metadataSource, field, '');
+    if (fieldValue !== '') {
+      return <FormattedMessage id={`ui-finc-config.dataOption.${fieldValue}`} />;
+    } else {
+      return <NoValue />;
+    }
+  }
+
   render() {
     const { metadataSource, id } = this.props;
-    const statusValue = _.get(metadataSource, 'status', '');
-    const dataWithStatusValue = implementationStatusOptions.find(
-      (e) => e.value === statusValue
-    );
-    const statusLabel = _.get(dataWithStatusValue, 'label', <NoValue />);
+    const implementationStatusLabel = this.getDataLable('status');
 
     return (
       <React.Fragment>
@@ -43,7 +46,7 @@ class SourceInfoView extends React.Component {
           <Row>
             <KeyValue
               label={<FormattedMessage id="ui-finc-config.source.status" />}
-              value={statusLabel}
+              value={implementationStatusLabel}
             />
           </Row>
         </div>

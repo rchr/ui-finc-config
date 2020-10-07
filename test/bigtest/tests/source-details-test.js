@@ -18,7 +18,7 @@ describe('Source Details', () => {
 
   beforeEach(async function () {
     source = this.server.create('finc-config-metadata-source');
-    await this.visit('/finc-config/metadata-sources?filters=status.Active');
+    await this.visit('/finc-config/metadata-sources?filters=status.active');
   });
 
   it('shows the list of source items', () => {
