@@ -93,5 +93,13 @@
     "collection.search.all": "Todos",
     "collection.search.label": "Nome",
     "collection.search.description": "Descrição",
-    "collection.search.collectionId": "ID"
+    "collection.search.collectionId": "ID",
+    "source.active": "Active",
+    "source.request": "Request",
+    "source.implementation": "Implementation",
+    "source.closed": "Closed",
+    "source.impossible": "Impossible",
+    "collection.yes": "Yes",
+    "collection.no": "No",
+    "collection.undetermined": "Undetermined"
 }
