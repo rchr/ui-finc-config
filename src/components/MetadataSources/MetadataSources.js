@@ -28,7 +28,7 @@ import {
 } from '@folio/stripes/components';
 import {
   AppIcon,
-  IfPermission
+  IfPermission,
 } from '@folio/stripes/core';
 
 import urls from '../DisplayUtils/urls';
