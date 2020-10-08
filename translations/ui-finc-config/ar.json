@@ -93,5 +93,13 @@
     "collection.search.all": "الكل",
     "collection.search.label": "الاسم",
     "collection.search.description": "الوصف",
-    "collection.search.collectionId": "المعرّف"
+    "collection.search.collectionId": "المعرّف",
+    "source.active": "نشط",
+    "source.request": "طلب",
+    "source.implementation": "تنفيذ",
+    "source.closed": "مغلق",
+    "source.impossible": "مستحيل",
+    "collection.yes": "نعم",
+    "collection.no": "لا",
+    "collection.undetermined": "غير محدد"
 }
