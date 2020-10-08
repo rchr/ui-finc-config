@@ -7,11 +7,11 @@ const filterConfig = [
     name: 'status',
     cql: 'status',
     values: [
-      { name: <FormattedMessage id="ui-finc-config.source.active" />, cql: 'active' },
-      { name: <FormattedMessage id="ui-finc-config.source.request" />, cql: 'request' },
-      { name: <FormattedMessage id="ui-finc-config.source.implementation" />, cql: 'implementation' },
-      { name: <FormattedMessage id="ui-finc-config.source.closed" />, cql: 'closed' },
-      { name: <FormattedMessage id="ui-finc-config.source.impossible" />, cql: 'impossible' }
+      { name: <FormattedMessage id="ui-finc-config.dataOption.active" />, cql: 'active' },
+      { name: <FormattedMessage id="ui-finc-config.dataOption.request" />, cql: 'request' },
+      { name: <FormattedMessage id="ui-finc-config.dataOption.implementation" />, cql: 'implementation' },
+      { name: <FormattedMessage id="ui-finc-config.dataOption.closed" />, cql: 'closed' },
+      { name: <FormattedMessage id="ui-finc-config.dataOption.impossible" />, cql: 'impossible' }
     ],
   },
   {

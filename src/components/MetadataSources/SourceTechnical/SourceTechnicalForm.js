@@ -19,10 +19,17 @@ import {
 } from '../../DisplayUtils/Validate';
 import RepeatableField from '../../DisplayUtils/RepeatableField';
 import RepeatableFieldValidUrl from '../../DisplayUtils/RepeatableFieldValidUrl';
-import solrShardOptions from '../../DataOptions/solrShard';
+import { solrShardOptions } from '../../DataOptions/dataOptions';
 import BasicCss from '../../BasicStyle.css';
 
 class SourceTechnicalForm extends React.Component {
+  getDataOptions(field) {
+    return field.map((item) => ({
+      label: item.value,
+      value: item.value,
+    }));
+  }
+
   render() {
     const { accordionId, expanded, onToggle } = this.props;
 
@@ -42,16 +49,11 @@ class SourceTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FormattedMessage id="ui-finc-config.source.tickets">
-                {ariaLabel => (
-                  <FieldArray
-                    ariaLabel={ariaLabel}
-                    component={RepeatableFieldValidUrl}
-                    id="display_tickets"
-                    name="tickets"
-                  />
-                )}
-              </FormattedMessage>
+              <FieldArray
+                component={RepeatableFieldValidUrl}
+                id="display_tickets"
+                name="tickets"
+              />
             </Col>
           </Row>
         </div>
@@ -86,7 +88,7 @@ class SourceTechnicalForm extends React.Component {
           <Col xs={8}>
             <Field
               component={Select}
-              dataOptions={solrShardOptions}
+              dataOptions={this.getDataOptions(solrShardOptions)}
               fullWidth
               id="addsource_solrShard"
               label={<FormattedMessage id="ui-finc-config.source.solrShard" />}
@@ -104,16 +106,11 @@ class SourceTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FormattedMessage id="ui-finc-config.source.deliveryMethods">
-                {ariaLabel => (
-                  <FieldArray
-                    ariaLabel={ariaLabel}
-                    component={RepeatableField}
-                    id="display_delivery_methods"
-                    name="deliveryMethods"
-                  />
-                )}
-              </FormattedMessage>
+              <FieldArray
+                component={RepeatableField}
+                id="display_delivery_methods"
+                name="deliveryMethods"
+              />
             </Col>
           </Row>
         </div>
@@ -126,16 +123,11 @@ class SourceTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FormattedMessage id="ui-finc-config.source.formats">
-                {ariaLabel => (
-                  <FieldArray
-                    ariaLabel={ariaLabel}
-                    component={RepeatableField}
-                    id="display_formats"
-                    name="formats"
-                  />
-                )}
-              </FormattedMessage>
+              <FieldArray
+                component={RepeatableField}
+                id="display_formats"
+                name="formats"
+              />
             </Col>
           </Row>
         </div>
@@ -160,16 +152,11 @@ class SourceTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FormattedMessage id="ui-finc-config.source.inferiorTo">
-                {ariaLabel => (
-                  <FieldArray
-                    ariaLabel={ariaLabel}
-                    component={RepeatableField}
-                    id="display_inferior_to"
-                    name="inferiorTo"
-                  />
-                )}
-              </FormattedMessage>
+              <FieldArray
+                component={RepeatableField}
+                id="display_inferior_to"
+                name="inferiorTo"
+              />
             </Col>
           </Row>
         </div>

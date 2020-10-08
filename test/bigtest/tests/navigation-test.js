@@ -17,7 +17,7 @@ describe('Navigation', () => {
 
   describe('open default tab', () => {
     beforeEach(async function () {
-      this.visit('/finc-config/metadata-sources?filters=status.Active');
+      this.visit('/finc-config/metadata-sources?filters=status.active');
     });
 
     it('navigation should be present', () => {

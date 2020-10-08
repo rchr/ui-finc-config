@@ -64,16 +64,11 @@ class CollectionTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FormattedMessage id="ui-finc-config.collection.tickets">
-                {ariaLabel => (
-                  <FieldArray
-                    ariaLabel={ariaLabel}
-                    component={RepeatableFieldValidUrl}
-                    id="display_tickets"
-                    name="tickets"
-                  />
-                )}
-              </FormattedMessage>
+              <FieldArray
+                component={RepeatableFieldValidUrl}
+                id="display_tickets"
+                name="tickets"
+              />
             </Col>
           </Row>
         </div>
@@ -86,16 +81,11 @@ class CollectionTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FormattedMessage id="ui-finc-config.collection.contentFiles">
-                {ariaLabel => (
-                  <FieldArray
-                    ariaLabel={ariaLabel}
-                    component={RepeatableFieldValidUrl}
-                    id="display_contentFiles"
-                    name="contentFiles"
-                  />
-                )}
-              </FormattedMessage>
+              <FieldArray
+                component={RepeatableFieldValidUrl}
+                id="display_contentFiles"
+                name="contentFiles"
+              />
             </Col>
           </Row>
         </div>
@@ -108,16 +98,11 @@ class CollectionTechnicalForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FormattedMessage id="ui-finc-config.collection.solrMegaCollections">
-                {ariaLabel => (
-                  <FieldArray
-                    ariaLabel={ariaLabel}
-                    component={RequiredRepeatableField}
-                    id="display_solrMegaCollections"
-                    name="solrMegaCollections"
-                  />
-                )}
-              </FormattedMessage>
+              <FieldArray
+                component={RequiredRepeatableField}
+                id="display_solrMegaCollections"
+                name="solrMegaCollections"
+              />
             </Col>
           </Row>
         </div>

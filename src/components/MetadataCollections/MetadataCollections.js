@@ -34,9 +34,6 @@ import {
 import urls from '../DisplayUtils/urls';
 import CollectionFilters from './CollectionFilters';
 import FincNavigation from '../Navigation/FincNavigation';
-import metadataAvailableOptions from '../DataOptions/metadataAvailable';
-import usageRestrictedOptions from '../DataOptions/usageRestricted';
-import freeContentOptions from '../DataOptions/freeContent';
 
 const rawSearchableIndexes = [
   { label: 'all', value: '', makeQuery: term => `(label="${term}*" or description="${term}*" or collectionId="${term}*")` },
@@ -93,40 +90,21 @@ class MetadataCollections extends React.Component {
     };
   }
 
-  getMetadataAvailableLabel(metadataAvailableValue) {
-    const dataWithMetadataAvailableValue = metadataAvailableOptions.find(
-      (e) => e.value === metadataAvailableValue
-    );
-    const metadataAvailableLabel = _.get(dataWithMetadataAvailableValue, 'label', <NoValue />);
-
-    return metadataAvailableLabel;
-  }
-
-  getUsageRestrictedLabel(usageRestrictedValue) {
-    const dataWithUsageRestrictedValue = usageRestrictedOptions.find(
-      (e) => e.value === usageRestrictedValue
-    );
-    const usageRestrictedLabel = _.get(dataWithUsageRestrictedValue, 'label', <NoValue />);
-
-    return usageRestrictedLabel;
-  }
-
-  getFreeContentLabel(freeContentValue) {
-    const dataWithFreeContentValue = freeContentOptions.find(
-      (e) => e.value === freeContentValue
-    );
-    const freeContentLabel = _.get(dataWithFreeContentValue, 'label', <NoValue />);
-
-    return freeContentLabel;
+  getDataLable(fieldValue) {
+    if (fieldValue !== '') {
+      return <FormattedMessage id={`ui-finc-config.dataOption.${fieldValue}`} />;
+    } else {
+      return <NoValue />;
+    }
   }
 
   resultsFormatter = {
     label: collection => collection.label,
     mdSource: collection => collection.mdSource.name,
-    metadataAvailable: collection => this.getMetadataAvailableLabel(collection.metadataAvailable),
-    usageRestricted: collection => this.getUsageRestrictedLabel(collection.usageRestricted),
+    metadataAvailable: collection => this.getDataLable(_.get(collection, 'metadataAvailable', '')),
+    usageRestricted: collection => this.getDataLable(_.get(collection, 'usageRestricted', '')),
     permittedFor: collection => collection.permittedFor.join('; '),
-    freeContent: collection => this.getFreeContentLabel(collection.freeContent),
+    freeContent: collection => this.getDataLable(_.get(collection, 'freeContent', '')),
   };
 
   rowFormatter = (row) => {
@@ -382,31 +360,27 @@ class MetadataCollections extends React.Component {
                       <form onSubmit={onSubmitSearch}>
                         {this.renderNavigation('collection')}
                         <div>
-                          <FormattedMessage id="ui-finc-config.searchInputLabel">
-                            {ariaLabel => (
-                              <SearchField
-                                ariaLabel={ariaLabel}
-                                autoFocus
-                                id="collectionSearchField"
-                                inputRef={this.searchField}
-                                name="query"
-                                onChange={(e) => {
-                                  if (e.target.value) {
-                                    this.handleChangeSearch(e.target.value, getSearchHandlers());
-                                  } else {
-                                    this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue);
-                                  }
-                                }}
-                                onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
-                                value={searchValue.query}
-                                // add values for search-selectbox
-                                onChangeIndex={(e) => { this.onChangeIndex(e.target.value, getSearchHandlers(), searchValue); }}
-                                searchableIndexes={searchableIndexes}
-                                searchableIndexesPlaceholder={null}
-                                selectedIndex={this.state.storedSearchIndex}
-                              />
-                            )}
-                          </FormattedMessage>
+                          <SearchField
+                            ariaLabel={intl.formatMessage({ id: 'ui-finc-config.searchInputLabel' })}
+                            autoFocus
+                            id="collectionSearchField"
+                            inputRef={this.searchField}
+                            name="query"
+                            onChange={(e) => {
+                              if (e.target.value) {
+                                this.handleChangeSearch(e.target.value, getSearchHandlers());
+                              } else {
+                                this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue);
+                              }
+                            }}
+                            onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
+                            value={searchValue.query}
+                            // add values for search-selectbox
+                            onChangeIndex={(e) => { this.onChangeIndex(e.target.value, getSearchHandlers(), searchValue); }}
+                            searchableIndexes={searchableIndexes}
+                            searchableIndexesPlaceholder={null}
+                            selectedIndex={this.state.storedSearchIndex}
+                          />
                           <Button
                             buttonStyle="primary"
                             disabled={disableSearch()}

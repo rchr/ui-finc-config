@@ -28,14 +28,12 @@ import {
 } from '@folio/stripes/components';
 import {
   AppIcon,
-  IfPermission
+  IfPermission,
 } from '@folio/stripes/core';
 
 import urls from '../DisplayUtils/urls';
 import SourceFilters from './SourceFilters';
 import FincNavigation from '../Navigation/FincNavigation';
-import implementationStatusOptions from '../DataOptions/implementationStatus';
-import solrShardOptions from '../DataOptions/solrShard';
 
 const rawSearchableIndexes = [
   { label: 'all', value: '', makeQuery: term => `(label="${term}*" or description="${term}*" or sourceId="${term}*")` },
@@ -92,29 +90,19 @@ class MetadataSources extends React.Component {
     };
   }
 
-  getStatusLabel(statusValue) {
-    const dataWithStatusValue = implementationStatusOptions.find(
-      (e) => e.value === statusValue
-    );
-    const statusLabel = _.get(dataWithStatusValue, 'label', <NoValue />);
-
-    return statusLabel;
-  }
-
-  getSolrLabel(solrValue) {
-    const dataWithSolrValue = solrShardOptions.find(
-      (e) => e.value === solrValue
-    );
-    const solrLabel = _.get(dataWithSolrValue, 'label', <NoValue />);
-
-    return solrLabel;
+  getDataLable(fieldValue) {
+    if (fieldValue !== '') {
+      return <FormattedMessage id={`ui-finc-config.dataOption.${fieldValue}`} />;
+    } else {
+      return <NoValue />;
+    }
   }
 
   resultsFormatter = {
     label: source => source.label,
     sourceId: source => source.sourceId,
-    status: source => this.getStatusLabel(source.status),
-    solrShard: source => this.getSolrLabel(source.solrShard),
+    status: source => this.getDataLable(_.get(source, 'status', '')),
+    solrShard: source => source.solrShard,
     lastProcessed: source => source.lastProcessed,
   };
 
@@ -372,31 +360,27 @@ class MetadataSources extends React.Component {
                       <form onSubmit={onSubmitSearch}>
                         {this.renderNavigation('source')}
                         <div>
-                          <FormattedMessage id="ui-finc-config.searchInputLabel">
-                            {ariaLabel => (
-                              <SearchField
-                                ariaLabel={ariaLabel}
-                                autoFocus
-                                id="sourceSearchField"
-                                inputRef={this.searchField}
-                                name="query"
-                                onChange={(e) => {
-                                  if (e.target.value) {
-                                    this.handleChangeSearch(e.target.value, getSearchHandlers());
-                                  } else {
-                                    this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue);
-                                  }
-                                }}
-                                onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
-                                value={searchValue.query}
-                                // add values for search-selectbox
-                                onChangeIndex={(e) => { this.onChangeIndex(e.target.value, getSearchHandlers(), searchValue); }}
-                                searchableIndexes={searchableIndexes}
-                                searchableIndexesPlaceholder={null}
-                                selectedIndex={this.state.storedSearchIndex}
-                              />
-                            )}
-                          </FormattedMessage>
+                          <SearchField
+                            ariaLabel={intl.formatMessage({ id: 'ui-finc-config.searchInputLabel' })}
+                            autoFocus
+                            id="sourceSearchField"
+                            inputRef={this.searchField}
+                            name="query"
+                            onChange={(e) => {
+                              if (e.target.value) {
+                                this.handleChangeSearch(e.target.value, getSearchHandlers());
+                              } else {
+                                this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue);
+                              }
+                            }}
+                            onClear={() => this.handleClearSearch(getSearchHandlers(), onSubmitSearch(), searchValue)}
+                            value={searchValue.query}
+                            // add values for search-selectbox
+                            onChangeIndex={(e) => { this.onChangeIndex(e.target.value, getSearchHandlers(), searchValue); }}
+                            searchableIndexes={searchableIndexes}
+                            searchableIndexesPlaceholder={null}
+                            selectedIndex={this.state.storedSearchIndex}
+                          />
                           <Button
                             buttonStyle="primary"
                             disabled={disableSearch()}
