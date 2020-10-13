@@ -45,15 +45,16 @@ class CollectionManagementForm extends React.Component {
   changeSelectedUsageRestricted = event => {
     event.preventDefault();
 
-    const val = event.target.value;
+    const usageRestrictedVal = event.target.value;
+    const permittedValue = _.get(this.props.values, 'permittedFor', []);
 
-    if (val === 'yes') {
+    if (usageRestrictedVal === 'yes') {
       this.setState({ addPermittedForField: true });
-    } else {
-      this.setState({ addPermittedForField: false, confirmClear: true, selectedUsageRestricted: val });
+    } else if (permittedValue.length > 0) {
+      this.setState({ addPermittedForField: false, confirmClear: true, selectedUsageRestricted: usageRestrictedVal });
     }
 
-    this.props.form.mutators.setUsageRestricted({}, val);
+    this.props.form.mutators.setUsageRestricted({}, usageRestrictedVal);
   };
 
   confirmClearPermittedFor = confirmation => {
