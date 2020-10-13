@@ -53,6 +53,7 @@ class SourceTechnicalForm extends React.Component {
                 component={RepeatableFieldValidUrl}
                 id="display_tickets"
                 name="tickets"
+                placeholder=" "
               />
             </Col>
           </Row>
@@ -65,7 +66,6 @@ class SourceTechnicalForm extends React.Component {
               id="addsource_accessUrl"
               label={<FormattedMessage id="ui-finc-config.source.accessUrl" />}
               name="accessUrl"
-              placeholder="Enter an access url for the metadata source"
               validate={ValidateUrl}
             />
           </Col>
@@ -78,7 +78,6 @@ class SourceTechnicalForm extends React.Component {
               id="addsource_sourceId"
               label={<FormattedMessage id="ui-finc-config.source.id" />}
               name="sourceId"
-              placeholder="Enter a source id for the metadata source"
               required
               validate={IntRequired}
             />
@@ -93,7 +92,7 @@ class SourceTechnicalForm extends React.Component {
               id="addsource_solrShard"
               label={<FormattedMessage id="ui-finc-config.source.solrShard" />}
               name="solrShard"
-              placeholder="Select a solr shard for the metadata source"
+              placeholder=" "
             />
           </Col>
         </Row>
@@ -139,7 +138,6 @@ class SourceTechnicalForm extends React.Component {
               id="addsource_updateRhythm"
               label={<FormattedMessage id="ui-finc-config.source.updateRhythm" />}
               name="updateRhythm"
-              placeholder="Enter a update rhythm for the metadata source"
             />
           </Col>
         </Row>
