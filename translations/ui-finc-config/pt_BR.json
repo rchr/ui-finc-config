@@ -105,5 +105,9 @@
     "dataOption.subject specialist": "Especialista no assunto",
     "dataOption.librarian": "Bibliotecário",
     "dataOption.technical": "Técnico",
-    "dataOption.vendor": "Fornecedor"
+    "dataOption.vendor": "Fornecedor",
+    "collection.placeholder.mdSource": "Adicione uma fonte de metadados",
+    "collection.placeholder.permittedFor": "Insira um ISIL por campo para cada instituição com uso de metadados permitido",
+    "collection.placeholder.tickets": "Insira um URL para um problema relacionado",
+    "collection.placeholder.contentFiles": "Insira um URL para um servidor de arquivos"
 }
