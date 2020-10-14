@@ -118,7 +118,7 @@ class CollectionFilters extends React.Component {
           dataOptions={dataOptions}
           id="mdSource-filter"
           onChange={value => this.props.filterHandlers.state({ ...activeFilters, mdSource: [value] })}
-          placeholder=" "
+          placeholder=""
           value={mdSourceFilters[0] || ''}
         />
       </Accordion>

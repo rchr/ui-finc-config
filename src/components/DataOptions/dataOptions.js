@@ -1,4 +1,5 @@
 const metadataAvailableOptions = [
+  { value: '' },
   { value: 'yes' },
   { value: 'no' },
   { value: 'undetermined' }
@@ -10,12 +11,14 @@ const usageRestrictedOptions = [
 ];
 
 const freeContentOptions = [
+  { value: '' },
   { value: 'yes' },
   { value: 'no' },
   { value: 'undetermined' },
 ];
 
 const lodPublicationOptions = [
+  { value: '' },
   { value: 'yes' },
   { value: 'no' },
   { value: 'undetermined' }
@@ -37,6 +40,7 @@ const contactRoleOptions = [
 ];
 
 const solrShardOptions = [
+  { value: '' },
   { value: 'UBL main' },
   { value: 'UBL ai' },
   { value: 'UBL DNB' },

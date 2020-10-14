@@ -18,7 +18,7 @@ import { implementationStatusOptions } from '../../DataOptions/dataOptions';
 class SourceInfoForm extends React.Component {
   getDataOptions(intl, field) {
     return field.map((item) => ({
-      label: intl.formatMessage({ id: `ui-finc-config.dataOption.${item.value}` }),
+      label: item.value ? intl.formatMessage({ id: `ui-finc-config.dataOption.${item.value}` }) : '',
       value: item.value,
     }));
   }
