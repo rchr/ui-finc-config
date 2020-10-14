@@ -53,7 +53,7 @@ class SourceTechnicalForm extends React.Component {
                 component={RepeatableFieldValidUrl}
                 id="display_tickets"
                 name="tickets"
-                placeholder=" "
+                placeholder=""
               />
             </Col>
           </Row>
@@ -92,7 +92,7 @@ class SourceTechnicalForm extends React.Component {
               id="addsource_solrShard"
               label={<FormattedMessage id="ui-finc-config.source.solrShard" />}
               name="solrShard"
-              placeholder=" "
+              placeholder=""
             />
           </Col>
         </Row>

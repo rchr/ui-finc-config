@@ -75,7 +75,7 @@ class CollectionManagementForm extends React.Component {
 
   getDataOptions(intl, field) {
     return field.map((item) => ({
-      label: intl.formatMessage({ id: `ui-finc-config.dataOption.${item.value}` }),
+      label: item.value ? intl.formatMessage({ id: `ui-finc-config.dataOption.${item.value}` }) : '',
       value: item.value,
     }));
   }
@@ -115,7 +115,7 @@ class CollectionManagementForm extends React.Component {
                   id="addcollection_metadataAvailable"
                   label={<FormattedMessage id="ui-finc-config.collection.metadataAvailable" />}
                   name="metadataAvailable"
-                  placeholder=" "
+                  placeholder=""
                 />
               )}
             </IntlConsumer>
@@ -169,7 +169,7 @@ class CollectionManagementForm extends React.Component {
                   id="addcollection_freeContent"
                   label={<FormattedMessage id="ui-finc-config.collection.freeContent" />}
                   name="freeContent"
-                  placeholder=" "
+                  placeholder=""
                 />
               )}
             </IntlConsumer>
@@ -186,7 +186,7 @@ class CollectionManagementForm extends React.Component {
                   id="addcollection_lodpublication"
                   label={<FormattedMessage id="ui-finc-config.collection.lod.publication" />}
                   name="lod.publication"
-                  placeholder=" "
+                  placeholder=""
                 />
               )}
             </IntlConsumer>
