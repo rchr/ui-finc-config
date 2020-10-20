@@ -106,8 +106,8 @@
     "dataOption.librarian": "Bibliothécaire",
     "dataOption.technical": "Technique",
     "dataOption.vendor": "Fournisseur",
-    "collection.placeholder.mdSource": "Please add a metadata source",
+    "collection.placeholder.mdSource": "Veuillez ajouter une source de métadonnées",
     "collection.placeholder.permittedFor": "Enter one ISIL per field for each insititution with permitted metadata usage",
-    "collection.placeholder.tickets": "Enter a URL to a related issue",
-    "collection.placeholder.contentFiles": "Enter a URL to a file server"
+    "collection.placeholder.tickets": "Entrez une URL vers un problème connexe",
+    "collection.placeholder.contentFiles": "Entrez une URL vers un serveur de fichiers"
 }
