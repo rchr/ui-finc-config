@@ -66,7 +66,7 @@
     "source.contact.or": "ou",
     "noPermission": "Aucune autorisation",
     "renderList.isEmpty": "Aucun élément à afficher",
-    "noSourceYet": "No source yet",
+    "noSourceYet": "Pas encore de source",
     "form.delete.confirm.message": "Voulez-vous vraiment supprimer {name} ?",
     "form.button.add": "+ Ajouter",
     "form.validate.required": "Obligatoire",
