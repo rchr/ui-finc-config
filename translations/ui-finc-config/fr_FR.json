@@ -3,7 +3,7 @@
     "source.label": "Nom",
     "source.id": "ID",
     "source.status": "Statut d'implémentation",
-    "source.solrShard": "Solr shard",
+    "source.solrShard": "Nœud Solr",
     "source.lastProcessed": "Dernier enregistré",
     "source.generalAccordion": "Général",
     "source.managementAccordion": "Management",
