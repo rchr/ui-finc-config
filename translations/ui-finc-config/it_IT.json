@@ -69,7 +69,7 @@
     "noSourceYet": "No source yet",
     "form.delete.confirm.message": "Do you really want to delete {name}?",
     "form.button.add": "+ Add",
-    "form.validate.required": "Required!",
+    "form.validate.required": "Obbligatorio!",
     "form.validate.urlRequired": "Valid url with http:// or https:// required!",
     "form.validate.sourceRequired": "Metadata source required!",
     "form.validate.intRequired": "Integer required!",
