@@ -107,7 +107,7 @@
     "dataOption.technical": "Technique",
     "dataOption.vendor": "Fournisseur",
     "collection.placeholder.mdSource": "Veuillez ajouter une source de métadonnées",
-    "collection.placeholder.permittedFor": "Enter one ISIL per field for each insititution with permitted metadata usage",
+    "collection.placeholder.permittedFor": "Enter one ISIL for an insititution with permitted metadata usage",
     "collection.placeholder.tickets": "Entrez une URL vers un problème connexe",
     "collection.placeholder.contentFiles": "Entrez une URL vers un serveur de fichiers"
 }
