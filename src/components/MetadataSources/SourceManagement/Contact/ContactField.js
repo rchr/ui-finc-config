@@ -51,7 +51,7 @@ export default class ContactField extends React.Component {
 
     return (
       <div>
-        <Row>
+        <Row data-test-find-contact-row>
           <Col xs={5}>
             <Field
               component={FindContact}
