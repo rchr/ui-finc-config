@@ -12,7 +12,7 @@ export default Factory.extend({
     id: '',
     name: ''
   },
-  contacts : [],
+  contacts: [],
   indexingLevel: '',
   generalNotes: '',
   lastProcessed: '',
