@@ -60,8 +60,9 @@ class DisplayContact extends React.Component {
     return (
       <Card
         cardStyle="positive"
+        data-test-contact-card
         headerStart={<span>{<FormattedMessage id="ui-finc-config.source.contact.title.singular" values={{ amount : contactIndex + 1 }} />}</span>}
-        id={`contact #${parseInt(contactIndex + 1, 10)}`}
+        id={`contact-${parseInt(contactIndex + 1, 10)}`}
         roundedBorder
       >
         <Row>

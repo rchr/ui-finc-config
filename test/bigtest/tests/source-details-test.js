@@ -17,7 +17,10 @@ describe('Source Details', () => {
   let source = null;
 
   beforeEach(async function () {
-    source = this.server.create('finc-config-metadata-source');
+    const CONTACT_ID = 'id1';
+    source = this.server.create('finc-config-metadata-source', {
+      contacts: [{ CONTACT_ID }],
+    }, 'withContact', { externalId: CONTACT_ID });
     await this.visit('/finc-config/metadata-sources?filters=status.active');
   });
 
@@ -49,6 +52,23 @@ describe('Source Details', () => {
     it('all accordions in source-instance are present', function () {
       expect(sourceDetailsPage.managementAccordion.isPresent).to.equal(true);
       expect(sourceDetailsPage.technicalAccordion.isPresent).to.equal(true);
+    });
+
+    describe('open management accordion', () => {
+      beforeEach(async function () {
+        await sourceDetailsPage.managementAccordion.click();
+      });
+
+      it('button show all collections is visible', () => {
+        expect(sourceDetailsPage.showAllCollectionsBtn.isPresent).to.be.true;
+      });
+
+      it('contact is visible', () => {
+        expect(sourceDetailsPage.contactCard.isPresent).to.be.true;
+        expect(sourceDetailsPage.contactType.isPresent).to.be.true;
+        expect(sourceDetailsPage.contactRole.isPresent).to.be.true;
+        expect(sourceDetailsPage.contactName.isPresent).to.be.true;
+      });
     });
   });
 

@@ -5,4 +5,6 @@ import Factory from './application';
 export default Factory.extend({
   externalId: () => faker.random.uuid(),
   name: (i) => 'CONTACT ' + i,
+  role: 'vendor',
+  type: 'user',
 });

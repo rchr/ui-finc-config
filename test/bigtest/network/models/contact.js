@@ -1,3 +1,8 @@
-import { Model } from 'miragejs';
+import {
+  belongsTo,
+  Model,
+} from 'miragejs';
 
-export default Model.extend();
+export default Model.extend({
+  contact: belongsTo('finc-config-metadata-source'),
+});

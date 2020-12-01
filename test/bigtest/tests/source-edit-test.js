@@ -34,6 +34,23 @@ describe('Edit Source', () => {
     expect(editSourcePage.implementationStatusSelect.value).to.be.equal('active');
   });
 
+  it('add contact button is available', () => {
+    expect(editSourcePage.addContactButton.isPresent).to.be.true;
+  });
+
+  describe('add contact', () => {
+    beforeEach(async function () {
+      await editSourcePage.addContactButton.click();
+    });
+
+    it('contact EditCard with all elements is visible', () => {
+      expect(editSourcePage.contactInstance.isPresent).to.be.true;
+      expect(editSourcePage.findContactRow.isPresent).to.be.true;
+      expect(editSourcePage.contactNameField.isPresent).to.be.true;
+      expect(editSourcePage.contactRoleSelect.isPresent).to.be.true;
+    });
+  });
+
   describe('implementationStatus "Impossible" can be selected', () => {
     beforeEach(async () => {
       await editSourcePage.implementationStatusSelect.select('Impossible');

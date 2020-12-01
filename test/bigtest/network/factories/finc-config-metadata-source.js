@@ -1,4 +1,5 @@
 import faker from 'faker';
+import { trait } from 'miragejs';
 
 import Factory from './application';
 
@@ -24,4 +25,10 @@ export default Factory.extend({
   updateRhythm: '',
   inferiorTo: [],
   selectedBy: [],
+
+  withContact: trait({
+    afterCreate(contact, server) {
+      server.createList('contact', 9, { contact });
+    }
+  }),
 });
