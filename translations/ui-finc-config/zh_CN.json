@@ -107,7 +107,7 @@
     "dataOption.technical": "技术",
     "dataOption.vendor": "供应商",
     "collection.placeholder.mdSource": "请添加元数据来源",
-    "collection.placeholder.permittedFor": "为每个机构在每个字段输入一个ISIL，并允许使用元数据",
+    "collection.placeholder.permittedFor": "为允许使用元数据的机构输入一个ISIL",
     "collection.placeholder.tickets": "输入相关问题的URL",
     "collection.placeholder.contentFiles": "输入文件服务器的URL"
 }
