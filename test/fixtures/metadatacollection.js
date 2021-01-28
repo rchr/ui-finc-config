@@ -21,6 +21,7 @@ const metadatacollection = {
   'solrMegaCollections': [
     '21st Century Political Science'
   ],
+  'generalNotes': '',
   'selectedBy': [
     'DE-14'
   ]
