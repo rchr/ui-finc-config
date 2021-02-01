@@ -74,7 +74,7 @@ class MetadataCollections extends React.Component {
   };
 
   static defaultProps = {
-    contentData: {},
+    contentData: { mdSources: [] },
     filterData: {},
     searchString: '',
   }
@@ -400,11 +400,11 @@ class MetadataCollections extends React.Component {
                             <FormattedMessage id="stripes-smart-components.resetAll" />
                           </Icon>
                         </Button>
-                        <CollectionFilters
+                        {/* <CollectionFilters
                           activeFilters={activeFilters.state}
                           filterData={filterData}
                           filterHandlers={getFilterHandlers()}
-                        />
+                        /> */}
                       </form>
                     </Pane>
                   }
