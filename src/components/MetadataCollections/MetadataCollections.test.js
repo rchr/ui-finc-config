@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { noop } from 'lodash';
-// import { screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import { StripesContext } from '@folio/stripes-core/src/StripesContext';
 // import {
@@ -16,7 +16,7 @@ import { StripesContext } from '@folio/stripes-core/src/StripesContext';
 
 import '../../../test/jest/__mock__';
 import renderWithIntl from '../../../test/jest/helpers/renderWithIntl';
-// import translationsProperties from '../../../test/jest/helpers/translationsProperties';
+import translationsProperties from '../../../test/jest/helpers/translationsProperties';
 import metadatacollections from '../../../test/fixtures/metadatacollections';
 import mdSources from '../../../test/fixtures/tinyMetadataSources';
 import DataContext from '../../contexts/DataContext';
@@ -45,11 +45,6 @@ const stripes = {
   withOkapi: true,
 };
 
-// const props = {
-//   contentData: metadatacollections,
-//   queryGetter: jest.fn(),
-// };
-
 const tinySources = { mdSources };
 
 const myTestView = () => (
@@ -57,27 +52,66 @@ const myTestView = () => (
     <Router>
       <StripesContext.Provider value={stripes}>
         <DataContext.Provider value={{
-          filterData: mdSources
+          filterData: tinySources,
+          contentData: metadatacollections
         }}
         >
           <MetadataCollections
             contentData={metadatacollections}
             filterData={tinySources}
             queryGetter={jest.fn()}
-            map={jest.fn()}
           />
           {/* <SearchAndSortQuery contentData={metadatacollections} /> */}
           {/* </MetadataCollections> */}
         </DataContext.Provider>
       </StripesContext.Provider>
-    </Router>
+    </Router>,
+    translationsProperties
   )
 );
 
-describe('CollectionsRoute', () => {
-  it('pane collectionresults should be rendered', () => {
-    myTestView(metadatacollections, tinySources, noop, noop);
+describe('Collections SASQ View', () => {
+  let renderCollectionsViewResult;
+  beforeEach(() => {
+    renderCollectionsViewResult = myTestView(metadatacollections, tinySources, noop);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('pane collectionresults should be visible', () => {
     expect(document.querySelector('#pane-collectionresults-content')).toBeInTheDocument();
+  });
+
+  describe('check the collection filter elements', () => {
+    it('mdSource filter should be present', () => {
+      expect(document.querySelector('#filter-accordion-mdSource')).toBeInTheDocument();
+    });
+
+    it('metadataAvailable filter should be present', () => {
+      expect(document.querySelector('#filter-accordion-metadataAvailable')).toBeInTheDocument();
+    });
+
+    it('usageRestricted filter should be present', () => {
+      expect(document.querySelector('#filter-accordion-usageRestricted')).toBeInTheDocument();
+    });
+
+    it('freeContent filter should be present', () => {
+      expect(document.querySelector('#filter-accordion-freeContent')).toBeInTheDocument();
+    });
+
+    it('reset all button should be present', () => {
+      expect(document.querySelector('#clickable-reset-all')).toBeInTheDocument();
+    });
+
+    it('submit button should be present', () => {
+      expect(document.querySelector('#collectionSubmitSearch')).toBeInTheDocument();
+    });
+
+    it('search field should be present', () => {
+      expect(document.querySelector('#collectionSearchField')).toBeInTheDocument();
+    });
   });
 
   // TODO: list of results will not rendered yet
