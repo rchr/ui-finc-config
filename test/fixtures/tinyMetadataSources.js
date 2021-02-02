@@ -1,4 +1,4 @@
-const tinyMetadataSources = [
+const mdSources = [
   {
     'id': '6dd325f8-b1d5-4568-a0d7-aecf6b8d6697',
     'label': 'Cambridge University Press Journals'
@@ -9,4 +9,4 @@ const tinyMetadataSources = [
   }
 ];
 
-export default tinyMetadataSources;
+export default mdSources;
