@@ -303,11 +303,45 @@ class MetadataCollections extends React.Component {
     }
   }
 
+  getColumnMapping = () => {
+    const { intl } = this.props;
+
+    // const columnMapping = {
+    //   label: <FormattedMessage id="ui-finc-config.collection.label" />,
+    //   mdSource: <FormattedMessage id="ui-finc-config.collection.mdSource" />,
+    //   metadataAvailable: <FormattedMessage id="ui-finc-config.collection.metadataAvailable" />,
+    //   usageRestricted: <FormattedMessage id="ui-finc-config.collection.usageRestricted" />,
+    //   permittedFor: <FormattedMessage id="ui-finc-config.collection.permittedFor" />,
+    //   freeContent: <FormattedMessage id="ui-finc-config.collection.freeContent" />,
+    // };
+
+    const columnMapping = {
+      label: intl.formatMessage({ id: 'ui-finc-config.collection.label' }),
+      mdSource: intl.formatMessage({ id: 'ui-finc-config.collection.mdSource' }),
+      metadataAvailable: intl.formatMessage({ id: 'ui-finc-config.collection.metadataAvailable' }),
+      usageRestricted: intl.formatMessage({ id: 'ui-finc-config.collection.usageRestricted' }),
+      permittedFor: intl.formatMessage({ id: 'ui-finc-config.collection.permittedFor' }),
+      freeContent: intl.formatMessage({ id: 'ui-finc-config.collection.freeContent' }),
+    };
+
+    return columnMapping;
+  }
+
+  getVisibleColumns = () => {
+    const { intl } = this.props;
+
+    const visibleColumns = ['label', 'mdSource', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent'];
+
+    return visibleColumns;
+  }
+
   render() {
     const { intl, queryGetter, querySetter, onNeedMoreData, onSelectRow, selectedRecordId, collection, filterData } = this.props;
     const count = collection ? collection.totalCount() : 0;
     const query = queryGetter() || {};
     const sortOrder = query.sort || '';
+    const visibleColumns = this.getVisibleColumns();
+    const columnMapping = this.getColumnMapping();
 
     if (!searchableIndexes) {
       searchableIndexes = rawSearchableIndexes.map(index => (
@@ -421,14 +455,15 @@ class MetadataCollections extends React.Component {
                   >
                     <MultiColumnList
                       autosize
-                      columnMapping={{
-                        label: <FormattedMessage id="ui-finc-config.collection.label" />,
-                        mdSource: <FormattedMessage id="ui-finc-config.collection.mdSource" />,
-                        metadataAvailable: <FormattedMessage id="ui-finc-config.collection.metadataAvailable" />,
-                        usageRestricted: <FormattedMessage id="ui-finc-config.collection.usageRestricted" />,
-                        permittedFor: <FormattedMessage id="ui-finc-config.collection.permittedFor" />,
-                        freeContent: <FormattedMessage id="ui-finc-config.collection.freeContent" />,
-                      }}
+                      columnMapping={columnMapping}
+                      // columnMapping={{
+                      //   label: <FormattedMessage id="ui-finc-config.collection.label" />,
+                      //   mdSource: <FormattedMessage id="ui-finc-config.collection.mdSource" />,
+                      //   metadataAvailable: <FormattedMessage id="ui-finc-config.collection.metadataAvailable" />,
+                      //   usageRestricted: <FormattedMessage id="ui-finc-config.collection.usageRestricted" />,
+                      //   permittedFor: <FormattedMessage id="ui-finc-config.collection.permittedFor" />,
+                      //   freeContent: <FormattedMessage id="ui-finc-config.collection.freeContent" />,
+                      // }}
                       contentData={this.props.contentData}
                       formatter={this.resultsFormatter}
                       id="list-collections"
@@ -444,7 +479,8 @@ class MetadataCollections extends React.Component {
                       sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
                       totalCount={count}
                       virtualize
-                      visibleColumns={['label', 'mdSource', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent']}
+                      visibleColumns={visibleColumns}
+                      // visibleColumns={['label', 'mdSource', 'metadataAvailable', 'usageRestricted', 'permittedFor', 'freeContent']}
                     />
                   </Pane>
                   {this.props.children}
