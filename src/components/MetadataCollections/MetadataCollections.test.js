@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { noop } from 'lodash';
-import { screen } from '@testing-library/react';
+// import { screen } from '@testing-library/react';
 
 import '../../../test/jest/__mock__';
 
@@ -18,7 +18,7 @@ import renderWithIntl from '../../../test/jest/helpers/renderWithIntl';
 import translationsProperties from '../../../test/jest/helpers/translationsProperties';
 import metadatacollections from '../../../test/fixtures/metadatacollections';
 import mdSources from '../../../test/fixtures/tinyMetadataSources';
-import DataContext from '../../contexts/DataContext';
+// import DataContext from '../../contexts/DataContext';
 import MetadataCollections from './MetadataCollections';
 
 const stripes = {
@@ -43,10 +43,11 @@ const stripes = {
   },
   withOkapi: true,
 };
-const query = {
-  query: '',
-  sort: 'label',
-};
+
+// const query = {
+//   query: '',
+//   sort: 'label',
+// };
 
 const tinySources = { mdSources };
 
@@ -99,9 +100,10 @@ const myTestView = () => (
 );
 
 describe('Collections SASQ View', () => {
-  let renderCollectionsViewResult;
+  // let renderCollectionsViewResult;
   beforeEach(() => {
-    renderCollectionsViewResult = myTestView(metadatacollections, testCollection, tinySources, noop, noop, noop, '', '', noop);
+    // renderCollectionsViewResult = myTestView(metadatacollections, testCollection, tinySources, noop, noop, noop, '', '', noop);
+    myTestView(metadatacollections, testCollection, tinySources, noop, noop, noop, '', '', noop);
   });
 
   afterEach(() => {
