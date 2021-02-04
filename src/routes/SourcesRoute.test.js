@@ -3,23 +3,11 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
 import '@folio/stripes-erm-components/test/jest/__mock__';
-// import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 
-// import '../../test/jest/__mock__';
 import renderWithIntl from '../../test/jest/helpers/renderWithIntl';
 import translationsProperties from '../../test/jest/helpers';
-import collections from '../../test/fixtures/metadatacollections';
-import CollectionsRoute from './CollectionsRoute';
-
-// jest.mock('@folio/stripes-erm-components', () => ({
-//   ...jest.requireActual('@folio/stripes-erm-components'),
-//   InternalContactSelection: () => <div>InternalContactSelection</div>,
-// }));
-
-// jest.mock('@folio/stripes-components', () => ({
-//   ...jest.requireActual('@folio/stripes-components'),
-//   Selection: () => <div>Selection</div>,
-// }));
+import sources from '../../test/fixtures/metadatasources';
+import SourcesRoute from './SourcesRoute';
 
 const routeProps = {
   history: {
@@ -27,31 +15,31 @@ const routeProps = {
   },
   match: {
     params: {
-      id: '9a2427cd-4110-4bd9-b6f9-e3475631bbac',
+      id: '6dd325f8-b1d5-4568-a0d7-aecf6b8d6697',
     },
   },
   location: {},
   mutator: {
     query: { update: noop },
   },
-  resources: { collections }
+  resources: { sources }
 };
 
-describe('CollectionsRoute', () => {
+describe('SourcesRoute', () => {
   describe('rendering the route with permissions', () => {
     let renderComponent;
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
-          <CollectionsRoute {...routeProps} />
+          <SourcesRoute {...routeProps} />
         </MemoryRouter>,
         translationsProperties
       );
     });
 
-    test('renders the collections component', () => {
+    test('renders the sources component', () => {
       const { getByTestId } = renderComponent;
-      expect(getByTestId('collections')).toBeInTheDocument();
+      expect(getByTestId('sources')).toBeInTheDocument();
     });
   });
 
@@ -60,7 +48,7 @@ describe('CollectionsRoute', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
-          <CollectionsRoute
+          <SourcesRoute
             {...routeProps}
             stripes={{ hasPerm: () => false }}
           />
