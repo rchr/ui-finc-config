@@ -48,6 +48,7 @@ jest.mock('@folio/stripes/core', () => {
     withOkapi: true,
   };
 
+  // eslint-disable-next-line react/prop-types
   const stripesConnect = (Component, options) => ({ mutator, resources, stripes, ...rest }) => {
     const fakeMutator = mutator || Object.keys(Component.manifest).reduce((acc, mutatorName) => {
       const returnValue = Component.manifest[mutatorName].records ? [] : {};
@@ -79,6 +80,7 @@ jest.mock('@folio/stripes/core', () => {
     return <Component {...rest} mutator={fakeMutator} resources={fakeResources} stripes={fakeStripes} />;
   };
 
+  // eslint-disable-next-line react/prop-types
   const withStripes = (Component, options) => ({ stripes, ...rest }) => {
     const fakeStripes = stripes || STRIPES;
 
