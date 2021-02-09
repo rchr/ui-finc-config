@@ -2,10 +2,10 @@ import { noop } from 'lodash';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-import '@folio/stripes-erm-components/test/jest/__mock__';
+// import '@folio/stripes-erm-components/test/jest/__mock__';
 // import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 
-// import '../../test/jest/__mock__';
+import '../../test/jest/__mock__';
 import renderWithIntl from '../../test/jest/helpers/renderWithIntl';
 import translationsProperties from '../../test/jest/helpers';
 import collections from '../../test/fixtures/metadatacollections';
